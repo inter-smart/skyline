@@ -7,7 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* --font-fordAntenna: var(--font-fordAntenna); */
+  --font-graphik: var(--font-graphik); 
 
   --color-base1: #671448;
   --color-base2: #00335B;
@@ -81,7 +81,10 @@
 }
 
 body {
-  font-family: var(--font-fordAntenna), Arial, sans-serif;
+ font-family: var(--font-graphik), sans-serif;
+}
+.font-unna {
+  font-family: var(--font-unna), serif;
 }
 
 @layer components {
