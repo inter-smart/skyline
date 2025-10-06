@@ -93,9 +93,15 @@ body {
   }
 
   .btn-base1 {
-    @apply bg-base2 hover:bg-base1 hover:border-base1;
+    @apply text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-white font-medium flex items-center justify-center uppercase px-[15px] w-fit h-[25px] xl:h-[32px] 3xl:h-[50px] bg-base1 cursor-pointer rounded-[3px] transition-all duration-300 relative overflow-hidden ;
   }
 
+  .hover{
+    @apply hover:bg-gradient-to-r hover:from-base1 hover:to-base2 hover:shadow-xl after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent after:translate-x-[-100%] hover:after:translate-x-[100%] after:transition-transform after:duration-1000
+  }
+  p{
+    @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+  }
   .typography {
     & > * {
       @apply my-[10px] lg:my-[15px];
@@ -103,7 +109,7 @@ body {
 
     p,
     & {
-      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929];
+      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
     }
 
     h1 {
@@ -226,3 +232,16 @@ body {
 
 }
 
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}

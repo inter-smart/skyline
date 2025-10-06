@@ -67,77 +67,9 @@ export default function MobileHeader() {
                                     </g>
                                 </svg>
                             </SheetTrigger>
-                        </div>
-                        {/* Logo */}
-                        <div className="w-1/3 3xl:max-w-[150px] 2xl:max-w-[150px] lg:max-w-[165px] max-w-[65px] flex items-center justify-center ">
-                            <Link href="/" className="block w-full h-full">
-                                <Image
-                                    src="/images/logo.svg"
-                                    alt="IndiaZone Logo"
-                                    width={175}
-                                    height={100}
-                                    className="w-full h-full 3xl:max-w-[125px] 2xl:max-w-[100px] max-w-[90px] object-contain block hover:scale-105 transition-transform duration-300"
-                                />
-                            </Link>
-                        </div>
-                        {/* login */}
-                        <div className="w-1/3 flex items-center justify-end gap-0.5">
-                            <div className="3xl:px-[12px] 2xl:px-[8px] px-[5px] !h-[30px] ">
-                                <Select className="h-full">
-                                    <SelectTrigger
-                                        className={`${menuLinkClass} ${menutrigger} !h-full  `} defaultValue="₹INR" >
-                                        <SelectValue placeholder="₹INR" />
-                                    </SelectTrigger>
-                                    <SelectContent className={`${menuSelectcontent} `}>
-                                        <SelectItem
-                                            value="₹INR"
-                                            className={`${menuOption}`}                        >
-                                            ₹INR
-                                        </SelectItem>
-                                        <SelectItem
-                                            value="electronics"
-                                            className={`${menuOption}`}
-                                        >
-                                            USD
-                                        </SelectItem>
-                                        <SelectItem
-                                            value="fashion"
-                                            className={`${menuOption}`}
-                                        >
-                                            AED
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
-
-                            </div>
-                            <div className="3xl:px-[12px] 2xl:px-[8px] px-[5px]">
-                                <button
-                                    className="3xl:w-[30px] 2xl:w-[24px] w-[20px] 3xl:h-[30px] 2xl:h-[24px] h-[20px] overflow-hidden flex items-center border-none 
-                                bg-transparent hover:bg-gray-100 transition"
-                                    aria-label="Translate this page"
-                                >
-                                    <Image
-                                        src="/images/translatte_icon.svg"
-                                        alt="Google Translate"
-                                        width={24}
-                                        height={24}
-                                        className="w-full h-full object-contain"
-                                    />
-                                    <svg
-                                        className="  text-gray-600"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+                        </div>                         
                     </div>
-                    <div className="flex items-center justify-between gap-0.5 mb-[5px]">
-                        <SearchButton />
-                    </div>
+                     
                     <div className="flex items-center justify-between border-t border-[#f4f4f4] pt-[7px]">
                         <Link
                             href="/become-a-vendor"
