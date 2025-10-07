@@ -52,10 +52,10 @@ export default function WhySection() {
                                     <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
                                         <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">Expert Consultants</div>
                                         <p className="text-[#1E1E1E]">GMC-registered experts across 15+ medical specialties with NHS & private experience</p>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li className="flex items-start mb-[15px] xl:mb-[20px] 3xl:mb-[30px]  last-of-type:mb-0">
-                                        <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
+                                    <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
                                         <div className="w-full h-full flex items-center">
                                             <Image src="/images/expertIcon.svg" width="22" height="22" alt="expertIcon" />
                                         </div>
@@ -63,10 +63,10 @@ export default function WhySection() {
                                     <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
                                         <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">Advanced Technology</div>
                                         <p className="text-[#1E1E1E]">GMC-registered experts across 15+ medical specialties with NHS & private experience</p>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li className="flex items-start mb-[15px] xl:mb-[20px] 3xl:mb-[30px]  last-of-type:mb-0">
-                                       <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
+                                    <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
                                         <div className="w-full h-full flex items-center">
                                             <Image src="/images/expertIcon.svg" width="22" height="22" alt="expertIcon" />
                                         </div>
@@ -74,10 +74,10 @@ export default function WhySection() {
                                     <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
                                         <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">Personalized Care</div>
                                         <p className="text-[#1E1E1E]">Tailored treatment plans focused on your health journey</p>
-                                    </div> 
+                                    </div>
                                 </li>
                                 <li className="flex items-start mb-[15px] xl:mb-[20px] 3xl:mb-[30px] last-of-type:mb-0">
-                                      <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
+                                    <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
                                         <div className="w-full h-full flex items-center">
                                             <Image src="/images/expertIcon.svg" width="22" height="22" alt="expertIcon" />
                                         </div>
@@ -85,7 +85,7 @@ export default function WhySection() {
                                     <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
                                         <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">Affordable Excellence</div>
                                         <p className="text-[#1E1E1E]">High-quality private healthcare at transparent, competitive prices</p>
-                                    </div> 
+                                    </div>
                                 </li>
                             </ul>
                         </div>
