@@ -15,8 +15,8 @@ export default function Home() {
       <BannerSection /> 
       <AboutSection />
       <WhySection />
-      {/* <SpecialistSection />
-      <ConsultantSection /> */} 
+      <SpecialistSection />
+      <ConsultantSection /> 
       <TestimonialSection />
       <AppointmentSection />
       <InsightSection />

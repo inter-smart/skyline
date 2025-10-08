@@ -73,17 +73,17 @@ export default function ConsultantSection() {
                     centeredSlides={true}
                     autoplay={{ delay: 5000 }}
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                    className="relative !w-full" 
+                    className="relative  " 
                     spaceBetween={20}
                     breakpoints={{
                         768: { slidesPerView: 2, spaceBetween: 15 },
                         1280: { slidesPerView: 3, spaceBetween: 20 },
-                        1536: { slidesPerView: "auto" , spaceBetween: 15 },
+                        1536: { slidesPerView: 2 , spaceBetween: 15 },
                     }}
                 >
                     {items.map((item, index) => (
                         <SwiperSlide 
-                            className={`${activeIndex === index ? "!w-[810px]" : "!w-[410px]"}`}>
+                           >
                             <div className="w-full h-full p-[18px] rounded-[8px] overflow-hidden bg-white flex flex-wrap">
                                 <div className="w-[375px]">
                                     <div className="w-full h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[20px] bg-[#D6E2ED]">

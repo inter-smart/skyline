@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Unna as UnnaFont } from "next/font/google";
 import localFont from "next/font/local";
+import WidgetSection from "@/components/common/WidgetSection";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -75,6 +76,7 @@ export default function RootLayout({ children }) {
       <body className={` ${graphik.variable}  ${unna.variable}`}>
         <Header />
         <main className="flex-grow">{children}</main>
+        <WidgetSection />
         <Footer />
       </body>
     </html>

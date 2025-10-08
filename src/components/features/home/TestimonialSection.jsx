@@ -160,7 +160,7 @@ export default function TestimonialSection() {
                                 className="relative w-full h-full"
                             >
                                 <SwiperSlide >
-                                    <div className="w-full h-full rounded-[6px] overflow-hidden relative before:absolute before:bottom-0
+                                    <div className="w-full h-full rounded-[6px] aspect-[450/340] overflow-hidden relative before:absolute before:bottom-0
                                      before:left-0 before:w-full before:h-full 
                                     before:bg-[linear-gradient(0deg,rgba(0,0,0,0.6)_2.34%,rgba(0,0,0,0)_99.42%)]">
                                         <video
@@ -171,9 +171,9 @@ export default function TestimonialSection() {
                                             playsInline
                                             className="w-full h-full object-cover" />
 
-                                        <div className="flex items-center justify-between w-full absolute left-0 bottom-0 p-[40px_45px]">
+                                        <div className="flex items-center justify-between w-full absolute left-0 bottom-0 p-[25px] 2xl:p-[30px] 3xl:p-[40px_45px]">
                                             <div className="flex items-center">
-                                                <div className="2xl:w-[40px] 3xl:w-[50px] 2xl:h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
+                                                  <div className="w-[40px] 3xl:w-[50px] h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
                                                     <Image
                                                         src="/images/avatar.jpg"
                                                         alt="avatar"
@@ -191,9 +191,10 @@ export default function TestimonialSection() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <Button className="w-[60px] h-[60px] rounded-full overflow-hidden flex items-center justify-center bg-[rgba(217,217,217,0.5)] backdrop-blur-3xl ">
-                                                <div className="w-[12px] h-[12px] flex">
-                                                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" >
+                                            <Button className="w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] rounded-full cursor-pointer
+                                               bg-[rgba(217,217,217,0.5)] backdrop-blur-3xl ">
+                                                <div className="w-[12px] :h-[12px] flex items-center">
+                                                    <svg className="w-full h-full" viewBox="0 0 11 12" fill="none" >
                                                         <path d="M10.1953 5.73134L0.499678 11.3291L0.499679 0.133557L10.1953 5.73134Z" fill="white" />
                                                     </svg>
                                                 </div>
@@ -202,8 +203,8 @@ export default function TestimonialSection() {
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide >
-                                    <div className="w-full h-full rounded-[6px] overflow-hidden relative before:absolute before:bott-0 before:left-0 before:w-full before:h-full 
-                                    before:bg-[linear-gradient(0deg,rgba(0,0,0,0.6)_2.34%,rgba(0,0,0,0)_99.42%)]">
+                                    <div className="w-full h-full rounded-[6px] overflow-hidden relative aspect-[450/340] before:absolute before:bott-0 before:left-0 before:w-full before:h-full 
+                                      before:bg-[linear-gradient(0deg,rgba(0,0,0,0.6)_2.34%,rgba(0,0,0,0)_99.42%)]">
                                         <video
                                             src="/videos/testimonial1.mp4"
                                             autoPlay
@@ -214,7 +215,7 @@ export default function TestimonialSection() {
 
                                         <div className="flex items-center justify-between w-full absolute left-0 bottom-0 p-[20px_25px] xl:p-[25px_30px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
                                             <div className="flex items-center">
-                                                <div className="2xl:w-[40px] 3xl:w-[50px] 2xl:h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
+                                                <div className=" w-[40px] 3xl:w-[50px] h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
                                                     <Image
                                                         src="/images/avatar.jpg"
                                                         alt="avatar"
@@ -232,8 +233,9 @@ export default function TestimonialSection() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <Button className="w-[33px] xl:w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[33px] xl:h-[40px] 2xl:h-[50px] 3xl:h-[60px] rounded-full overflow-hidden flex items-center justify-center bg-[rgba(217,217,217,0.5)] backdrop-blur-3xl ">
-                                                <div className="w-[6px] 2xl:w-[8px] 3xl:w-[12px] h-[6px] 2xl:h-[8px]] 3xl:h-[12px] flex">
+                                            <Button className="w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] rounded-full cursor-pointer
+                                               bg-[rgba(217,217,217,0.5)] backdrop-blur-3xl ">
+                                                <div className="w-[12px] :h-[12px] flex items-center">
                                                     <svg className="w-full h-full" viewBox="0 0 11 12" fill="none" >
                                                         <path d="M10.1953 5.73134L0.499678 11.3291L0.499679 0.133557L10.1953 5.73134Z" fill="white" />
                                                     </svg>
@@ -247,23 +249,22 @@ export default function TestimonialSection() {
                             <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-0 m-auto ">
                                 <button
                                     className="navbts-prev absolute left-[25px] lg:left-[30px] -translate-y-1/2 z-20 bg-base1 
-                                    w-[40px] h-[40px] rounded-full
+                                   w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[9px] md:p-[10px]
                                     flex items-center justify-center cursor-pointer group hover:bg-[#2E4C99]"
                                 >
-                                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg className="w-full h-full" viewBox="0 0 13 9" fill="none" >
                                         <path d="M4.71445 0.147316C4.87291 0.307397 4.87331 0.567412 4.71445 0.727494L1.38569 4.08958L12.5937 4.08959C12.818 4.08959 13 4.27324 13 4.49996C13 4.72667 12.818 4.91033 12.5937 4.91033L1.38569 4.91033L4.71404 8.27242C4.87291 8.4325 4.87291 8.69251 4.71404 8.85259C4.55517 9.01268 4.298 9.01268 4.13953 8.85259L0.117629 4.79006C-0.0392101 4.6316 -0.0392101 4.36794 0.117629 4.20948L4.13954 0.146944C4.2984 -0.0131716 4.55558 -0.0131716 4.71445 0.147316C4.55558 -0.0131716 4.87291 0.307397 4.71445 0.147316Z" fill="white" />
                                     </svg>
 
                                 </button>
                                 <button
                                     className=" navbts-next absolute right-[25px] lg:right-[30px] -translate-y-1/2 z-10 bg-base1 
-                                    w-[40px] h-[40px] rounded-full
+                                    w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[9px] md:p-[10px]
                                     flex items-center justify-center cursor-pointer group hover:bg-[#2E4C99]"
                                 >
-                                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="13" height="9" viewBox="0 0 13 9" fill="none" >
                                         <path d="M8.28555 0.147316C8.12709 0.307397 8.12669 0.567412 8.28555 0.727494L11.6143 4.08958L0.406284 4.08959C0.182 4.08959 -2.05418e-07 4.27324 -1.95508e-07 4.49996C-1.85598e-07 4.72667 0.182034 4.91033 0.406284 4.91033L11.6143 4.91033L8.28596 8.27242C8.12709 8.4325 8.12709 8.69251 8.28596 8.85259C8.44483 9.01268 8.702 9.01268 8.86047 8.85259L12.8824 4.79006C13.0392 4.6316 13.0392 4.36794 12.8824 4.20948L8.86046 0.146944C8.7016 -0.0131716 8.44442 -0.0131716 8.28555 0.147316C8.44442 -0.0131716 8.12709 0.307397 8.28555 0.147316Z" fill="white" />
                                     </svg>
-
                                 </button>
                             </div>
                         </div>
