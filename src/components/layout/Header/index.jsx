@@ -21,6 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import BookAnAppointment from "./BookAnAppointment";
 
 
 
@@ -93,11 +94,7 @@ export default function Header() {
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
-                    <Link href="/" className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-white uppercase font-medium relative
-                     h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] rounded-[3px] 3xl:rounded-[5px]
-                    px-[10px] 2xl:px-[20px]  overflow-hidden
-                    flex items-center justify-center 
-                    transition-all duration-100 bg-base2 hover leading-0">Book An Appointment</Link>
+                    <BookAnAppointment />
                   </div>
                   <div className="p-[12px]">
                     <Sheet>

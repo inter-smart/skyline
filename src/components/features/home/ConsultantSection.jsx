@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -7,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const items = [
@@ -22,7 +21,7 @@ const items = [
         specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
     },
     {
-        id: 1,
+        id: 2,
         name: "Dr. Sara Tailor",
         role: "Consultant Psychiatrist",
         qualification: "MBBS, MRCGP, DRCOG",
@@ -32,7 +31,17 @@ const items = [
         specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
     },
     {
-        id: 1,
+        id: 3,
+        name: "Dr. Sara Tailor",
+        role: "Consultant Psychiatrist",
+        qualification: "MBBS, MRCGP, DRCOG",
+        image: "/images/consult1.jpg",
+        experience: "15+ years",
+        availability: "Same Day",
+        specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
+    },
+    {
+        id: 4,
         name: "Dr. Sara Tailor",
         role: "Consultant Psychiatrist",
         qualification: "MBBS, MRCGP, DRCOG",
@@ -44,7 +53,12 @@ const items = [
 ];
 
 export default function ConsultantSection() {
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    
+    useEffect(() => {
+        setActiveIndex(0);
+    }, []);
+
     return (
         <section className="bg-[#00335B] py-[70px]">
             <div className="container">
@@ -65,28 +79,44 @@ export default function ConsultantSection() {
                         View All Consultants
                     </Link>
                 </div>
-
                 <Swiper
-                    // modules={[Autoplay]}
+                    modules={[Autoplay]}
                     watchSlidesProgress={true}
                     loop={true}
                     centeredSlides={true}
-                    autoplay={{ delay: 5000 }}
+                    autoplay={{ 
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    }}
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                    className="relative  " 
+                    onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
+                    className="relative consultantSlider h-[420px] !w-full"
                     spaceBetween={20}
+                    slidesPerView={"auto"}
                     breakpoints={{
-                        768: { slidesPerView: 2, spaceBetween: 15 },
-                        1280: { slidesPerView: 3, spaceBetween: 20 },
-                        1536: { slidesPerView: 2 , spaceBetween: 15 },
+                        768: { 
+                            slidesPerView: 1, 
+                            spaceBetween: 10,
+                            centeredSlides: true
+                        },
+                        1280: { 
+                            slidesPerView: 3, 
+                            spaceBetween: 20,
+                            centeredSlides: true
+                        },
+                        1536: { 
+                            slidesPerView: 3, 
+                            spaceBetween: 40,
+                            centeredSlides: true
+                        },
                     }}
                 >
                     {items.map((item, index) => (
-                        <SwiperSlide 
-                           >
+                        <SwiperSlide key={index} className={`  ${activeIndex === index ? "!w-[820px]" : ""}`}>
                             <div className="w-full h-full p-[18px] rounded-[8px] overflow-hidden bg-white flex flex-wrap">
-                                <div className="w-[375px]">
-                                    <div className="w-full h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[20px] bg-[#D6E2ED]">
+                                {/* leftsec */}
+                                <div className={`${activeIndex === index ? "w-[375px] h-full" : "w-full max-h-[250px]"}`}>
+                                    <div className={`w-full h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[20px] bg-[#D6E2ED]`}>
                                         <Image
                                             src={item.image}
                                             className="w-full h-full object-cover"
@@ -95,14 +125,30 @@ export default function ConsultantSection() {
                                             alt={item.name}
                                         />
                                     </div>
+                                    <div className={`${activeIndex === index ? "hidden" : "block"}`}>
+                                        <div className="text-[18px] text-[#00335B] font-medium mb-[15px]">
+                                            {item.name}
+                                        </div>
+                                        <div className="text-[16px] text-[#671448] font-normal mb-[15px] flex items-start leading-4 relative
+                                        before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[3px]
+                                        before:h-[14px] before:rounded-[6px] before:mr-[8px]"
+                                        >
+                                            {item.role}
+                                        </div>
+                                        <div className="text-[16px] text-[#3D3D3D] font-light uppercase">
+                                            {item.qualification}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="w-full xl:w-[calc(100%-375px)] pl-[30px]">
+
+                                {/* ritsec - show only for centered slide */}
+                                <div className={`w-full xl:w-[calc(100%-375px)] pl-[30px] transition-all duration-300 ${activeIndex === index ? "block" : "hidden"}`}>
                                     <div className="text-[18px] text-[#00335B] font-medium mb-[15px]">
                                         {item.name}
                                     </div>
                                     <div className="text-[16px] text-[#671448] font-normal mb-[15px] flex items-start leading-4 relative
-                                        before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[4px]
-                                        before:h-[14px] before:rounded-[6px] before:mr-[10px]"
+                                        before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[3px]
+                                        before:h-[14px] before:rounded-[6px] before:mr-[8px]"
                                     >
                                         {item.role}
                                     </div>
@@ -112,18 +158,16 @@ export default function ConsultantSection() {
                                     <div className="w-full mt-[15px]">
                                         <ul className="mb-[30px]">
                                             {item.experience && (
-                                                <li className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-normal pl-[25px]
-                                                before:absolute before:top-[4px] before:left-0 before:w-[17px] before:h-[17px]
-                                                before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]"
-                                                >
+                                                <li className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-[#212121] font-normal pl-[25px]
+                                                    before:absolute before:top-[4px] before:left-0 before:w-[15px] before:h-[17px]
+                                                    before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]">
                                                     <strong className="font-medium">{item.experience}</strong> NHS & Private experience
                                                 </li>
                                             )}
                                             {item.availability && (
-                                                <li className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-normal pl-[25px]
-                                                    before:absolute before:top-[4px] before:left-0 before:w-[17px] before:h-[17px]
-                                                    before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]"
-                                                >
+                                                <li className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-[#212121] font-normal pl-[25px]
+                                                before:absolute before:top-[4px] before:left-0 before:w-[17px] before:h-[17px]
+                                                before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]">
                                                     Available: <strong className="font-medium">{item.availability}</strong>
                                                 </li>
                                             )}
@@ -132,7 +176,7 @@ export default function ConsultantSection() {
                                         <ul className="flex flex-wrap items-center -m-[4px] mb-[20px]">
                                             {item.specialization.map((spec, idx) => (
                                                 <li key={idx} className="w-1/2 p-[4px]">
-                                                    <div className="border border-[rgba(33,33,33,0.3)] p-[10px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    <div className="text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)] p-[8px] rounded-[40px] flex items-center justify-center w-full h-full">
                                                         {spec}
                                                     </div>
                                                 </li>
@@ -157,7 +201,6 @@ export default function ConsultantSection() {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
             </div>
         </section>
     )

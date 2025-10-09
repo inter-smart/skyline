@@ -124,16 +124,16 @@ export default function SpecialistSection() {
                             prevEl: ".navbts-prev",
                             nextEl: ".navbts-next",
                         }}
-                        className="relative w-full h-[300px] md:h-[350px] xl:h-[440px] 2xl:h-[520px] 3xl:h-[650px] 
+                        className="relative w-full h-[300px] md:h-[350px] xl:h-[440px] 2xl:h-[520px] 3xl:h-[650px] serviceSlider
                         md:max-w-[75%] xl:max-w-[90%] 3xl:max-w-[80%] !overflow-visible"
                         breakpoints={{
                             768: {
                                 slidesPerView: 2,
-                                spaceBetween: 15,
+                                spaceBetween: 10,
                             },
                             1280: {
                                 slidesPerView: 3,
-                                spaceBetween: 20,
+                                spaceBetween: 15,
                             },
                             1536: {
                                 slidesPerView: 3,
@@ -144,12 +144,12 @@ export default function SpecialistSection() {
                         {services.map((item, index) => (
                             <SwiperSlide
                                 key={index}
-                                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px] ${activeIndex === index ? "scaleX-135 z-20" : "scale-95"}`}
+                                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px] ${activeIndex === index ? "scaleX-135 z-20" : "scale-100"}`}
                             >
                                 <div
                                     className={`relative w-full rounded-[6px] overflow-hidden p-[20px] flex items-end justify-center transition-all duration-500 
                                         after:absolute after:bottom-0 after:w-full after:h-full after:z-10 after:bg-gradient-to-b after:from-[40%] after:to-[120%] after:from-[rgba(0,0,0,0.1)] after:to-[rgba(0,0,0)] after:content-['']
-                                        ${activeIndex === index ? "h-full" : "h-[220px] xl:h-[280px] 2xl:h-[340px] 3xl:h-[425px]"
+                                        ${activeIndex === index ? "h-full" : "h-[250px] xl:h-[320px] 2xl:h-[375px] 3xl:h-[470px]"
                                         }`}
                                 >
                                     {/* Title (only visible on inactive slides) */}
@@ -200,10 +200,10 @@ export default function SpecialistSection() {
                     </Swiper>
 
                     {/* Navigation Arrows */}
-                    <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-0 m-auto ">
+                    <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-[-30px] sm:left-[-50px] m-auto ">
                         <button
                             className="navbts-prev absolute left-[15px]  -translate-y-1/2 z-20 bg-white 
-                                   w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[13px]
+                                   w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px]
                                     flex items-center justify-center cursor-pointer group hover:bg-base1"  >
                             <svg className="w-full h-full group-hover:fill-white fill-base1" viewBox="0 0 8 6"   >
                                 <path d="M2.78099 0.947449C2.8655 1.03283 2.86572 1.1715 2.78099 1.25688L1.00565 3.04999L6.98327 3.04999C7.10288 3.04999 7.19995 
@@ -214,8 +214,8 @@ export default function SpecialistSection() {
 
                         </button>
                         <button
-                            className=" navbts-next absolute right-[15px] -translate-y-1/2 z-10 bg-white 
-                              w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[13px]
+                            className=" navbts-next absolute right-[-45px] sm:right-[-65px] -translate-y-1/2 z-10 bg-white 
+                              w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px]
                               flex items-center justify-center cursor-pointer group hover:bg-base1"  >
                             <svg className="w-full h-full group-hover:fill-white  fill-base1" viewBox="0 0 8 6" fill="none" >
                                 <path d="M5.15236 0.947449C5.06785 1.03283 5.06763 1.1715 5.15236 1.25688L6.9277 3.04999L0.950083 3.04999C0.830465 3.04999 0.733398 
