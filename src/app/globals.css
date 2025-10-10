@@ -300,7 +300,22 @@ body {
   }
 }
 
-.consultantSlider .swiper-slide-next>.swiper-slide-active,
-.swiper-slide-prev>.swiper-slide-active {
+.consultantSlider {
   width: 820px !important;
+  margin: auto !important;
+}
+
+
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  animation-name: fadeInDown;
+  animation-duration: .8s;
+  animation-fill-mode: both;
+  background: #ffffffd1;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  border: 0 !important;
+  z-index: 9;
 }

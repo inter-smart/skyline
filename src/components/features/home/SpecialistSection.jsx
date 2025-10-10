@@ -7,6 +7,8 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Heading, SubTitle } from "@/components/layout/Heading";
 
 
 const services = [
@@ -85,28 +87,45 @@ export default function SpecialistSection() {
             <div className="container">
                 {/* Header Section */}
                 <div className="flex items-end justify-between mb-[35px] 2xl:mb-[50px] 3xl:mb-[90px] flex-wrap gap-[20px]">
-                    <div className="max-w-[650px]">
-                        <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase tracking-wider mb-[30px]">
+                    <motion.div className="max-w-[650px]"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                    > 
+                        <SubTitle
+                            size="SubTitle"
+                            as="div" 
+                        >
                             Services
-                        </h1>
-                        <div className="text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-[#212121] font-unna leading-[1.1]">
+                        </SubTitle>
+                        <Heading
+                            size="heading1"
+                            as="div" 
+                            className="!mb-0"
+                        >
                             Our Specialist <br />
                             Healthcare Services
-                        </div>
-                    </div>
+                        </Heading>
+                    </motion.div>
 
-                    <p className="line-clamp-4 max-w-[600px] mb-0">
+                    <motion.p className="line-clamp-4 max-w-[600px] mb-0"
+                        initial={{ opacity: 0, y: -50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}>
                         Comprehensive medical care across multiple specialties, delivered by expert
                         consultants using state-of-the-art facilities.
-                    </p>
+                    </motion.p>
 
-                    <Link
+                    <motion.Link
                         href="/"
                         aria-label="View All Services"
                         className="btn-base1 hover"
-                    >
+                        initial={{ opacity: 0, y: -150 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}>
                         View All Services
-                    </Link>
+                    </motion.Link>
+
                 </div>
 
 
@@ -144,7 +163,7 @@ export default function SpecialistSection() {
                         {services.map((item, index) => (
                             <SwiperSlide
                                 key={index}
-                                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px] ${activeIndex === index ? "scaleX-135 z-20" : "scale-100"}`}
+                                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px] ${activeIndex === index ? "scaleX-125 z-20" : "scale-95"}`}
                             >
                                 <div
                                     className={`relative w-full rounded-[6px] overflow-hidden p-[20px] flex items-end justify-center transition-all duration-500 
@@ -228,6 +247,6 @@ export default function SpecialistSection() {
                 </div>
 
             </div>
-        </section>
+        </section >
     );
 }
