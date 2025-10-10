@@ -23,7 +23,7 @@ const textVariants = {
 
 const sizes = {
   heading1:
-    "text-[20px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[45px] 2xl:text-[55px] 3xl:text-[60px] font-semibold leading-[1.2] text-black  ", 
+    "text-[25px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[48px] 2xl:text-[54px] 3xl:text-[67px] font-normal leading-[1.1] text-[#212121]  ", 
   heading2:
     "text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] font-semibold leading-[1.2] text-black relative after:absolute after:content-[''] after:bottom-[4px] after:3xl:bottom-[7px] after:m-[auto_10px] after:p-[3px] after:w-[5px] after:h-[5px] after:3xl:w-[7px] after:3xl:h-[7px] after:rounded-full after:bg-[#F67436]",
   heading3:
@@ -32,8 +32,8 @@ const sizes = {
     "text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.2]",
   heading5:
     "text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] text-[#1C1C1C] font-medium leading-[1.2]",
-  heading6:
-    "text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-medium leading-[1.2]",
+   heading6:
+    "text-[11px] sm:text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium leading-[1]",
 };
 
 const Heading = ({ children, className = "", size, as, ...restProps }) => {
