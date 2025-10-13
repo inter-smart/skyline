@@ -112,7 +112,7 @@ body {
 
     p,
     & {
-      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
     }
 
     h1 {
