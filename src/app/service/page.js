@@ -1,5 +1,6 @@
 import InnerHero from "@/components/common/InnerHero";
 import FeaturedSection from "@/components/features/service/FeaturedSection";
+import MethodUsedSection from "@/components/features/service/MethodUsedSection";
 import OurTreatmentsection from "@/components/features/service/OurTreatmentsection";
 import WhyChooseUsSection from "@/components/features/service/WhyChooseUsSection";
 export default function Service({ data }) {
@@ -27,6 +28,10 @@ export default function Service({ data }) {
                 description="  Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
             />
             <OurTreatmentsection
+                sub_title="our treatments"
+                title="Subspecialties & Treatments"
+            />
+            <MethodUsedSection
                 sub_title="our treatments"
                 title="Subspecialties & Treatments"
             />
