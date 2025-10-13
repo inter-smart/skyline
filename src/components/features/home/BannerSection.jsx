@@ -3,13 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(1);
+
   const slides = [
     {
       src: "/images/bannerBg.jpg",
@@ -25,15 +28,22 @@ export default function HeroSlider() {
       subtitle: "Consult Your Doctor",
       desc: "Meet our specialist consultants for personalized medical care and treatment.",
     },
-    // Add more slides here if needed
   ];
+
+  // ✨ Animation variants
+  const textAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 2, ease: "easeOut" } },
+  };
 
   return (
     <section className="relative w-full h-[520px] sm:h-[calc(100vh-115px)] overflow-hidden">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Navigation, Pagination, Autoplay, EffectFade]} 
+        effect="fade"  
+        fadeEffect={{ crossFade: true }}  
         slidesPerView={1}
-        loop={true} 
+        loop={true}
         autoplay={{ delay: 5000 }}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="w-full h-full"
@@ -49,31 +59,64 @@ export default function HeroSlider() {
                 className="object-cover absolute top-0 left-0 w-full h-full"
                 priority
               />
+
               <div className="container w-full h-full flex items-center">
-                <div className="max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative">
-                  <p className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase font-nornal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">
+                {/* Animated text content */}
+                <motion.div
+                  key={currentSlide} // triggers re-animation on slide change
+                  initial="hidden"
+                  animate="visible"
+                  variants={textAnimation}
+                  className="max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
+                >
+                  <motion.p
+                    variants={textAnimation}
+                    className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase font-nornal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]"
+                  >
                     {slide.subtitle}
-                  </p>
-                  <h2 className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]">
+                  </motion.p>
+
+                  <motion.h2
+                    variants={textAnimation}
+                    transition={{ delay: 0.5 }}
+                    className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
+                  >
                     {slide.title}
-                  </h2>
-                  <p className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
+                  </motion.h2>
+
+                  <motion.p
+                    variants={textAnimation}
+                    transition={{ delay: 0.7 }}
+                    className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
+                  >
                     {slide.desc}
-                  </p>
-                  <button className="btn-base1 hover" aria-label="appointment">
+                  </motion.p>
+
+                  <motion.button
+                    variants={textAnimation}
+                    transition={{ delay: 0.9 }}
+                    className="btn-base1 hover transitiona-all duration-100"
+                    aria-label="appointment"
+                  >
                     Book an Appointment
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
+      {/* Slide Counter */}
       <div className="container relative">
-        {/* Slide Counter */}
         <div className="absolute bottom-5 right-5 z-20 text-[#EAF6FF]">
-          <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]"> 0{currentSlide}</span> / <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">0{slides.length}</span>
+          <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">
+            0{currentSlide}
+          </span>{" "}
+          /{" "}
+          <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">
+            0{slides.length}
+          </span>
         </div>
       </div>
     </section>

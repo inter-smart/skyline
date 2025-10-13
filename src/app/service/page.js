@@ -28,7 +28,7 @@ export default function Service({ data }) {
             />
             <OurTreatmentsection
                 sub_title="our treatments"
-                title=" Subspecialties & Treatments"
+                title="Subspecialties & Treatments"
             />
         </>
     );

@@ -50,7 +50,7 @@ export default function InnerHero({
                     <Heading
                         as="h1"
                         size="heading1"
-                        className="text-center font-unna sm:text-start text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                        className="text-[35px] sm:text-[38px] md:text-40px] lg:text-[45px] xl:text-[50px] 2xl:text-[54px] 3xl:text-[67px] text-center font-unna sm:text-start text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
                     >
                         {title_highlight ? handleHighlight(title_highlight, title) : title}
                     </Heading>

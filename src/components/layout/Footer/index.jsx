@@ -13,10 +13,11 @@ const menuLink = `text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] tex
 
 export default function index() {
     return (
-        <footer className='w-full bg-base2 pt-[80px]'>
-            <div className="container mb-[50px]">
+        <footer className='w-full bg-base2 pt-[80px] relative z-0'>
+            <Image src="/images/footerBg.png" width="1920" height="850" className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt="footerBg" />
+            <div className="container realtive z-10 mb-[50px]">
                 <div className='bg-[#FDFDFD] p-[15px] sm:p-[20px] lg:p-[10px_20px] xl:p-[10px_35px] 2xl:p-[12px_45px] 3xl:p-[17px_55px]
-                   rounded-[6px] overflow-hidden mb-[40px]'>
+                   rounded-[6px] overflow-hidden mb-[40px] relative'>
                     <div className='flex flex-wrap items-center '>
                         <div className='w-[150px] lg:w-[190px] xl:w-[240px] 2xl:w-[290px] 3xl:w-[360px] max-sm:m-auto'>
                             <div className='xl:max-w-[240px] 2xl:max-w-[285px] 3xl:max-w-[350px]'>
@@ -514,7 +515,7 @@ export default function index() {
                             <div className="sm:hidden">
 
                                 <AccordionItem value="opening-hours">
-                                    <AccordionTrigger className="!gap-0 !p-0 m-0">
+                                    <AccordionTrigger className="!gap-0 !p-0 m-0 lg:hidden">
                                         <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
                                             Opening Hours
                                         </div>
@@ -558,9 +559,7 @@ export default function index() {
 
                             </div>
                             <div className="hidden sm:block">
-                                <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[20px] 3xl:mb-[30px]">
-                                    Opening Hours
-                                </div>
+                               
                                 <Link href="#" className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden " aria-label="location_link">
                                     <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
                                         <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />

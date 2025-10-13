@@ -1,29 +1,32 @@
 "use client";
 import React from "react";
-
-
-
 import { motion } from "framer-motion";
 
+// Animation variants
 const textVariants = {
   offscreen: {
     y: 120,
     opacity: 0,
   },
   onscreen: {
-    y: 0, 
+    y: 0,
     opacity: 1,
     transition: {
-      type: "easeOuteaseOut",
+      type: "easeOut", // fixed typo
       bounce: 0.4,
       duration: 0.8,
     },
   },
-}; 
+};
 
+// Subtitle classes
+const subTitleClasses =
+  "text-[12px] 2xl:text-[14px] 3xl:text-[18px] !text-[#671448] !font-normal uppercase tracking-wider mb-[20px]";
+
+// Heading size classes
 const sizes = {
   heading1:
-    "text-[25px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[48px] 2xl:text-[54px] 3xl:text-[67px] font-normal leading-[1.1] text-[#212121]  ", 
+    "text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-[#212121] font-unna font-normal leading-[34px] xl:leading-[40px] 2xl:leading-[47px] 3xl:leading-[60px] mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]",
   heading2:
     "text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] font-semibold leading-[1.2] text-black relative after:absolute after:content-[''] after:bottom-[4px] after:3xl:bottom-[7px] after:m-[auto_10px] after:p-[3px] after:w-[5px] after:h-[5px] after:3xl:w-[7px] after:3xl:h-[7px] after:rounded-full after:bg-[#F67436]",
   heading3:
@@ -36,8 +39,9 @@ const sizes = {
     "text-[11px] sm:text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium leading-[1]",
 };
 
-const Heading = ({ children, className = "", size, as, ...restProps }) => {
-  const Component = as || "h6";
+// Heading component
+const Heading = ({ children, className = "", size = "heading1", as, ...restProps }) => {
+  const Component = as || "h1";
 
   return (
     <motion.div
@@ -53,4 +57,22 @@ const Heading = ({ children, className = "", size, as, ...restProps }) => {
   );
 };
 
-export { Heading };
+// Subtitle component
+const SubTitle = ({ children, className = "", size="subTitleClasses" , as, ...restProps }) => {
+  const Component = as || "p";
+
+  return (
+    <motion.div
+      variants={textVariants}
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true }}
+    >
+      <Component className={`${className} ${subTitleClasses}`} {...restProps}>
+        {children}
+      </Component>
+    </motion.div>
+  );
+};
+
+export { Heading, SubTitle };

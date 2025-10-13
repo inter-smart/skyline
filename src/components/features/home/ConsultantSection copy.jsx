@@ -60,7 +60,7 @@ export default function ConsultantSection() {
     }, []);
 
     return (
-        <section className="bg-[#00335B] py-[70px] overflow-hidden">
+        <section className="bg-[#00335B] py-[70px]">
             <div className="container">
                 <div className="flex items-end justify-between mb-[60px] flex-wrap gap-[20px]">
                     <div className="max-w-[650px]">
@@ -90,13 +90,13 @@ export default function ConsultantSection() {
                     }}
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                     onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
-                    className="relative consultantSlider h-[420px] !w-full !overflow-visible"
-                    spaceBetween={30}
+                    className="relative consultantSlider h-[420px] !w-full"
+                    spaceBetween={20}
                     slidesPerView={"auto"}
                     breakpoints={{
                         768: { 
                             slidesPerView: 1, 
-                            spaceBetween: 15,
+                            spaceBetween: 10,
                             centeredSlides: true
                         },
                         1280: { 
@@ -112,7 +112,7 @@ export default function ConsultantSection() {
                     }}
                 >
                     {items.map((item, index) => (
-                        <SwiperSlide key={index} className={`${activeIndex === index ? "!w-[820px]" : "!w-[420px]"}`} >
+                        <SwiperSlide key={index} className={`  ${activeIndex === index ? "!w-[820px]" : ""}`}>
                             <div className="w-full h-full p-[18px] rounded-[8px] overflow-hidden bg-white flex flex-wrap">
                                 {/* leftsec */}
                                 <div className={`${activeIndex === index ? "w-[375px] h-full" : "w-full max-h-[250px]"}`}>
@@ -130,8 +130,8 @@ export default function ConsultantSection() {
                                             {item.name}
                                         </div>
                                         <div className="text-[16px] text-[#671448] font-normal mb-[15px] flex items-start leading-4 relative
-                                        before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[3px]
-                                        before:h-[14px] before:rounded-[6px] before:mr-[8px]"
+                                            before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] 
+                                            before:p-[3px]  before:h-[14px] before:rounded-[6px] before:mr-[8px]"
                                         >
                                             {item.role}
                                         </div>

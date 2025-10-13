@@ -57,14 +57,15 @@ export default function Header() {
 
   return (
     <header>
-      <div className={`w-full  max-lg:hidden ${isScrolled ? "stickyHeader" : ""
+      <div className={`w-full transition-all duration-100 max-lg:hidden ${isScrolled ? "stickyHeader" : ""
         }`}>
         <div className="container">
           <div className="flex items-center">
             <div className="lg:w-[135px] xl:w-[165px] 2xl:w-[200px] 3xl:w-[250px]">
               <Image src="/images/logo.svg" width="250" height="115" className="object-contain" alt="logo" />
             </div>
-            <div className="lg:w-[calc(100%-135px)] xl:w-[calc(100%-165px)] 2xl:w-[calc(100%-200px)] 3xl:w-[calc(100%-250px)] pl-[25px] xl:pl-[60px] 2xl:pl-[65px] 3xl:pl-[85px]">
+            <div className="lg:w-[calc(100%-135px)] xl:w-[calc(100%-165px)] 2xl:w-[calc(100%-200px)] 3xl:w-[calc(100%-250px)] pl-[25px] xl:pl-[60px] 
+                  2xl:pl-[65px] 3xl:pl-[85px]">
               <div className="w-full flex items-center justify-between">
                 {/* menus */}
                 <div className="flex items-center">
@@ -108,7 +109,7 @@ export default function Header() {
                         </svg>
                       </SheetTrigger>
 
-                      <SheetContent side="right" className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto
+                      <SheetContent side="right" className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]">
                         <SheetDescription >
                           <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">Contact Information</div>
@@ -274,26 +275,23 @@ export default function Header() {
         <Sheet>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
-              <div className="w-[150px] sm:w-[200px]">
+              <div className="w-[130px] xs::w-[150px] sm:w-[200px]">
                 <Image src="/images/logo.svg" width="200" height="115" className="object-contain" alt="logo" />
               </div>
               <div className="flex items-center">
-                <div className="mr-[20px]">
-                  <Link href="/" className="text-[8px] sm:text-[10px] text-white uppercase font-medium h-[30px] rounded-[3px] 3xl:rounded-[5px]
-                    px-[10px]  
-                    flex items-center justify-center 
-                    transition-all duration-100 bg-base2 hover:bg-base1 leading-0">Book An Appointment</Link>
+                <div className="mr-[10px] sm:mr-[20px]">
+                  <BookAnAppointment />
                 </div>
                 <SheetTrigger className="w-[25px] h-[25px] flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 464.205 464.205" >
                     <g id="grip-solid-horizontal_1_">
                       <path d="m435.192 406.18h-406.179c-16.024 0-29.013-12.99-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.99 
-                                    29.013 29.013-.001 16.023-12.99 29.013-29.014 29.013z"></path>
+                            29.013 29.013-.001 16.023-12.99 29.013-29.014 29.013z"></path>
                       <path d="m435.192 261.115h-406.179c-16.024 0-29.013-12.989-29.013-29.012s12.989-29.013
-                                     29.013-29.013h406.18c16.023 0 29.013 12.989 
-                                    29.013 29.013s-12.99 29.012-29.014 29.012z"></path>
+                            29.013-29.013h406.18c16.023 0 29.013 12.989 
+                          29.013 29.013s-12.99 29.012-29.014 29.012z"></path>
                       <path d="m435.192 116.051h-406.179c-16.024 0-29.013-12.989-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023
-                                     0 29.013 12.989 29.013 29.013s-12.99 29.013-29.014 29.013z"></path>
+                            0 29.013 12.989 29.013 29.013s-12.99 29.013-29.014 29.013z"></path>
                     </g>
                   </svg>
                 </SheetTrigger>
