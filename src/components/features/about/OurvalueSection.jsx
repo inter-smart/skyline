@@ -1,0 +1,112 @@
+import { Heading, SubTitle } from "@/components/layout/Heading";
+import Image from "next/image";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+
+export default function OurvalueSection() {
+    return (
+        <section className="py-[35px] xl:py-[40px] 2xl:py-[60px] bg-[rgba(139,190,255,0.12)]">
+            <div className="container">
+                <div className="flex flex-wrap -m-[8px]">
+                    <div className="w-full md:w-1/2 p-[8px]">
+                        <div className="w-full ">
+                            <SubTitle
+                                size="SubTitle"
+                                as="div" 
+                                className="!mb-[5px] 2xl:!mb-[15px]">
+                                WHY Skyline
+                            </SubTitle>
+                            <Heading
+                                size="heading1"
+                                as="div"  >
+                                Our Values
+                            </Heading>
+                        </div>
+                        <div className="w-full overflow-hidden rounded-[6px] md:max-w-[400px] xl:max-w-[490px] 2xl:max-w-[590px] 3xl:max-w-[740px] aspect-[740/385]">
+                            <Image src="/images/ourvalueImg.jpg" className="w-full h-full object-cover" width="500" height="256" alt="ourvalueImg" />
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/2 p-[8px]">
+                        <div className="w-full">
+                            <Accordion type="single" collapsible className="rounded-[4px] overflow-hidden bg-[linear-gradient(180deg,rgba(197,221,255,0.56)_0%,#FFF_100%)]">
+                                <AccordionItem value="item-1" className="bg-[linear-gradient(180deg,rgba(255,255,255,0.3)_100%,#FFF_100%)] p-[10px_25px] border-none 2xl:p-[20px_30px] rounded-[6px_6px_0_0]
+                                    3xl:p-[25px_45px]">
+                                    <AccordionTrigger className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal uppercase p-0 [&>svg]:hidden tracking-wider !no-underline flex items-center
+                                     justify-content-start ">
+                                        <div className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal w-[28px] xl:w-[33px] h-[28px] 2xl:w-[40px] 3xl:w-[50px] xl:h-[33px]
+                                         2xl:h-[40px] 3xl:h-[50px] flex items-center justify-center bg-white rounded-full">
+                                            01
+                                        </div>
+                                        <div className="w-[calc(100%-28px)] xl:w-[calc(100%-33px)] 2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)]">Excellence</div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
+                                        Your health and well-being are our top priorities. Experience
+                                        personal touch in the heart of Coventry.
+                                        Your health and well-being are our top priorities.
+                                        with a personal touch in the heart of Coventry.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-2" className="bg-[linear-gradient(180deg,rgba(197,221,255,0.21)_100%,#FFF_100%)] p-[10px_25px] border-none 2xl:p-[20px_30px] rounded-[6px_6px_0_0]
+                                    3xl:p-[25px_45px]">
+                                    <AccordionTrigger className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal uppercase p-0 [&>svg]:hidden tracking-wider !no-underline flex items-center
+                                     justify-content-start ">
+                                        <div className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal w-[28px] xl:w-[33px] h-[28px] 2xl:w-[40px] 3xl:w-[50px] xl:h-[33px]
+                                         2xl:h-[40px] 3xl:h-[50px] flex items-center justify-center bg-white rounded-full">
+                                            02
+                                        </div>
+                                        <div className="w-[calc(100%-28px)] xl:w-[calc(100%-33px)] 2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)]">Compassion</div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
+                                        Your health and well-being are our top priorities. Experience
+                                        personal touch in the heart of Coventry.
+                                        Your health and well-being are our top priorities.
+                                        with a personal touch in the heart of Coventry.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3" className="bg-[linear-gradient(180deg,rgba(197,221,255,0.45)_100%,#FFF_100%)] p-[10px_25px] border-none 2xl:p-[20px_30px] rounded-[6px_6px_0_0]
+                                    3xl:p-[25px_45px]">
+                                    <AccordionTrigger className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal uppercase p-0 [&>svg]:hidden tracking-wider !no-underline flex items-center
+                                     justify-content-start ">
+                                        <div className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal w-[28px] xl:w-[33px] h-[28px] 2xl:w-[40px] 3xl:w-[50px] xl:h-[33px]
+                                         2xl:h-[40px] 3xl:h-[50px] flex items-center justify-center bg-white rounded-full">
+                                            03
+                                        </div>
+                                        <div className="w-[calc(100%-28px)] xl:w-[calc(100%-33px)] 2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)]">Innovation</div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
+                                        Your health and well-being are our top priorities. Experience
+                                        personal touch in the heart of Coventry.
+                                        Your health and well-being are our top priorities.
+                                        with a personal touch in the heart of Coventry.
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-4" className="bg-[linear-gradient(180deg,rgba(197,221,255,0.55)_100%,#FFF_100%)] p-[10px_25px] 2xl:p-[20px_30px] rounded-[6px_6px_0_0]
+                                    3xl:p-[25px_45px]">
+                                    <AccordionTrigger className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal uppercase p-0 [&>svg]:hidden tracking-wider !no-underline flex items-center
+                                     !justify-content-start ">
+                                        <div className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal w-[28px] xl:w-[33px] h-[28px] 2xl:w-[40px] 3xl:w-[50px] xl:h-[33px]
+                                         2xl:h-[40px] 3xl:h-[50px] flex items-center justify-center bg-white rounded-full">
+                                            04
+                                        </div>
+                                        <div className="w-[calc(100%-28px)] xl:w-[calc(100%-33px)] 2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)]">Integrity</div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
+                                        Your health and well-being are our top priorities. Experience
+                                        personal touch in the heart of Coventry.
+                                        Your health and well-being are our top priorities.
+                                        with a personal touch in the heart of Coventry.
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    )
+}
