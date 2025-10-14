@@ -28,7 +28,7 @@ export default function NewsSection() {
                         News & Updates
                     </TabsTrigger>
 
-                    <TabsTrigger value="YouTube " className={`${tabButton}`}>
+                    <TabsTrigger value="YouTube" className={`${tabButton}`}>
                         YouTube Channel
                     </TabsTrigger>
 
