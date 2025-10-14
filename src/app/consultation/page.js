@@ -5,7 +5,7 @@ export default function Page() {
     return (
         <>
             <InnerBanner
-                img="/images/aboutBanner.jpg"
+                img="/images/consultationBanner.jpg"
                 alt="CONSULTATION"
                 subTitle="CONSULTATION"
                 Title="Meet Our Consultants"
