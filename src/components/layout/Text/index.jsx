@@ -21,7 +21,7 @@ const sizes = {
   text1:
     "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] text-[12px] text-[#4B4B4B] font-normal leading-normal",
   text2:
-    "2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[11px] text-[#4B4B4B] font-normal leading-[1.5] font-base1",
+    "3xl:text-[16px] 2xl:text-[13px] lg:text-[11px] text-[10px] text-[#4B4B4B] font-normal leading-[1.5] font-base1",
   text3:
     "3xl:text-[25px] 2xl:text-[21px] xl:text-[16px] lg:text-[14px] text-[12px] text-[#4B4B4B] font-normal leading-normal font-base1",
   text4:
