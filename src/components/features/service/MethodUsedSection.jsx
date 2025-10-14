@@ -107,7 +107,8 @@ export default function MethodUsedSection({
                 </div>
                 <div className="w-full flex flex-wrap">
                     {why_choose_list.map((item, index) => (
-                        <div className="w-1/2 lg:w-1/3 xl:w-1/4 h-full group px-[10px] lg:px-[15px] xl:px-15px] 2xl:px-[20px] 3xl:px-[25px] py-[15px] lg:py-[15px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] bg-white relative transition-transform duration-300 hover:scale-98">
+                        
+                        <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group px-[8px] lg:px-[12px] xl:px-15px] 2xl:px-[20px] 3xl:px-[25px] py-[8px] lg:py-[12px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] bg-white relative transition-transform duration-300 hover:scale-98">
                             <div className="flex flex-wrap p-[5px] hover:shadow-lg transition  duration-300">
                                 <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto mb-[10px] xs:mb-[0]">
                                     <Image
@@ -118,7 +119,7 @@ export default function MethodUsedSection({
                                         className="w-[70%] h-auto object-cover block"
                                     />
                                 </div>
-                                <div className="text-start w-full  sm:w-[calc(100%-35px)] xl:w-[calc(100%-40px)] 2xl:w-[calc(100%-50px)] pl-[15px]">
+                                <div className="text-start w-full xs:w-[calc(100%-35px)] xl:w-[calc(100%-40px)] 2xl:w-[calc(100%-50px)] pl-[10px] xl:pl-[15px]">
                                     <Heading
                                         as="h6"
                                         size="heading6"

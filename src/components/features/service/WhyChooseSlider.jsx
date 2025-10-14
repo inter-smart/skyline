@@ -23,7 +23,7 @@ const why_choose_list = [
         },
         title: "Fast Scans",
         description:
-            " Multidisciplinary approach including surgery, radiology, pathology, and nursing",
+            "Multidisciplinary approach including surgery, radiology, pathology, and nursing",
     },
     {
         media: {
@@ -54,7 +54,7 @@ export default function WhyChooseUsSlider() {
                 loop={true}
                 watchSlidesProgress={true}
                 spaceBetween={20}
-                autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
                 breakpoints={{
@@ -62,8 +62,7 @@ export default function WhyChooseUsSlider() {
                     576: { slidesPerView: 2 },
                     768: { slidesPerView: 3 },
                     1024: { slidesPerView: 3 },
-                    1280: { slidesPerView: 4 },
-                    1536: { slidesPerView: 4 },
+                    1250: { slidesPerView: 4 },
                 }}
                 className="w-full">
                 {why_choose_list.map((item, index) => (
@@ -85,7 +84,7 @@ export default function WhyChooseUsSlider() {
                                     className="w-full h-auto aspect-square"
                                 />
                             </div>
-                            <div className="w-[45px] xl:w-[45px] 2xl:w-[56px] 3xl:w-[70px] h-[45px] xl:h-[45px] 2xl:h-[56px] 3xl:h-[70px] rounded-full bg-[linear-gradient(98deg,#004E8B_-30.8%,#C5DDFF_93.56%)] flex items-center justify-center  max-xs:mx-auto xs:mr-auto mb-[10px] sm:mb-[20px]">
+                            <div className="w-[45px] xl:w-[45px] 2xl:w-[56px] 3xl:w-[70px] h-[45px] xl:h-[45px] 2xl:h-[56px] 3xl:h-[70px] rounded-full bg-[linear-gradient(98deg,#004E8B_-30.8%,#C5DDFF_93.56%)] flex items-center justify-center  max-xs:mx-auto xs:mr-auto mb-[10px] xl:mb-[14px] 2xl:mb-[20px]">
                                 <Image
                                     src={item.media.path}
                                     alt={item.media.alt}
@@ -94,11 +93,13 @@ export default function WhyChooseUsSlider() {
                                     className="w-[58%] h-auto object-cover block"
                                 />
                             </div>
-                            <div className="w-full mt-2 text-start">
+                            <div className="w-full text-start">
+
                                 <Heading
                                     as="h5"
                                     size="heading5"
-                                    className="text-center xs:text-start text-[#212121] mb-[5px]"
+                                    noMotion
+                                    className="text-center xs:text-start font-medium text-[#212121] mb-[5px]"
                                 >
                                     {item.title}
                                 </Heading>
