@@ -21,7 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import BookAnAppointment from "./BookAnAppointment";
+import BookAnAppointment from "../../common/BookAnAppointment";
 
 
 

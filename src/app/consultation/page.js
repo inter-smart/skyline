@@ -1,4 +1,5 @@
 import InnerBanner from "@/components/common/InnerBanner";
+import OurconsultantSection from "@/components/features/consultation/OurconsultantSection";
 
 
 export default function Page() {
@@ -9,7 +10,10 @@ export default function Page() {
                 alt="CONSULTATION"
                 subTitle="CONSULTATION"
                 Title="Meet Our Consultants"
-                description="Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades." />
+                description="Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades."
+                 showFormBox={true}  />
+
+            <OurconsultantSection />
         </>
     )
 }
