@@ -44,7 +44,7 @@ export default function OurTreatmentsection({ title, description }) {
                             spaceBetween={0}
                             slidesPerView={4}
                             direction="vertical"
-                            className="h-[165px] xl:h-[175px] 2xl:h-[240px] 3xl:h-[320px]"
+                            className="h-[165px] xl:h-[175px] 2xl:h-[225px] 3xl:h-[320px]"
                         >
                             {treatmentData.map((item, index) => (
                                 <SwiperSlide key={index} className={`${index === treatmentData.length - 1 ? "!mb-0" : ""}`}>
@@ -92,8 +92,7 @@ export default function OurTreatmentsection({ title, description }) {
                             effect="fade"
                             spaceBetween={10}
                             slidesPerView={1}
-                            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-                        >
+                            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} >
                             {treatmentData.map((item, index) => (
                                 <SwiperSlide
                                     key={index}

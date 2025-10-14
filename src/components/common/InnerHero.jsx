@@ -42,6 +42,7 @@ export default function InnerHero({
                 <div className={`w-full max-w-[90%] sm:max-w-[320px] lg:max-w-[490px] 2xl:max-w-[620px] 3xl:max-w-[680px] mx-auto sm:m-0 ${className}`}>
                     <Heading
                         as="h6"
+                        noMotion
                         size="heading6"
                         className=" leading-[1] font-normal tracking-[3.06px] text-center sm:text-start uppercase text-base1 mb-[6px] lg:mb-[10px]"
                     >
@@ -50,11 +51,13 @@ export default function InnerHero({
                     <Heading
                         as="h1"
                         size="heading1"
+                        noMotion
                         className="text-[35px] sm:text-[38px] md:text-40px] lg:text-[45px] xl:text-[50px] 2xl:text-[54px] 3xl:text-[67px] text-center font-unna sm:text-start text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
                     >
                         {title_highlight ? handleHighlight(title_highlight, title) : title}
                     </Heading>
                     <Text
+                        noMotion
                         as="p"
                         size="text1"
                         className="text-center sm:text-start text-[#1E1E1E] font-normal"

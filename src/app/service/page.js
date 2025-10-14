@@ -32,8 +32,8 @@ export default function Service({ data }) {
                 title="Subspecialties & Treatments"
             />
             <MethodUsedSection
-                sub_title="our treatments"
-                title="Subspecialties & Treatments"
+                sub_title="METHODS USED"
+                title="Investigations & Diagnostics"
             />
         </>
     );

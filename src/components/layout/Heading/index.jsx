@@ -12,7 +12,7 @@ const textVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      type: "easeOut", // fixed typo
+      type: "easeOut",
       bounce: 0.4,
       duration: 0.8,
     },
@@ -35,13 +35,28 @@ const sizes = {
     "text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.2]",
   heading5:
     "text-[12px] sm:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] text-[#212121] font-medium leading-[1.2]",
-   heading6:
+  heading6:
     "text-[11px] sm:text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium leading-[1]",
 };
 
-// Heading component
-const Heading = ({ children, className = "", size = "heading1", as, ...restProps }) => {
+// Heading component with optional motion
+const Heading = ({
+  children,
+  className = "",
+  size = "heading1",
+  as,
+  noMotion = false, // 👈 new prop to disable motion
+  ...restProps
+}) => {
   const Component = as || "h1";
+
+  if (noMotion) {
+    return (
+      <Component className={`${className} ${sizes[size]}`} {...restProps}>
+        {children}
+      </Component>
+    );
+  }
 
   return (
     <motion.div
@@ -57,9 +72,23 @@ const Heading = ({ children, className = "", size = "heading1", as, ...restProps
   );
 };
 
-// Subtitle component
-const SubTitle = ({ children, className = "", size="subTitleClasses" , as, ...restProps }) => {
+// Subtitle component with optional motion
+const SubTitle = ({
+  children,
+  className = "",
+  as,
+  noMotion = false, // 👈 new prop added here too
+  ...restProps
+}) => {
   const Component = as || "p";
+
+  if (noMotion) {
+    return (
+      <Component className={`${className} ${subTitleClasses}`} {...restProps}>
+        {children}
+      </Component>
+    );
+  }
 
   return (
     <motion.div
