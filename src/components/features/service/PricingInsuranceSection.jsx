@@ -95,7 +95,7 @@ export default function PricingInsuranceSection({ sub_title, title, description 
 
                 {/* Right Section */}
                 <div className="w-full md:w-[55%] xl:w-[52%]">
-                    <Heading as="h5" size="heading5" className="leading-[1] font-medium text-center xs:text-start text-base1 mb-[10px] lg:mb-[18px]">
+                    <Heading as="h5" size="heading5" className="leading-[1] font-medium text-center xs:text-start text-[#212121] mb-[10px] lg:mb-[18px]">
                         Pricing Details
                     </Heading>
                     <div className="w-full pr-[35px] h-[420px] overflow-auto">
