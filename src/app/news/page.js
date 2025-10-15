@@ -1,7 +1,7 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import NewsSection from "@/components/features/News/NewsSection";
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerBanner
@@ -12,7 +12,7 @@ export default function page() {
                 description="Be part of a hospital dedicated to excellence, compassion, and innovation."
                  />
 
-                <NewsSection />
+                {/* <NewsSection /> */}
         </>
     )
 }

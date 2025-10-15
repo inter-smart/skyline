@@ -3,7 +3,7 @@ import AppointmentSection from "@/components/features/home/AppointmentSection";
 import FeaturedserviceSection from "@/components/features/service/FeaturedserviceSection";
 import OurserviceSection from "@/components/features/service/OurserviceSection";
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerBanner
