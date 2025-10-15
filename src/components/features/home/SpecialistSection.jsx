@@ -14,6 +14,17 @@ import { Heading, SubTitle } from "@/components/layout/Heading";
 const services = [
     {
         title: "ENT (Ear, Nose & Throat)",
+        mainTitle: "ENT (Ear, Nose & Throat)",
+        image: "/images/service2.jpg",
+        features: [
+            "Same-day and next-day appointments",
+            "30–60 minute consultations",
+            "Direct access to on-site diagnostics",
+            "Women’s & men’s health services",
+        ],
+    },
+    {
+        title: "Private GP Booking",
         mainTitle: "Private GP Booking",
         image: "/images/service1.jpg",
         features: [
@@ -23,19 +34,9 @@ const services = [
             "Women’s & men’s health services",
         ],
     },
+   
     {
         title: "Neurology",
-        mainTitle: "Heart Specialist Consultation",
-        image: "/images/service2.jpg",
-        features: [
-            "Advanced cardiac diagnostics",
-            "Non-invasive treatments",
-            "Experienced cardiologists",
-            "24/7 emergency services",
-        ],
-    },
-    {
-        title: "Dermatology",
         mainTitle: "Skin & Hair Treatments",
         image: "/images/service3.jpg",
         features: [
@@ -58,8 +59,8 @@ const services = [
     },
     {
         title: "Ophthalmology",
-        mainTitle: "Child Care & Vaccinations",
-        image: "/images/service4.jpg",
+        mainTitle: "Ophthalmology",
+        image: "/images/service5.jpg",
         features: [
             "Newborn to adolescent care",
             "Vaccination programs",
@@ -68,9 +69,31 @@ const services = [
         ],
     },
     {
-        title: "Ophthalmology",
+        title: "Dermatology",
+        mainTitle: "Dermatology",
+        image: "/images/service6.jpg",
+        features: [
+            "Newborn to adolescent care",
+            "Vaccination programs",
+            "Nutritional guidance",
+            "Growth tracking",
+        ],
+    },
+    {
+        title: "Gynecology",
+        mainTitle: "Gynecology",
+        image: "/images/service7.jpg",
+        features: [
+            "Newborn to adolescent care",
+            "Vaccination programs",
+            "Nutritional guidance",
+            "Growth tracking",
+        ],
+    },
+    {
+        title: "Orthopaedics & Sports Medicine",
         mainTitle: "Child Care & Vaccinations",
-        image: "/images/service4.jpg",
+        image: "/images/service8.jpg",
         features: [
             "Newborn to adolescent care",
             "Vaccination programs",
@@ -91,16 +114,16 @@ export default function SpecialistSection() {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                    > 
+                    >
                         <SubTitle
                             size="SubTitle"
-                            as="div" 
+                            as="div"
                         >
                             Services
                         </SubTitle>
                         <Heading
                             size="heading1"
-                            as="div" 
+                            as="div"
                             className="!mb-0"
                         >
                             Our Specialist <br />
@@ -116,15 +139,7 @@ export default function SpecialistSection() {
                         consultants using state-of-the-art facilities.
                     </motion.p>
 
-                    <motion.Link
-                        href="/"
-                        aria-label="View All Services"
-                        className="btn-base1 hover"
-                        initial={{ opacity: 0, y: -150 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}>
-                        View All Services
-                    </motion.Link>
+                  
 
                 </div>
 
@@ -212,6 +227,14 @@ export default function SpecialistSection() {
                                                 </li>
                                             ))}
                                         </ul>
+                                        <Link href="/" className="text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px] mt-[12px]">
+                                           View Details
+                                            <div className="w-[13px] h-[13px] flex">
+                                                <svg width="13" height="9" viewBox="0 0 13 9" className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1" fill="none">
+                                                    <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
+                                                </svg>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </SwiperSlide>

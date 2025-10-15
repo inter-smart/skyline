@@ -18,7 +18,7 @@ export default function Home() {
       <SpecialistSection />
       <ConsultantSection /> 
       <TestimonialSection />
-      <AppointmentSection />
+      <AppointmentSection bannerImage="/images/appointmentBg.jpg" />
       <InsightSection />
     </>
   );

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function AppointmentSection() {
+export default function AppointmentSection({bannerImage}) {
   // Fade-up animation
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -14,7 +14,7 @@ export default function AppointmentSection() {
     <section className="relative w-full h-full py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[165px]">
       {/* Background image */}
       <Image
-        src="/images/appointmentBg.jpg"
+        src={bannerImage }
         className="object-cover absolute top-0 left-0 w-full h-full"
         priority
         width={1920}

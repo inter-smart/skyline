@@ -102,7 +102,7 @@ body {
   }
 
   p {
-    @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+    @apply text-[10px] lg:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
   }
 
   .typography {
@@ -112,7 +112,7 @@ body {
 
     p,
     & {
-      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal  mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
     }
 
     h1 {
@@ -300,10 +300,7 @@ body {
   }
 }
 
-.consultantSlider {
-  width: 820px !important;
-  margin: auto !important;
-}
+
 
 
 .stickyHeader {
@@ -317,5 +314,58 @@ body {
   backdrop-filter: blur(30px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
   border: 0 !important;
-  z-index: 9;
+  z-index: 999;
+}
+
+@media only screen and (min-width: 1280px) {
+
+  .consultantSlider .swiper-slide-active {
+    width: 540px !important;
+  }
+
+  .consultantSlider .swiper-slide-next,
+  .consultantSlider .swiper-slide-prev {
+    width: 270px !important;
+  }
+}
+
+@media only screen and (min-width: 1530px) {
+
+  .consultantSlider .swiper-slide-active {
+    width: 640px !important;
+  }
+
+  .consultantSlider .swiper-slide-next,
+  .consultantSlider .swiper-slide-prev {
+    width: 330px !important;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+
+  .consultantSlider .swiper-slide-active {
+    width: 830px !important;
+  }
+
+  .consultantSlider .swiper-slide-next,
+  .consultantSlider .swiper-slide-prev {
+    width: 440px !important;
+  }
+}
+
+.consultantSlider .swiper-slide-next .cmnBx,
+.consultantSlider .swiper-slide-prev .cmnBx {
+  width: 100% !important;
+
+}
+
+.consultantSlider .swiper-slide-next .cmnBx .imgBx,
+.consultantSlider .swiper-slide-prev .cmnBx .imgBx {
+  height: auto !important;
+
+}
+.consultantSlider .swiper-slide-next .rtBx,
+.consultantSlider .swiper-slide-prev .rtBx{
+  display: none;
+
 }
