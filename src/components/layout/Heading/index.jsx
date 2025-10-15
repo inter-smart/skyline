@@ -21,7 +21,7 @@ const textVariants = {
 
 // Subtitle classes
 const subTitleClasses =
-  "text-[10px] lg:text-[12px] 2xl:text-[14px] 3xl:text-[18px] !text-[#671448] !font-normal uppercase tracking-wider mb-[20px]";
+  "text-[10px] lg:text-[12px] 2xl:text-[14px] 3xl:text-[18px] !text-[#671448] !font-normal uppercase tracking-widest mb-[20px]";
 
 // Heading size classes
 const sizes = {

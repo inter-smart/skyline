@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css"; 
+import "swiper/css";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -50,11 +50,21 @@ const items = [
         availability: "Same Day",
         specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
     },
+    {
+        id: 5,
+        name: "Dr. Sara Tailor",
+        role: "Consultant Psychiatrist",
+        qualification: "MBBS, MRCGP, DRCOG",
+        image: "/images/consult1.jpg",
+        experience: "15+ years",
+        availability: "Same Day",
+        specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
+    },
 
 ];
 
 export default function ConsultantSection() {
-    const [expanded, setExpanded] = useState({}); // track which item is expanded
+    const [expanded, setExpanded] = useState({});
 
     const toggleExpand = (id) => {
         setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -84,23 +94,29 @@ export default function ConsultantSection() {
                 </div>
                 <div className="w-full">
                     <Swiper
-                        // modules={[Autoplay]}
-                        slidesPerView={3}
-                        centeredSlides={true}
+                        modules={[Autoplay]}
+                        slidesPerView={1}
                         spaceBetween={10}
                         loop={true}
-                        // autoplay={{
-                        //     delay: 3000,
-                        //     disableOnInteraction: false,
-                        // }}
+                        autoplay={{
+                            delay: 8000,
+                            disableOnInteraction: false,
+                        }}
                         breakpoints={{
+                            578: {
+                                spaceBetween: 10,
+                                slidesPerView: 2
+                            },
                             768: {
                                 spaceBetween: 10,
+                                slidesPerView: 3
                             },
                             1280: {
+                               centeredSlides:true,
                                 spaceBetween: 30,
                             },
                             1536: {
+                                centeredSlides:true,
                                 spaceBetween: 40,
                             },
                         }}
@@ -109,12 +125,12 @@ export default function ConsultantSection() {
 
                         {items.map((item) => (
                             <SwiperSlide key={item.id} >
-                                <div className="consultantBx w-full h-full p-[8px] xl:p-[15px] 3xl:p-[20px] rounded-[4px] border-[#D6E2ED]
+                                <div className="consultantBx w-full h-full p-[12px] xl:p-[15px] 3xl:p-[20px] rounded-[4px] border-[#D6E2ED]
                                  border overflow-hidden bg-white flex flex-wrap">
 
                                     {/* Left Section */}
-                                    <div className="w-full cmnBx flex-grow lg:w-[165px] xl:w-[210px] 2xl:w-[250px] 3xl:w-[315px] lg:h-full">
-                                        <div className="w-full lg:h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[20px] bg-[#D6E2ED] relative imgBx">
+                                    <div className="w-full cmnBx flex-grow  xl:w-[210px] 2xl:w-[250px] 3xl:w-[315px] lg:h-full">
+                                        <div className="w-full lg:h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[15px] bg-[#D6E2ED] relative imgBx">
                                             {/* logo image */}
                                             <Image
                                                 src="/images/bgLogo.png"
@@ -133,10 +149,24 @@ export default function ConsultantSection() {
                                                 alt={item.name}
                                             />
                                         </div>
+                                        <div className="info">
+                                            <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] font-medium mb-[4px] 2xl:mb-[8px]">
+                                                {item.name}
+                                            </div>
+                                            <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#671448] font-normal mb-[5px] 2xl:mb-[8px] flex items-start leading-4 relative
+                                            before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[3px]
+                                            before:h-[14px] before:rounded-[6px] before:mr-[8px]"
+                                            >
+                                                {item.role}
+                                            </div>
+                                            <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#3D3D3D] font-light uppercase">
+                                                {item.qualification}
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/* Right Section */}
-                                    <div className={` flex-grow rtBx w-full lg:w-[calc(100%-165px)] xl:w-[calc(100%-210px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-315px)] lg:pl-[15px] xl:pl-[20px] 3xl:pl-[30px] transition-all duration-300`}>
+                                    <div className={` flex-grow rtBx w-full   xl:w-[calc(100%-210px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-315px)]  xl:pl-[20px] 3xl:pl-[30px] transition-all duration-300`}>
                                         <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] font-medium mb-[10px] 2xl:mb-[15px]">
                                             {item.name}
                                         </div>
@@ -178,7 +208,7 @@ export default function ConsultantSection() {
                                                     </li>
                                                 ))}
 
-                                                {item.specialization.length > 2 && (
+                                                {item.specialization.length > 3 && (
                                                     <li className="p-[4px]">
                                                         <button
                                                             onClick={() => toggleExpand(item.id)}
@@ -190,24 +220,14 @@ export default function ConsultantSection() {
                                                 )}
                                             </ul>
 
-                                            <div className="w-full flex flex-wrap -m-[4px] 2xl:-m-[8px]">
-                                                <div className="p-[4px] 2xl:p-[8px] flex-grow">
-                                                    <Link
-                                                        href="/"
-                                                        className="w-full btn-base1 tracking-widest bg-transparent border rounded-[3px] hover:text-white transition-none border-[rgba(103,20,72,0.2)] text-base1"
-                                                    >
-                                                        View Details
-                                                    </Link>
+                                            <Link href="/" className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px]">
+                                                Book Appointment
+                                                <div className="w-[13px] h-[13px] flex ml-[10px]">
+                                                    <svg width="13" height="9" viewBox="0 0 13 9" className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1" fill="none">
+                                                        <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
+                                                    </svg>
                                                 </div>
-                                                <div className="p-[4px] 2xl:p-[8px] flex-grow">
-                                                    <Link
-                                                        href="/"
-                                                        className="w-full btn-base1 tracking-widest rounded-[3px]"
-                                                    >
-                                                        Book Consultation
-                                                    </Link>
-                                                </div>
-                                            </div>
+                                            </Link>
 
                                         </div>
                                     </div>

@@ -14,7 +14,7 @@ import { Heading, SubTitle } from "@/components/layout/Heading";
 
 export default function AboutSection() {
   return (
-    <section className="py-[55px] 3xl:py-[100px] bg-[#FBFBFB]">
+    <section className="py-[55px] 3xl:py-[100px] bg-[#FBFBFB] overflow-hidden">
       <div className="container">
         <div className="flex flex-wrap items-center -m-[10px]">
 
