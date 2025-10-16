@@ -12,7 +12,7 @@ export default function Page() {
                 description="Be part of a hospital dedicated to excellence, compassion, and innovation."
                  />
 
-                {/* <NewsSection /> */}
+                <NewsSection />
         </>
     )
 }

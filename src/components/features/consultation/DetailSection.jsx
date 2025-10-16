@@ -8,6 +8,14 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+
+const accordionTrigger = `
+  relative text-[30px] font-unna text-base1 bg-[rgba(103,20,72,0.05)] p-[15px_17px] [&>svg]:hidden
+  after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[17px] !no-underline cursor-pointer
+  after:bg-[url('/images/arrow.svg')] after:bg-no-repeat after:bg-contain after:w-[8px] after:h-[8px]
+  after:transition-transform after:duration-300 data-[state=open]:after:rotate-180
+`;
+
 export default function DetailSection() {
     return (
         <section className="py-[70px] relative">
@@ -81,12 +89,110 @@ export default function DetailSection() {
                     <div className="md:w-[calc(100%-230px)] lg:w-[calc(100%-265px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-395px)] 3xl:w-[calc(100%-495px)] pl-[30px]">
                         <div className="w-full">
                             <Accordion type="single" collapsible>
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger className="text-[30px] font-unna text-base1 bg-[rgba(103,20,72,0.05)] p-[15px_17px]">Is it accessible?</AccordionTrigger>
-                                    <AccordionContent>
-                                        Yes. It adheres to the WAI-ARIA design pattern.
+                                <AccordionItem value="item-1" className="mb-[25px] border-0">
+                                    <AccordionTrigger
+                                        className={`${accordionTrigger}`}
+                                    >
+                                        Is it accessible?
+                                    </AccordionTrigger>
+                                    <AccordionContent className="py-[20px]">
+                                        Since joining team in 2009, she has played a vital role in transforming the company from a group of
+                                        tech-savvy individuals working with startups into a leading provider of Digital Product Engineering Services worldwide, with a focus on assisting Fortune 500 companies with their innovation initiatives.
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-2">
+                                    <AccordionTrigger
+                                        className={`${accordionTrigger}`}
+                                    >
+                                        Special Interests
+                                    </AccordionTrigger>
+                                    <AccordionContent className="py-[20px]">
+                                        <div className="flex">
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Adult ADHD Assessment
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Depression & Anxiety
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Addiction Medicine
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Neuropsychiatry
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Psychopharmacology
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Geriatric Psychiatry
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Crisis Intervention
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    Sleep Disorders
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger
+                                        className={`${accordionTrigger}`}
+                                    >
+                                        Languages Spoken
+                                    </AccordionTrigger>
+                                    <AccordionContent className="py-[20px]">
+                                        <div className="flex">
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    <div className="w-[15px] h-[15px] rounded-full overflow-hidden">
+                                                        <Image src="/images/flag1.jpg" className="w-full h-full object-cover" width="15" height="15px" alt="flag" />
+                                                    </div>
+                                                    <span>German</span>
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    English
+                                                </div>
+                                            </div>
+                                            <div className="p-[5px]">
+                                                <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
+                                                 p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
+                                                    French
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+
                             </Accordion>
                         </div>
                     </div>

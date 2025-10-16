@@ -5,7 +5,13 @@ import { Heading, SubTitle } from "@/components/layout/Heading";
 import InsightCard from "@/components/common/InsightCard";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
-import Isotope from "isotope-layout";
+import dynamic from "next/dynamic";
+
+// ✅ Load Isotope only on the client to avoid SSR issues
+let Isotope;
+if (typeof window !== "undefined") {
+  Isotope = require("isotope-layout");
+}
 
 const insights = [
   {
@@ -57,20 +63,32 @@ const filters = [
   { label: "Nutrition", value: ".nutrition" },
 ];
 
-const filterButton = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-black font-normal flex items-center justify-center border border-[#E4E4E4]
-rounded-[6px] lg:min-w-[78px] 2xl:min-w-[95px] 3xl:min-w-[115px] 
-h-[25px] 2xl:h-[31px] 3xl:h-[40px] shadow-none px-[20px]`;
+const filterButton = `
+  text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-black font-normal flex items-center justify-center 
+  border border-[#E4E4E4] rounded-[6px] lg:min-w-[78px] 2xl:min-w-[95px] 3xl:min-w-[115px] 
+  h-[25px] 2xl:h-[31px] 3xl:h-[40px] shadow-none px-[20px]
+`;
 
 export default function InsightSection() {
   const isotope = useRef(null);
   const [filterKey, setFilterKey] = useState("*");
 
   useEffect(() => {
-    isotope.current = new Isotope(".insight-grid", {
+    // ✅ Only initialize Isotope in the browser
+    if (typeof window === "undefined" || !Isotope) return;
+
+    const grid = document.querySelector(".insight-grid");
+    if (!grid) return;
+
+    isotope.current = new Isotope(grid, {
       itemSelector: ".insight-item",
       layoutMode: "fitRows",
     });
-    return () => isotope.current?.destroy();
+
+    return () => {
+      isotope.current?.destroy();
+      isotope.current = null;
+    };
   }, []);
 
   useEffect(() => {
@@ -93,7 +111,11 @@ export default function InsightSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
+              <SubTitle
+                size="SubTitle"
+                as="div"
+                className="!mb-[10px] 3xl:!mb-[15px] leading-none"
+              >
                 Insights
               </SubTitle>
               <Heading size="heading1" as="div" className="leading-none !mb-0">
@@ -139,9 +161,12 @@ export default function InsightSection() {
 
         {/* Load More Button */}
         <div className="mt-[20px] text-center">
-          <Button className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
-                             border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center
-                             h-[32px] 2xl:h-[40px] 3xl:h-[50px] hover m-auto bg-transparent cursor-pointer rounded-[3px] hover:text-white">
+          <Button
+            className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
+                       border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center
+                       h-[32px] 2xl:h-[40px] 3xl:h-[50px] m-auto bg-transparent cursor-pointer rounded-[3px]
+                       hover:bg-[#671448] hover:text-white transition-all duration-300"
+          >
             LOAD MORE
           </Button>
         </div>
