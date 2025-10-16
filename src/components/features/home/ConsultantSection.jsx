@@ -3,7 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import Link from "next/link";
 import Image from "next/image";
@@ -73,8 +73,9 @@ const items = [
 
 ];
 
-export default function ConsultantSection() {
+export default function ConsultantSection({ variant }) {
     const [expanded, setExpanded] = useState({});
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const toggleExpand = (id) => {
         setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -83,7 +84,8 @@ export default function ConsultantSection() {
 
 
     return (
-        <section className="bg-[#00335B] py-[40px] 3xl:py-[70px]">
+        <section className="bg-[#00335B] py-[40px] 3xl:py-[70px] relative z-0">
+            <Image src="/images/logoBack.png" className="absolute top-0 left-[10%] bottom-0 m-auto max-w-[1000px] w-full h-full object-cover z-10" width="950" height="850" alt="bg" />
             <div className="container">
                 <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
                     <div className="max-w-[650px]">
@@ -95,22 +97,38 @@ export default function ConsultantSection() {
                             Medical Consultants
                         </div>
                     </div>
-                    <Link
-                        href="/"
-                        aria-label="View All Consultants"
-                        className="btn-base1 hover" >
-                        View All Consultants
-                    </Link>
+                    {variant === "servicedetail" ? (
+                        <div className="xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:!text-white">
+                            <p>
+                                Our oncology specialists are GMC-registered and deeply committed to delivering expert, compassionate care.
+                                Many are involved in cutting-edge clinical trials and hold academic or NHS leadership positions.
+                            </p>
+                        </div>
+                    ) : (
+                        <Link
+                            href="/"
+                            aria-label="View All Consultants"
+                            className="btn-base1 hover"
+                        >
+                            View All Consultants
+                        </Link>
+                    )}
                 </div>
-                <div className="w-full">
+                <div className="w-full realtive">
                     <Swiper
-                        modules={[Autoplay]}
-                        slidesPerView={1}
+                        modules={[Autoplay, Navigation]}
                         spaceBetween={10}
                         loop={true}
                         autoplay={{
                             delay: 8000,
                             disableOnInteraction: false,
+                        }}
+                        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                        onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+                        slidesPerView={1}
+                        navigation={{
+                            prevEl: ".navbts-prev",
+                            nextEl: ".navbts-next",
                         }}
                         breakpoints={{
                             578: {
@@ -251,6 +269,26 @@ export default function ConsultantSection() {
 
                         ))}
                     </Swiper>
+
+                    {/* arrows */}
+                    <div className="flex items-end justify-center relative z-1 max-w-[95px] m-auto mt-[30px] ">
+                        <div className="w-1/2 p-[10px]">
+                            <button className="navbts-prev z-20 bg-white w-[28px] lg:w-[35px] 2xl:w-[40px] h-[28px] lg:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px] flex items-center justify-center cursor-pointer group hover:bg-base1">
+                                <svg className="w-full h-full group-hover:fill-white fill-base2" viewBox="0 0 8 6">
+                                    <path d="M2.78099 0.947449C2.8655 1.03283 2.86572 1.1715 2.78099 1.25688L1.00565 3.04999L6.98327 3.04999C7.10288 3.04999 7.19995 3.14794 7.19995 3.26886C7.19995 3.38977 7.10287 3.48772 6.98327 3.48772L1.00565 3.48772L2.78077 5.28084C2.8655 5.36621 2.8655 5.50489 2.78077 5.59026C2.69604 5.67564 2.55888 5.67564 2.47437 5.59026L0.329353 3.42358C0.245705 3.33907 0.245705 3.19845 0.329353 3.11393L2.47437 0.94725C2.5591 0.861855 2.69626 0.861856 2.78099 0.947449Z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="w-1/2 p-[10px]">
+                            <button className="navbts-next z-10 bg-white w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px] flex items-center justify-center cursor-pointer group hover:bg-base1">
+                                <svg className="w-full h-full group-hover:fill-white fill-base2" viewBox="0 0 8 6" fill="none">
+                                    <path d="M5.15236 0.947449C5.06785 1.03283 5.06763 1.1715 5.15236 1.25688L6.9277 3.04999L0.950083 3.04999C0.830465 3.04999 0.733398 3.14794 0.733398 3.26886C0.733398 3.38977 0.830483 3.48772 0.950083 3.48772L6.9277 3.48772L5.15258 5.28084C5.06785 5.36621 5.06785 5.50489 5.15258 5.59026C5.23731 5.67564 5.37447 5.67564 5.45898 5.59026L7.604 3.42358C7.68764 3.33907 7.68764 3.19845 7.604 3.11393L5.45898 0.94725C5.37425 0.861855 5.23709 0.861856 5.15236 0.947449Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+
 
 
                 </div>

@@ -6,6 +6,10 @@ import WhyChooseUsSection from "@/components/features/service/WhyChooseUsSection
 import MultidisciplinarySection from "@/components/features/service/MultidisciplinarySection";
 import PatientJourneySection from "@/components/features/service/PatientJourneySection";
 import PricingInsuranceSection from "@/components/features/service/PricingInsuranceSection";
+import FaqSection from "@/components/features/service/FaqSection";
+import RelatedSection from "@/components/features/service/RelatedSection";
+import AppointmentSection from "@/components/features/home/AppointmentSection";
+import ConsultantSection from "@/components/features/home/ConsultantSection";
 export default function Service({ data }) {
     return (
 
@@ -50,11 +54,19 @@ export default function Service({ data }) {
                 title="Patient Journey"
                 description="Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
             />
+            <ConsultantSection variant="servicedetail" />
+
             <PricingInsuranceSection
                 sub_title="INSURANCE"
                 title="Pricing & Insurance"
                 description="We offer self-pay and insured patient options with clear, upfront pricing for consultations, imaging, blood tests, and treatment."
             />
+            <FaqSection />
+
+            <RelatedSection />
+
+            
+          <AppointmentSection  bannerImage="/images/serviceDetailBg.jpg"/>
         </>
     );
 }
