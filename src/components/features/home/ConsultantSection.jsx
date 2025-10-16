@@ -60,6 +60,16 @@ const items = [
         availability: "Same Day",
         specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
     },
+    {
+        id: 6,
+        name: "Dr. Sara Tailor",
+        role: "Consultant Psychiatrist",
+        qualification: "MBBS, MRCGP, DRCOG",
+        image: "/images/consult1.jpg",
+        experience: "15+ years",
+        availability: "Same Day",
+        specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"]
+    },
 
 ];
 
@@ -73,11 +83,11 @@ export default function ConsultantSection() {
 
 
     return (
-        <section className="bg-[#00335B] py-[70px]">
+        <section className="bg-[#00335B] py-[40px] 3xl:py-[70px]">
             <div className="container">
-                <div className="flex items-end justify-between mb-[60px] flex-wrap gap-[20px]">
+                <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
                     <div className="max-w-[650px]">
-                        <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wider mb-[20px]">
+                        <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r 3xl:mb-[20px]">
                             Consultants
                         </h1>
                         <div className="text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">
@@ -112,12 +122,14 @@ export default function ConsultantSection() {
                                 slidesPerView: 3
                             },
                             1280: {
-                               centeredSlides:true,
+                                centeredSlides: true,
                                 spaceBetween: 30,
+                                slidesPerView: 3
                             },
                             1536: {
-                                centeredSlides:true,
+                                centeredSlides: true,
                                 spaceBetween: 40,
+                                slidesPerView: 3
                             },
                         }}
                         className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
