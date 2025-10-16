@@ -100,7 +100,7 @@ export default function DetailSection() {
                                         tech-savvy individuals working with startups into a leading provider of Digital Product Engineering Services worldwide, with a focus on assisting Fortune 500 companies with their innovation initiatives.
                                     </AccordionContent>
                                 </AccordionItem>
-                                <AccordionItem value="item-2">
+                                <AccordionItem value="item-2" className="mb-[25px] border-0">
                                     <AccordionTrigger
                                         className={`${accordionTrigger}`}
                                     >
@@ -159,7 +159,7 @@ export default function DetailSection() {
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>
-                                <AccordionItem value="item-3">
+                                <AccordionItem value="item-3" className="mb-[25px] border-0">
                                     <AccordionTrigger
                                         className={`${accordionTrigger}`}
                                     >
@@ -171,25 +171,47 @@ export default function DetailSection() {
                                                 <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
                                                  p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
                                                     <div className="w-[15px] h-[15px] rounded-full overflow-hidden">
-                                                        <Image src="/images/flag1.jpg" className="w-full h-full object-cover" width="15" height="15px" alt="flag" />
+                                                        <Image src="/images/flag1.jpg" className="w-full h-full object-cover" width="15" height="15" alt="flag" />
                                                     </div>
-                                                    <span>German</span>
+                                                    <span className="px-[5px]">German</span>
                                                 </div>
                                             </div>
                                             <div className="p-[5px]">
                                                 <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
                                                  p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
-                                                    English
+                                                    <div className="w-[15px] h-[15px] rounded-full overflow-hidden">
+                                                        <Image src="/images/flag2.jpg" className="w-full h-full object-cover" width="15" height="15" alt="flag" />
+                                                    </div>
+                                                    <span className="px-[5px]">English</span>
                                                 </div>
                                             </div>
                                             <div className="p-[5px]">
                                                 <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)]
                                                  p-[5px] 3xl:p-[5px_15px] rounded-[40px] flex items-center justify-center w-full h-full">
-                                                    French
+                                                    <div className="w-[15px] h-[15px] rounded-full overflow-hidden">
+                                                        <Image src="/images/flag3.jpg" className="w-full h-full object-cover" width="15" height="15" alt="flag" />
+                                                    </div>
+                                                    <span className="px-[5px]">French</span>
                                                 </div>
                                             </div>
 
                                         </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                                <AccordionItem value="item-4" className="mb-[25px] border-0">
+                                    <AccordionTrigger
+                                        className={`${accordionTrigger}`}
+                                    >Qualifications
+                                    </AccordionTrigger>
+                                    <AccordionContent className="py-[20px]">
+                                         
+                                        <ul>
+                                            <li className="relative text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
+                                                    before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
+                                                    before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]">
+                                               MBBS — Central Health University
+                                            </li>
+                                        </ul>
                                     </AccordionContent>
                                 </AccordionItem>
 
