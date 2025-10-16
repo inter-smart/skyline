@@ -243,7 +243,8 @@ export default function BookAnAppointment() {
                                 </div>
                             </div>
                             <div className="w-full p-[10px] mt-[15px]">
-                                <Button className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] tracking-wider btn-base1 hover bg-white text-base1 rounded-[3px] 2xl:h-[40px] 3xl:h-[50px] 2xl:min-w-[185px] 3xl:min-w-[235px] hover:text-white" aria-label="consultation_btn">book consultation</Button>
+                                <Button className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] tracking-wider btn-base1 
+                                hover bg-white text-base1 rounded-[3px] 2xl:h-[40px] 3xl:h-[50px] 2xl:min-w-[185px] 3xl:min-w-[235px] hover:text-white" aria-label="consultation_btn">book consultation</Button>
                             </div>
                         </div>
                     </form>
