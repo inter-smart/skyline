@@ -53,7 +53,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-[265px] xl:w-[360px] 2xl:w-[400px] 3xl:w-[500px] h-[265px] xl:h-[345px] 2xl:h-[400px] 3xl:h-[490px] m-auto relative">
+            <div className="w-[265px] xl:w-[345px] 2xl:w-[400px] 3xl:w-[485px] h-[265px] xl:h-[345px] 2xl:h-[400px] 3xl:h-[490px] m-auto relative">
               <video
                 src="/videos/about.mp4"
                 autoPlay
@@ -84,7 +84,7 @@ export default function AboutSection() {
                   alt="skyline"
                   className="w-full h-full object-cover animate-spin-slow"
                 />
-                <span className="absolute top-0 bottom-0 left-0 right-0 m-auto 
+                <span className="absolute top-0 bottom-0 -left-[3px] right-0 m-auto 
                   w-[8px] h-[8px] rotate-45 
                   border-b-[10px] border-r-[10px] border-white border-b-transparent">
                 </span>
@@ -107,6 +107,7 @@ export default function AboutSection() {
                 modules={[Navigation, Autoplay]}
                 slidesPerView={3}
                 loop={true}
+                speed={2500}
                 autoplay={{ delay: 5000 }}
                 direction="vertical"
                 className="relative w-full h-[250px] sm:h-[200px] xl:h-[260px] 2xl:h-[300px] 3xl:h-[380px]"

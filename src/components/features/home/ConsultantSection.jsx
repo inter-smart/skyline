@@ -85,7 +85,7 @@ export default function ConsultantSection({ variant }) {
 
     return (
         <section className="bg-[#00335B] py-[40px] 3xl:py-[70px] relative z-0">
-            <Image src="/images/logoBack.png" className="absolute top-0 left-[10%] bottom-0 m-auto max-w-[1000px] w-full h-full object-cover z-10" width="950" height="850" alt="bg" />
+            <Image src="/images/logoBack.png" className="absolute top-0 left-[10%] bottom-0 m-auto pointer-events-none max-w-[1000px]  w-full h-full object-cover z-10" width="950" height="850" alt="bg" />
             <div className="container">
                 <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
                     <div className="max-w-[650px]">
