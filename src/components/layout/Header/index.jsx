@@ -42,7 +42,16 @@ export default function Header() {
   const menus = [
     { name: "Home", link: "/" },
     { name: "About Us", link: "/about" },
-    { name: "Services", link: "/services" },
+    {
+      name: "Services",
+      link: "/services",
+      submenu: [
+        { name: "ENT", link: "/services/ent" },
+        { name: "Cardiology", link: "/services/cardiology" },
+        { name: "Orthopaedics", link: "/services/orthopaedics" },
+        { name: "Neurology", link: "/services/neurology" },
+      ],
+    },
     { name: "Consultants", link: "/consultants" },
     { name: "News & Insights", link: "/news" },
     { name: "Contact", link: "/contact" },
@@ -68,15 +77,33 @@ export default function Header() {
                   2xl:pl-[65px] 3xl:pl-[85px]">
               <div className="w-full flex items-center justify-between">
                 {/* menus */}
-                <div className="flex items-center">
+                <div className="flex items-center relative">
                   {menus.map((item, id) => (
-                    <div key={id} className="px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px]">
+                    <div key={id} className="relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px]">
+                      {/* Main link */}
                       <Link href={item.link} className={menuLinks} aria-label="menulinks">
                         {item.name}
                       </Link>
+
+                      {/* Dropdown (if submenu exists) */}
+                      {item.submenu && (
+                        <div className="absolute left-0 top-full mt-2 hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
+                          {item.submenu.map((sub, subId) => (
+                            <Link
+                              key={subId}
+                              href={sub.link}
+                              className="block text-[13px] xl:text-[14px] 2xl:text-[15px] text-[#010101] px-4 py-2 hover:bg-[#f6271f] hover:text-white transition-all"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
+
+
                 {/* .rightSec */}
                 <div className="flex items-center justify-end -m-[9px] 2xl:-m-[12px]">
                   <div className="p-[9px] 2xl:p-[12px]">
