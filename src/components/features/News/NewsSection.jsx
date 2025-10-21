@@ -12,7 +12,7 @@ import YouTubeGallerySection from "./YouTubeGallerySection";
 
 const tabButton = `text-[7px] sm:text-[8px] md:text-[10px] 2xl:text-[12px] 3xl:text-[18px] text-[rgba(33,33,33,0.56)] uppercase tracking-wider flex items-center justify-center
          rounded-[0px] h-[40px] lg:h-[45px] xl:h-[60px] 2xl:h-[70px] 3xl:h-[90px] shadow-none font-normal border-[#919193] border-r border-top-0 border-l-0 last-of-type:border-r-0
-         data-[state=active]:text-[#212121] data-[state=active]:font-medium data-[state=active]:shadow-none md:px-[20px] !w-auto sm:w-[calc(100%/4)] `;
+         data-[state=active]:text-[#212121]  data-[state=active]:underline data-[state=active]:font-medium data-[state=active]:shadow-none md:px-[20px] !w-auto sm:w-[calc(100%/4)] `;
 
 
 

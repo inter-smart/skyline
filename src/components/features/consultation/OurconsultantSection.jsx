@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const items = [
     {
@@ -146,6 +147,16 @@ export default function OurconsultantSection() {
                             </div>
                         </div>
                     ))}
+                </div>
+                {/* Load More Button */}
+                <div className="mt-[40px] 2xl:mt-[50px] 3xl:mt-[70px] text-center">
+                    <Button
+                        className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center
+                                       h-[32px] 2xl:h-[40px] 3xl:h-[50px] m-auto bg-transparent cursor-pointer
+                                       hover:bg-transparent transition-all duration-300"
+                    >
+                        Load More...
+                    </Button>
                 </div>
             </div>
         </section>

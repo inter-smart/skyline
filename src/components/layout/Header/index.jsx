@@ -79,9 +79,11 @@ export default function Header() {
                 {/* menus */}
                 <div className="flex items-center relative">
                   {menus.map((item, id) => (
-                    <div key={id} className="relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px]">
+                    <div key={id} className="relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px]  after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer
+                            after:bg-[url('/images/arrow.svg')] after:bg-no-repeat after:bg-contain after:w-[8px] after:h-[8px]
+                            after:transition-transform after:duration-300 hover:after:rotate-180">
                       {/* Main link */}
-                      <Link href={item.link} className={menuLinks} aria-label="menulinks">
+                      <Link href={item.link} className={menuLinks} aria-label="menulinks relative">
                         {item.name}
                       </Link>
 

@@ -41,14 +41,14 @@ export default function FaqSection() {
     return (
         <section className='py-[30px_60px]'>
             <div className="container">
-                <div className="lg:w-1/2">
+                <div className="lg:w-1/2 max-w-[405px] xl:max-w-[540px] 2xl:max-w-[540px] 3xl:max-w-[685px]">
                     <motion.div
-                        className="max-w-[350px] xl:max-w-[410px] 2xl:max-w-[490px] 3xl:max-w-[610px] relative"
+                        className="relative"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <Heading size="heading1" as="div" className="leading-none ">
+                        <Heading size="heading1" as="div" className="leading-none">
                             Frequently Asked Questions
                         </Heading>
                     </motion.div>

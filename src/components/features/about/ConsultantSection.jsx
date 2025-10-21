@@ -34,6 +34,18 @@ const consultants = [
         image: "/images/team4.png",
         bgLogo: "/images/bgLogo1.png",
     },
+    {
+        name: "Dr. Alice Brown",
+        position: "Chief Financial Officer",
+        image: "/images/team4.png",
+        bgLogo: "/images/bgLogo1.png",
+    },
+    {
+        name: "Dr. Alice Brown",
+        position: "Chief Financial Officer",
+        image: "/images/team4.png",
+        bgLogo: "/images/bgLogo1.png",
+    },
 ];
 
 export default function ConsultantSection() {

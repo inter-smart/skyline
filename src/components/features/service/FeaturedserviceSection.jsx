@@ -59,7 +59,7 @@ const services = [
     //     ],
     //     category: "ortho",
     // },
-    
+
 ];
 export default function FeaturedserviceSection() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -71,13 +71,12 @@ export default function FeaturedserviceSection() {
                 <div className="flex flex-wrap items-end justify-between w-full relative z-10 mb-[25px] 2xl:mb-[40px] 3xl:mb-[50px]">
                     <div className="md:w-1/2">
                         <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
-                            Consultants
+                            FEATURED
                         </SubTitle>
                         <Heading size="heading1" as="div" className="leading-none">
-                            Leadership & Senior Team
+                            Featured Services
                         </Heading>
-                        <p className="mb-0">Explore our wide range of specialized medical services designed to provide expert care for every stage of life. 
-                            From routine check-ups to advanced treatments, we are here to support your health journey.</p>
+                        <p className="mb-0">Explore our wide range of specialized medical services designed to provide expert care for every stage of life. From routine check-ups to advanced treatments, we are here to support your health journey.</p>
                     </div>
 
                     {/* Navigation Arrows */}
@@ -125,7 +124,7 @@ export default function FeaturedserviceSection() {
                     >
                         {services.map((service, index) => (
                             <SwiperSlide key={index}>
-                                   <ServiceCard service={service} />
+                                <ServiceCard service={service} />
                             </SwiperSlide>
                         ))}
                     </Swiper>

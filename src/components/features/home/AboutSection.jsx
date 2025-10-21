@@ -34,7 +34,7 @@ export default function AboutSection() {
             </SubTitle>
             <Heading
               size="heading1"
-              as="div" 
+              as="div"
             >
               Welcome to Skyline Hospitals
             </Heading>
@@ -107,10 +107,14 @@ export default function AboutSection() {
                 modules={[Navigation, Autoplay]}
                 slidesPerView={3}
                 loop={true}
-                speed={2500}
-                autoplay={{ delay: 5000 }}
+                speed={5000}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                }}
                 direction="vertical"
-                className="relative w-full h-[250px] sm:h-[200px] xl:h-[260px] 2xl:h-[300px] 3xl:h-[380px]"
+                className="relative w-full h-[250px] sm:h-[200px] xl:h-[260px] 2xl:h-[300px] 3xl:h-[380px] before:content-[''] before:w-full before:h-[8%] md:before:h-[10%] before:bg-[#FFF] before:blur-[10px] before:absolute before:z-[2] before:-top-[3px] before:right-0 before:left-0 before:pointer-events-none
+                 after:content-[''] after:w-full after:h-[8%] md:after:h-[10%] after:bg-[#FFF] after:blur-[10px] after:absolute after:z-[2] after:-bottom-[3px] after:right-0 after:left-0 after:pointer-events-none"
                 breakpoints={{
                   1024: { slidesPerView: 2.1, spaceBetween: 10 },
                   1280: { slidesPerView: 3, spaceBetween: 10 },

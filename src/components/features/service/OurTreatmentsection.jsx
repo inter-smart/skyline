@@ -10,13 +10,17 @@ import "swiper/css/effect-fade";
 import { Heading } from "@/components/layout/Heading";
 
 const treatmentData = [
-    { title: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
-    { title: "Targeted therapy", list: ["Targeted therapy1", "Targeted therapy2", "Targeted therapy3"] },
-    { title: "Radiotherapy", list: ["Radiotherapy1", "Radiotherapy2", "Radiotherapy3"] },
-    { title: "Palliative care", list: ["Palliative1", "Palliative2", "Palliative3"] },
+    { title_sec: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
+    { title_sec: "Targeted therapy", list: ["Targeted therapy1", "Targeted therapy2", "Targeted therapy3"] },
+    { title_sec: "Radiotherapy", list: ["Radiotherapy1", "Radiotherapy2", "Radiotherapy3"] },
+    { title_sec: "Palliative care", list: ["Palliative1", "Palliative2", "Palliative3"] },
 ];
 
-export default function OurTreatmentsection({ title, description }) {
+export default function OurTreatmentsection({
+    title,
+    sub_title,
+    title_sec,
+}) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -25,15 +29,20 @@ export default function OurTreatmentsection({ title, description }) {
             <div className="container container-sm flex flex-wrap">
                 {/* Left Column */}
                 <div className="w-full sm:w-[55%] xl:w-[50%] sm:pr-[60px] lg:pr-80px] xl:pr-[100px] 3xl:pr-[150px] mb-3 sm:mb-0">
-                    <motion.div
-                        className="w-full"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
+                    <Heading
+                        as="h6"
+                        size="heading6"
+                        className=" leading-[1] font-normal tracking-[3.06px] text-center xs:text-start uppercase text-base1 mb-[6px] lg:mb-[10px]"
                     >
-                        <div className="text-[11px] sm:text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-normal tracking-[3.06px] text-center xs:text-start uppercase text-base1 mb-[6px] lg:mb-[10px]">our treatments</div>
-                        <h2 className="text-3xl font-unna text-center xs:text-start font-bold">{title}</h2>
-                    </motion.div>
+                        {sub_title}
+                    </Heading>
+                    <Heading
+                        as="h1"
+                        size="heading1"
+                        className="text-center xs:text-start font-unna text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                    >
+                        {title}
+                    </Heading>
 
                     {/* Thumbnails */}
                     <div className="mt-[30px]">
@@ -55,7 +64,7 @@ export default function OurTreatmentsection({ title, description }) {
                                         <div
                                             className={`text-[12px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-medium text-start  text-[#919193] w-[calc(100%-10px)] 2xl:w-[calc(100%-15px)] mb-0 
                                         ${activeIndex === index ? "text-base2" : "border-[#00335B]"} group-hover:text-base2`} >
-                                            {item.title}
+                                            {item.title_sec}
                                         </div>
                                         <span className="w-[10px] xl:w-[15px] h-[10px] xl:h-[15px] flex items-center justify-center">
                                             <Image
@@ -104,7 +113,7 @@ export default function OurTreatmentsection({ title, description }) {
                                             size="heading4"
                                             className="text-start font-medium text-white mb-[35px]"
                                         >
-                                            {item.title}
+                                            {item.title_sec}
                                         </Heading>
                                         <ul>
                                             {item.list.map((list, liIndex) => (

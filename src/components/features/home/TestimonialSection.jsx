@@ -62,13 +62,13 @@ export default function TestimonialSection() {
             <div className="max-w-[650px]">
               <SubTitle
                 size="SubTitle"
-                as="div" 
+                as="div"
               >
                 Testimonials
               </SubTitle>
               <Heading
                 size="heading1"
-                as="div" 
+                as="div"
                 className="!mb-0"
               >
                 What Our Patients <br /> Say About Our Service
@@ -92,9 +92,14 @@ export default function TestimonialSection() {
               slidesPerView={1.5}
               spaceBetween={10}
               loop={true}
-              autoplay={{ delay: 5000 }}
+              speed={8000}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+              }}
               direction="vertical"
-              className="relative w-full h-[340px] sm:h-[380px] xl:h-[450px] 2xl:h-[500px] 3xl:h-[650px]"
+              className="relative w-full h-[340px] sm:h-[380px] xl:h-[450px] 2xl:h-[500px] 3xl:h-[650px] before:content-[''] before:w-full before:h-[5%] md:before:h-[8%] before:bg-[#FFF] before:blur-[10px] before:absolute before:z-[2] before:-top-[3px] before:right-0 before:left-0 before:pointer-events-none
+                 after:content-[''] after:w-full after:h-[5%] md:after:h-[8%] after:bg-[#FFF] after:blur-[10px] after:absolute after:z-[2] after:-bottom-[3px] after:right-0 after:left-0 after:pointer-events-none"
               breakpoints={{
                 768: { slidesPerView: 1.7, spaceBetween: 10 },
                 1024: { slidesPerView: 2, spaceBetween: 10 },

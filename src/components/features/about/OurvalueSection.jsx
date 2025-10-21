@@ -17,7 +17,8 @@ export default function OurvalueSection() {
       description:
         "Your health and well-being are our top priorities. Experience personal touch in the heart of Coventry. Your health and well-being are our top priorities. With a personal touch in the heart of Coventry.",
       gradient:
-        "bg-[linear-gradient(180deg,rgba(255,255,255,0.3)_100%,#FFF_100%)]",
+        // "bg-[linear-gradient(180deg,rgba(255,255,255,0.3)_100%,#FFF_100%)]",
+        "bg-[linear-gradient(170deg,rgba(197,221,255,0.60)_7.6%,#E8F2FF_66.54%)]",
     },
     {
       number: "02",
@@ -25,7 +26,8 @@ export default function OurvalueSection() {
       description:
         "Your health and well-being are our top priorities. Experience personal touch in the heart of Coventry. Your health and well-being are our top priorities. With a personal touch in the heart of Coventry.",
       gradient:
-        "bg-[linear-gradient(180deg,rgba(197,221,255,0.21)_100%,#FFF_100%)]",
+        // "bg-[linear-gradient(180deg,rgba(197,221,255,0.21)_100%,#FFF_100%)]",
+        "bg-[linear-gradient(170deg,rgba(197,221,255,0.60)_7.6%,#E8F2FF_66.54%)]",
     },
     {
       number: "03",
@@ -33,7 +35,8 @@ export default function OurvalueSection() {
       description:
         "Your health and well-being are our top priorities. Experience personal touch in the heart of Coventry. Your health and well-being are our top priorities. With a personal touch in the heart of Coventry.",
       gradient:
-        "bg-[linear-gradient(180deg,rgba(197,221,255,0.45)_100%,#FFF_100%)]",
+        // "bg-[linear-gradient(180deg,rgba(197,221,255,0.45)_100%,#FFF_100%)]",
+        "bg-[linear-gradient(170deg,rgba(197,221,255,0.60)_7.6%,#E8F2FF_66.54%)]",
     },
     {
       number: "04",
@@ -41,7 +44,8 @@ export default function OurvalueSection() {
       description:
         "Your health and well-being are our top priorities. Experience personal touch in the heart of Coventry. Your health and well-being are our top priorities. With a personal touch in the heart of Coventry.",
       gradient:
-        "bg-[linear-gradient(180deg,rgba(197,221,255,0.55)_100%,#FFF_100%)]",
+        // "bg-[linear-gradient(180deg,rgba(197,221,255,0.55)_100%,#FFF_100%)]",
+        "bg-[linear-gradient(170deg,rgba(197,221,255,0.60)_7.6%,#E8F2FF_66.54%)]",
     },
   ];
 
@@ -80,7 +84,7 @@ export default function OurvalueSection() {
               type="single"
               collapsible
               defaultValue="item-1"
-              className="rounded-[4px] overflow-hidden bg-[linear-gradient(180deg,rgba(197,221,255,0.56)_0%,#FFF_100%)]"
+              className="rounded-[4px] overflow-hidden bg-[rgba(197,221,255,0.35)]"
             >
               {values.map((item, index) => (
                 <AccordionItem

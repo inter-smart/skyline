@@ -1,5 +1,5 @@
-import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
+import { Heading } from "@/components/layout/Heading";
 import WhyChooseUsSlider from "./WhyChooseSlider";
 
 export default function WhyChooseUsSection({

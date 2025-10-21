@@ -76,7 +76,7 @@ export default function MethodUsedSection({
 
 }) {
     return (
-        <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
+        <section className="w-full py-[0px_40px] sm:py-[0px_60px] xl:py-[0px_80px] 3xl:py-[0px_100px] relative z-0">
             <div className="container container-sm">
                 <div className={`w-full [&_p,&_li]:3xl:text-[18px] [&_p,&_li]:2xl:text-[16px] [&_p,&_li]:xl:text-[14px] [&_p,&_li]:text-[12px] [&_li]:relative [&_li]:pl-[25px] [&_li]:inline-block
                                 [&_li]:before:absolute [&_li]:before:top-[4px] [&_li]:before:left-0 [&_li]:before:w-[15px] [&_li]:before:h-[17px]
@@ -92,14 +92,14 @@ export default function MethodUsedSection({
                     <Heading
                         as="h1"
                         size="heading1"
-                        className="text-center xs:text-start font-unna text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                        className="text-center xs:text-start font-unna text-black !mb-[8px] !sm:mb-[10px] !xl:mb-[15px] !3xl:mb-[20px]"
                     >
                         {title}
                     </Heading>
                     <Text
                         as="p"
                         size="text1"
-                        className="text-center xs:text-start font-normal  text-[#1E1E1E]"
+                        className="text-center xs:text-start font-normal  text-[#1E1E1E] mb-[10px] lg:max-w-[50%] xl:max-w-[35%]"
                     >
                         {description}
                     </Text>

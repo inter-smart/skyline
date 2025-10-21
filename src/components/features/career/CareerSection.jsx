@@ -23,7 +23,7 @@ const items = [
     },
     {
         id: 2,
-        Departments: "Front Desk Coordinator",
+        Departments: "Non-Clinical",
         role: "Front Desk Coordinator",
         postDate: "2 Days ago",
         experience: "2+ Years Exp Required",
@@ -32,7 +32,7 @@ const items = [
     },
     {
         id: 3,
-        Departments: "Surgical Nurse",
+        Departments: "Clinical",
         role: "Front Desk Coordinator",
         postDate: "2 Days ago",
         experience: "2+ Years Exp Required",
@@ -41,7 +41,7 @@ const items = [
     },
     {
         id: 4,
-        Departments: "ICU Nurse",
+        Departments: "Clinical",
         role: "Front Desk Coordinator",
         postDate: "2 Days ago",
         experience: "2+ Years Exp Required",
@@ -50,7 +50,7 @@ const items = [
     },
     {
         id: 5,
-        Departments: "Front Desk Coordinator",
+        Departments: "Non-Clinical",
         role: "Front Desk Coordinator",
         postDate: "2 Days ago",
         experience: "2+ Years Exp Required",
@@ -59,7 +59,7 @@ const items = [
     },
     {
         id: 6,
-        Departments: "Non-Clinical",
+        Departments: "Clinical",
         role: "Front Desk Coordinator",
         postDate: "2 Days ago",
         experience: "2+ Years Exp Required",
@@ -70,6 +70,12 @@ const items = [
 
 import JobDetail from "./JobDetail";
 import CareerForm from "./CareerForm";
+const selectTrigger = `
+  relative text-[#000000] [&>svg]:hidden
+  after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[17px] !no-underline cursor-pointer
+  after:bg-[url('/images/arrow.svg')] after:bg-no-repeat after:bg-contain after:w-[8px] after:h-[8px]
+  after:transition-transform after:duration-300 data-[state=open]:after:rotate-180
+`;
 
 export default function CareerSection() {
     const [expanded, setExpanded] = useState({});
@@ -123,9 +129,9 @@ export default function CareerSection() {
                         <div className="flex flex-col">
                             <label className="sr-only">Department</label>
                             <Select value={selectedDept} onValueChange={(v) => { setSelectedDept(v); setSelectedRole(ALL); }}>
-                                <SelectTrigger className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] 2xl:min-w-[170px] 3xl:min-w-[210px] px-[10px] xl:px-[20px]
+                                <SelectTrigger className={` ${selectTrigger} text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] 2xl:min-w-[170px] 3xl:min-w-[210px] px-[10px] xl:px-[20px]
                                  rounded-[3px] xl:rounded-[4px] 3xl:rounded-[6px]
-                               text-[#000000] leading-[24px] !h-[28px] 2xl:!h-[30px] 3xl:!h-[40px]">
+                               !text-[#000000] leading-[24px] !h-[28px] 2xl:!h-[30px] 3xl:!h-[40px]`}>
                                     <SelectValue placeholder="All Departments" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -139,10 +145,10 @@ export default function CareerSection() {
                         <div className="flex flex-col">
                             <label className="sr-only">Role</label>
                             <Select value={selectedRole} onValueChange={(v) => setSelectedRole(v)}>
-                                <SelectTrigger className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] 2xl:min-w-[170px] 3xl:min-w-[210px] px-[10px] 
+                                <SelectTrigger className={` ${selectTrigger} text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] 2xl:min-w-[170px] 3xl:min-w-[210px] px-[10px] 
                                 xl:px-[20px]  rounded-[3px] xl:rounded-[4px] 3xl:rounded-[6px]
-                                text-[#000000] leading-[24px] !h-[28px] 2xl:!h-[30px] 3xl:!h-[40px]">
-                                    <SelectValue placeholder="All Roles" />
+                                text-[#000000] leading-[24px] !h-[28px] 2xl:!h-[30px] 3xl:!h-[40px]`}>
+                                    <SelectValue className="text-[#000000]" placeholder="All Roles" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {roles.map((r, idx) => (
@@ -150,7 +156,7 @@ export default function CareerSection() {
                                     ))}
                                 </SelectContent>
                             </Select>
-                        </div> 
+                        </div>
                         <button onClick={resetFilters} className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#010101] 
                         font-normal leading-normal bg-[#E8EFFF]  h-[30px] 2xl:h-[30px] 3xl:h-[40px] w-[90px] 2xl:w-[110px] 3xl:w-[135px] px-3 
                         rounded-[3px] xl:rounded-[4px] 3xl:rounded-[6px] cursor-pointer">Clear Filters</button>
@@ -163,9 +169,12 @@ export default function CareerSection() {
                             <div className="p-[30px_15px] lg:p-[35px_25px] xl:p-[40px_25px] 2xl:p-[40px_30px] 3xl:p-[50px_40px] bg-white rounded-[6px]
                              shadow-md relative w-full h-full flex flex-col justify-between">
                                 <div className="w-full">
-                                    <div className="Departments text-[11px] 2xl:text-[13px] 3xl:text-[17px] text-[#00335B] font-normal leading-normal 
-                                    w-fit 2xl:h-[18px] 3xl:h-[27px] min-w-[85px] 2xl:min-w-[95px] 3xl:min-w-[125px] px-[8px] rounded-b-[8px] bg-[#E8EFFF] text-center
-                                     absolute top-0 left-[20px] 2xl:left-[30px] 3xl:left-[40px] flex items-center justify-center">
+                                    <div className={`${item.Departments === "Clinical"
+                                        ? "text-[#00335B] bg-[#E8EFFF]"
+                                        : "text-[#671448] bg-[rgba(103,20,72,0.05)]"
+                                        } Departments text-[11px] 2xl:text-[13px] 3xl:text-[17px] font-normal leading-normal 
+                                    w-fit 2xl:h-[18px] 3xl:h-[27px] min-w-[85px] 2xl:min-w-[95px] 3xl:min-w-[125px] px-[8px] rounded-b-[8px] text-center
+                                     absolute top-0 left-[20px] 2xl:left-[30px] 3xl:left-[40px] flex items-center justify-center`}>
                                         {item?.Departments}
                                     </div>
                                     <div className="mb-[10px] flex flex-wrap justify-between items-start">
@@ -222,7 +231,7 @@ export default function CareerSection() {
                                 </div>
                                 <div className="flex flex-wrap gap-[8px]">
                                     <JobDetail />
-                                     <CareerForm />
+                                    <CareerForm />
                                 </div>
                             </div>
                         </div>

@@ -59,8 +59,7 @@ const insights = [
 const filters = [
   { label: "All Posts", value: "*" },
   { label: "News & Updates", value: ".news" },
-  { label: "Surgery", value: ".surgery" },
-  { label: "Nutrition", value: ".nutrition" },
+  { label: "Annoncements", value: ".Annoncements" },
 ];
 
 const filterButton = `
@@ -160,7 +159,7 @@ export default function InsightSection() {
         </div>
 
         {/* Load More Button */}
-        <div className="mt-[20px] text-center">
+        <div className="mt-[20px] xl:mt-[50px] text-center">
           <Button
             className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
                        border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center

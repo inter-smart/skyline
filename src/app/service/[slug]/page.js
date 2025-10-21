@@ -10,6 +10,7 @@ import FaqSection from "@/components/features/service/FaqSection";
 import RelatedSection from "@/components/features/service/RelatedSection";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
+import ConditionSection from "@/components/features/service/ConditionSection";
 export default function Service({ data }) {
     return (
 
@@ -34,6 +35,10 @@ export default function Service({ data }) {
                 title="Why Choose Us?"
                 description="  Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
             />
+            <ConditionSection
+                sub_title="CONDITIONS"
+                title="Cancers We Treat"
+            />
             <OurTreatmentsection
                 sub_title="our treatments"
                 title="Subspecialties & Treatments"
@@ -41,6 +46,7 @@ export default function Service({ data }) {
             <MethodUsedSection
                 sub_title="METHODS USED"
                 title="Investigations & Diagnostics"
+                description="State-of-the-art diagnostic equipment and testing services for accurate assessment and treatment planning"
             />
             <MultidisciplinarySection
                 path="/images/procedureimg.jpg"

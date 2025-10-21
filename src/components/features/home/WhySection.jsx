@@ -11,7 +11,7 @@ export default function WhySection() {
   };
 
   return (
-    <section className='py-[40px] xl:py-[65px] 2xl:py-[80px] 3xl:py-[110px]'>
+    <section className='py-[40px] xl:py-[65px] 2xl:py-[80px] 3xl:py-[110px] overflow-hidden'>
       <div className="container">
         <div className="flex flex-wrap w-full">
 
@@ -26,7 +26,7 @@ export default function WhySection() {
 
               {/* Overlay Box */}
               <motion.div
-                className="bg-[#00335B] rounded-[6px] overflow-hidden p-[15px] xl:p-[25px] 2xl:p-[28px_30px] 3xl:p-[35px_40px] absolute bottom-[15px] lg:bottom-[60px] left-[15px] lg:left-0 lg:max-w-[185px] xl:max-w-[230px] 2xl:max-w-[275px] 3xl:max-w-[330px]"
+                className="bg-[#00335B] rounded-[6px] overflow-hidden p-[15px] xl:p-[25px_25px_40px] 2xl:p-[28px_30px_60px] 3xl:p-[35px_40px_65px] absolute bottom-[15px] lg:bottom-[60px] left-[15px] lg:left-0 lg:max-w-[185px] xl:max-w-[230px] 2xl:max-w-[275px] 3xl:max-w-[330px]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -69,53 +69,55 @@ export default function WhySection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="lg:pl-[10px] 3xl:max-w-[630px]">
+            <div className="lg:pl-[10px]">
               <SubTitle
                 size="SubTitle" as="div" className="!font-medium !text-[#101010] mb-[5px] 3xl:mb-[10px] after:hidden"
               >
                 WHY Skyline
               </SubTitle>
-              <Heading size="heading1" as="div" className="!font-medium !text-[#101010] mb-[5px] 3xl:mb-[10px] after:hidden"
+              <Heading size="heading1" as="div" className="!font-medium !text-[#101010] mb-[5px] 3xl:mb-[10px] max-w-[280px] 2xl:max-w-[385px] 3xl:max-w-[440px] after:hidden"
               >
                 Why Choose Skyline Hospitals
               </Heading>
+              <div className=" lg:max-w-[410px] 2xl:max-w-[480px] 3xl:max-w-[630px]">
+                <p className="line-clamp-4">
+                  Your health and well-being are our top priorities. Experience world-class healthcare with a personal
+                  touch in the heart of Coventry. Your health and well-being
+                  are our top priorities. Experience world-class healthcare with a personal touch in the heart of Coventry.
+                </p>
 
-              <p className="line-clamp-4">
-                Your health and well-being are our top priorities. Experience world-class healthcare with a personal
-                touch in the heart of Coventry. Your health and well-being
-                are our top priorities. Experience world-class healthcare with a personal touch in the heart of Coventry.
-              </p>
+                {/* Feature List */}
+                <ul>
+                  {[
+                    { title: "Expert Consultants", desc: "GMC-registered experts across 15+ medical specialties with NHS & private experience" },
+                    { title: "Advanced Technology", desc: "GMC-registered experts across 15+ medical specialties with NHS & private experience" },
+                    { title: "Personalized Care", desc: "Tailored treatment plans focused on your health journey" },
+                    { title: "Affordable Excellence", desc: "High-quality private healthcare at transparent, competitive prices" }
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={idx}
+                      className="flex items-start mb-[15px] xl:mb-[20px] 3xl:mb-[30px] last-of-type:mb-0"
+                      custom={idx}
+                      variants={listItemVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                    >
+                      <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
+                        <div className="w-full h-full flex items-center">
+                          <Image src="/images/expertIcon.svg" width="22" height="22" alt="expertIcon" />
+                        </div>
+                      </div>
+                      <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
+                        <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">
+                          {item.title}
+                        </div>
+                        <p className="text-[#1E1E1E]">{item.desc}</p>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
 
-              {/* Feature List */}
-              <ul>
-                {[
-                  { title: "Expert Consultants", desc: "GMC-registered experts across 15+ medical specialties with NHS & private experience" },
-                  { title: "Advanced Technology", desc: "GMC-registered experts across 15+ medical specialties with NHS & private experience" },
-                  { title: "Personalized Care", desc: "Tailored treatment plans focused on your health journey" },
-                  { title: "Affordable Excellence", desc: "High-quality private healthcare at transparent, competitive prices" }
-                ].map((item, idx) => (
-                  <motion.li
-                    key={idx}
-                    className="flex items-start mb-[15px] xl:mb-[20px] 3xl:mb-[30px] last-of-type:mb-0"
-                    custom={idx}
-                    variants={listItemVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                  >
-                    <div className="w-[12px] xl:w-[15px] 2xl:w-[18px] 3xl:w-[25px]">
-                      <div className="w-full h-full flex items-center">
-                        <Image src="/images/expertIcon.svg" width="22" height="22" alt="expertIcon" />
-                      </div>
-                    </div>
-                    <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
-                      <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">
-                        {item.title}
-                      </div>
-                      <p className="text-[#1E1E1E]">{item.desc}</p>
-                    </div>
-                  </motion.li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
