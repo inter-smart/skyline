@@ -1,14 +1,12 @@
-
 "use client";
 
 
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-export default function ErrorPage() {
-    return (
-        <div className="flex flex-col items-center justify-center py-[30px] 2xl:py-[50px] 3xl:py-[80px] bg-[#f8fafc] text-center px-4">
+export default function NotFound() {
+  return (
+       <div className="flex flex-col items-center justify-center py-[30px] 2xl:py-[50px] 3xl:py-[80px] bg-[#f8fafc] text-center px-4">
             <motion.h1
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }} >
@@ -48,5 +46,5 @@ export default function ErrorPage() {
                 </Link>
             </motion.div>
         </div>
-    );
+  )
 }
