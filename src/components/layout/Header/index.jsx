@@ -57,8 +57,7 @@ export default function Header() {
     { name: "Contact", link: "/contact" },
   ];
 
-  const menuLinkClass = `
- 3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
+  const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
   hover:text-[#F6271F] cursor-pointer hover:text-[#f6271f] hover:underline-none`;
   const menuLinks = "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#010101] font-normal flex items-center justiy-center transition-all duration-100 hover:text-base1"
 
@@ -79,9 +78,13 @@ export default function Header() {
                 {/* menus */}
                 <div className="flex items-center relative">
                   {menus.map((item, id) => (
-                    <div key={id} className="relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px]  after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer
-                            after:bg-[url('/images/arrow.svg')] after:bg-no-repeat after:bg-contain after:w-[8px] after:h-[8px]
-                            after:transition-transform after:duration-300 hover:after:rotate-180">
+                    <div
+                      key={id}
+                      className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${item.submenu
+                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                          : ""
+                        }`}
+                    >
                       {/* Main link */}
                       <Link href={item.link} className={menuLinks} aria-label="menulinks relative">
                         {item.name}
@@ -102,6 +105,7 @@ export default function Header() {
                         </div>
                       )}
                     </div>
+
                   ))}
                 </div>
 
