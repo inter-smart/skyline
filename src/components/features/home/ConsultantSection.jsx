@@ -180,7 +180,7 @@ export default function ConsultantSection({ variant }) {
                                             />
                                         </div>
                                         <div className="info">
-                                            <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] font-medium mb-[4px] 2xl:mb-[8px]">
+                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#00335B] font-medium mb-[4px] 2xl:mb-[8px]">
                                                 {item.name}
                                             </div>
                                             <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#671448] font-normal mb-[5px] 2xl:mb-[8px] flex items-start leading-4 relative
@@ -197,30 +197,30 @@ export default function ConsultantSection({ variant }) {
 
                                     {/* Right Section */}
                                     <div className={` flex-grow rtBx w-full   xl:w-[calc(100%-210px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-315px)]  xl:pl-[20px] 3xl:pl-[30px] transition-all duration-300`}>
-                                        <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] font-medium mb-[10px] 2xl:mb-[15px]">
+                                        <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#00335B] font-medium mb-[10px] 2xl:mb-[15px]">
                                             {item.name}
                                         </div>
-                                        <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#671448] font-normal mb-[10px] 2xl:mb-[15px] flex items-start leading-4 relative
+                                        <div className="text-[12px] 2xl:text-[13px] 3xl:text-[16px] text-[#671448] font-normal mb-[10px] 2xl:mb-[15px] flex items-start leading-4 relative
                                             before:relative before:block before:content-[''] before:top-0 before:left-0 before:w-[5px] before:bg-[#671448] before:p-[3px]
                                             before:h-[14px] before:rounded-[6px] before:mr-[8px]"
                                         >
                                             {item.role}
                                         </div>
-                                        <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#3D3D3D] font-light uppercase">
+                                        <div className="text-[12px] 2xl:text-[13px] 3xl:text-[16px] text-[#3D3D3D] font-light uppercase">
                                             {item.qualification}
                                         </div>
 
                                         <div className="w-full mt-[15px]">
                                             <ul className="mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">
                                                 {item.experience && (
-                                                    <li className="relative text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
+                                                    <li className="relative text-[12px] 2xl:text-[13px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
                                                     before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
                                                     before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]">
                                                         <strong className="font-medium">{item.experience}</strong> NHS & Private experience
                                                     </li>
                                                 )}
                                                 {item.availability && (
-                                                    <li className="relative text-[8px] 2xl:text-[12px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
+                                                    <li className="relative text-[12px] 2xl:text-[13px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
                                                         before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
                                                         before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]">
                                                         Available: <strong className="font-medium">{item.availability}</strong>
@@ -228,7 +228,7 @@ export default function ConsultantSection({ variant }) {
                                                 )}
                                             </ul>
 
-                                            <div className="text-[8px] 2xl:text-[12px] 3xl:text-[16px] text-[#671448] font-medium mb-[10px] 3xl:mb-[15px]">Specialization</div>
+                                            <div className="text-[11px] 2xl:text-[13px] 3xl:text-[16px] text-[#671448] font-medium mb-[10px] 3xl:mb-[15px]">Specialization</div>
                                             <ul className="flex flex-wrap items-center -m-[4px] mb-[10px] 3xl:mb-[20px]">
                                                 {(expanded[item.id] ? item.specialization : item.specialization.slice(0, 2)).map((spec, idx) => (
                                                     <li key={idx} className="p-[4px]">
@@ -242,7 +242,7 @@ export default function ConsultantSection({ variant }) {
                                                     <li className="p-[4px]">
                                                         <button
                                                             onClick={() => toggleExpand(item.id)}
-                                                            className="text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-base1 font-medium transition-all duration-100 hover:text-base2"
+                                                            className="text-[11px] 2xl:text-[13px] 3xl:text-[14px] text-base1 font-medium transition-all duration-100 hover:text-base2"
                                                         >
                                                             {expanded[item.id] ? "- Less" : "+ More"}
                                                         </button>
@@ -250,7 +250,7 @@ export default function ConsultantSection({ variant }) {
                                                 )}
                                             </ul>
 
-                                            <Link href="/" className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px]">
+                                            <Link href="/" className="text-[12px] 2xl:text-[14px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px]">
                                                 Book Appointment
                                                 <div className="w-[13px] h-[13px] flex ml-[10px]">
                                                     <svg width="13" height="9" viewBox="0 0 13 9" className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1" fill="none">

@@ -71,7 +71,7 @@ export default function HeroSlider() {
                 >
                   <motion.p
                     variants={textAnimation}
-                    className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase font-nornal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]"
+                    className="text-[12px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase font-nornal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]"
                   >
                     {slide.subtitle}
                   </motion.p>
@@ -87,7 +87,7 @@ export default function HeroSlider() {
                   <motion.p
                     variants={textAnimation}
                     transition={{ delay: 0.7 }}
-                    className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
+                    className="text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
                   >
                     {slide.desc}
                   </motion.p>
@@ -109,7 +109,7 @@ export default function HeroSlider() {
 
       {/* Slide Counter */}
       <div className="container relative">
-        <div className="absolute bottom-5 right-5 z-20 text-[#EAF6FF]">
+        <div className="absolute bottom-5 right-[70px] z-20 text-[#EAF6FF]">
           <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">
             0{currentSlide}
           </span>{" "}

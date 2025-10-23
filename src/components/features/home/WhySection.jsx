@@ -108,7 +108,7 @@ export default function WhySection() {
                         </div>
                       </div>
                       <div className="w-[calc(100%-12px)] xl:w-[calc(100%-15px)] 2xl:w-[calc(100%-18px)] 3xl:w-[calc(100%-25px)] pl-[10px] [&>p]:mb-0">
-                        <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">
+                        <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] !font-semibold font-unna mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] leading-3">
                           {item.title}
                         </div>
                         <p className="text-[#1E1E1E]">{item.desc}</p>

@@ -102,7 +102,7 @@ body {
   }
 
   p {
-    @apply text-[10px] lg:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+    @apply text-[12px] lg:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
   }
 
   .typography {
@@ -112,7 +112,7 @@ body {
 
     p,
     & {
-      @apply text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
+      @apply text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]
     }
 
     h1 {
@@ -317,7 +317,16 @@ body {
   z-index: 999;
 }
 
-@media only screen and (min-width: 1280px) {
+.stickyHeader .logo {
+  width: 165px;
+}
+
+.stickyHeader .ritBx {
+  width: calc(100% - 165px);
+}
+
+
+@media only screen and (min-width: 1279px) {
 
   .consultantSlider .swiper-slide-next .cmnBx,
   .consultantSlider .swiper-slide-prev .cmnBx {
@@ -351,11 +360,12 @@ body {
   display: none;
 
 }
-@media only screen and (max-width: 1280px) {
-.consultantSlider .swiper-slide .info {
-  display: none;
 
-}
+@media only screen and (max-width: 1279px) {
+  .consultantSlider .swiper-slide .info {
+    display: none;
+
+  }
 }
 
 @media only screen and (min-width: 1530px) {
@@ -380,4 +390,10 @@ body {
   .consultantSlider .swiper-slide-prev {
     width: 440px !important;
   }
+}
+
+.sidemenu .ring-offset-background {
+  box-shadow: none !important;
+  filter: invert(1);
+  cursor: pointer;
 }

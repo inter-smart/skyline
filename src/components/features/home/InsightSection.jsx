@@ -179,7 +179,7 @@ export default function InsightSection() {
 
             </button>
             <button
-              className=" instnavbts-next absolute right-0  md:-right-[35px] xl:right-[-55px z-10 bg-white border border-[#671448]
+              className=" instnavbts-next absolute right-0  md:-right-[35px] xl:right-[-55px] z-10 bg-white border border-[#671448]
                               w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px]
                               flex items-center justify-center cursor-pointer group hover:bg-base1"  >
               <svg className="w-full h-full group-hover:fill-white  fill-base1" viewBox="0 0 8 6" fill="none" >
