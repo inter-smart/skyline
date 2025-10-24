@@ -94,7 +94,7 @@ body {
   }
 
   .btn-base1 {
-    @apply text-[7px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-white font-medium flex items-center justify-center uppercase px-[15px] w-fit h-[25px] xl:h-[32px] 3xl:h-[50px] bg-base1 cursor-pointer rounded-[3px] transition-all duration-300 relative overflow-hidden;
+    @apply text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[15px] text-white font-medium flex items-center justify-center uppercase px-[15px] w-fit h-[32px] xl:h-[40px] 3xl:h-[50px] bg-base1 cursor-pointer rounded-[3px] transition-all duration-300 relative overflow-hidden leading-0;
   }
 
   .hover {
