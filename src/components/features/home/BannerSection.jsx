@@ -8,52 +8,52 @@ import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Link from "next/link";
 
+const slides = [
+  {
+    image_value: "/images/bannerBg.jpg",
+    image_alt_text_value: "New Consultant Appointments Available",
+    title: "New Consultant Appointments Available",
+    pre_title: "Consult Your Doctor",
+    description: "Meet our specialist consultants for personalized medical care and treatment.",
+  },
+  {
+    image_value: "/images/bannerBg.jpg",
+    image_alt_text_value: "New Consultant Appointments Available",
+    title: "New Consultant Appointments Available",
+    pre_title: "Consult Your Doctor",
+    description: "Meet our specialist consultants for personalized medical care and treatment.",
+  },
+];
 
-export default function HeroSlider() {
+// ✨ Animation variants
+const textAnimation = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 2, ease: "easeOut" } },
+};
+
+export default function HeroSlider({ sliders = slides }) {
   const [currentSlide, setCurrentSlide] = useState(1);
-
-  const slides = [
-    {
-      src: "/images/bannerBg.jpg",
-      alt: "New Consultant Appointments Available",
-      title: "New Consultant Appointments Available",
-      subtitle: "Consult Your Doctor",
-      desc: "Meet our specialist consultants for personalized medical care and treatment.",
-    },
-    {
-      src: "/images/bannerBg.jpg",
-      alt: "New Consultant Appointments Available",
-      title: "New Consultant Appointments Available",
-      subtitle: "Consult Your Doctor",
-      desc: "Meet our specialist consultants for personalized medical care and treatment.",
-    },
-  ];
-
-  // ✨ Animation variants
-  const textAnimation = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 2, ease: "easeOut" } },
-  };
 
   return (
     <section className="relative w-full h-[520px] sm:h-[calc(100vh-115px)] overflow-hidden">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]} 
-        effect="fade"  
-        fadeEffect={{ crossFade: true }}  
+        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         slidesPerView={1}
         loop={true}
         autoplay={{ delay: 5000 }}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="w-full h-full"
       >
-        {slides.map((slide, index) => (
+        {sliders?.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
               <Image
-                src={slide.src}
-                alt={slide.alt}
+                src={slide?.image_value}
+                alt={slide?.image_alt_text_value}
                 width={1920}
                 height={875}
                 className="object-cover absolute top-0 left-0 w-full h-full"
@@ -73,7 +73,7 @@ export default function HeroSlider() {
                     variants={textAnimation}
                     className="text-[12px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] text-base1 uppercase font-nornal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]"
                   >
-                    {slide.subtitle}
+                    {slide?.pre_title}
                   </motion.p>
 
                   <motion.h2
@@ -81,7 +81,7 @@ export default function HeroSlider() {
                     transition={{ delay: 0.5 }}
                     className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
                   >
-                    {slide.title}
+                    {slide?.title}
                   </motion.h2>
 
                   <motion.p
@@ -89,17 +89,19 @@ export default function HeroSlider() {
                     transition={{ delay: 0.7 }}
                     className="text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
                   >
-                    {slide.desc}
+                    {slide?.description}
                   </motion.p>
 
-                  <motion.button
-                    variants={textAnimation}
-                    transition={{ delay: 0.9 }}
-                    className="btn-base1 hover transitiona-all duration-100"
-                    aria-label="appointment"
-                  >
-                    Book an Appointment
-                  </motion.button>
+                  {slide?.action_type == "url" && (
+                    <motion.button
+                      variants={textAnimation}
+                      transition={{ delay: 0.9 }}
+                      className="btn-base1 hover transitiona-all duration-100"
+                      aria-label="appointment"
+                    >
+                      <Link href={slide?.action_url}>{slide?.action_title || "Book Appointment"}</Link>
+                    </motion.button>
+                  )}
                 </motion.div>
               </div>
             </div>
@@ -110,13 +112,8 @@ export default function HeroSlider() {
       {/* Slide Counter */}
       <div className="container relative">
         <div className="absolute bottom-5 right-[70px] z-20 text-[#EAF6FF]">
-          <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">
-            0{currentSlide}
-          </span>{" "}
-          /{" "}
-          <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">
-            0{slides.length}
-          </span>
+          <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">0{currentSlide}</span> /{" "}
+          <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">0{slides.length}</span>
         </div>
       </div>
     </section>
