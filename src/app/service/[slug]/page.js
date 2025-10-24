@@ -11,68 +11,145 @@ import RelatedSection from "@/components/features/service/RelatedSection";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
 import ConditionSection from "@/components/features/service/ConditionSection";
-export default function Service({ data }) {
+import { fetchFromAPI } from "@/lib/api";
+
+export default async function Service({ params }) {
+  const { data, error } = await fetchFromAPI(
+    `service-details?slug=${params.slug}`
+  );
+
+  if (error || !data) {
     return (
-
-        <>
-            <InnerHero
-                type="image"
-                path="/images/service-banner.jpg"
-                path_mob="/images/service-mob-banner.jpg"
-                sub_title="Services"
-                title="Oncology"
-                description=" Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades."
-            />
-            <FeaturedSection
-                path="/images/featureimg.jpg"
-                alt="feature-image"
-                sub_title="FEATURED"
-                title="Private Oncology Specialists in Coventry"
-                description=" Skyline Hospitals Coventry offers rapid access to leading orthopaedic consultants for joint pain, fractures, arthritis, and sports injuries. Our private orthopaedic services cover everything from diagnosis to advanced surgery — all in one modern, patient-centred hospital setting."
-            />
-            <WhyChooseUsSection
-                sub_title="WHY SKYLINE"
-                title="Why Choose Us?"
-                description="  Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
-            />
-            <ConditionSection
-                sub_title="CONDITIONS"
-                title="Cancers We Treat"
-            />
-            <OurTreatmentsection
-                sub_title="our treatments"
-                title="Subspecialties & Treatments"
-            />
-            <MethodUsedSection
-                sub_title="METHODS USED"
-                title="Investigations & Diagnostics"
-                description="State-of-the-art diagnostic equipment and testing services for accurate assessment and treatment planning"
-            />
-            <MultidisciplinarySection
-                path="/images/procedureimg.jpg"
-                alt="procedure-image"
-                sub_title="PROCEDURE"
-                title="Multidisciplinary Care"
-                description="Our oncologists work closely with:"
-            />
-            <PatientJourneySection
-                sub_title="PROCEDURE"
-                title="Patient Journey"
-                description="Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
-            />
-            <ConsultantSection variant="servicedetail" />
-
-            <PricingInsuranceSection
-                sub_title="INSURANCE"
-                title="Pricing & Insurance"
-                description="We offer self-pay and insured patient options with clear, upfront pricing for consultations, imaging, blood tests, and treatment."
-            />
-            <FaqSection />
-
-            <RelatedSection />
-
-            
-          <AppointmentSection  bannerImage="/images/serviceDetailBg.jpg"/>
-        </>
+      <div className="text-center py-20">
+        Failed to load service details. Please try again later.
+      </div>
     );
+  }
+
+  const {
+    banner_value,
+    banner_mobile_value,
+    banner_alt_text_value,
+    banner_pre_title,
+    banner_title,
+    banner_description,
+    service_sections,
+    consultants,
+    related_services_list,
+  } = data;
+
+  // Helper to find a section by template key
+  const getSectionByKey = (key) =>
+    service_sections?.find((s) => s.service_section_template?.key === key);
+
+  return (
+    <>
+      {/* Hero Section */}
+      <InnerHero
+        type="image"
+        path={banner_value}
+        path_mob={banner_mobile_value}
+        sub_title={banner_pre_title}
+        title={banner_title}
+        description={banner_description}
+      />
+
+      {/* Featured Section - Template 1 */}
+      <FeaturedSection
+        path={getSectionByKey("template-1")?.service_section_cms?.image_value}
+        alt={
+          getSectionByKey("template-1")?.service_section_cms
+            ?.image_alt_text_value
+        }
+        sub_title={getSectionByKey("template-1")?.title}
+        title={getSectionByKey("template-1")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-1")?.service_section_cms?.description
+        }
+        button_text={
+          getSectionByKey("template-1")?.service_section_cms?.button_text
+        }
+        button_link={
+          getSectionByKey("template-1")?.service_section_cms?.button_link
+        }
+      />
+
+      {/* WhyChooseUsSection - Template 2 */}
+      <WhyChooseUsSection
+        sub_title={getSectionByKey("template-2")?.title}
+        title={getSectionByKey("template-2")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-2")?.service_section_cms?.description
+        }
+        why_choose_list={getSectionByKey("template-2")?.service_section_items}
+      />
+
+      {/* ConditionSection - Template 3 */}
+      <ConditionSection
+        sub_title={getSectionByKey("template-3")?.title}
+        title={getSectionByKey("template-3")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-3")?.service_section_cms?.description
+        }
+        conditions={getSectionByKey("template-3")?.service_section_items}
+      />
+
+      {/* OurTreatmentsection - Template 4 */}
+      <OurTreatmentsection
+        sub_title={getSectionByKey("template-4")?.title}
+        title={getSectionByKey("template-4")?.service_section_cms?.title}
+        treatments={getSectionByKey("template-4")?.service_section_items}
+      />
+
+      {/* MethodUsedSection - Template 5 */}
+      <MethodUsedSection
+        sub_title={getSectionByKey("template-5")?.title}
+        title={getSectionByKey("template-5")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-5")?.service_section_cms?.description
+        }
+      />
+
+      {/* Multidisciplinary Section - Template 6 */}
+      <MultidisciplinarySection
+        path={getSectionByKey("template-6")?.service_section_cms?.image_value}
+        alt={
+          getSectionByKey("template-6")?.service_section_cms
+            ?.image_alt_text_value
+        }
+        sub_title={getSectionByKey("template-6")?.title}
+        title={getSectionByKey("template-6")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-6")?.service_section_cms?.description
+        }
+        procedure_list={getSectionByKey("template-6")?.service_section_items}
+      />
+
+      {/* PatientJourney Section - Template 7 */}
+      <PatientJourneySection
+        sub_title="PROCEDURE"
+        title="Patient Journey"
+        description="Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
+      />
+
+      {/* ConsultantSection - Template 8 */}
+      <ConsultantSection variant="servicedetail" />
+
+      {/* PricingInsuranceSection - Template 9*/}
+      <PricingInsuranceSection
+        sub_title="INSURANCE"
+        title="Pricing & Insurance"
+        description="We offer self-pay and insured patient options with clear, upfront pricing for consultations, imaging, blood tests, and treatment."
+      />
+
+      {/* FaqSection - Template 10*/}
+      <FaqSection />
+
+      {/* RelatedSection - Template 11*/}
+      <RelatedSection />
+
+      {/* Appointment Section - Template 12 */}
+      <AppointmentSection bannerImage="/images/serviceDetailBg.jpg" />
+    </>
+  );
 }

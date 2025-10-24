@@ -46,7 +46,7 @@ const why_choose_list = [
 
 ];
 
-export default function WhyChooseUsSlider() {
+export default function WhyChooseUsSlider({why_choose_list}) {
     return (
         <section className="w-full rounded-md border border-black/20 bg-transparent">
             <Swiper
@@ -65,7 +65,7 @@ export default function WhyChooseUsSlider() {
                     1250: { slidesPerView: 4 },
                 }}
                 className="w-full">
-                {why_choose_list.map((item, index) => (
+                {why_choose_list?.map((item, index) => (
                     <SwiperSlide
                         key={"icon" + index}
                         className={`w-full !h-auto 
@@ -86,8 +86,8 @@ export default function WhyChooseUsSlider() {
                             </div>
                             <div className="w-[45px] xl:w-[45px] 2xl:w-[56px] 3xl:w-[70px] h-[45px] xl:h-[45px] 2xl:h-[56px] 3xl:h-[70px] rounded-full bg-[linear-gradient(98deg,#004E8B_-30.8%,#C5DDFF_93.56%)] flex items-center justify-center  max-xs:mx-auto xs:mr-auto mb-[10px] xl:mb-[14px] 2xl:mb-[20px]">
                                 <Image
-                                    src={item.media.path}
-                                    alt={item.media.alt}
+                                    src={item?.image_value}
+                                    alt={item?.image_alt_text_value}
                                     width={50}
                                     height={50}
                                     className="w-[58%] h-auto object-cover block"
@@ -101,10 +101,10 @@ export default function WhyChooseUsSlider() {
                                     noMotion
                                     className="text-center xs:text-start font-medium text-[#212121] mb-[5px]"
                                 >
-                                    {item.title}
+                                    {item?.title}
                                 </Heading>
                                 <p className="text-center xs:text-start line-clamp-4 text-[#656565] mb-0">
-                                    {item.description}
+                                    {item?.description}
                                 </p>
                             </div>
                         </div>

@@ -6,7 +6,7 @@ export default function WhyChooseUsSection({
     sub_title,
     title,
     description,
-
+    why_choose_list
 }) {
     return (
         <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
@@ -39,7 +39,7 @@ export default function WhyChooseUsSection({
 
                 </div>
                 <div className="w-full">
-                    <WhyChooseUsSlider />
+                    <WhyChooseUsSlider why_choose_list={why_choose_list} />
 
                 </div>
             </div>

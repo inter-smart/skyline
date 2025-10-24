@@ -14,6 +14,7 @@ export default function ProcedureSection({
     sub_title,
     title,
     description,
+    procedure_list,
     className
 }) {
     return (
@@ -47,7 +48,7 @@ export default function ProcedureSection({
                     <ul className="">
                         {procedure_list.map((item, index) => (
                             <li className="w-full block bg-[linear-gradient(90deg,rgba(197,221,255,0.31)_6.73%,rgba(255,255,255,0.31)_100%)] rounded-[4px] mb-[10px]">
-                                {item.procedureList}
+                                {item?.title}
                             </li>
                         ))}
                     </ul>

@@ -6,26 +6,50 @@ import ContactusSection from "@/components/features/about/ContactusSection";
 import OurStory from "@/components/features/about/OurStory";
 import OurvalueSection from "@/components/features/about/OurvalueSection";
 import OverviewSection from "@/components/features/about/OverviewSection";
+import { fetchFromAPI } from "@/lib/api";
 
+export default async function Page() {
+  const { data, error } = await fetchFromAPI("about-us");
 
+  const {
+    about_cms,
+    values,
+    team_members,
+    accreditation,
+    banner_and_meta_tags,
+  } = data;
 
-export default function Page() {
-    return (
-        <>
-            <InnerBanner
-                img="/images/aboutBanner.jpg"
-                alt=""
-                subTitle="ABOUT US"
-                Title="About Skyline Hospitals"
-                description="Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades." />
+  return (
+    <>
+      <InnerBanner
+        img={banner_and_meta_tags?.banner_value}
+        alt={banner_and_meta_tags?.banner_alt_text_value}
+        subTitle={banner_and_meta_tags?.banner_pre_title}
+        Title={banner_and_meta_tags?.banner_title}
+        description={banner_and_meta_tags?.banner_description}
+      />
 
-            <OurStory />
-            <OverviewSection /> 
-            <OurvalueSection />
-            <ConsultantSection />
-            <AwardSection />
-            <CareerSection />
-            <ContactusSection />
-        </>
-    )
+      {/* section 1 */}
+      <OurStory
+        preTitle={about_cms?.section1_pre_title}
+        title={about_cms?.section1_title}
+        description={about_cms?.section1_description}
+        img={about_cms?.section1_image_value}
+        alt={about_cms?.section1_image_alt_text_value}
+      />
+
+      {/* section 2 */}
+      <OverviewSection about_cms={about_cms} />
+
+      {/* section 3 */}
+      <OurvalueSection values={values} about_cms={about_cms} />
+
+      {/* section 4 */}
+      {/* <ConsultantSection /> */}
+
+      <AwardSection about_cms={about_cms} accreditation={accreditation} />
+      <CareerSection  about_cms={about_cms}/>
+      <ContactusSection about_cms={about_cms} />
+    </>
+  );
 }

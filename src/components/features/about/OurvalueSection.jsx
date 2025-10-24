@@ -1,5 +1,5 @@
 "use client";
-
+import parse from "html-react-parser";
 import { Heading, SubTitle } from "@/components/layout/Heading";
 import Image from "next/image";
 import {
@@ -9,7 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function OurvalueSection() {
   const values = [
     {
       number: "01",
@@ -49,6 +48,11 @@ export default function OurvalueSection() {
     },
   ];
 
+export default function OurvalueSection({
+  about_cms, values
+}) {
+
+
   return (
     <section className="py-[35px] xl:py-[40px] 2xl:py-[60px] bg-[rgba(139,190,255,0.12)]">
       <div className="container">
@@ -61,10 +65,10 @@ export default function OurvalueSection() {
                 as="div"
                 className="!mb-[5px] 2xl:!mb-[15px]"
               >
-                WHY Skyline
+                {about_cms?.section5_pre_title}
               </SubTitle>
               <Heading size="heading1" as="div">
-                Our Values
+                {about_cms?.section5_title}
               </Heading>
             </div>
             <div className="w-full overflow-hidden rounded-[6px] md:max-w-[400px] xl:max-w-[490px] 2xl:max-w-[590px] 3xl:max-w-[740px] aspect-[740/385]">
@@ -94,7 +98,7 @@ export default function OurvalueSection() {
                 >
                   <AccordionTrigger className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal uppercase p-0 [&>svg]:hidden tracking-wider !no-underline flex items-center justify-start">
                     <div className="text-[12px] xl:text-[16px] 2xl:text-[19px] 3xl:text-[24px] text-[#00335B] font-normal w-[28px] xl:w-[33px] h-[28px] 2xl:w-[40px] 3xl:w-[50px] xl:h-[33px] 2xl:h-[40px] 3xl:h-[50px] flex items-center justify-center bg-white rounded-full">
-                      {item.number}
+                      {item.id}
                     </div>
                     <div className="w-[calc(100%-28px)] xl:w-[calc(100%-33px)] 2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)]">
                       {item.title}
@@ -102,7 +106,7 @@ export default function OurvalueSection() {
                   </AccordionTrigger>
 
                   <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
-                    {item.description}
+                    {parse(item.description)}
                   </AccordionContent>
                 </AccordionItem>
               ))}

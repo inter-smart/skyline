@@ -10,16 +10,16 @@ import "swiper/css/effect-fade";
 import { Heading } from "@/components/layout/Heading";
 
 const treatmentData = [
-    { title_sec: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
-    { title_sec: "Targeted therapy", list: ["Targeted therapy1", "Targeted therapy2", "Targeted therapy3"] },
-    { title_sec: "Radiotherapy", list: ["Radiotherapy1", "Radiotherapy2", "Radiotherapy3"] },
-    { title_sec: "Palliative care", list: ["Palliative1", "Palliative2", "Palliative3"] },
+    { title: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
+    { title: "Targeted therapy", list: ["Targeted therapy1", "Targeted therapy2", "Targeted therapy3"] },
+    { title: "Radiotherapy", list: ["Radiotherapy1", "Radiotherapy2", "Radiotherapy3"] },
+    { title: "Palliative care", list: ["Palliative1", "Palliative2", "Palliative3"] },
 ];
 
 export default function OurTreatmentsection({
     title,
     sub_title,
-    title_sec,
+    treatments
 }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -55,8 +55,8 @@ export default function OurTreatmentsection({
                             direction="vertical"
                             className="h-[165px] xl:h-[175px] 2xl:h-[225px] 3xl:h-[320px]"
                         >
-                            {treatmentData.map((item, index) => (
-                                <SwiperSlide key={index} className={`${index === treatmentData.length - 1 ? "!mb-0" : ""}`}>
+                            {treatments.map((item, index) => (
+                                <SwiperSlide key={index} className={`${index === treatments.length - 1 ? "!mb-0" : ""}`}>
                                     <div
                                         className={`group flex items-center justify-between w-full px-0 py-[6px] sm:py-[10px] 2xl:py-[15px] border-b border-[#919193] cursor-pointer hover:text-base2 hover:border-[#00335B] transition
                                     ${activeIndex === index ? "" : ""}`}
@@ -64,7 +64,7 @@ export default function OurTreatmentsection({
                                         <div
                                             className={`text-[12px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-medium text-start  text-[#919193] w-[calc(100%-10px)] 2xl:w-[calc(100%-15px)] mb-0 
                                         ${activeIndex === index ? "text-base2" : "border-[#00335B]"} group-hover:text-base2`} >
-                                            {item.title_sec}
+                                            {item.title}
                                         </div>
                                         <span className="w-[10px] xl:w-[15px] h-[10px] xl:h-[15px] flex items-center justify-center">
                                             <Image
@@ -102,7 +102,7 @@ export default function OurTreatmentsection({
                             spaceBetween={10}
                             slidesPerView={1}
                             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} >
-                            {treatmentData.map((item, index) => (
+                            {treatments.map((item, index) => (
                                 <SwiperSlide
                                     key={index}
                                     className="bg-[#00335B] opacity-0 transition-opacity duration-500 swiper-slide-active:opacity-100"
@@ -113,19 +113,19 @@ export default function OurTreatmentsection({
                                             size="heading4"
                                             className="text-start font-medium text-white mb-[35px]"
                                         >
-                                            {item.title_sec}
+                                            {item?.title}
                                         </Heading>
                                         <ul>
-                                            {item.list.map((list, liIndex) => (
+                                            {/* {item?.description.map((list, liIndex) => ( */}
                                                 <li
-                                                    key={liIndex}
+                                                    // key={liIndex}
                                                     className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[8px]
                                                         before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center
                                                         before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
                                                 >
-                                                    {list}
+                                                    {item?.description}
                                                 </li>
-                                            ))}
+                                            {/* ))} */}
                                         </ul>
                                     </div>
                                 </SwiperSlide>

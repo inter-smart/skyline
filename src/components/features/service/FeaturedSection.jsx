@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { Text } from "../../layout/Text";
 import { Heading } from "../../layout/Heading";
+import Link from "next/link";
 export default function FeaturedSection({
     path,
     alt,
     sub_title,
     title,
     description,
+    button_text,
+    button_link,
     className
 }) {
     return (
@@ -51,9 +54,11 @@ export default function FeaturedSection({
                         {description}
                     </Text>
 
+                    <Link href={button_link}>
                     <button className="btn-base1 hover max-md:mx-auto md:mr-auto" aria-label="appointment">
-                        Book an Appointment
+                        {button_text}
                     </button>
+                    </Link>
                 </div>
             </div>
         </section>

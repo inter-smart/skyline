@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Heading, SubTitle } from "@/components/layout/Heading";
-export default function ContactusSection() {
+import parse from "html-react-parser";
+
+export default function ContactusSection({
+    about_cms
+}) {
     return (
         <section className="w-full relative py-[45px]">
             <div className="container">
@@ -10,12 +14,12 @@ export default function ContactusSection() {
                     <div className=" w-full sm:w-1/2 flex items-center">
                         <div className="w-auto max-w-[620px]">
                             <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
-                                CONTACT US
+                                {about_cms?.section9_pre_title}
                             </SubTitle>
                             <Heading size="heading1" as="div" className="leading-none">
-                                Get in Touch
+                                {about_cms?.section9_title}
                             </Heading>
-                            <p>We’re here to support you at every step of your healthcare journey.Reach out to us and we’ll ensure you get the right help, at the right time.</p>
+                            <p>{parse(about_cms?.section9_description)}</p>
                             <Link href="" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">CONTACT US</Link>
                         </div>
                     </div>
