@@ -61,7 +61,7 @@ const services = [
     // },
 
 ];
-export default function FeaturedserviceSection() {
+export default function FeaturedserviceSection({service_cms, services = []}) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
@@ -71,12 +71,12 @@ export default function FeaturedserviceSection() {
                 <div className="flex flex-wrap items-end justify-between w-full relative z-10 mb-[25px] 2xl:mb-[40px] 3xl:mb-[50px]">
                     <div className="md:w-1/2">
                         <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
-                            FEATURED
+                            {service_cms?.section2_pre_title}
                         </SubTitle>
                         <Heading size="heading1" as="div" className="leading-none">
-                            Featured Services
+                            {service_cms?.section2_title}
                         </Heading>
-                        <p className="mb-0">Explore our wide range of specialized medical services designed to provide expert care for every stage of life. From routine check-ups to advanced treatments, we are here to support your health journey.</p>
+                        <p className="mb-0">{service_cms?.section2_description}</p>
                     </div>
 
                     {/* Navigation Arrows */}

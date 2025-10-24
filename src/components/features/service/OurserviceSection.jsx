@@ -112,7 +112,7 @@ const services = [
     },
 ];
 
-export default function OurserviceSection() {
+export default function OurserviceSection({service_cms, services = services}) {
     const [filter, setFilter] = useState("all");
 
     const filteredServices =
@@ -137,10 +137,10 @@ export default function OurserviceSection() {
                                 as="div"
                                 className="!mb-[10px] 3xl:!mb-[15px] leading-none"
                             >
-                                Services
+                                {service_cms?.section1_pre_title}
                             </SubTitle>
                             <Heading size="heading1" as="div" className="leading-none !mb-0">
-                                Our Services
+                                {service_cms?.section1_title}
                             </Heading>
                         </motion.div>
                     </div>
@@ -148,7 +148,7 @@ export default function OurserviceSection() {
                     {/* Filter Dropdown */}
                     <div className="w-full sm:w-auto p-[5px]">
                         <div className="flex items-center gap-[8px]">
-                            <div className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] text-[#212121] font-medium whitespace-nowrap">
+                            {/* <div className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] text-[#212121] font-medium whitespace-nowrap">
                                 Filter by:
                             </div>
                             <Select onValueChange={(value) => setFilter(value)}>
@@ -170,22 +170,22 @@ export default function OurserviceSection() {
                                     <SelectItem value="ophthal">Ophthalmology</SelectItem>
                                     <SelectItem value="pediatric">Pediatrics</SelectItem>
                                 </SelectContent>
-                            </Select>
+                            </Select> */}
                         </div>
                     </div>
                 </div>
 
                 {/* Service Cards */}
                 <div className="flex flex-wrap -m-[4px] 2xl:-m-[6px] 3xl:-m-[10px]">
-                    {filteredServices.map((service, index) => (
+                    {services?.map((service, index) => (
                         <div key={index} className="w-full 2xs:w-1/2 md:w-1/3 lg:w-1/4 p-[4px] 2xl:p-[6px] 3xl:p-[10px]">
                             <ServiceCard service={service} />
                         </div>
                     ))}
                 </div>
-                <Button className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
+                {/* <Button className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
                              border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center !mt-[25px] 2xl:!mt-[45px]
-                          h-[32px] 2xl:h-[40px] 3xl:h-[50px] hover m-auto bg-transparent cursor-pointer rounded-[3px] hover:text-white">LOAD MORE</Button>
+                          h-[32px] 2xl:h-[40px] 3xl:h-[50px] hover m-auto bg-transparent cursor-pointer rounded-[3px] hover:text-white">LOAD MORE</Button> */}
             </div>
         </section>
     );

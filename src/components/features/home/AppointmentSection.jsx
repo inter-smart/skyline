@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function AppointmentSection({bannerImage}) {
+export default function AppointmentSection({service_cms, bannerImage}) {
   // Fade-up animation
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -19,7 +19,7 @@ export default function AppointmentSection({bannerImage}) {
         priority
         width={1920}
         height={460}
-        alt="appointmentBanner"
+        alt={service_cms?.section3_image_alt_text_value}
       />
 
       <div className="container w-full h-full flex items-center">

@@ -21,6 +21,11 @@ const textAnimation = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
+
+
+
+
+
 export default function InnerBanner({ img, subTitle, Title, description, alt, showFormBox = false }) {
   return (
     <section
