@@ -18,7 +18,12 @@ export default async function Home() {
       <BannerSection sliders={sliders} />
       <AboutSection home_cms={home_cms} announcements={announcements} />
       <WhySection home_cms={home_cms} features={home_cms?.section2_features} />
-      <SpecialistSection />
+      <SpecialistSection
+        title={home_cms?.section3_title}
+        pre_title={home_cms?.section3_pre_title}
+        description={home_cms?.section3_description}
+        services={services}
+      />
       <ConsultantSection />
       <TestimonialSection />
       <AppointmentSection bannerImage="/images/appointmentBg.jpg" />
