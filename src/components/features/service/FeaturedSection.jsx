@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Text } from "../../layout/Text";
 import { Heading } from "../../layout/Heading";
 import Link from "next/link";
+import { renderHtml } from "@/utils/parseHtml";
 export default function FeaturedSection({
     path,
     alt,
@@ -51,7 +52,7 @@ export default function FeaturedSection({
                         size="text1"
                         className="text-center md:text-start font-normal  text-[#1E1E1E] max-w-[100%] lg:max-w-[100%] xl:max-w-[92%] 2xl:max-w-[91%] 3xl:max-w-[89%]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                     <Link href={button_link}>

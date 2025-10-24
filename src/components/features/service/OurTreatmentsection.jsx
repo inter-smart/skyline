@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 import { Heading } from "@/components/layout/Heading";
+import { renderHtml } from "@/utils/parseHtml";
 
 const treatmentData = [
     { title: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
@@ -123,7 +124,7 @@ export default function OurTreatmentsection({
                                                         before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center
                                                         before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
                                                 >
-                                                    {item?.description}
+                                                    {renderHtml(item?.description)}
                                                 </li>
                                             {/* ))} */}
                                         </ul>

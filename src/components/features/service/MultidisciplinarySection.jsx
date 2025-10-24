@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Text } from "../../layout/Text";
 import { Heading } from "../../layout/Heading";
+import { renderHtml } from "@/utils/parseHtml";
 const procedure_list = [
     { procedureList: "Radiologists for diagnostic accuracy" },
     { procedureList: "Surgeons for tumour removal when needed" },
@@ -43,7 +44,7 @@ export default function ProcedureSection({
                         as="p"
                         size="text1"
                         className="text-center xs:text-start font-normal text-[#1E1E1E]">
-                        {description}
+                        {renderHtml(description)}
                     </Text>
                     <ul className="">
                         {procedure_list.map((item, index) => (

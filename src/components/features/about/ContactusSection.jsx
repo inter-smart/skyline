@@ -28,7 +28,7 @@ export default function ContactusSection({
                         <Image src="/images/contactUs.png" width="300" height="200" className="absolute top-0 left-[10%]  w-full h-full max-w-[185px] xl:max-w-[230px] 2xl:max-w-[275px] 
                            3xl:max-w-[350px] opacity-100 -z-1" alt="contact us " /> 
 
-                        <Image src="/images/careerImg.png" width="300" height="200" className="w-full h-full max-w-[220px] xs:max-w-[285px] xl:max-w-[370px] 2xl:max-w-[400px] 3xl:max-w-[490px]" alt="contact us " />
+                        <Image src={about_cms?.section9_image_value} width="300" height="200" className="w-full h-full max-w-[220px] xs:max-w-[285px] xl:max-w-[370px] 2xl:max-w-[400px] 3xl:max-w-[490px]" alt={about_cms?.section9_image_alt_text_value} />
                     </div>
 
                 </div>

@@ -1,9 +1,7 @@
 import { Heading, SubTitle } from "@/components/layout/Heading";
 import Image from "next/image";
-import parse from "html-react-parser";
-import DOMPurify from "isomorphic-dompurify";
+import { renderHtml } from "@/utils/parseHtml";
 export default function OurStory({ preTitle, title, description, img, alt }) {
-  const descriptionData = parse(DOMPurify.sanitize(description))
   return (
     <section className="py-[20px] 2xl:py-[25px_20px] 3xl:py-[45px_40px]">
       <div className="container">
@@ -28,7 +26,7 @@ export default function OurStory({ preTitle, title, description, img, alt }) {
                 {title}
               </Heading>
               <p className="line-clamp-4">
-                 {parse(description)}
+                 {renderHtml(description)}
               </p>
             </div>
           </div>

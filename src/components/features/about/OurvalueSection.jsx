@@ -1,5 +1,5 @@
 "use client";
-import parse from "html-react-parser";
+
 import { Heading, SubTitle } from "@/components/layout/Heading";
 import Image from "next/image";
 import {
@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { renderHtml } from "@/utils/parseHtml";
 
   const values = [
     {
@@ -106,7 +107,7 @@ export default function OurvalueSection({
                   </AccordionTrigger>
 
                   <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
-                    {parse(item.description)}
+                    {renderHtml(item.description)}
                   </AccordionContent>
                 </AccordionItem>
               ))}

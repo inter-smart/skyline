@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { useState } from "react";
 import { Heading, SubTitle } from "@/components/layout/Heading";
 import ServiceCard from "@/components/common/ServiceCard";
+import { renderHtml } from "@/utils/parseHtml";
 
 const services = [
     {
@@ -76,7 +77,7 @@ export default function FeaturedserviceSection({service_cms, services = []}) {
                         <Heading size="heading1" as="div" className="leading-none">
                             {service_cms?.section2_title}
                         </Heading>
-                        <p className="mb-0">{service_cms?.section2_description}</p>
+                        <p className="mb-0">{renderHtml(service_cms?.section2_description)}</p>
                     </div>
 
                     {/* Navigation Arrows */}

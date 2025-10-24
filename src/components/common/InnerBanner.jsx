@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+import { renderHtml } from "@/utils/parseHtml";
 const selectTrigger = `
   relative  [&>svg]:hidden
   after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[17px] !no-underline cursor-pointer
@@ -67,7 +68,7 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
               variants={textAnimation}
               transition={{ delay: 0.3 }}
             >
-              {Title}
+              {renderHtml(Title)}
             </motion.h2>
 
             <motion.p

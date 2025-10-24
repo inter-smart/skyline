@@ -1,5 +1,5 @@
 import { Heading, SubTitle } from "@/components/layout/Heading";
-import parse from "html-react-parser";
+import { renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
 
 export default function OverviewSection({ about_cms }) {
@@ -16,7 +16,7 @@ export default function OverviewSection({ about_cms }) {
                 {about_cms?.section2_title}
               </Heading>
               <p className="line-clamp-4">
-                {parse(about_cms?.section2_description)}
+                {renderHtml(about_cms?.section2_description)}
               </p>
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function OverviewSection({ about_cms }) {
                                                     before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[23px] before:h-[15px] before:2xl:h-[23px] before:flex before:align-items-center
                                                     before:bg-[url('/images/whiteLog.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
                     >
-                      {parse(about_cms?.section3_description)}
+                      {renderHtml(about_cms?.section3_description)}
                     </li>
                     {/* <li
                                             className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-white font-normal leading-[22px] 2xl:leading-[24px] 3xl:leading-[26px] pl-[25px] md:pl-[35px] mb-[12px]

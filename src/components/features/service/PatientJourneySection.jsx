@@ -6,6 +6,7 @@ import { Text } from "@/components/layout/Text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { renderHtml } from "@/utils/parseHtml";
 
 const Disciplinary_list = [
     {
@@ -101,7 +102,7 @@ export default function PatientJourneySection({
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                 </div>

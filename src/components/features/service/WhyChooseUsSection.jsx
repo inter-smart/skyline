@@ -1,6 +1,7 @@
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import WhyChooseUsSlider from "./WhyChooseSlider";
+import { renderHtml } from "@/utils/parseHtml";
 
 export default function WhyChooseUsSection({
     sub_title,
@@ -34,7 +35,7 @@ export default function WhyChooseUsSection({
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                 </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { renderHtml } from "@/utils/parseHtml";
 
 export default function ServiceCard({ service }) {
   return (
@@ -37,7 +38,7 @@ export default function ServiceCard({ service }) {
           {service?.name}
         </div>
         <ul>
-          {service?.description ? service?.description : (
+          {service?.description ? renderHtml(service?.description) : (
             <li>No features available</li>
           )}
           {/* {service.features.map((feature, i) => (

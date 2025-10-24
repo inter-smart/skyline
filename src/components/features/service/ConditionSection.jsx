@@ -7,6 +7,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { renderHtml } from "@/utils/parseHtml";
 
 
 const conditionData = [
@@ -95,7 +96,7 @@ export default function ConditionSection({ sub_title, title, description }) {
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                 </div>
