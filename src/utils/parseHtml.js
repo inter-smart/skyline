@@ -1,4 +1,4 @@
-import parse from "html-react-parser";
+import parse, {domToReact} from "html-react-parser";
 
 export function renderHtml(htmlString, containerClass = "") {
   if (!htmlString) return null;
@@ -54,3 +54,31 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     />
   ));
 };
+
+
+
+export function parseHtmlWithoutClasses(htmlString) {
+  if (!htmlString) return null;
+
+  // Remove unwanted HTML attributes like class, style, id, etc.
+  const options = {
+    replace: (domNode) => {
+      if (domNode.attribs) {
+        // Remove class, id, and inline styles
+        delete domNode.attribs.class;
+        delete domNode.attribs.style;
+        delete domNode.attribs.id;
+      }
+
+      // Recursively render children without class/id/style
+      if (domNode.children && domNode.children.length > 0) {
+        return (
+          <>{domToReact(domNode.children, options)}</>
+        );
+      }
+    },
+  };
+
+  return parse(htmlString, options);
+}
+

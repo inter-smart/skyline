@@ -77,7 +77,7 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
               variants={textAnimation}
               transition={{ delay: 0.6 }}
             >
-              {description}
+              {(description && renderHtml(description)) || ""}
             </motion.p>
 
           </motion.div>

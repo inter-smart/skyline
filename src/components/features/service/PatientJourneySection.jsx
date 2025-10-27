@@ -99,7 +99,7 @@ export default function PatientJourneySection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
@@ -137,7 +137,7 @@ export default function PatientJourneySection({
                                     <div className={` ${index % 2 === 0 ? "border-b border-white/50" : "border-b border-[rgba(103,20,72,0.17)]"} w-full flex items-end pb-[10px] mb-[10px] xl:mb-[14px] 2xl:mb-[20px]`}>
                                         <div className={`${index % 2 === 0 ? "text-[rgba(255,255,255,0.66)] " : "text-[rgba(103,20,72,0.36)]"}
                                             text-[18px] sm:text-[20px] md:text-[25px] lg:text-[30px] xl::text-[35px] 2xl:text-[40px] 3xl:text-[45px] font-light leading-[1] capitalize`}>
-                                            {item?.id}
+                                             {(index + 1).toString().padStart(2, "0")}
                                         </div>
                                         <div className="pl-[10px]">
                                             <Heading

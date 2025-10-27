@@ -96,7 +96,7 @@ export default function ConditionSection({ sub_title, title, description, condit
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
@@ -106,7 +106,7 @@ export default function ConditionSection({ sub_title, title, description, condit
                 </div>
                 <div className="w-full">
                     <Accordion type="single" collapsible className="gap-[30px] xl:gap-[40px] 2xl:gap-[50px] 3xl:gap-[80px]" defalutValue="item-1">
-                        {conditionData.map((item, index) => (
+                        {conditionData?.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index + 1}`} className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] ">
                                 <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item?.title}</AccordionTrigger>
                                 <AccordionContent>

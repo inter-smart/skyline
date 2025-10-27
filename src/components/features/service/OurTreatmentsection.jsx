@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 import { Heading } from "@/components/layout/Heading";
-import { renderHtml } from "@/utils/parseHtml";
+import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 const treatmentData = [
     { title: "Systemic therapy", list: ["Chemotherapy", "Immunotherapy", "Hormonal therapy"] },
@@ -17,13 +17,17 @@ const treatmentData = [
     { title: "Palliative care", list: ["Palliative1", "Palliative2", "Palliative3"] },
 ];
 
+
 export default function OurTreatmentsection({
     title,
     sub_title,
     treatments
-}) {
+}) 
+
+{
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const  className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[8px before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
 
     return (
         <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
@@ -117,16 +121,8 @@ export default function OurTreatmentsection({
                                             {item?.title}
                                         </Heading>
                                         <ul>
-                                            {/* {item?.description.map((list, liIndex) => ( */}
-                                                <li
-                                                    // key={liIndex}
-                                                    className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[8px]
-                                                        before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center
-                                                        before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
-                                                >
-                                                    {renderHtml(item?.description)}
-                                                </li>
-                                            {/* ))} */}
+                                          
+                                                    {parseDescriptionToListItems(item?.description, className)}
                                         </ul>
                                     </div>
                                 </SwiperSlide>
