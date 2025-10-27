@@ -8,6 +8,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { renderHtml } from "@/utils/parseHtml";
 
 const faqData = [
     {
@@ -37,7 +38,12 @@ const faqData = [
     },
 ];
 
-export default function FaqSection() {
+export default function FaqSection({
+    sub_title, 
+    title,
+    description,
+    faqData
+}) {
     return (
         <section className='py-[30px_60px]'>
             <div className="container">
@@ -49,20 +55,19 @@ export default function FaqSection() {
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         <Heading size="heading1" as="div" className="leading-none">
-                            Frequently Asked Questions
+                            {title}
                         </Heading>
                     </motion.div>
-                    <motion.p>
-                        Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and type setting
-                        ndsince the 1500s, when an unknown printer took a galleytext of the printing and typesetting industry
-                    </motion.p>
+                    <motion.div>
+                        {renderHtml(description)}
+                    </motion.div>
                 </div>
                 <div className="w-full">
                     <Accordion type="single" collapsible className="lg:columns-2 gap-[30px] xl:gap-[40px] 2xl:gap-[50px] 3xl:gap-[80px]" defalutValue="item-1">
-                        {faqData.map((item, index) => (
+                        {faqData?.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index + 1}`} className="break-inside-avoid">
-                                <AccordionTrigger className="text-[11px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item.question}</AccordionTrigger>
-                                <AccordionContent>{item.answer}</AccordionContent>
+                                <AccordionTrigger className="text-[11px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item?.title}</AccordionTrigger>
+                                <AccordionContent>{renderHtml(item?.description)}</AccordionContent>
                             </AccordionItem>
                         ))}
                     </Accordion>

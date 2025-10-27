@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
+import { renderHtml } from "@/utils/parseHtml";
 const why_choose_list = [
     {
         method: {
@@ -73,8 +74,9 @@ export default function MethodUsedSection({
     sub_title,
     title,
     description,
-
+    why_choose_list
 }) {
+
     return (
         <section className="w-full py-[0px_40px] sm:py-[0px_60px] xl:py-[0px_80px] 3xl:py-[0px_100px] relative z-0">
             <div className="container container-sm">
@@ -97,23 +99,23 @@ export default function MethodUsedSection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E] mb-[10px] lg:max-w-[50%] xl:max-w-[35%]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                 </div>
                 <div className="w-full flex flex-wrap">
-                    {why_choose_list.map((item, index) => (
+                    {why_choose_list?.map((item, index) => (
                         
                         <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group px-[8px] lg:px-[12px] xl:px-15px] 2xl:px-[20px] 3xl:px-[25px] py-[8px] lg:py-[12px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] bg-white relative transition-transform duration-300 hover:scale-98">
                             <div className="flex flex-wrap p-[5px] hover:shadow-lg transition  duration-300">
                                 <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto mb-[10px] xs:mb-[0]">
                                     <Image
-                                        src={item.method.path}
-                                        alt={item.method.alt}
+                                        src={item?.image_value}
+                                        alt={item?.image_alt_text_value}
                                         width={50}
                                         height={50}
                                         className="w-[70%] h-auto object-cover block"
@@ -125,14 +127,14 @@ export default function MethodUsedSection({
                                         size="heading6"
                                         className="text-center xs:text-start font-medium text-[#212121] mb-[5px]"
                                     >
-                                        {item.title}
+                                        {item?.title}
                                     </Heading>
                                     <Text
                                         as="p"
                                         size="text2"
                                         className="text-center xs:text-start text-[#212121] mb-[5px]"
                                     >
-                                        {item.description}
+                                        {renderHtml(item?.description)}
                                     </Text>
                                 </div>
                             </div>

@@ -91,7 +91,7 @@ export default async function Service({ params }) {
         description={
           getSectionByKey("template-3")?.service_section_cms?.description
         }
-        conditions={getSectionByKey("template-3")?.service_section_items}
+        conditionData={getSectionByKey("template-3")?.service_section_items}
       />
 
       {/* OurTreatmentsection - Template 4 */}
@@ -108,6 +108,7 @@ export default async function Service({ params }) {
         description={
           getSectionByKey("template-5")?.service_section_cms?.description
         }
+        why_choose_list={getSectionByKey("template-5")?.service_section_items}
       />
 
       {/* Multidisciplinary Section - Template 6 */}
@@ -127,29 +128,66 @@ export default async function Service({ params }) {
 
       {/* PatientJourney Section - Template 7 */}
       <PatientJourneySection
-        sub_title="PROCEDURE"
-        title="Patient Journey"
-        description="Explore our wide range of specialized medical services designed to provide treatments, we are here to support your health journey."
+        sub_title={getSectionByKey("template-7")?.title}
+        title={getSectionByKey("template-7")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-7")?.service_section_cms?.description
+        }
+        Disciplinary_list={getSectionByKey("template-7")?.service_section_items}
       />
 
       {/* ConsultantSection - Template 8 */}
-      <ConsultantSection variant="servicedetail" />
+      {/* <ConsultantSection variant="servicedetail" /> */}
 
       {/* PricingInsuranceSection - Template 9*/}
       <PricingInsuranceSection
-        sub_title="INSURANCE"
-        title="Pricing & Insurance"
-        description="We offer self-pay and insured patient options with clear, upfront pricing for consultations, imaging, blood tests, and treatment."
+        sub_title={getSectionByKey("template-9")?.title}
+        title={getSectionByKey("template-9")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-9")?.service_section_cms?.description
+        }
       />
 
       {/* FaqSection - Template 10*/}
-      <FaqSection />
+      <FaqSection
+        sub_title={getSectionByKey("template-10")?.title}
+        title={getSectionByKey("template-10")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-10")?.service_section_cms?.description
+        }
+        faqData={getSectionByKey("template-10")?.service_section_items}
+      />
 
       {/* RelatedSection - Template 11*/}
-      <RelatedSection />
+      <RelatedSection
+        sub_title={getSectionByKey("template-11")?.title}
+        title={getSectionByKey("template-11")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-11")?.service_section_cms?.description
+        }
+        services={related_services_list}
+      />
 
       {/* Appointment Section - Template 12 */}
-      <AppointmentSection bannerImage="/images/serviceDetailBg.jpg" />
+      <AppointmentSection
+        bannerImage="/images/serviceDetailBg.jpg"
+        sub_title={getSectionByKey("template-12")?.title}
+        title={getSectionByKey("template-12")?.service_section_cms?.title}
+        description={
+          getSectionByKey("template-12")?.service_section_cms?.description
+        }
+        path={getSectionByKey("template-12")?.service_section_cms?.image_value}
+        alt={
+          getSectionByKey("template-12")?.service_section_cms
+            ?.image_alt_text_value || "test"
+        }
+        button_link={
+          getSectionByKey("template-12")?.service_section_cms?.button_link
+        }
+        button_text={
+          getSectionByKey("template-12")?.service_section_cms?.button_text
+        }
+      />
     </>
   );
 }

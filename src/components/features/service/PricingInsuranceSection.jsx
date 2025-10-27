@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Text } from "../../layout/Text";
 import { Heading } from "../../layout/Heading";
+import { renderHtml } from "@/utils/parseHtml";
+
 
 const plan_benefit_list = [
     {
@@ -70,6 +72,8 @@ const pricingData = [
 ];
 
 export default function PricingInsuranceSection({ sub_title, title, description }) {
+
+    console.log(title)
     return (
         <section className="w-full py-[20px] sm:py-[40px] 2xl:py-[60px] 3xl:py-[100px] relative z-0">
 
@@ -83,8 +87,8 @@ export default function PricingInsuranceSection({ sub_title, title, description 
                             <Heading as="h1" size="heading1" className="text-center xs:text-start font-unna text-black !mb-[8px] !xl:mb-[10px] !2xl:mb-[10px] !3xl:mb-[10px]">
                                 {title}
                             </Heading>
-                            <Text as="p" size="text1" className="text-center xs:text-start font-normal text-[#1E1E1E]">
-                                {description}
+                            <Text as="div" size="text1" className="text-center xs:text-start font-normal text-[#1E1E1E]">
+                                {renderHtml(description)}
                             </Text>
                         </div>
                         <div className="flex flex-wrap md:max-w-[800px] xl:max-w-[500px] 2xl:max-w-[600px] 3xl:max-w-[700px]">
@@ -112,13 +116,13 @@ export default function PricingInsuranceSection({ sub_title, title, description 
 
                     </div>
 
-                    <div className="xl:w-1/2 p-[8px]">
+                    {/* <div className="xl:w-1/2 p-[8px]">
                         <Heading as="h5" size="heading5" className="leading-[1] font-medium text-start text-[#212121] mb-[10px] lg:mb-[18px]">
                             Pricing Details
                         </Heading>
                         <div className="w-full pr-[35px] h-[300px] xl:h-[350px] 3xl:h-[420px] overflow-auto">
                             <div className="flex flex-wrap -m-[5px] xl:-m-[10px] 2xl:-m-[15px]">
-                                {pricingData.map((box, index) => (
+                                {pricingData?.map((box, index) => (
                                     <div
                                         key={`price-${box.id}`}
                                         className="w-full md:w-1/2 p-[5px] xl:p-[10px] 2xl:p-[15px]"
@@ -127,7 +131,6 @@ export default function PricingInsuranceSection({ sub_title, title, description 
                                             className={`w-full h-full p-[25px_10px] xl:p-[30px_20px] 3xl:p-[45px_30px]                                            
                                             ${index % 2 === 1 ? "bg-[rgba(103,20,72,0.06)] text-white" : "bg-[rgba(230,241,255,0.67)] "}`}
                                         >
-                                            {/* Box Title */}
                                             <div className="w-full mb-[15px] 2xl:mb-[35px]">
                                                 <Heading
                                                     as="h6"
@@ -147,7 +150,6 @@ export default function PricingInsuranceSection({ sub_title, title, description 
                                                 </Text>
                                             </div>
 
-                                            {/* List of items */}
                                             {box.items.map((item, itemIndex) => (
                                                 <div
                                                     key={`item-${box.id}-${itemIndex}`}
@@ -173,7 +175,7 @@ export default function PricingInsuranceSection({ sub_title, title, description 
                             </div>
 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

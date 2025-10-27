@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heading } from "../layout/Heading";
 import { Text } from "../layout/Text";
+import { renderHtml } from "@/utils/parseHtml";
 export default function InnerHero({
     type,
     path_mob,
