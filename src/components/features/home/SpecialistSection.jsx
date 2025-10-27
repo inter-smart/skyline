@@ -93,7 +93,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
             </Heading>
           </motion.div>
 
-          <motion.p
+          <motion.div
             className="line-clamp-4 max-w-[326px] xl:max-w-[400px] 2xl:max-w-[468px] 3xl:max-w-[600px] mb-0"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
           >
             {renderHtml(description) ||
               "Comprehensive medical care across multiple specialties, delivered by expert consultants using state-of-the-art facilities"}
-          </motion.p>
+          </motion.div>
 
           <Link href="/services" className="btn-base1 hover" aria-label="know_more">
             View All Services

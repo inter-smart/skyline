@@ -47,7 +47,7 @@ export default function ProcedureSection({
                         {renderHtml(description)}
                     </Text>
                     <ul className="">
-                        {procedure_list.map((item, index) => (
+                        {procedure_list?.map((item, index) => (
                             <li className="w-full block bg-[linear-gradient(90deg,rgba(197,221,255,0.31)_6.73%,rgba(255,255,255,0.31)_100%)] rounded-[4px] mb-[10px]">
                                 {item?.title}
                             </li>
@@ -60,7 +60,7 @@ export default function ProcedureSection({
                     <div className="w-full h-full overflow-hidden rounded-[4px]">
                         <Image
                             src={path}
-                            alt={alt}
+                            alt={alt? alt: "Image"}
                             width={805}
                             height={495}
                             className="w-full h-full object-cover hover:scale-105 transition-all duration-400"

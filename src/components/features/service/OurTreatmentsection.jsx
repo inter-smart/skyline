@@ -78,7 +78,7 @@ export default function OurTreatmentsection({
                                         </span>
                                     </div>
                                 </SwiperSlide>
-                            ))}
+                            ))}AAAAAAAAAAAAAA
                         </Swiper>
                     </div>
                 </div>
@@ -88,8 +88,8 @@ export default function OurTreatmentsection({
                     <div className="w-full h-full relative p-[15px] sm:p-[25px] lg:p-[30px] xl:p-[40px] 2xl:p-[50px] 3xl:p-[60px] overflow-hidden rounded-[6px] bg-base2">
                         <div className="w-70%] h-auto absolute -right-[10%] top-0 z-2">
                             <Image
-                                src="/images/traetmentBg.png"
-                                alt="about icon"
+                                src={treatments[activeIndex]?.image_value}
+                                alt={treatments[activeIndex]?.image_alt_text_value}
                                 width={670}
                                 height={580}
                                 className="w-full h-auto aspect-square"

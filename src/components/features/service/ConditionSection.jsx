@@ -68,7 +68,7 @@ const conditionData = [
 ];
 
 
-export default function ConditionSection({ sub_title, title, description }) {
+export default function ConditionSection({ sub_title, title, description, conditionData }) {
 
     return (
         <section className='py-[30px_60px] bg-[#F6F6F6]'>
@@ -104,7 +104,7 @@ export default function ConditionSection({ sub_title, title, description }) {
                     <Accordion type="single" collapsible className="gap-[30px] xl:gap-[40px] 2xl:gap-[50px] 3xl:gap-[80px]" defalutValue="item-1">
                         {conditionData.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index + 1}`} className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] ">
-                                <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item.question}</AccordionTrigger>
+                                <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item?.title}</AccordionTrigger>
                                 <AccordionContent>
                                     {item.procedureList && item.procedureList.length > 0 && (
                                         <div className="w-full text-start">

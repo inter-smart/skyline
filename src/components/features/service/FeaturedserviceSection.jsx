@@ -77,7 +77,7 @@ export default function FeaturedserviceSection({service_cms, services = []}) {
                         <Heading size="heading1" as="div" className="leading-none">
                             {service_cms?.section2_title}
                         </Heading>
-                        <p className="mb-0">{renderHtml(service_cms?.section2_description)}</p>
+                        <div className="mb-0">{renderHtml(service_cms?.section2_description)}</div>
                     </div>
 
                     {/* Navigation Arrows */}

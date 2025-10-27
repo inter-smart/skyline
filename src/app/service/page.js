@@ -23,7 +23,13 @@ export default async function Page() {
       />
       <OurserviceSection service_cms={service_cms} services={services} />
       <FeaturedserviceSection service_cms={service_cms} services={featured_services} />
-      <AppointmentSection service_cms={service_cms} bannerImage={service_cms?.section3_image_value} />
+      <AppointmentSection 
+      subTitle={service_cms?.section3_pre_title}
+      title={service_cms?.section3_title}
+      description={service_cms?.section3_description}
+      alt={service_cms?.section3_image_alt_text_value}
+      path={service_cms?.section3_image_value}
+       />
     </>
   );
 }

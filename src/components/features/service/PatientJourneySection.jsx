@@ -76,6 +76,7 @@ export default function PatientJourneySection({
     sub_title,
     title,
     description,
+    Disciplinary_list
 
 }) {
     return (
@@ -136,31 +137,31 @@ export default function PatientJourneySection({
                                     <div className={` ${index % 2 === 0 ? "border-b border-white/50" : "border-b border-[rgba(103,20,72,0.17)]"} w-full flex items-end pb-[10px] mb-[10px] xl:mb-[14px] 2xl:mb-[20px]`}>
                                         <div className={`${index % 2 === 0 ? "text-[rgba(255,255,255,0.66)] " : "text-[rgba(103,20,72,0.36)]"}
                                             text-[18px] sm:text-[20px] md:text-[25px] lg:text-[30px] xl::text-[35px] 2xl:text-[40px] 3xl:text-[45px] font-light leading-[1] capitalize`}>
-                                            {item.slNo}
+                                            {item?.id}
                                         </div>
                                         <div className="pl-[10px]">
                                             <Heading
                                                 as="h5"
                                                 size="heading5"
                                                 className={`${index % 2 === 0 ? "text-white" : "text-[#671448]"} text-center xs:text-start font-medium`}>
-                                                {item.title}
+                                                {item?.title}
                                             </Heading>
                                         </div>
                                     </div>
                                     <div className="w-full text-start">
-                                        <ul>
-                                            {item.procedureList.map((procedure, liIndex) => (
-                                                <li
-                                                    key={liIndex}
+                                        <div>
+                                            {/* {item?.procedureList.map((procedure, liIndex) => ( */}
+                                                <div
+                                                    // key={liIndex}
                                                     className={`${index % 2 === 0 ? "text-white before:bg-[#fff]" : "text-[#671448] before:bg-[#671448]"} w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px]
                                                     before:absolute before:top-[4px] 2xl:before:top-[6px] before:left-0 
                                                     before:w-[3px] 2xl:before:w-[5px] before:h-[3px] 2xl:before:h-[5px] 
                                                     before:rounded-full before:bg-no-repeat before:bg-contain 
                                                     before:content-[''] block mb-[6px] xl:mb-[10px] 3xl:mb-[15px]`}>
-                                                    {procedure}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                                    {renderHtml(item?.description)}
+                                                </div>
+                                            {/* ))} */}
+                                        </div>
                                     </div>
                                 </div>
                             </SwiperSlide>
