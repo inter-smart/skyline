@@ -20,7 +20,7 @@ export default function ContactusSection({
                                 {about_cms?.section9_title}
                             </Heading>
                             <p>{parse(about_cms?.section9_description)}</p>
-                            <Link href="" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">CONTACT US</Link>
+                            <Link href="/contact" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">CONTACT US</Link>
                         </div>
                     </div>
                     <div className="max-w-[400px] xl:max-w-[460px] 2xl:max-w-[550px] 3xl:max-w-[700px] w-full absolute bottom-0 right-[5%] flex items-center justify-end max-sm:opacity-15">
