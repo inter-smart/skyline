@@ -181,7 +181,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
                     <ul>{parseDescriptionToListItems(item?.description)}</ul>
 
                     <Link
-                      href={`/service/${item?.slug}`}
+                      href={`/services/${item?.slug}`}
                       className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all mt-[20px]
                                          group duration-200 hover:text-base2 hover:tracking-[1px]"
                     >

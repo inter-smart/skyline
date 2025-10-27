@@ -34,7 +34,13 @@ export default async function Home() {
         title={home_cms?.section5_title}
         pre_title={home_cms?.section5_pre_title}
       />
-      <AppointmentSection bannerImage="/images/appointmentBg.jpg" />
+      <AppointmentSection
+        path={home_cms?.section6_image_value}
+        alt={home_cms?.section6_image_alt_text_value}
+        title={home_cms?.section6_title}
+        sub_title={home_cms?.section6_pre_title}
+        description={home_cms?.section6_description}
+      />
       {/* <InsightSection /> */}
     </>
   );
