@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Heading, SubTitle } from "@/components/layout/Heading";
-import { renderHtml } from "@/utils/parseHtml";
+import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 const serviceItems = [
   {
@@ -157,11 +157,17 @@ export default function SpecialistSection({ title, pre_title, description, servi
                       activeIndex === index ? "opacity-0 hidden" : "opacity-100 visible"
                     }`}
                   >
-                    {item.title}
+                    {item?.name}
                   </div>
 
                   {/* Background Image */}
-                  <Image src={item.image} alt={item.title} width={560} height={650} className="object-cover absolute inset-0 w-full h-full" />
+                  <Image
+                    src={item?.image_value}
+                    alt={item?.image_alt_text_value}
+                    width={560}
+                    height={650}
+                    className="object-cover absolute inset-0 w-full h-full"
+                  />
 
                   {/* Info Card (visible only for active slide) */}
                   <div
@@ -170,22 +176,12 @@ export default function SpecialistSection({ title, pre_title, description, servi
                     }`}
                   >
                     <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-medium mb-[15px] xl:mb-[20px] capitalize">
-                      {item.mainTitle}
+                      {item?.name}
                     </div>
-                    {/* <ul>
-                      {item.features.map((feature, i) => (
-                        <li
-                          key={i}
-                          className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-normal pl-[25px] mb-[8px]
-                                                    before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center
-                                                    before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
-                        >
-                          {feature}
-                        </li>
-                      ))}
-                    </ul> */}
+                    <ul>{parseDescriptionToListItems(item?.description)}</ul>
+
                     <Link
-                      href="/"
+                      href={`/service/${item?.slug}`}
                       className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all mt-[20px]
                                          group duration-200 hover:text-base2 hover:tracking-[1px]"
                     >
