@@ -13,6 +13,9 @@ export default async function Home() {
 
   const { sliders, home_cms, announcements, banner_and_meta_tags, services, consultants, testimonials, blogs } = data;
 
+  const textTestimonials = testimonials?.filter((item) => item?.type == "text");
+  const videoTestimonials = testimonials?.filter((item) => item?.type == "video");
+
   return (
     <>
       <BannerSection sliders={sliders} />
@@ -24,10 +27,21 @@ export default async function Home() {
         description={home_cms?.section3_description}
         services={services}
       />
-      <ConsultantSection />
-      <TestimonialSection />
-      <AppointmentSection bannerImage="/images/appointmentBg.jpg" />
-      <InsightSection />
+      {/* <ConsultantSection /> */}
+      <TestimonialSection
+        textTestimonials={textTestimonials}
+        videoTestimonials={videoTestimonials}
+        title={home_cms?.section5_title}
+        pre_title={home_cms?.section5_pre_title}
+      />
+      <AppointmentSection
+        path={home_cms?.section6_image_value}
+        alt={home_cms?.section6_image_alt_text_value}
+        title={home_cms?.section6_title}
+        sub_title={home_cms?.section6_pre_title}
+        description={home_cms?.section6_description}
+      />
+      {/* <InsightSection /> */}
     </>
   );
 }

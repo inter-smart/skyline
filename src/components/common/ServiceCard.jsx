@@ -5,7 +5,7 @@ import { renderHtml } from "@/utils/parseHtml";
 export default function ServiceCard({ service }) {
   return (
     <Link
-      href={`/service/${service?.slug}`}
+      href={`/services/${service?.slug}`}
       className={`relative w-full  h-full  rounded-[6px] overflow-hidden  flex flex-col items-center justify-end transition-all duration-500 
                         aspect-ratio-[560/650] group min-h-[210px] lg:min-h-[250px] xl:min-h-[320px] 2xl:min-h-[385px] 3xl:min-h-[480px]
                         p-[15px] 2xl:p-[20px_10px] 3xl:p-[30px]
@@ -38,9 +38,7 @@ export default function ServiceCard({ service }) {
           {service?.name}
         </div>
         <ul>
-          {service?.description ? renderHtml(service?.description) : (
-            <li>No features available</li>
-          )}
+          {service?.description ? renderHtml(service?.description) : <li>No features available</li>}
           {/* {service.features.map((feature, i) => (
                         <li
                             key={i}
