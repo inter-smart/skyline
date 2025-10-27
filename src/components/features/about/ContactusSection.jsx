@@ -30,7 +30,6 @@ export default function ContactusSection({
 
                         <Image src={about_cms?.section9_image_value} width="300" height="200" className="w-full h-full max-w-[220px] xs:max-w-[285px] xl:max-w-[370px] 2xl:max-w-[400px] 3xl:max-w-[490px]" alt={about_cms?.section9_image_alt_text_value} />
                     </div>
-
                 </div>
             </div>
         </section>

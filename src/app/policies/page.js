@@ -1,5 +1,5 @@
 import InnerBanner from '@/components/common/InnerBanner'
-import Policies from '@/components/features/privacyPolicy/Policy'
+import PrivacyPolicySection from '@/components/features/privacy/PrivacyPolicy'
 import React from 'react'
 
 export default function PrivacyPolicy() {
@@ -8,13 +8,12 @@ export default function PrivacyPolicy() {
        <InnerBanner
               img="/images/newsbanner.jpg"
               alt="NEWS"
-              subTitle="NEWS"
-              Title="News & Insights"
+              subTitle="privacy Policy"
+              Title="Privacy Policy"
               description="Be part of a hospital dedicated to excellence, compassion, and innovation."
             />
-
-
-            <Policies />
+            <PrivacyPolicySection />
+            
     </div>
   )
 }

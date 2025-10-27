@@ -16,7 +16,7 @@ const policies = [
   { id: 10, title: "Contacting us" },
 ];
 
-const policyDetails = [
+const PrivacyPolicyDetails = [
   {
     title: "Personal identification information",
     description:
@@ -69,7 +69,7 @@ const policyDetails = [
   },
 ];
 
-export default function Policies() {
+export default function PrivacyPolicySection() {
   const [activeSection, setActiveSection] = useState(policies[0].id);
   const sectionRefs = useRef([]);
 
