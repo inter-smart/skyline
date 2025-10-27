@@ -48,7 +48,7 @@ export default function FeaturedSection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center md:text-start font-normal  text-[#1E1E1E] max-w-[100%] lg:max-w-[100%] xl:max-w-[92%] 2xl:max-w-[91%] 3xl:max-w-[89%]"
                     >

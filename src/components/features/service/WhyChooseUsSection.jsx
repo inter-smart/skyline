@@ -31,7 +31,7 @@ export default function WhyChooseUsSection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >

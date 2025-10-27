@@ -45,6 +45,8 @@ export default async function Service({ params }) {
   return (
     <>
       {/* Hero Section */}
+
+      
       <InnerHero
         type="image"
         path={banner_value}
@@ -55,6 +57,7 @@ export default async function Service({ params }) {
       />
 
       {/* Featured Section - Template 1 */}
+      
       <FeaturedSection
         path={getSectionByKey("template-1")?.service_section_cms?.image_value}
         alt={
@@ -146,6 +149,7 @@ export default async function Service({ params }) {
         description={
           getSectionByKey("template-9")?.service_section_cms?.description
         }
+        plan_benefit_list={getSectionByKey("template-9")?.service_section_items}
       />
 
       {/* FaqSection - Template 10*/}
