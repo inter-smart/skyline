@@ -4,13 +4,13 @@ import NewsSection from "@/components/features/News/NewsSection";
 export default function Page() {
     return (
         <>
-            <InnerBanner
+            {/* <InnerBanner
                 img="/images/newsbanner.jpg"
                 alt="NEWS"
                 subTitle="NEWS"
-                Title="News & Insights"
-                description="Be part of a hospital dedicated to excellence, compassion, and innovation."
-                 />
+                Title="<>News & Insights</p>"
+                description="<p>Be part of a hospital dedicated to excellence, compassion, and innovation</p>."
+                 /> */}
 
                 <NewsSection />
         </>

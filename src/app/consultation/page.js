@@ -9,8 +9,8 @@ export default function Page() {
                 img="/images/consultationBanner.jpg"
                 alt="CONSULTATION"
                 subTitle="CONSULTATION"
-                Title="Meet Our Consultants"
-                description="Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades."
+                Title="<p>Meet Our Consultants</p>"
+                description="<p>Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades.</p>"
                  showFormBox={true}  />
 
             <OurconsultantSection />
