@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
+const className =
+  "relative text-[8px] 2xl:text-[10px] 3xl:text-[13px] text-[#212121] font-normal pl-[25px] mb-[8px] before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
 export default function ServiceCard({ service }) {
-
-  const className="relative text-[8px] 2xl:text-[10px] 3xl:text-[13px] text-[#212121] font-normal pl-[25px] mb-[8px] before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
   return (
     <Link
       href={`/service/${service?.slug}`}
@@ -39,10 +39,7 @@ export default function ServiceCard({ service }) {
         <div className="text-[11px] lg:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-[#212121] font-medium mb-[15px] xl:mb-[20px] capitalize">
           {service?.name}
         </div>
-        <ul>
-      
-          {parseDescriptionToListItems(service?.description, className)}
-        </ul>
+        <ul>{parseDescriptionToListItems(service?.description, className)}</ul>
 
         <div
           className="text-[8px] xl:text-[10px] 3xl:text-[11px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 

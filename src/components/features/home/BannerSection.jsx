@@ -113,7 +113,7 @@ export default function HeroSlider({ sliders = slides }) {
       <div className="container relative">
         <div className="absolute bottom-5 right-[70px] z-20 text-[#EAF6FF]">
           <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">0{currentSlide}</span> /{" "}
-          <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">0{slides.length}</span>
+          <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">0{sliders.length}</span>
         </div>
       </div>
     </section>

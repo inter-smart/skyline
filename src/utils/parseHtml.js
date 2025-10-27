@@ -34,9 +34,7 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     // ✅ Server-side fallback (regex only)
     const liMatches = decoded.match(/<li[^>]*>(.*?)<\/li>/gs);
     if (liMatches?.length) {
-      items = liMatches.map((li) =>
-        li.replace(/<\/?li[^>]*>/g, "").trim()
-      );
+      items = liMatches.map((li) => li.replace(/<\/?li[^>]*>/g, "").trim());
     } else {
       const html = decoded.replace(/<\/?p>/g, "").trim();
       items = html
@@ -46,13 +44,7 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     }
   }
 
-  return items.map((item, i) => (
-    <li
-      key={i}
-      className={className}
-      dangerouslySetInnerHTML={{ __html: item }}
-    />
-  ));
+  return items.map((item, i) => <li key={i} className={className} dangerouslySetInnerHTML={{ __html: item }} />);
 };
 
 
