@@ -7,7 +7,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import { renderHtml } from "@/utils/parseHtml";
+import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 
 const conditionData = [
@@ -70,6 +70,10 @@ const conditionData = [
 
 export default function ConditionSection({ sub_title, title, description, conditionData }) {
 
+
+    console.log(conditionData)
+    
+    const className=`w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px] before:absolute before:top-[4px] 2xl:before:top-[6px] before:left-0  before:w-[3px] 2xl:before:w-[5px] before:h-[3px] 2xl:before:h-[5px]  before:rounded-full before:content-[''] mb-[6px] xl:mb-[10px] 3xl:mb-[15px] text-[#212121] before:bg-[#671448]`
     return (
         <section className='py-[30px_60px] bg-[#F6F6F6]'>
             <div className="container">
@@ -106,24 +110,16 @@ export default function ConditionSection({ sub_title, title, description, condit
                             <AccordionItem key={index} value={`item-${index + 1}`} className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] ">
                                 <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">{item?.title}</AccordionTrigger>
                                 <AccordionContent>
-                                    {item.procedureList && item.procedureList.length > 0 && (
+                                    {/* {item.procedureList && item.procedureList.length > 0 && ( */}
                                         <div className="w-full text-start">
                                             <ul>
-                                                {item.procedureList.map((procedure, liIndex) => (
-                                                    <li
-                                                        key={liIndex}
-                                                        className={`w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px]
-                                                            before:absolute before:top-[4px] 2xl:before:top-[6px] before:left-0 
-                                                            before:w-[3px] 2xl:before:w-[5px] before:h-[3px] 2xl:before:h-[5px] 
-                                                            before:rounded-full before:content-[''] mb-[6px] xl:mb-[10px] 3xl:mb-[15px] text-[#212121] before:bg-[#671448]
-                                                            `}
-                                                    >
-                                                        {procedure}
-                                                    </li>
-                                                ))}
+                                                {/* {item.procedureList.map((procedure, liIndex) => ( */}
+                                                    
+                                                        {parseDescriptionToListItems(item?.description, className)}
+                                                {/* ))} */}
                                             </ul>
                                         </div>
-                                    )}
+                                    {/* )} */}
 
                                 </AccordionContent>
                             </AccordionItem>

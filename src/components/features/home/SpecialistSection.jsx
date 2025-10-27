@@ -74,6 +74,9 @@ const serviceItems = [
 ];
 
 export default function SpecialistSection({ title, pre_title, description, services = serviceItems }) {
+
+
+  const className="relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-normal pl-[25px] mb-[8px] before:absolute before:top-[4px] before:left-0 before:w-[15px] before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section className="py-[50px_70px] overflow-hidden bg-[#FBFBFB]">
@@ -178,7 +181,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
                     <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-medium mb-[15px] xl:mb-[20px] capitalize">
                       {item?.name}
                     </div>
-                    <ul>{parseDescriptionToListItems(item?.description)}</ul>
+                    <ul>{parseDescriptionToListItems(item?.description, className)}</ul>
 
                     <Link
                       href={`/services/${item?.slug}`}

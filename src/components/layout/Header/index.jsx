@@ -29,7 +29,7 @@ export default function Header() {
     { name: "About Us", link: "/about" },
     {
       name: "Services",
-      link: "/services",
+      link: "/service",
       submenu: [
         { name: "ENT", link: "/services/ent" },
         { name: "Cardiology", link: "/services/cardiology" },

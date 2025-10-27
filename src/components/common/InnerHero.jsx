@@ -59,11 +59,11 @@ export default function InnerHero({
                     </Heading>
                     <Text
                         noMotion
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center sm:text-start text-[#1E1E1E] font-normal"
                     >
-                        {description}
+                        {renderHtml(description) || "sample description"}
                     </Text>
                     {children}
                 </div>
