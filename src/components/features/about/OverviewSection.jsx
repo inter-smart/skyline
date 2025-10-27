@@ -1,6 +1,9 @@
 import { Heading, SubTitle } from "@/components/layout/Heading";
-import { renderHtml } from "@/utils/parseHtml";
+import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
+
+const className =
+  "relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-white font-normal leading-[22px] 2xl:leading-[24px] 3xl:leading-[26px] pl-[25px] md:pl-[35px] mb-[12px] before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[23px] before:h-[15px] before:2xl:h-[23px] before:flex before:align-items-center before:bg-[url('/images/whiteLog.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
 
 export default function OverviewSection({ about_cms }) {
   return (
@@ -15,9 +18,7 @@ export default function OverviewSection({ about_cms }) {
               <Heading size="heading1" as="div">
                 {about_cms?.section2_title}
               </Heading>
-              <p className="line-clamp-4">
-                {renderHtml(about_cms?.section2_description)}
-              </p>
+              <p className="line-clamp-4">{renderHtml(about_cms?.section2_description)}</p>
             </div>
           </div>
 
@@ -38,29 +39,7 @@ export default function OverviewSection({ about_cms }) {
                   <div className="text-[13px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium uppercase tracking-widest mb-[20px]">
                     {about_cms?.section3_title}
                   </div>
-                  <ul>
-                    <li
-                      className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-white font-normal leading-[22px] 2xl:leading-[24px] 3xl:leading-[26px] pl-[25px] md:pl-[35px] mb-[12px]
-                                                    before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[23px] before:h-[15px] before:2xl:h-[23px] before:flex before:align-items-center
-                                                    before:bg-[url('/images/whiteLog.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
-                    >
-                      {renderHtml(about_cms?.section3_description)}
-                    </li>
-                    {/* <li
-                                            className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-white font-normal leading-[22px] 2xl:leading-[24px] 3xl:leading-[26px] pl-[25px] md:pl-[35px] mb-[12px]
-                                                    before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[23px] before:h-[15px] before:2xl:h-[23px] before:flex before:align-items-center
-                                                    before:bg-[url('/images/whiteLog.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
-                                        >
-                                            To ensure accessible, affordable, and quality treatment for all.
-                                        </li>
-                                        <li
-                                            className="relative text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-white font-normal leading-[22px] 2xl:leading-[24px] 3xl:leading-[26px] pl-[25px] md:pl-[35px] mb-[12px]
-                                                    before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[23px] before:h-[15px] before:2xl:h-[23px] before:flex before:align-items-center
-                                                    before:bg-[url('/images/whiteLog.svg')] before:bg-no-repeat before:bg-contain before:content-['']"
-                                        >
-                                            To combine advanced technology with skilled expertise for better outcomes.
-                                        </li> */}
-                  </ul>
+                  <ul>{parseDescriptionToListItems(about_cms?.section3_description, className)}</ul>
                 </div>
               </div>
               <div className="w-full xs:w-1/2  p-[8px] xl:p-[10px] 2xl:p-[15px] 3xl:p-[20px]">
