@@ -25,7 +25,10 @@ const enquiriesData = [
 
 
 export default function ContactFormSection() {
-  const formBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px] px-[10px] px-[15px] 3xl:px-[20px] flex items-center`;
+  const formBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px] px-[10px] px-[15px] 3xl:px-[20px] text-[10px] 2xl:text-[12px] 3xl:text-[16px] flex items-center`;
+const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white mx-[10px] w-[calc(100%-15px)] 
+outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 
+           focus-visible:shadow-none bg-transparent border-none`;
 
 
   return (
@@ -51,16 +54,16 @@ export default function ContactFormSection() {
         </div>
         <div>
           <select className={`${formBox}`} defaultValue="">
-            <option className={`${formBox}`} value="" disabled>
+            <option className="text-black" value="" disabled>
               Service Type*
             </option>
-            <option className={`${formBox}`} value="care">
+            <option className="text-black" value="care">
               Home Care
             </option>
-            <option className={`${formBox}`} value="medical">
+            <option className="text-black" value="medical">
               Medical Support
             </option>
-            <option className={`${formBox}`} value="consultation">
+            <option className="text-black" value="consultation">
               Consultation
             </option>
           </select>

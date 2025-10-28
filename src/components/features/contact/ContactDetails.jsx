@@ -49,7 +49,7 @@ export default function ContactDetails({ pre_title: dynamicPreTitle, title }) {
   return (
     <section className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
-        <Heading size="heading1" as="h2" className="leading-none text-center">
+        <Heading sizes="heading1" as="h2" className="leading-none text-center">
           Contact Information
         </Heading>
 
@@ -72,8 +72,8 @@ export default function ContactDetails({ pre_title: dynamicPreTitle, title }) {
               </div>
 
               <Heading
-                as={"h3"}
-                size="heading3"
+                as={"h5"}
+                size="heading5"
                 className="font-bold text-lg mb-2 group-hover:text-white"
               >
                 {card.title}
