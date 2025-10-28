@@ -2,7 +2,7 @@ import InnerBanner from '@/components/common/InnerBanner'
 import PrivacyPolicySection from '@/components/features/privacy/Policies'
 import React from 'react'
 
-export default function PrivacyPolicy() {
+export default function TermAndCOnditions() {
   return (
     <div>
        <InnerBanner

@@ -1,97 +1,95 @@
 "use client";
 
-import { Heading, SubTitle } from "@/components/layout/Heading";
-import { motion } from "framer-motion";
-import { MapPin, Clock, Mail, Car } from "lucide-react";
+import {
+  ClockBlueOutline,
+  MailBlueOutline,
+  MapPinWithBg,
+  PhoneBlueOutline,
+} from "@/components/helpers/svg";
+import { Heading } from "@/components/layout/Heading";
+import { Text } from "@/components/layout/Text";
+import { renderHtml } from "@/utils/parseHtml";
+import { MapPin, Clock, Mail, Car, Phone } from "lucide-react";
 
+// Centralized data array
 const contactCards = [
   {
     id: 1,
-    icon: "location", // we will handle actual icon during UI
+    icon: <MapPin />,
     title: "Location",
-    details: ["2nd Floor, 23 Lockyer Street,", "Plymouth, PL1 2QW"],
+    details: "2nd Floor, 23 Lockyer Street,</br> Plymouth, PL1 2QW",
   },
   {
     id: 2,
-    icon: "clock",
+    icon: <Clock />,
     title: "Open Hours",
-    details: ["Mon - Fri: 8 AM to 8 PM", "Sat: 9 AM to 4 PM"],
+    details: "Mon - Fri: 8 AM to 8 PM, Sat: 9 AM to 4 PM",
   },
   {
     id: 3,
-    icon: "email",
+    icon: <Mail />,
     title: "Email",
-    details: ["plymouth@massiscareagency.co.uk", "0782 444 39 49"],
+    details: `plymouth@massiscareagency.co.uk career@massiscareagency.co.uk`,
   },
   {
     id: 4,
-    icon: "car",
-    title: "Parking",
-    details: ["Free on Street", "Free on Premises"],
+    icon: <Phone />,
+    title: "Phone",
+    details: "01752 418385, 0782 444 39 49",
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
+const pre_title = `<p>Mass Care Agency is a registered nursing agency. We are dedicated
+to the health profession, care industry all over the UK by supplying quality health care professionals to fulfill your staffing
+needs when you require, and we are available 24 hours a day 7 days a week.</p>`;
 
-const icons = {
-  location: MapPin,
-  clock: Clock,
-  email: Mail,
-  car: Car,
-};
+export default function ContactDetails({ pre_title: dynamicPreTitle, title }) {
+  const displayPreTitle = dynamicPreTitle || pre_title;
 
-export default function ContactDetails({ pre_title, title }) {
   return (
-    <section className="py-[50px_70px]">
-      <div className="container">
-        {/* Heading */}
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <div className="flex items-end justify-between mb-[35px] lg:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] flex-wrap gap-[20px]">
-            <div className="max-w-[650px]">
-              <SubTitle size="SubTitle" as="div">
-                {pre_title || "Testimonials"}
-              </SubTitle>
-              <Heading size="heading1" as="div" className="!mb-0">
-                {title || "What Our Patients Say About Us"}
-              </Heading>
-            </div>
-          </div>
-        </motion.div>
+    <section className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <Heading size="heading1" as="h2" className="leading-none text-center">
+          Contact Information
+        </Heading>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {contactCards.map((item) => {
-            const IconComponent = icons[item.icon];
+        <Text
+          as="div"
+          size="text1"
+          className="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-sm md:text-base"
+        >
+          {renderHtml(displayPreTitle)}
+        </Text>
 
-            return (
-              <div key={item.id} className="bg-[#F3F7FF] transition-all duration-300 rounded-2xl p-8 cursor-pointer group">
-                {/* Icon */}
-                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-[#212121] ">
-                  <IconComponent className="text-white  transition" size={28} />
-                </div>
-
-                {/* Title */}
-                <Heading size="heading4" as="p" className="!mt-6 !mb-2">
-                  {item.title || "What Our Patients Say About Us"}
-                </Heading>
-
-                {/* Details */}
-                <div className="space-y-1">
-                  {item.details.map((line, index) => (
-                    <p key={index} className="text-[#4A4A4A]  text-sm leading-relaxed transition">
-                      {line}
-                    </p>
-                  ))}
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {contactCards.map((card) => (
+            <div
+              key={card.id}
+              className="group bg-blue-50 rounded-2xl p-6 hover:shadow-lg hover:bg-base2 transition-shadow"
+            >
+              <div className="w-12 h-12 bg-base2 text-white group-hover:bg-white group-hover:text-base2 rounded-full flex items-center justify-center mb-4">
+                {card.icon}
               </div>
-            );
-          })}
+
+              <Heading
+                as={"h3"}
+                size="heading3"
+                className="font-bold text-lg mb-2 group-hover:text-white"
+              >
+                {card.title}
+              </Heading>
+
+              <div className="text-sm text-gray-700 group-hover:text-white">
+                <Text
+                  as="p"
+                  size="text1"
+                  className="break-words group-hover:text-white"
+                >
+                  {renderHtml(card.details)}
+                </Text>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

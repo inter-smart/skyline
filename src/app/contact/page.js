@@ -17,13 +17,8 @@ export default function ContactUsPage() {
         }
       />
       <ContactDetails />
-      {/* <ContactFormSection /> */}
       <EnquirySection />
-      <FaqSection
-        title={"Frequently asked questions"}
-        description={"<p>Have a question? We've got answers.</p>"}
-      />
-
+   
     </>
   );
 }

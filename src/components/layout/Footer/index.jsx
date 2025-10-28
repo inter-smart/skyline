@@ -176,7 +176,7 @@ export default function index() {
                                                 </li>
                                                 <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                                                     <Link
-                                                        href="#"
+                                                        href="/terms-and-conditions"
                                                         className={`${menuLink}`} aria-label="menuLink" >
                                                         Terms & conditions
                                                     </Link>
@@ -227,7 +227,7 @@ export default function index() {
                                     </li>
                                     <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                                         <Link
-                                            href="#"
+                                            href="/terms-and-conditions"
                                             className={`${menuLink}`} aria-label="menuLink" >
                                             Terms & conditions
                                         </Link>
@@ -284,7 +284,7 @@ export default function index() {
                                                 </li>
                                                 <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                                                     <Link
-                                                        href="#"
+                                                        href="/terms-and-conditions"
                                                         className={`${menuLink}`} aria-label="menuLink" >
                                                         Terms & conditions
                                                     </Link>
@@ -335,7 +335,7 @@ export default function index() {
                                     </li>
                                     <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                                         <Link
-                                            href="#"
+                                            href="/terms-and-conditions"
                                             className={`${menuLink}`} aria-label="menuLink" >
                                             Terms & conditions
                                         </Link>

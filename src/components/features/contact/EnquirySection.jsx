@@ -4,13 +4,10 @@ import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import { Button } from "@/components/ui/button";
 import PhoneInput from "@/components/ui/phone-input";
+import ContactFormSection from "./ContactForm";
 
 
 export default function EnquirySection() {
-  const formBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px] px-[10px] px-[15px] 3xl:px-[20px] flex items-center`;
-  const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white mx-[10px] w-[calc(100%-15px)] 
-outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 
-           focus-visible:shadow-none"`;
 
   return (
     <section className="w-full py-16 bg-white">
@@ -34,7 +31,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
               type and scrambled it to make a type specimen book.
             </Text>
 
-            <div className="space-y-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[10px] mt-[44px]">
+            <div className="space-y-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[10px] mt-[44px]">
               {/* Emergency */}
               <div className="flex items-start space-x-3 ">
                 <span className="text-blue-600 text-lg">📞</span>
@@ -80,59 +77,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="bg-base2 rounded-2xl p-8 shadow-xl text-white">
-            <Heading size="heading3" as="h3" className="text-2xl font-bold mb-6 text-center">
-              Contact Form
-            </Heading>
-            <form className="space-y-5">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Name*"
-                  className={`${formBox}`}
-                />
-              </div>
-
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email*"
-                  className={`${formBox}`}
-                />
-              </div>
-
-              <div className={`${formBox}`}>
-                <PhoneInput />
-              </div>
-              <div>
-                <select className={`${formBox}`} defaultValue="">
-                  <option className={`${formBox}`} value="" disabled>
-                    Service Type*
-                  </option>
-                  <option className={`${formBox}`} value="care">Home Care</option>
-                  <option className={`${formBox}`} value="medical">Medical Support</option>
-                  <option className={`${formBox}`} value="consultation">Consultation</option>
-                </select>
-              </div>
-
-              <div>
-                <textarea
-                  placeholder="Message"
-                  rows={4}
-                  className={`${formBox}`}
-                ></textarea>
-              </div>
-              <div className="w-full p-[10px] mt-[15px]">
-                <Button
-                  className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] tracking-wider btn-base1 
-                                hover bg-white text-base1 rounded-[3px] 2xl:h-[40px] 3xl:h-[50px] 2xl:min-w-[185px] 3xl:min-w-[235px] hover:text-white"
-                  aria-label="consultation_btn"
-                >
-                  book consultation
-                </Button>
-              </div>
-            </form>
-          </div>
+    <ContactFormSection />
         </div>
       </div>
     </section>
