@@ -12,6 +12,120 @@ import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
 
+
+// Map template keys to components
+const TEMPLATE_COMPONENTS = {
+  "template-1": (section) => (
+    <FeaturedSection
+      path={section?.service_section_cms?.image_value}
+      alt={section?.service_section_cms?.image_alt_text_value}
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      button_text={section?.service_section_cms?.button_text}
+      button_link={section?.service_section_cms?.button_link}
+    />
+  ),
+
+  "template-2": (section) => (
+    <WhyChooseUsSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      why_choose_list={section?.service_section_items}
+    />
+  ),
+
+  "template-3": (section) => (
+    <ConditionSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      conditionData={section?.service_section_items}
+    />
+  ),
+
+  "template-4": (section) => (
+    <OurTreatmentsection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      treatments={section?.service_section_items}
+    />
+  ),
+
+  "template-5": (section) => (
+    <MethodUsedSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      why_choose_list={section?.service_section_items}
+    />
+  ),
+
+  "template-6": (section) => (
+    <MultidisciplinarySection
+      path={section?.service_section_cms?.image_value}
+      alt={section?.service_section_cms?.image_alt_text_value}
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      procedure_list={section?.service_section_items}
+    />
+  ),
+
+  "template-7": (section) => (
+    <PatientJourneySection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      Disciplinary_list={section?.service_section_items}
+    />
+  ),
+
+  "template-9": (section) => (
+    <PricingInsuranceSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      plan_benefit_list={section?.service_section_items}
+    />
+  ),
+
+  "template-10": (section) => (
+    <FaqSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      faqData={section?.service_section_items}
+    />
+  ),
+
+  "template-11": (section, related_services_list) => (
+    <RelatedSection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      services={related_services_list}
+    />
+  ),
+
+  "template-12": (section) => (
+    <AppointmentSection
+      bannerImage="/images/serviceDetailBg.jpg"
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      description={section?.service_section_cms?.description}
+      path={section?.service_section_cms?.image_value}
+      alt={section?.service_section_cms?.image_alt_text_value || "Appointment"}
+      button_link={section?.service_section_cms?.button_link}
+      button_text={section?.service_section_cms?.button_text}
+    />
+  ),
+};
+
+
+
+
 export default async function Service({ params }) {
   const { data, error } = await fetchFromAPI(
     `service-details?slug=${params.slug}`
@@ -37,9 +151,6 @@ export default async function Service({ params }) {
   } = data;
 
   // Helper to find a section by template key
-  const getSectionByKey = (key) =>
-    service_sections?.find((s) => s.service_section_template?.key === key);
-
   return (
     <>
       {/* ✅ Hero Section */}
@@ -54,162 +165,18 @@ export default async function Service({ params }) {
         />
       )}
 
-      {/* ✅ Featured Section - Template 1 */}
-      {getSectionByKey("template-1") && (
-        <FeaturedSection
-          path={getSectionByKey("template-1")?.service_section_cms?.image_value}
-          alt={
-            getSectionByKey("template-1")?.service_section_cms
-              ?.image_alt_text_value
-          }
-          sub_title={getSectionByKey("template-1")?.title}
-          title={getSectionByKey("template-1")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-1")?.service_section_cms?.description
-          }
-          button_text={
-            getSectionByKey("template-1")?.service_section_cms?.button_text
-          }
-          button_link={
-            getSectionByKey("template-1")?.service_section_cms?.button_link
-          }
-        />
-      )}
 
-      {/* ✅ WhyChooseUsSection - Template 2 */}
-      {getSectionByKey("template-2") && (
-        <WhyChooseUsSection
-          sub_title={getSectionByKey("template-2")?.title}
-          title={getSectionByKey("template-2")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-2")?.service_section_cms?.description
-          }
-          why_choose_list={getSectionByKey("template-2")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ ConditionSection - Template 3 */}
-      {getSectionByKey("template-3") && (
-        <ConditionSection
-          sub_title={getSectionByKey("template-3")?.title}
-          title={getSectionByKey("template-3")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-3")?.service_section_cms?.description
-          }
-          conditionData={getSectionByKey("template-3")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ OurTreatmentsection - Template 4 */}
-      {getSectionByKey("template-4") && (
-        <OurTreatmentsection
-          sub_title={getSectionByKey("template-4")?.title}
-          title={getSectionByKey("template-4")?.service_section_cms?.title}
-          treatments={getSectionByKey("template-4")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ MethodUsedSection - Template 5 */}
-      {getSectionByKey("template-5") && (
-        <MethodUsedSection
-          sub_title={getSectionByKey("template-5")?.title}
-          title={getSectionByKey("template-5")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-5")?.service_section_cms?.description
-          }
-          why_choose_list={getSectionByKey("template-5")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ Multidisciplinary Section - Template 6 */}
-      {getSectionByKey("template-6") && (
-        <MultidisciplinarySection
-          path={getSectionByKey("template-6")?.service_section_cms?.image_value}
-          alt={
-            getSectionByKey("template-6")?.service_section_cms
-              ?.image_alt_text_value
-          }
-          sub_title={getSectionByKey("template-6")?.title}
-          title={getSectionByKey("template-6")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-6")?.service_section_cms?.description
-          }
-          procedure_list={getSectionByKey("template-6")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ PatientJourney Section - Template 7 */}
-      {getSectionByKey("template-7") && (
-        <PatientJourneySection
-          sub_title={getSectionByKey("template-7")?.title}
-          title={getSectionByKey("template-7")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-7")?.service_section_cms?.description
-          }
-          Disciplinary_list={getSectionByKey("template-7")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ PricingInsuranceSection - Template 9 */}
-      {getSectionByKey("template-9") && (
-        <PricingInsuranceSection
-          sub_title={getSectionByKey("template-9")?.title}
-          title={getSectionByKey("template-9")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-9")?.service_section_cms?.description
-          }
-          plan_benefit_list={
-            getSectionByKey("template-9")?.service_section_items
-          }
-        />
-      )}
-
-      {/* ✅ FaqSection - Template 10 */}
-      {getSectionByKey("template-10") && (
-        <FaqSection
-          sub_title={getSectionByKey("template-10")?.title}
-          title={getSectionByKey("template-10")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-10")?.service_section_cms?.description
-          }
-          faqData={getSectionByKey("template-10")?.service_section_items}
-        />
-      )}
-
-      {/* ✅ RelatedSection - Template 11 */}
-      {getSectionByKey("template-11") && (
-        <RelatedSection
-          sub_title={getSectionByKey("template-11")?.title}
-          title={getSectionByKey("template-11")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-11")?.service_section_cms?.description
-          }
-          services={related_services_list}
-        />
-      )}
-
-      {/* ✅ Appointment Section - Template 12 */}
-      {getSectionByKey("template-12") && (
-        <AppointmentSection
-          bannerImage="/images/serviceDetailBg.jpg"
-          sub_title={getSectionByKey("template-12")?.title}
-          title={getSectionByKey("template-12")?.service_section_cms?.title}
-          description={
-            getSectionByKey("template-12")?.service_section_cms?.description
-          }
-          path={getSectionByKey("template-12")?.service_section_cms?.image_value}
-          alt={
-            getSectionByKey("template-12")?.service_section_cms
-              ?.image_alt_text_value || "test"
-          }
-          button_link={
-            getSectionByKey("template-12")?.service_section_cms?.button_link
-          }
-          button_text={
-            getSectionByKey("template-12")?.service_section_cms?.button_text
-          }
-        />
-      )}
+      {/* ✅ Dynamically Render All Templates */}
+      {service_sections?.map((section) => {
+        const key = section?.service_section_template?.key;
+        const RenderComponent = TEMPLATE_COMPONENTS[key];
+        if (!RenderComponent) return null; // skip unknown template
+        return (
+          <div key={key}>
+            {RenderComponent(section, related_services_list)}
+          </div>
+        );
+      })}
     </>
   );
 }
