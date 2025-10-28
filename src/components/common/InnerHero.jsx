@@ -32,7 +32,7 @@ export default function InnerHero({
                     <source media="(max-width: 640px)" srcSet={path_mob} />
                     <Image
                         src={path}
-                        alt={alt || "sample image"}
+                        alt={alt || "image alt text"}
                         fill
                         sizes="1920px"
                         className="-z-2 object-cover"

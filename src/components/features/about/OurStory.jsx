@@ -25,9 +25,9 @@ export default function OurStory({ preTitle, title, description, img, alt }) {
               <Heading size="heading1" as="div">
                 {title}
               </Heading>
-              <p className="line-clamp-4">
+              <div className="line-clamp-4">
                  {renderHtml(description)}
-              </p>
+              </div>
             </div>
           </div>
         </div>

@@ -130,7 +130,7 @@ export default function MethodUsedSection({
                                         {item?.title}
                                     </Heading>
                                     <Text
-                                        as="p"
+                                        as="div"
                                         size="text2"
                                         className="text-center xs:text-start text-[#212121] mb-[5px]"
                                     >
