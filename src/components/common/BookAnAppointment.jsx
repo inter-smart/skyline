@@ -109,7 +109,7 @@ export default function BookAnAppointment() {
         fetchDropdownDataAPI("get-services"),
         fetchDropdownDataAPI("get-reason-for-consultations"),
         fetchDropdownDataAPI("get-insurance-providers"),
-      ]);
+      ]);   ``
 
       setServiceOptions(servicesData.data);
       setReasonOptions(reasonsData.data);

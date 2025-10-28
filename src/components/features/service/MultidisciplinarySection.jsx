@@ -41,19 +41,18 @@ export default function ProcedureSection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal text-[#1E1E1E]">
                         {renderHtml(description)}
                     </Text>
                     <ul className="">
                         {procedure_list?.map((item, index) => (
-                            <li className="w-full block bg-[linear-gradient(90deg,rgba(197,221,255,0.31)_6.73%,rgba(255,255,255,0.31)_100%)] rounded-[4px] mb-[10px]">
+                            <li key={index} className="w-full block bg-[linear-gradient(90deg,rgba(197,221,255,0.31)_6.73%,rgba(255,255,255,0.31)_100%)] rounded-[4px] mb-[10px]">
                                 {item?.title}
                             </li>
                         ))}
                     </ul>
-
                 </div>
 
                 <div className="w-full md:w-[55%] xl:w-[52%]">

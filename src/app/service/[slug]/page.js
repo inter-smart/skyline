@@ -172,7 +172,7 @@ export default async function Service({ params }) {
         const RenderComponent = TEMPLATE_COMPONENTS[key];
         if (!RenderComponent) return null; // skip unknown template
         return (
-          <div key={key}>
+          <div key={section?.id}>
             {RenderComponent(section, related_services_list)}
           </div>
         );

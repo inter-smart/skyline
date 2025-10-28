@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { parseHtmlWithoutClasses } from "@/utils/parseHtml";
+import { renderHtml } from "@/utils/parseHtml";
 
   const values = [
     {
@@ -107,7 +107,7 @@ export default function OurvalueSection({
                   </AccordionTrigger>
 
                   <AccordionContent className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] font-normal lg:max-w-[70%] p-0 pt-[15px] xl:pt-[25px]">
-                    {parseHtmlWithoutClasses(item.description)}
+                    {renderHtml(item.description)}
                   </AccordionContent>
                 </AccordionItem>
               ))}
