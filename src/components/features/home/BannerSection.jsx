@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
+import { useBookingFormContext } from "@/context/BookingFormContext";
 
 const slides = [
   {
@@ -34,7 +35,13 @@ const textAnimation = {
 };
 
 export default function HeroSlider({ sliders = slides }) {
+  const { isOpen, openDialog, closeDialog } = useBookingFormContext();
   const [currentSlide, setCurrentSlide] = useState(1);
+
+  const handleClick = () => {
+    console.log("clicked");
+    openDialog();
+  };
 
   return (
     <section className="relative w-full h-[520px] sm:h-[calc(100vh-115px)] overflow-hidden">
@@ -102,6 +109,15 @@ export default function HeroSlider({ sliders = slides }) {
                       <Link href={slide?.action_url}>{slide?.action_title || "Book Appointment"}</Link>
                     </motion.button>
                   )}
+                  <motion.button
+                    onClick={() => handleClick()}
+                    variants={textAnimation}
+                    transition={{ delay: 0.9 }}
+                    className="btn-base1 hover transitiona-all duration-100"
+                    aria-label="appointment"
+                  >
+                    {"Appointment"}
+                  </motion.button>
                 </motion.div>
               </div>
             </div>
