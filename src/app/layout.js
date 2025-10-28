@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
 import { Toaster } from "react-hot-toast";
 import { BookingFormContextProvider } from "@/context/BookingFormContext";
+import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -72,15 +73,19 @@ const unna = UnnaFont({
   variable: "--font-unna",
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const { data } = await fetchFromAPI("site-settings");
+  const { data: services } = await fetchDropdownDataAPI("get-services");
+  const { site_settings, social_links } = data;
+
   return (
     <html lang="en">
       <body className={` ${graphik.variable}  ${unna.variable}`}>
         <BookingFormContextProvider>
-          <Header />
+          <Header site_settings={site_settings} social_links={social_links} services={services} />
           <main className="flex-grow">{children}</main>
           <WidgetSection />
-          <Footer />
+          <Footer site_settings={site_settings} social_links={social_links} />
           <Toaster position="top-right" />
         </BookingFormContextProvider>
       </body>

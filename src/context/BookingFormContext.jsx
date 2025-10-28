@@ -6,11 +6,22 @@ const BookingFormContext = createContext();
 
 export function BookingFormContextProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false); // Fix: isOpen not isopen
+  const [data, setData] = useState({
+    slug: null,
+    source: null,
+  });
 
-  const openDialog = () => setIsOpen(true); // Fix: renamed from openForm
-  const closeDialog = () => setIsOpen(false); // Fix: renamed from closeForm
+  const openDialog = (data = {}) => {
+    setData(data);
+    setIsOpen(true);
+  };
 
-  return <BookingFormContext.Provider value={{ isOpen, openDialog, closeDialog }}>{children}</BookingFormContext.Provider>;
+  const closeDialog = () => {
+    setIsOpen(false);
+    setData({ slug: null, source: null }); // reset on close
+  };
+
+  return <BookingFormContext.Provider value={{ isOpen, openDialog, closeDialog, data }}>{children}</BookingFormContext.Provider>;
 }
 
 export const useBookingFormContext = () => {

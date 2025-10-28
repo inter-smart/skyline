@@ -29,22 +29,40 @@ const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular te
 outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 
            focus-visible:shadow-none bg-transparent border-none`;
 
-// Form Schema with Zod validation
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone_number: z.string().optional(),
-  country_code: z.string().optional(),
-  country: z.string().optional(),
-  service_id: z.string().min(1, "Please select a service"),
-  reason_for_consultation_id: z.string().min(1, "Please select a reason_for_consultation_id"),
-  insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
-  additionalNotes: z.string().optional(),
-});
-
 export default function BookAnAppointment() {
-  const { isOpen, openDialog, closeDialog } = useBookingFormContext();
+  const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
+  const { slug, source } = data;
   const [dropDownFetching, setDropDownFetching] = useState(true);
+
+  const isConsultant = source === "consultants";
+
+  const formSchema = z
+    .object({
+      name: z.string().min(2, "Name must be at least 2 characters"),
+      email: z.string().email("Please enter a valid email address"),
+      phone_number: z.string().optional(),
+      country_code: z.string().optional(),
+      country: z.string().optional(),
+      service_id: z.string().optional(), // Always optional in base schema
+      reason_for_consultation_id: z.string().min(1, "Please select a reason_for_consultation_id"),
+      insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
+      additionalNotes: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        // If condition is true, service_id is required
+        const shouldRequireServiceId = !isConsultant; // Your condition
+
+        if (shouldRequireServiceId) {
+          return Boolean(data.service_id);
+        }
+        return true;
+      },
+      {
+        message: "Please select a service",
+        path: ["service_id"], // Points to the field
+      }
+    );
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -82,12 +100,12 @@ export default function BookAnAppointment() {
       ...data,
       reason_for_consultation_id: serviceReason,
       insurance_provider_id: insurance_provider_id,
-      service_id: service,
+      service_id: isConsultant ? null : service,
+      consultant_id: isConsultant ? toNumber(slug) : null,
     };
 
     try {
-      const postData = await postToAPI("appointments", formattedData);
-      const result = postData.data;
+      await postToAPI("appointments", formattedData);
 
       // ✅ Reset only after success
       form.reset();
@@ -105,7 +123,8 @@ export default function BookAnAppointment() {
         fetchDropdownDataAPI("get-services"),
         fetchDropdownDataAPI("get-reason-for-consultations"),
         fetchDropdownDataAPI("get-insurance-providers"),
-      ]);   ``
+      ]);
+      ``;
 
       setServiceOptions(servicesData.data);
       setReasonOptions(reasonsData.data);
@@ -115,6 +134,11 @@ export default function BookAnAppointment() {
     } finally {
       setDropDownFetching(false);
     }
+  };
+
+  const handleClose = () => {
+    form.reset(); // Clears all fields, errors, and touched states
+    closeDialog();
   };
 
   useEffect(() => {
@@ -158,7 +182,7 @@ export default function BookAnAppointment() {
           </div>
         </AlertDialogHeader>
         <AlertDialogCancel
-          onClick={closeDialog}
+          onClick={handleClose}
           className="bg-transparent border-none cursor-pointer absolute top-[25px] right-[25px] w-[20px] h-[20px] flex items-center group hover:bg-transparent"
         >
           <svg
@@ -274,46 +298,49 @@ export default function BookAnAppointment() {
                 </div>
 
                 {/* Service Select Dropdown */}
-                <div className={`w-full 2xs:w-1/2 p-[5px] 2xl:p-[10px]`}>
-                  <FormField
-                    control={form.control}
-                    name="service_id"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className={`${selectBox}`}>
-                          <Select onValueChange={field.onChange} value={field.value ? String(field.value) : ""}>
-                            <FormControl>
-                              <SelectTrigger
-                                className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
-                              >
-                                <SelectValue placeholder="Select Service*" />
-                                <div>
-                                  <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
-                                    <path
-                                      d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                </div>
-                              </SelectTrigger>
-                            </FormControl>
 
-                            <SelectContent className="bg-white max-h-48 overflow-y-auto">
-                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
-                              {serviceOptions?.map((option) => (
-                                <SelectItem key={option.id} value={String(option.id)}>
-                                  {option.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
+                {!isConsultant && (
+                  <div className={`w-full 2xs:w-1/2 p-[5px] 2xl:p-[10px]`}>
+                    <FormField
+                      control={form.control}
+                      name="service_id"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className={`${selectBox}`}>
+                            <Select onValueChange={field.onChange} value={field.value ? String(field.value) : ""}>
+                              <FormControl>
+                                <SelectTrigger
+                                  className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
+                                >
+                                  <SelectValue placeholder="Select Service*" />
+                                  <div>
+                                    <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
+                                      <path
+                                        d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
+                                        fill="currentColor"
+                                      />
+                                    </svg>
+                                  </div>
+                                </SelectTrigger>
+                              </FormControl>
 
-                        <FormMessage className="text-[10px] text-red-300 mt-1 ml-2" />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                              <SelectContent className="bg-white max-h-48 overflow-y-auto">
+                                {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
+                                {serviceOptions?.map((option) => (
+                                  <SelectItem key={option.id} value={String(option.id)}>
+                                    {option.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <FormMessage className="text-[10px] text-red-300 mt-1 ml-2" />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
 
                 {/* Reason Select Dropdown */}
                 <div className={`w-full p-[5px] 2xl:p-[10px]`}>

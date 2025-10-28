@@ -16,11 +16,7 @@ const items = [
     image: "/images/consult1.jpg",
     experience: "15+ years",
     availability: "Same Day",
-    specialization: [
-      "Adult ADHD Assessment",
-      "Depression & Anxiety",
-      "Medication Management",
-    ],
+    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
   },
   {
     id: 2,
@@ -30,11 +26,7 @@ const items = [
     image: "/images/consult1.jpg",
     experience: "15+ years",
     availability: "Same Day",
-    specialization: [
-      "Adult ADHD Assessment",
-      "Depression & Anxiety",
-      "Medication Management",
-    ],
+    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
   },
 ];
 
@@ -50,21 +42,16 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
   };
 
   const filtered = consultants.filter((item) => {
-    const nameMatch = item.name
-      ?.toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const designationMatch = item.designation
-      ?.toLowerCase()
-      .includes(searchTerm.toLowerCase());
+    const nameMatch = item.name?.toLowerCase().includes(searchTerm.toLowerCase());
+    const designationMatch = item.designation?.toLowerCase().includes(searchTerm.toLowerCase());
     return nameMatch || designationMatch;
   });
 
-  const handleClick = (text, link) => {
-    if (text) {
-      router.push(link || "/");
-    } else {
-      openDialog();
-    }
+  const handleClick = (id) => {
+    openDialog({
+      slug: id,
+      source: "consultants",
+    });
   };
 
   const handleLoadMore = () => {
@@ -79,10 +66,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
         <div className="flex flex-wrap -m-[4px] md:-m-[8px] 2xl:-m-[20px] 3xl:-m-[30px]">
           {visibleConsultants?.length > 0 ? (
             visibleConsultants?.map((item) => (
-              <div
-                key={item?.id}
-                className="w-full 2xs:w-1/2 p-[4px] md:p-[8px] 2xl:p-[20px] 3xl:p-[30px]"
-              >
+              <div key={item?.id} className="w-full 2xs:w-1/2 p-[4px] md:p-[8px] 2xl:p-[20px] 3xl:p-[30px]">
                 <div className="w-full h-full p-[8px] xl:p-[15px] 3xl:p-[20px] rounded-[4px] border-[#D6E2ED] border overflow-hidden bg-white flex flex-wrap">
                   {/* Left Section */}
                   <div className="w-full lg:w-[165px] xl:w-[210px] 2xl:w-[250px] 3xl:w-[315px] lg:h-full">
@@ -121,9 +105,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                     >
                       {item?.designation}
                     </div>
-                    <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#3D3D3D] font-light uppercase">
-                      {item.qualification}
-                    </div>
+                    <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#3D3D3D] font-light uppercase">{item.qualification}</div>
 
                     <div className="w-full mt-[15px]">
                       <ul className="mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">
@@ -133,12 +115,8 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                                                     before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
                                                     before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]"
                           >
-                            <strong className="font-medium">
-                              {item.experience>0
-                                ? item?.experience + "+ years"
-                                : item.experience}
-                            </strong>{" "}
-                            NHS & Private experience
+                            <strong className="font-medium">{item.experience > 0 ? item?.experience + "+ years" : item.experience}</strong> NHS &
+                            Private experience
                           </li>
                         )}
 
@@ -163,10 +141,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                         Specialization
                       </div>
                       <ul className="flex flex-wrap items-center -m-[4px] mb-[10px] 3xl:mb-[20px]">
-                        {(expanded[item.id]
-                          ? item?.special_interests
-                          : item?.special_interests?.slice(0, 2)
-                        ).map((spec, idx) => (
+                        {(expanded[item.id] ? item?.special_interests : item?.special_interests?.slice(0, 2)).map((spec, idx) => (
                           <li key={idx} className="p-[4px]">
                             <div className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border border-[rgba(33,33,33,0.3)] p-[5px] 3xl:p-[8px] rounded-[40px] flex items-center justify-center w-full h-full">
                               {spec?.name}
@@ -196,10 +171,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                           </Link>
                         </div>
                         <div className="p-[4px] 2xl:p-[8px] flex-grow">
-                          <div
-                            onClick={() => handleClick(null, "/booking")}
-                            className="w-full btn-base1 tracking-widest rounded-[3px]"
-                          >
+                          <div onClick={() => handleClick(`${item?.id}`)} className="w-full btn-base1 tracking-widest rounded-[3px]">
                             Book Consultation
                           </div>
                         </div>

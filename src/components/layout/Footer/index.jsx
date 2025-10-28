@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { renderHtml } from "@/utils/parseHtml";
 
 const menuLink = `text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block
     before:absolute before:top-[5px] 2xl:before:top-[5px] 3xl:before:top-[8px] pl-[15px] transition-all duration-100 hover:opacity-70 
     before:left-0 before:content-[''] before:w-[4px] before:h-[4px] before:rounded-full before:bg-white`;
 
-export default function index() {
+export default function index({ site_settings, social_links }) {
   return (
     <footer className="w-full bg-base2 pt-[80px] relative z-0">
       <Image src="/images/footerBg.png" width="1920" height="850" className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt="footerBg" />
@@ -18,7 +19,12 @@ export default function index() {
           <div className="flex flex-wrap items-center ">
             <div className="w-[150px] lg:w-[190px] xl:w-[240px] 2xl:w-[290px] 3xl:w-[360px] max-sm:m-auto">
               <div className="xl:max-w-[240px] 2xl:max-w-[285px] 3xl:max-w-[350px]">
-                <Image src="/images/logo.svg" width="360" height="165" alt="logo" />
+                <Image
+                  src={site_settings?.header_logo_value || "/images/logo.svg"}
+                  alt={site_settings?.header_logo_alt_text_value || "logo"}
+                  width="360"
+                  height="165"
+                />
               </div>
             </div>
             <div
@@ -26,7 +32,7 @@ export default function index() {
                          flex-wrap items-center justify-between max-sm:justify-center"
             >
               <div className="text-[22px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-base1 font-normal font-unna ">
-                Excellence in Healthcare
+                {site_settings?.footer_tagline || "Excellence in Healthcare"}
               </div>
 
               {/* social Links */}
@@ -37,125 +43,21 @@ export default function index() {
                   Follow us on
                 </div>
                 <ul className="flex items-center max-sm:w-full  ">
-                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                    <a href="#" className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                      <div className="w-[7px] h-[13px] flex items-center justify-center">
-                        <svg viewBox="0 0 8.794 17.725" className="fill-white">
-                          <path
-                            id="Forma_1_copy_7"
-                            data-name="Forma 1 copy 7"
-                            d="M132.987,7392.83l-2.109,0c-2.37,0-3.9,1.712-3.9,4.362v2.011h-2.121a.347.347,0,0,0-.332.36v2.916a.347.347,0,0,0,.332.361h2.121v7.352a.349.349,0,0,0,.332.362h2.767a.348.348,0,0,0,.332-.362v-7.352h2.48a.347.347,0,0,0,.331-.361v-2.916a.376.376,0,0,0-.1-.254.314.314,0,0,0-.235-.106h-2.48v-1.705c0-.819.179-1.233,1.158-1.233h1.421a.35.35,0,0,0,.331-.364v-2.7A.348.348,0,0,0,132.987,7392.83Z"
-                            transform="translate(-124.523 -7392.826)"
-                          ></path>
-                        </svg>
-                      </div>
-                    </a>
-                  </li>
-                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                    <a href="#" className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                      <div className="w-[13px] h-[13px] flex items-center justify-center">
-                        <svg viewBox="0 0 20.992 20.992" className="fill-white">
-                          <g id="Group_183" data-name="Group 183" transform="translate(0)">
-                            <g id="Group_182" data-name="Group 182">
-                              <path
-                                id="Path_143"
-                                data-name="Path 143"
-                                d="M15.749,0H5.253A5.264,5.264,0,0,0,0,5.248v10.5a5.264,5.264,0,0,0,5.248,5.248h10.5A5.264,5.264,0,0,0,21,15.744V5.248A5.264,5.264,0,0,0,15.749,0Zm3.5,15.744a3.5,3.5,0,0,1-3.5,3.5H5.253a3.5,3.5,0,0,1-3.5-3.5V5.248a3.5,3.5,0,0,1,3.5-3.5h10.5a3.5,3.5,0,0,1,3.5,3.5v10.5Z"
-                                transform="translate(-0.005)"
-                              ></path>
-                            </g>
-                          </g>
-                          <g id="Group_185" data-name="Group 185" transform="translate(14.87 3.499)">
-                            <g id="Group_184" data-name="Group 184">
-                              <circle id="Ellipse_14" data-name="Ellipse 14" cx="1.312" cy="1.312" r="1.312"></circle>
-                            </g>
-                          </g>
-                          <g id="Group_187" data-name="Group 187" transform="translate(5.248 5.248)">
-                            <g id="Group_186" data-name="Group 186">
-                              <path
-                                id="Path_144"
-                                data-name="Path 144"
-                                d="M107.653,102.4a5.248,5.248,0,1,0,5.248,5.248A5.247,5.247,0,0,0,107.653,102.4Zm0,8.747a3.5,3.5,0,1,1,3.5-3.5A3.5,3.5,0,0,1,107.653,111.147Z"
-                                transform="translate(-102.405 -102.4)"
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                    </a>
-                  </li>
-                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                    <a href="#" className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                      <div className="w-[13px] h-[13px] flex items-center justify-center">
-                        <svg viewBox="0 0 19.995 19.112" className="fill-white">
-                          <defs>
-                            <clipPath id="clip-path">
-                              <rect id="Rectangle_91" data-name="Rectangle 91" width="19.995" height="19.112"></rect>
-                            </clipPath>
-                          </defs>
-                          <g id="Group_175" data-name="Group 175" transform="translate(0)">
-                            <g id="Group_174" data-name="Group 174" clipPath="url(#clip-path)">
-                              <path id="Path_139" data-name="Path 139" d="M2.425,0a2.234,2.234,0,1,0-.056,4.456H2.4A2.235,2.235,0,1,0,2.425,0"></path>
-                              <rect
-                                id="Rectangle_90"
-                                data-name="Rectangle 90"
-                                width="4.286"
-                                height="12.895"
-                                transform="translate(0.253 6.216)"
-                              ></rect>
-                              <path
-                                id="Path_140"
-                                data-name="Path 140"
-                                d="M229.148,189.108a5.37,5.37,0,0,0-3.863,2.173v-1.87H221v12.9h4.286v-7.2a2.938,2.938,0,0,1,.141-1.046,2.346,2.346,0,0,1,2.2-1.567c1.551,0,2.171,1.183,2.171,2.916v6.9h4.286v-7.394c0-3.961-2.115-5.8-4.935-5.8"
-                                transform="translate(-214.088 -183.194)"
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                    </a>
-                  </li>
-                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                    <a href="#" className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                      <div className="w-[13px] h-[13px] flex items-center justify-center">
-                        <svg viewBox="0 0 19.278 19.683" className="fill-white">
-                          <defs>
-                            <clipPath id="clip-path">
-                              <rect id="Rectangle_915" data-name="Rectangle 915" width="19.278" height="19.683"></rect>
-                            </clipPath>
-                          </defs>
-                          <g id="Group_20806" data-name="Group 20806" clipPath="url(#clip-path)">
-                            <path
-                              id="Path_101724"
-                              data-name="Path 101724"
-                              d="M19.142,19.463,15.721,14.48Q13.8,11.689,11.886,8.9h0l-.34-.553.207-.25h0c.34-.382.667-.775,1-1.162L18.365.407h0l.369-.4-.406,0c-.292,0-.585,0-.879,0h-.428l-.153.176h0Q14.019,3.5,11.172,6.815h0l-.406.452-.312-.452h0c-.326-.481-.656-.959-.985-1.439Q7.8,2.947,6.14.515L5.816,0l-.99.009c-.181,0-.362,0-.544,0H0L.481.631C.534.706.587.781.639.857L5.311,7.665Q6.3,9.112,7.3,10.56l.288.432-.2.232Q4.024,15.106.679,19c-.181.21-.354.426-.563.678.524,0,1,0,1.47,0v0h.225l.254-.308q.243-.285.487-.57,2.614-3.043,5.225-6.088h0l.558-.647.243.341h0q2.2,3.22,4.41,6.436l.555.836h.53l4.67,0h.537c-.064-.1-.1-.16-.136-.216m-2.88-.956-.161,0H14.432l-1.023-1.368h0c-2.764-4-5.557-7.971-8.339-11.953q-1.027-1.47-2.05-2.942h0L3,2.214l-.632-.92h.4l0-.005h.207c.583,0,1.165.005,1.748,0h.245l.373.515h0Q6.482,3.439,7.628,5.073,9.963,8.415,12.3,11.757l4.241,6.075.443.671-.719,0Z"
-                            ></path>
-                          </g>
-                        </svg>
-                      </div>
-                    </a>
-                  </li>
-                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                    <a href="#" className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                      <div className="w-[16px] h-[16px] flex items-center justify-center">
-                        <svg viewBox="0 0 21 15" className="fill-white">
-                          <path
-                            d="M10.4336 14.785C10.4319 14.785 10.43 14.785 10.4282 14.785C9.81093 14.7808 4.3543 14.731 
-                                                        2.80833 14.3129C1.7279 14.0225 0.875005 13.1705 0.583789 12.09C0.179271 10.5713 0.205021 7.64743 0.20783 7.41396C0.205177 
-                                                        7.18158 0.179115 4.23352 0.582541 2.70237C0.583009 2.70097 0.583321 2.69941 0.583789 2.698C0.871728 1.62974 1.74382 0.751414 2.80568 0.460198C2.80833 0.459418 2.81114 0.458793 2.81379 0.458013C4.34229 0.0563037 9.80969 0.00714343 10.4282 
-                                                        0.00292969H10.4392C11.058 0.00714343 16.5292 0.0569279 18.061 0.475648C19.1386 0.765304 19.9909 1.61617 20.2828 2.69535C20.7025 4.22759 20.6636 
-                                                        7.18204 20.6594 7.43143C20.6624 7.67708 20.6869 10.5747 20.2847 12.101C20.2844 12.1026 20.2839 12.104 20.2836 12.1054C19.9923 13.186 19.1395 14.0379
-                                                        18.0578 14.3287C18.0564 14.3292 18.0549 14.3295 18.0535 14.3299C16.5251 14.7315 11.0576 14.7807 10.4392 14.785C10.4374 14.785 10.4355 14.785 10.4336 
-                                                        14.785ZM2.12726 3.1122C1.77206 4.46372 1.80562 7.37416 1.80593 7.4035V7.42457C1.79532 8.23173 1.83262 10.5693 2.12742 11.6764C2.27038 12.2065 2.69097 
-                                                        12.6265 3.2244 12.7699C4.36507 13.0785 8.80931 13.1755 10.4336 13.1869C12.0622 13.1755 16.513 13.0811 17.6452 12.7849C18.1769 12.641 18.5961 12.2225 
-                                                        18.74 11.6917C19.0351 10.5683 19.0721 8.24219 19.0613 7.44017C19.0613 7.43175 19.0613 7.42332 19.0615 7.41489C19.0762 6.59805 19.0473 4.23321 18.7414 3.11719C18.7411 
-                                                        3.1161 18.7408 3.11501 18.7406 3.11392C18.597 2.58142 18.1763 2.16145 17.6429 2.01803C16.5133 1.70918 12.0618 1.61242 10.4336 1.60103C8.80619 1.61242 4.35976 1.70668 
-                                                        3.22408 2.00258C2.7008 2.14772 2.27069 2.58267 2.12726 3.1122ZM8.39684 10.63V4.15783L13.9902 7.39398L8.39684 10.63Z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </a>
-                  </li>
+                  {social_links?.map((social, index) => (
+                    <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
+                      <a href={social.link} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
+                        <div className="w-[7px] h-[13px] flex items-center justify-center">
+                          <Image
+                            src={social?.icon_value} // <-- replace with correct image path
+                            alt={social?.name}
+                            width={7}
+                            height={13}
+                            className="!w-[7px] !h-[13px]"
+                          />
+                        </div>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -413,9 +315,10 @@ export default function index() {
                       <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                         Location
                       </div>
-                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block`}>
-                        Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom
-                      </div>
+                      {renderHtml(
+                        site_settings?.footer_address_value || "Skyline Hospitals Coventry",
+                        "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
+                      )}
                     </div>
                     <div className="w-full mb-[20px]">
                       <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
@@ -425,16 +328,21 @@ export default function index() {
                         className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center mb-[2px]`}
                       >
                         Main:{" "}
-                        <a href="tel: 024 7XXX XXXX" className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 ">
+                        <a
+                          href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
+                          className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
+                        >
                           {" "}
-                          024 7XXX XXXX
+                          {site_settings?.main_phone_number || "024 7XXX XXXX"}
                         </a>
                       </div>
                       <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
                         Main:{" "}
-                        <a href="tel: 024 7XXX XXXX" className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 ">
-                          {" "}
-                          024 7XXX XXXX
+                        <a
+                          href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
+                          className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
+                        >
+                          {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
                         </a>
                       </div>
                     </div>
@@ -443,11 +351,11 @@ export default function index() {
                         Email
                       </div>
                       <a
-                        href="mailto:info@skylinehospitalscoventry.co.uk"
+                        href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
                         className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                          3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                       >
-                        info@skylinehospitalscoventry.co.uk
+                        {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
                       </a>
                     </div>
                   </AccordionContent>
@@ -461,9 +369,10 @@ export default function index() {
                   <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                     Location
                   </div>
-                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block`}>
-                    Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom
-                  </div>
+                  {renderHtml(
+                    site_settings?.footer_address_value || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
+                    "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
+                  )}
                 </div>
                 <div className="w-full mb-[20px]">
                   <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
@@ -473,16 +382,21 @@ export default function index() {
                     className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center mb-[2px]`}
                   >
                     Main:{" "}
-                    <a href="tel: 024 7XXX XXXX" className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 ">
-                      {" "}
-                      024 7XXX XXXX
+                    <a
+                      href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
+                      className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
+                    >
+                      {site_settings?.main_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
                   <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
-                    Main:{" "}
-                    <a href="tel: 024 7XXX XXXX" className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 ">
+                    Emergency:{" "}
+                    <a
+                      href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
+                      className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
+                    >
                       {" "}
-                      024 7XXX XXXX
+                      {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
                 </div>
@@ -491,11 +405,11 @@ export default function index() {
                     Email
                   </div>
                   <a
-                    href="mailto:info@skylinehospitalscoventry.co.uk"
+                    href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
                     className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                      3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                   >
-                    info@skylinehospitalscoventry.co.uk
+                    {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}{" "}
                   </a>
                 </div>
               </div>
@@ -548,45 +462,32 @@ export default function index() {
                       Opening Hours
                     </div>
 
-                    <div
-                      className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
-                      aria-label="email_link"
-                    >
-                      <span className="font-light">General Services</span>
-                      <span className="pl-[5px]">: Mon-Fri: 8AM-8PM</span>
-                    </div>
-                    <div
-                      className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white mb-[8px] font-normal flex items-center`}
-                      aria-label="email_link"
-                    >
-                      <span className="font-light">Emergency Care </span>
-                      <span className="pl-[5px]">: 24/7 Available</span>
-                    </div>
-                    <div
-                      className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
-                      aria-label="email_link"
-                    >
-                      <span className="font-light">Specialist Clinics </span>
-                      <span className="pl-[5px]">: Mon-Sat: 9AM-6PM</span>
-                    </div>
-                    <div
-                      className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white  font-normal mb-[8px] flex items-center`}
-                      aria-label="email_link"
-                    >
-                      <span className="font-light">Diagnostic Services </span>
-                      <span className="pl-[5px]">: Mon-Fri: 7AM-7PM</span>
-                    </div>
+                    {site_settings?.opening_hours?.map((hours, index) => (
+                      <div
+                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
+                        aria-label="email_link"
+                      >
+                        <span className="font-light">{hours?.key}</span>
+                        <span className="pl-[5px]">: {hours?.value}</span>
+                      </div>
+                    ))}
                   </AccordionContent>
                 </AccordionItem>
               </div>
               <div className="hidden sm:block">
                 <Link
-                  href="#"
+                  href={site_settings?.map_link || "#"}
                   className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden "
                   aria-label="location_link"
                 >
                   <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
-                    <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />
+                    <Image
+                      src={site_settings?.map_image_value || "/images/location.jpg"}
+                      width="330"
+                      height="150"
+                      className="w-full h-full object-cover"
+                      alt={site_settings?.map_image_alt_text_value || "location-img"}
+                    />
                   </div>
                   <div
                     className="absolute left-0 right-0 bottom-0 top-0 w-fit h-fit m-auto transition-all duration-300 text-center 
@@ -619,34 +520,15 @@ export default function index() {
                   Opening Hours
                 </div>
 
-                <div
-                  className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
-                  aria-label="email_link"
-                >
-                  <span className="font-light">General Services</span>
-                  <span className="pl-[5px]">: Mon-Fri: 8AM-8PM</span>
-                </div>
-                <div
-                  className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white mb-[8px] font-normal flex items-center`}
-                  aria-label="email_link"
-                >
-                  <span className="font-light">Emergency Care </span>
-                  <span className="pl-[5px]">: 24/7 Available</span>
-                </div>
-                <div
-                  className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
-                  aria-label="email_link"
-                >
-                  <span className="font-light">Specialist Clinics </span>
-                  <span className="pl-[5px]">: Mon-Sat: 9AM-6PM</span>
-                </div>
-                <div
-                  className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white  font-normal mb-[8px] flex items-center`}
-                  aria-label="email_link"
-                >
-                  <span className="font-light">Diagnostic Services </span>
-                  <span className="pl-[5px]">: Mon-Fri: 7AM-7PM</span>
-                </div>
+                {site_settings?.opening_hours?.map((hours, index) => (
+                  <div
+                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
+                    aria-label="email_link"
+                  >
+                    <span className="font-light">{hours?.key}</span>
+                    <span className="pl-[5px]">: {hours?.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
