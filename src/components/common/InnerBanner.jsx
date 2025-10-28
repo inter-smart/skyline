@@ -2,9 +2,16 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { renderHtml } from "@/utils/parseHtml";
+import { useState } from "react";
 const selectTrigger = `
   relative  [&>svg]:hidden
   after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[17px] !no-underline cursor-pointer
@@ -16,7 +23,23 @@ const textAnimation = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
-export default function InnerBanner({ img, subTitle, Title, description, alt, showFormBox = false }) {
+export default function InnerBanner({
+  img,
+  subTitle,
+  Title,
+  description,
+  alt,
+  showFormBox = false,
+  onSearch = "",
+}) {
+  const [query, setQuery] = useState("");
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    onSearch(value); // 🔥 notify parent (page.js)
+  };
+
   return (
     <section
       className={`w-full relative py-[30px] flex items-center ${
@@ -25,7 +48,14 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
           : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px]"
       }`}
     >
-      <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
+      <Image
+        src={img}
+        alt={alt}
+        width={1920}
+        height={565}
+        className="object-cover absolute top-0 left-0 w-full h-full"
+        priority
+      />
 
       <div className="container h-full w-full flex items-center relative ">
         <div className="w-full relative">
@@ -56,7 +86,9 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
             </motion.h2>
 
             <motion.div
-              className={`text-[12px] 2xl:text-[14px] 3xl:text-[18px]   ${showFormBox ? "text-white " : "text-[#212121]"} mb-[20px] max-w-[650px]`}
+              className={`text-[12px] 2xl:text-[14px] 3xl:text-[18px]   ${
+                showFormBox ? "text-white " : "text-[#212121]"
+              } mb-[20px] max-w-[650px]`}
               variants={textAnimation}
               transition={{ delay: 0.6 }}
             >
@@ -76,10 +108,15 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
                   className="w-full h-full xs:w-[calc(100%-105px)] xl:w-[calc(100%-130px)] 2xl:w-[calc(100%-160px)] 3xl:w-[calc(100%-200px)] 
                 flex flex-wrap  xs:-mx-[5px] xs:pr-[8px] 2xl:pr-[12px]"
                 >
-                  <div className="w-full 2xs:w-1/2 max-2xs:p-[5px] px-[5px] ">
+                  <div className="w-full 2xs:w-full max-2xs:p-[5px] px-[5px] ">
                     <div className="w-full  bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
                       <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
-                        <svg width="23" height="28" viewBox="0 0 23 28" fill="none">
+                        <svg
+                          width="23"
+                          height="28"
+                          viewBox="0 0 23 28"
+                          fill="none"
+                        >
                           <path
                             d="M20.6704 18.0055C19.0198 17.1722 17.2062 16.5984 15.4204 16.2379C14.998 15.7846 14.7075 15.2246 14.5801 
                         14.6182C15.6856 13.7536 16.5319 12.4568 16.9956 10.912C18.2759 10.7182 18.6088 8.75083 18.101 7.67353C20.4326 -2.54352 2.63608 
@@ -109,7 +146,7 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
                         </svg>
                       </div>
                       <div className="w-[calc(100%-15px)] 2xl:w-[calc(100%-23px)] ">
-                        <Select className="h-full">
+                        {/* <Select className="h-full">
                           <SelectTrigger
                             className={`${selectTrigger} !text-[10px] 2xl:!text-[11px] 3xl:!text-[15px] w-full border-none outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 focus-visible:shadow-none`}
                           >
@@ -130,12 +167,19 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
                               System
                             </SelectItem>
                           </SelectContent>
-                        </Select>
+                        </Select> */}
+                        <input
+                          type="text"
+                          value={query}
+                          onChange={handleChange}
+                          placeholder="Search by name"
+                          className={`${selectTrigger} w-full rounded-md px-3 py-2 text-[10px] outline-none 2xl:text-[11px] 3xl:text-[15px]`}
+                        />
                       </div>
                     </div>
                   </div>
-                  <div className="w-full 2xs:w-1/2 max-2xs:p-[5px] px-[5px] ">
-                    <div className="w-full   bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
+                  {/* <div className="w-full 2xs:w-1/2 max-2xs:p-[5px] px-[5px] "> */}
+                  {/* <div className="w-full   bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
                       <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
                         <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -202,8 +246,8 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
                           </SelectContent>
                         </Select>
                       </div>
-                    </div>
-                  </div>
+                    </div> */}
+                  {/* </div> */}
                 </div>
                 <div className="w-full   xs:w-[105px] xl:w-[130px] 2xl:w-[160px] 3xl:w-[200px]  max-xs:p-[5px]">
                   <Button
