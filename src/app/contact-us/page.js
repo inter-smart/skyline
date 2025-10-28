@@ -1,4 +1,6 @@
 import ContactBanner from "@/components/features/contact/Banner";
+import ContactDetails from "@/components/features/contact/ContactDetails";
+import ContactFormSection from "@/components/features/contact/ContactForm";
 
 export default function ContactUsPage() {
   return (
@@ -10,6 +12,8 @@ export default function ContactUsPage() {
         title={"Contact Us"}
         description={"We would love to hear from you. Please reach out with any questions or comments."}
       />
+      <ContactDetails />
+      <ContactFormSection />
     </>
   );
 }
