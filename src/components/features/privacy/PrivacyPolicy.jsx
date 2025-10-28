@@ -108,7 +108,7 @@ export default function PrivacyPolicySection() {
 
   return (
     <section className="mt-[140px] mb-[140px]">
-      <div className="container flex gap-[64px]">
+      <div className="container flex gap-[64px]">PrivacyPolicyDetails
         {/* Sidebar */}
         <div className="min-h-[350px] min-w-[350px]">
           <div className="flex flex-col gap-[14px] sticky top-[100px]">
@@ -132,7 +132,7 @@ export default function PrivacyPolicySection() {
 
         {/* Content */}
         <div className="flex-1 space-y-[64px] scroll-smooth">
-          {policyDetails.map((policy, idx) => (
+          {PrivacyPolicyDetails?.map((policy, idx) => (
             <div key={idx} data-id={idx + 1} ref={(el) => (sectionRefs.current[idx] = el)}>
               <h2 className="text-[32px] font-medium text-[#373737] mb-[16px]">{policy.title}</h2>
               <p className="text-[#373737] text-[16px] leading-relaxed">{policy.description}</p>
