@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import { fetchDropdownDataAPI, postToAPI } from "@/lib/api";
 import toast from "react-hot-toast";
 import { useBookingFormContext } from "@/context/BookingFormContext";
+import { AlertDialogTitle } from "@radix-ui/react-alert-dialog";
 
 const formBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px] px-[10px] px-[15px] 3xl:px-[20px] flex items-center`;
 const selectBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px]  flex items-center`;
@@ -133,6 +134,7 @@ export default function BookAnAppointment() {
       >
         Book An Appointment
       </AlertDialogTrigger>
+      <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
       <AlertDialogContent
         className="xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px] 
                 xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[50px_45px] rounded-[15px] border-none lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 
@@ -177,7 +179,7 @@ export default function BookAnAppointment() {
             />
           </svg>
         </AlertDialogCancel>
-        <AlertDialogDescription>
+        <AlertDialogDescription asChild>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
