@@ -9,6 +9,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
+import { useBookingFormContext } from "@/context/BookingFormContext";
+import { useRouter } from "next/navigation";
 
 const slides = [
   {
@@ -34,7 +36,18 @@ const textAnimation = {
 };
 
 export default function HeroSlider({ sliders = slides }) {
+  const { openDialog } = useBookingFormContext();
   const [currentSlide, setCurrentSlide] = useState(1);
+  const router = useRouter();
+
+  const handleClick = (type, link) => {
+    if (type == "url") {
+      const url = link || "/";
+      router.push(url);
+    } else {
+      openDialog();
+    }
+  };
 
   return (
     <section className="relative w-full h-[520px] sm:h-[calc(100vh-115px)] overflow-hidden">
@@ -92,16 +105,15 @@ export default function HeroSlider({ sliders = slides }) {
                     {slide?.description}
                   </motion.p>
 
-                  {slide?.action_type == "url" && (
-                    <motion.button
-                      variants={textAnimation}
-                      transition={{ delay: 0.9 }}
-                      className="btn-base1 hover transitiona-all duration-100"
-                      aria-label="appointment"
-                    >
-                      <Link href={slide?.action_url}>{slide?.action_title || "Book Appointment"}</Link>
-                    </motion.button>
-                  )}
+                  <motion.button
+                    variants={textAnimation}
+                    onClick={() => handleClick(slide?.action_type, slide?.action_url)}
+                    transition={{ delay: 0.9 }}
+                    className="btn-base1 hover transitiona-all duration-100"
+                    aria-label="appointment"
+                  >
+                    {slide?.action_title || "Book an Appointment"}
+                  </motion.button>
                 </motion.div>
               </div>
             </div>

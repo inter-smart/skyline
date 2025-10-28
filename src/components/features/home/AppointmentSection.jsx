@@ -4,8 +4,21 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { parseHtmlWithoutClasses, renderHtml } from "@/utils/parseHtml";
 import Link from "next/link";
+import { useBookingFormContext } from "@/context/BookingFormContext";
+import { useRouter } from "next/navigation";
 
 export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link }) {
+  const { openDialog } = useBookingFormContext();
+  const router = useRouter();
+
+  const handleClick = (text, link) => {
+    if (text) {
+      router.push(link || "/");
+    } else {
+      openDialog();
+    }
+  };
+
   // Fade-up animation
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -50,19 +63,16 @@ export default function AppointmentSection({ sub_title, title, description, path
             {parseHtmlWithoutClasses(description)}
           </motion.div>
 
-          {button_text && (
-            <Link href={button_link || "/"}>
-              <motion.button
-                className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
-                aria-label="appointment"
-                variants={fadeUp}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {button_text || "Book an Appointment"}
-              </motion.button>
-            </Link>
-          )}
+          <motion.button
+            className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
+            aria-label="appointment"
+            onClick={() => handleClick(button_text, button_link)}
+            variants={fadeUp}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {button_text || "Book an Appointment"}
+          </motion.button>
         </motion.div>
       </div>
     </section>

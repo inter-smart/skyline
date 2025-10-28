@@ -9,7 +9,7 @@ export default function ContactusSection({
     return (
         <section className="w-full relative py-[45px]">
             <div className="container">
-                <div class="flex flex-wrap relative w-full h-full bg-gradient-to-r from-[rgba(230,241,255,1)] to-[rgba(230,241,255,0.63)]
+                <div className="flex flex-wrap relative w-full h-full bg-gradient-to-r from-[rgba(230,241,255,1)] to-[rgba(230,241,255,0.63)]
                  p-[15px_20px] xl:p-[20px_25px] 2xl:p-[25px_30px] 3xl:p-[30px_40px] rounded-[3px] min-h-[220px] xl:min-h-[275px] 2xl:min-h-[320px] 3xl:min-h-[410px]">
                     <div className=" w-full sm:w-1/2 flex items-center">
                         <div className="w-auto max-w-[620px]">
@@ -19,8 +19,8 @@ export default function ContactusSection({
                             <Heading size="heading1" as="div" className="leading-none">
                                 {about_cms?.section9_title}
                             </Heading>
-                            <p>{parse(about_cms?.section9_description)}</p>
-                            <Link href="" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">CONTACT US</Link>
+                            {parse(about_cms?.section9_description)}
+                            <Link href="/contact" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">CONTACT US</Link>
                         </div>
                     </div>
                     <div className="max-w-[400px] xl:max-w-[460px] 2xl:max-w-[550px] 3xl:max-w-[700px] w-full absolute bottom-0 right-[5%] flex items-center justify-end max-sm:opacity-15">
@@ -30,7 +30,6 @@ export default function ContactusSection({
 
                         <Image src={about_cms?.section9_image_value} width="300" height="200" className="w-full h-full max-w-[220px] xs:max-w-[285px] xl:max-w-[370px] 2xl:max-w-[400px] 3xl:max-w-[490px]" alt={about_cms?.section9_image_alt_text_value} />
                     </div>
-
                 </div>
             </div>
         </section>

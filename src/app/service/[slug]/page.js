@@ -6,7 +6,7 @@ import WhyChooseUsSection from "@/components/features/service/WhyChooseUsSection
 import MultidisciplinarySection from "@/components/features/service/MultidisciplinarySection";
 import PatientJourneySection from "@/components/features/service/PatientJourneySection";
 import PricingInsuranceSection from "@/components/features/service/PricingInsuranceSection";
-import FaqSection from "@/components/features/service/FaqSection";
+import FaqSection from "@/components/common/FaqSection";
 import RelatedSection from "@/components/features/service/RelatedSection";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConditionSection from "@/components/features/service/ConditionSection";

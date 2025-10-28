@@ -4,6 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { Unna as UnnaFont } from "next/font/google";
 import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
+import { Toaster } from "react-hot-toast";
+import { BookingFormContextProvider } from "@/context/BookingFormContext";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -74,10 +76,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={` ${graphik.variable}  ${unna.variable}`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <WidgetSection />
-        <Footer />
+        <BookingFormContextProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <WidgetSection />
+          <Footer />
+          <Toaster position="top-right" />
+        </BookingFormContextProvider>
       </body>
     </html>
   );

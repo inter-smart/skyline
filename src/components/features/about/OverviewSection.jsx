@@ -18,7 +18,7 @@ export default function OverviewSection({ about_cms }) {
               <Heading size="heading1" as="div">
                 {about_cms?.section2_title}
               </Heading>
-              <p className="line-clamp-4">{renderHtml(about_cms?.section2_description)}</p>
+              <div className="line-clamp-4">{renderHtml(about_cms?.section2_description)}</div>
             </div>
           </div>
 
@@ -49,7 +49,7 @@ export default function OverviewSection({ about_cms }) {
                     width="380"
                     height="455"
                     className="w-full h-full object-cover object-[top_center]"
-                    alt={about_cms?.section3_image_value_alt}
+                    alt={about_cms?.section3_image_value_alt || "overview image"}
                   />
                 </div>
               </div>

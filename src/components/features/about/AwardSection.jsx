@@ -22,7 +22,7 @@ export default function AwardSection({ about_cms, accreditation }) {
               {about_cms?.section7_title}
             </Heading>
             <div className="md:max-w-[300px] lg:max-w-[340px] xl:max-w-[420px] 2xl:max-w-[500px] 3xl:max-w-[640px]">
-              <p>{about_cms?.section7_description && renderHtml(about_cms?.section7_description)}</p>
+              {about_cms?.section7_description && renderHtml(about_cms?.section7_description)}
             </div>
           </div>
           <div className="w-full md:w-1/2 lg:pl-40px">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heading } from "../../layout/Heading";
+import { Heading } from "../layout/Heading";
 import {
     Accordion,
     AccordionContent,
@@ -10,31 +10,31 @@ import {
 } from "@/components/ui/accordion"
 import { renderHtml } from "@/utils/parseHtml";
 
-const faqData = [
+const data = [
     {
-        question: "What should I bring to my first oncology appointment?",
-        answer: `Please bring all relevant medical documents such as biopsy reports, imaging scans, blood test results, pathology reports, and a 
-    list of your current medications. Having these details helps the oncologist make a complete assessment and develop a personalized treatment plan.`
+        title: "What should I bring to my first oncology appointment?",
+        description: `<p>Please bring all relevant medical documents such as biopsy reports, imaging scans, blood test results, pathology reports, and a 
+    list of your current medications. Having these details helps the oncologist make a complete assessment and develop a personalized treatment plan.</p>`
     },
     {
-        question: "Do I need a referral to see a specialist?",
-        answer: `Please bring all relevant medical documents...`
+        title: "Do I need a referral to see a specialist?",
+        description: `<p>Please bring all relevant medical documents...</p>`
     },
     {
-        question: "What payment options are available?",
-        answer: `Please bring all relevant medical documents...`
+        title: "What payment options are available?",
+        description: `<p>Please bring all relevant medical documents...</p>`
     },
     {
-        question: "Will I get my test results on the same day?",
-        answer: `Please bring all relevant medical documents...`
+        title: "Will I get my test results on the same day?",
+        description: `<p>Please bring all relevant medical documents...</p>`
     },
     {
-        question: "Do you accept my insurance plan?",
-        answer: `Please bring all relevant medical documents...`
+        title: "Do you accept my insurance plan?",
+        description: `<p>Please bring all relevant medical documents...</p>`
     },
     {
-        question: "Is cancer treatment painful?",
-        answer: `Please bring all relevant medical documents...`
+        title: "Is cancer treatment painful?",
+        description: `<p>Please bring all relevant medical documents...</p>`
     },
 ];
 
@@ -42,7 +42,7 @@ export default function FaqSection({
     sub_title, 
     title,
     description,
-    faqData
+    faqData=data
 }) {
     return (
         <section className='py-[30px_60px]'>
