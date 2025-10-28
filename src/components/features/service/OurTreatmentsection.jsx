@@ -109,50 +109,51 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
         </div>
 
         {/* Right Column */}
-        <div className="w-full sm:w-[45%] xl:w-[50%] overflow-hidden">
-          <div className="w-full h-full relative p-[15px] sm:p-[25px] lg:p-[30px] xl:p-[40px] 2xl:p-[50px] 3xl:p-[60px] overflow-hidden rounded-[6px] bg-base2">
-            <div className="w-70%] h-auto absolute -right-[10%] top-0 z-2">
-              <Image
-                // src={treatments[activeIndex]?.image_value}
-                src={"/images/traetmentBg.png"}
-                alt={treatments[activeIndex]?.image_alt_text_value}
-                width={670}
-                height={580}
-                className="w-full h-auto aspect-square"
-              />
-            </div>
+        {/* Right Column */}
+        <div className="w-full sm:w-[45%] xl:w-[50%]">
+          <div
+            className="relative w-full h-full p-[15px] sm:p-[25px] lg:p-[30px] xl:p-[40px] 2xl:p-[50px] 3xl:p-[60px] rounded-[6px] overflow-hidden bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${
+                treatments[activeIndex]?.image_value ||
+                "/images/traetmentBg.png"
+              })`,
+            }}
+          >
+            {/* Dark overlay for contrast */}
 
-            <Swiper
-              modules={[Thumbs, EffectFade]}
-              thumbs={{ swiper: thumbsSwiper }}
-              effect="fade"
-              spaceBetween={10}
-              slidesPerView={1}
-              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-            >
-              {treatments.map((item, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="bg-[#00335B] opacity-0 transition-opacity duration-500 swiper-slide-active:opacity-100"
-                >
-                  <div className="text-white relative z-3">
-                    <Heading
-                      as="h4"
-                      size="heading4"
-                      className="text-start font-medium text-white mb-[35px]"
-                    >
-                      {item?.title}
-                    </Heading>
-                    <ul>
-                      {parseDescriptionToListItems(
-                        item?.description,
-                        className
-                      )}
-                    </ul>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {/* Scrollable inner content */}
+            <div className="relative z-[2] max-h-[300px] overflow-y-auto scroll-smooth pr-2 scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent">
+              <Swiper
+                modules={[Thumbs, EffectFade]}
+                thumbs={{ swiper: thumbsSwiper }}
+                effect="fade" // 👈 restores fade transition and prevents overlap
+                fadeEffect={{ crossFade: true }}
+                spaceBetween={10}
+                slidesPerView={1}
+                onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              >
+                {treatments.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="text-white">
+                      <Heading
+                        as="h4"
+                        size="heading4"
+                        className="text-start font-medium text-white mb-[25px]"
+                      >
+                        {item?.title}
+                      </Heading>
+                      <ul>
+                        {parseDescriptionToListItems(
+                          item?.description,
+                          className
+                        )}
+                      </ul>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
         </div>
       </div>
