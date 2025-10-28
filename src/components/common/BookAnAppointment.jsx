@@ -44,6 +44,7 @@ const formSchema = z.object({
 
 export default function BookAnAppointment() {
   const { isOpen, openDialog, closeDialog } = useBookingFormContext();
+  const [dropDownFetching, setDropDownFetching] = useState(true);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -68,8 +69,6 @@ export default function BookAnAppointment() {
   const [insuranceOptions, setInsuranceOptions] = useState([]);
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
-
     function toNumber(value) {
       const num = Number(value);
       return isNaN(num) ? null : num;
@@ -86,12 +85,9 @@ export default function BookAnAppointment() {
       service_id: service,
     };
 
-    console.log("Form Data:", formattedData);
     try {
       const postData = await postToAPI("appointments", formattedData);
       const result = postData.data;
-
-      console.log("Submission success:", result);
 
       // ✅ Reset only after success
       form.reset();
@@ -116,6 +112,8 @@ export default function BookAnAppointment() {
       setInsuranceOptions(insuranceData.data);
     } catch (error) {
       console.error("Error fetching dropdown data:", error);
+    } finally {
+      setDropDownFetching(false);
     }
   };
 
@@ -301,6 +299,7 @@ export default function BookAnAppointment() {
                             </FormControl>
 
                             <SelectContent className="bg-white max-h-48 overflow-y-auto">
+                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
                               {serviceOptions?.map((option) => (
                                 <SelectItem key={option.id} value={String(option.id)}>
                                   {option.name}
@@ -341,6 +340,7 @@ export default function BookAnAppointment() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-white max-h-48 overflow-y-auto">
+                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
                               {reasonOptions?.map((option) => (
                                 <SelectItem key={option.id} value={String(option.id)}>
                                   {option.title}
@@ -380,6 +380,7 @@ export default function BookAnAppointment() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-white max-h-48 overflow-y-auto">
+                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
                               {insuranceOptions?.map((option) => (
                                 <SelectItem key={option.id} value={String(option.id)}>
                                   {option.title}
