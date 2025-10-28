@@ -35,7 +35,7 @@ const textAnimation = {
 };
 
 export default function HeroSlider({ sliders = slides }) {
-  const { isOpen, openDialog, closeDialog } = useBookingFormContext();
+  const { openDialog } = useBookingFormContext();
   const [currentSlide, setCurrentSlide] = useState(1);
 
   const handleClick = () => {
@@ -109,15 +109,6 @@ export default function HeroSlider({ sliders = slides }) {
                       <Link href={slide?.action_url}>{slide?.action_title || "Book Appointment"}</Link>
                     </motion.button>
                   )}
-                  <motion.button
-                    onClick={() => handleClick()}
-                    variants={textAnimation}
-                    transition={{ delay: 0.9 }}
-                    className="btn-base1 hover transitiona-all duration-100"
-                    aria-label="appointment"
-                  >
-                    {"Appointment"}
-                  </motion.button>
                 </motion.div>
               </div>
             </div>

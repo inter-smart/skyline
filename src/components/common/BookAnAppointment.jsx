@@ -95,6 +95,7 @@ export default function BookAnAppointment() {
       // ✅ Reset only after success
       form.reset();
       toast.success("Appointment booked successfully!");
+      closeDialog();
     } catch (error) {
       toast.error("Error submitting form. Please try again.");
       console.error("Error submitting form:", error);
@@ -122,9 +123,8 @@ export default function BookAnAppointment() {
   }, []);
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={closeDialog}>
+    <AlertDialog open={isOpen} onOpenChange={(open) => (open ? openDialog() : closeDialog())}>
       <AlertDialogTrigger
-        onClick={openDialog}
         className="text-[8px] sm:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-white uppercase font-medium relative cursor-pointer
                      h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] rounded-[3px] 3xl:rounded-[5px] 
                     px-[10px] 2xl:px-[20px]  overflow-hidden
@@ -157,7 +157,10 @@ export default function BookAnAppointment() {
             </p>
           </div>
         </AlertDialogHeader>
-        <AlertDialogCancel className="bg-transparent border-none cursor-pointer absolute top-[25px] right-[25px] w-[20px] h-[20px] flex items-center group hover:bg-transparent">
+        <AlertDialogCancel
+          onClick={closeDialog}
+          className="bg-transparent border-none cursor-pointer absolute top-[25px] right-[25px] w-[20px] h-[20px] flex items-center group hover:bg-transparent"
+        >
           <svg
             width="13"
             height="13"
@@ -284,12 +287,14 @@ export default function BookAnAppointment() {
                                 className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
                               >
                                 <SelectValue placeholder="Select Service*" />
-                                <svg viewBox="0 0 10 8" className="w-2 h-2 text-white ml-auto">
-                                  <path
-                                    d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
+                                <div>
+                                  <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
+                                    <path
+                                      d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </div>
                               </SelectTrigger>
                             </FormControl>
 
@@ -322,7 +327,7 @@ export default function BookAnAppointment() {
                               <SelectTrigger
                                 className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
                               >
-                                <SelectValue placeholder="Reason for Visit*" className="text-white placeholder:text-white" />
+                                <SelectValue placeholder="Reason for Consultation*" className="text-white placeholder:text-white" />
                                 <div>
                                   <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
                                     <path
