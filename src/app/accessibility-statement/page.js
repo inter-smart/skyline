@@ -7,9 +7,9 @@ export default function AccessibilityStatement() {
     <div>
        <InnerBanner
               img="/images/newsbanner.jpg"
-              alt="NEWS"
-              subTitle="privacy Policy"
-              Title="Privacy Policy"
+              alt="Accessibility Statement"
+              subTitle="accessibility Statement"
+              Title="Accessibility Statement"
               description="Be part of a hospital dedicated to excellence, compassion, and innovation."
             />
             <PrivacyPolicySection />
