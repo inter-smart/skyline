@@ -55,13 +55,13 @@ export default function InnerBanner({ img, subTitle, Title, description, alt, sh
               {renderHtml(Title) | ""}
             </motion.h2>
 
-            <motion.p
+            <motion.div
               className={`text-[12px] 2xl:text-[14px] 3xl:text-[18px]   ${showFormBox ? "text-white " : "text-[#212121]"} mb-[20px] max-w-[650px]`}
               variants={textAnimation}
               transition={{ delay: 0.6 }}
             >
               {(description && renderHtml(description)) || ""}
-            </motion.p>
+            </motion.div>
           </motion.div>
 
           {/* formBox */}
