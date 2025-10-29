@@ -6,6 +6,7 @@ import InsightCard from "@/components/common/InsightCard";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { fetchFromAPI } from "@/lib/api";
 
 // ✅ Load Isotope only on the client to avoid SSR issues
 let Isotope;
@@ -37,10 +38,9 @@ export default function InsightSection({ type = "blogs" }) {
   useEffect(() => {
     const fetchFilters = async () => {
       try {
-        const response = await fetch(`/api/youtube/filters?key=${type}`);
-        const data = await response.json();
-        setFilters(data.filters?.tags);
-        setHeadings(data.filters?.headings);
+        const { data } = await fetchFromAPI(`blog-category?slug=${type}`);
+        setFilters(data.tags);
+        setHeadings(data);
       } catch (err) {
         console.error("Failed to fetch filters:", err);
         setError("Failed to load filters");
@@ -57,20 +57,18 @@ export default function InsightSection({ type = "blogs" }) {
       setError(null);
 
       try {
-        const category = filterKey === "*" ? "" : filterKey.replace(".", "");
-        const response = await fetch(`/api/youtube/${type}?page=${page}&perPage=${PER_PAGE}&category=${category}`);
+        const category = filterKey === "*" ? "" : filterKey;
+        const { data } = await fetchFromAPI(`blog-list?slug=${type}&per_page=${PER_PAGE}&page=${page}&tag=${category}`);
 
-        if (!response.ok) throw new Error("Failed to fetch blogs");
-
-        const data = await response.json();
+        console.log(data);
 
         if (page === 1) {
-          setBlogs(data?.data);
+          setBlogs(data?.blogs || []);
         } else {
-          setBlogs((prev) => [...prev, ...data?.data]);
+          setBlogs((prev) => [...prev, ...data?.blogs]);
         }
 
-        setHasMore(data.hasMore);
+        setHasMore(data?.pagination?.total > PER_PAGE * page);
       } catch (err) {
         console.error("Failed to fetch blogs:", err);
         setError("Failed to load blogs");
@@ -146,10 +144,10 @@ export default function InsightSection({ type = "blogs" }) {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
-                  {headings?.pre_title}
+                  {headings?.pre_heading}
                 </SubTitle>
                 <Heading size="heading1" as="div" className="leading-none !mb-0">
-                  {headings?.title}
+                  {headings?.heading}
                 </Heading>
                 {/* <Heading size="heading1" as="div" className="leading-none !mb-0">
                   Health News
@@ -162,19 +160,32 @@ export default function InsightSection({ type = "blogs" }) {
             <div className="w-auto p-[5px]">
               <div className="flex flex-wrap items-center bg-transparent -m-[5px] !h-auto">
                 {filters.length > 0 ? (
-                  filters.map((filter) => (
-                    <div className="p-[5px]" key={filter.value}>
+                  <>
+                    <div className="p-[5px]">
                       <button
-                        onClick={() => handleFilterChange(filter.value)}
+                        onClick={() => handleFilterChange("*")}
                         disabled={isLoading}
-                        className={`${filterButton} ${filterKey === filter.value ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
+                        className={`${filterButton} ${filterKey === "*" ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
                           isLoading ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                       >
-                        {filter.label}
+                        {"All"}
                       </button>
                     </div>
-                  ))
+                    {filters.map((filter) => (
+                      <div className="p-[5px]" key={filter.id}>
+                        <button
+                          onClick={() => handleFilterChange(filter.id)}
+                          disabled={isLoading}
+                          className={`${filterButton} ${filterKey === filter.id ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
+                            isLoading ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
+                        >
+                          {filter.title}
+                        </button>
+                      </div>
+                    ))}
+                  </>
                 ) : (
                   // Skeleton for filters
                   <>

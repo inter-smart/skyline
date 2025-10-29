@@ -5,6 +5,7 @@ import { SubTitle, Heading } from "@/components/layout/Heading";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton"; // shadcn skeleton
+import { fetchFromAPI } from "@/lib/api";
 
 // ✅ Load Isotope and imagesLoaded only on the client
 let Isotope, imagesLoaded;
@@ -19,7 +20,7 @@ const tabButton = `
   h-[25px] 2xl:h-[31px] 3xl:h-[40px] shadow-none px-[10px]
 `;
 
-export default function YouTubeGallerySection() {
+export default function YouTubeGallerySection({ type }) {
   const isotope = useRef(null);
   const [filterKey, setFilterKey] = useState("*");
   const [filters, setFilters] = useState([]);
@@ -31,16 +32,15 @@ export default function YouTubeGallerySection() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState(null);
 
-  const PER_PAGE = 6;
+  const PER_PAGE = 1;
 
   // ✅ Fetch filters on mount
   useEffect(() => {
     const fetchFilters = async () => {
       try {
-        const response = await fetch("/api/youtube/filters?key=videos");
-        const data = await response.json();
-        setFilters(data.filters?.tags);
-        setHeadings(data.headings?.headings);
+        const { data } = await fetchFromAPI(`blog-category?slug=${type}`);
+        setFilters(data.tags);
+        setHeadings(data);
       } catch (err) {
         console.error("Failed to fetch filters:", err);
         setError("Failed to load filters");
@@ -57,20 +57,16 @@ export default function YouTubeGallerySection() {
       setError(null);
 
       try {
-        const category = filterKey === "*" ? "" : filterKey.replace(".", "");
-        const response = await fetch(`/api/youtube/videos?page=${page}&perPage=${PER_PAGE}&category=${category}`);
-
-        if (!response.ok) throw new Error("Failed to fetch videos");
-
-        const data = await response.json();
+        const category = filterKey === "*" ? "" : filterKey;
+        const { data } = await fetchFromAPI(`blog-list?slug=${type}&per_page=${PER_PAGE}&page=${page}&tag=${category}`);
 
         if (page === 1) {
-          setVideos(data.videos);
+          setVideos(data?.blogs || []);
         } else {
-          setVideos((prev) => [...prev, ...data.videos]);
+          setVideos((prev) => [...prev, ...data?.blogs]);
         }
 
-        setHasMore(data.hasMore);
+        setHasMore(data?.pagination?.total > PER_PAGE * page);
       } catch (err) {
         console.error("Failed to fetch videos:", err);
         setError("Failed to load videos");
@@ -149,11 +145,10 @@ export default function YouTubeGallerySection() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <SubTitle size="SubTitle" as="div" className="!mb-[10px] leading-none">
-                YouTube Videos
+                {headings?.pre_heading}
               </SubTitle>
               <Heading size="heading1" as="div" className="leading-none !mb-0">
-                Health News
-                <br className="max-md:hidden" /> & Hospital Updates
+                {headings?.heading}
               </Heading>
             </motion.div>
           </div>
@@ -162,19 +157,32 @@ export default function YouTubeGallerySection() {
           <div className="w-auto p-[5px]">
             <div className="flex flex-wrap items-center bg-transparent -m-[5px] !h-auto">
               {filters.length > 0 ? (
-                filters.map((filter) => (
-                  <div className="p-[5px]" key={filter.value}>
+                <>
+                  <div className="p-[5px]">
                     <button
-                      onClick={() => handleFilterChange(filter.value)}
+                      onClick={() => handleFilterChange("*")}
                       disabled={isLoading}
-                      className={`${tabButton} ${filterKey === filter.value ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
+                      className={`${tabButton} ${filterKey === "*" ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
                         isLoading ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                     >
-                      {filter.label}
+                      {"All"}
                     </button>
                   </div>
-                ))
+                  {filters.map((filter) => (
+                    <div className="p-[5px]" key={filter.id}>
+                      <button
+                        onClick={() => handleFilterChange(filter.id)}
+                        disabled={isLoading}
+                        className={`${tabButton} ${filterKey === filter.id ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
+                          isLoading ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                      >
+                        {filter.title}
+                      </button>
+                    </div>
+                  ))}
+                </>
               ) : (
                 // Skeleton for filters
                 <>
@@ -218,8 +226,8 @@ export default function YouTubeGallerySection() {
                     <div className="w-full aspect-video overflow-hidden rounded-[6px]">
                       <iframe
                         className="w-full h-full"
-                        src={`https://www.youtube.com/embed/${youtube.youtubeId}`}
-                        title={youtube.title || `Video ${youtube.id}`}
+                        src={youtube.iframe_url}
+                        title={youtube.title}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                         loading="lazy"

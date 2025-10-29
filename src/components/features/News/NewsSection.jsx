@@ -10,48 +10,37 @@ const tabButton = `text-[7px] sm:text-[8px] md:text-[10px] 2xl:text-[12px] 3xl:t
          rounded-[0px] h-[40px] lg:h-[45px] xl:h-[60px] 2xl:h-[70px] 3xl:h-[90px] shadow-none font-normal border-[#919193] border-r border-top-0 border-l-0 last-of-type:border-r-0
          data-[state=active]:text-[#212121]  data-[state=active]:underline data-[state=active]:font-medium data-[state=active]:shadow-none md:px-[20px] !w-auto sm:w-[calc(100%/4)] `;
 
-export default function NewsSection({ awards, interviews }) {
+export default function NewsSection({ awards, interviews, insightTypes }) {
   return (
     <>
       <section className="relative">
-        <Tabs defaultValue="all" className="w-full">
+        <Tabs defaultValue={insightTypes[0].type} className="w-full">
           <TabsList className="flex flex-wrap w-full items-center bg-transparent !h-auto p-0">
-            <TabsTrigger value="all" className={`${tabButton}`}>
-              News & Updates
-            </TabsTrigger>
-
-            <TabsTrigger value="YouTube" className={`${tabButton}`}>
-              YouTube Channel
-            </TabsTrigger>
-
-            <TabsTrigger value="Health" className={`${tabButton}`}>
-              Health Blog
-            </TabsTrigger>
-
-            <TabsTrigger value="Events" className={`${tabButton}`}>
-              Events, Talks & Webinars
-            </TabsTrigger>
+            {insightTypes?.map((insightType, index) => (
+              <TabsTrigger value={insightType.type} key={index} className={tabButton}>
+                {insightType.title}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          {/* All News Tab */}
-          <TabsContent value="all">
-            <InsightSection type="blogs" />
-            <InterviewSection interviews={interviews} />
-            <AwardSection accreditation={awards} />
-          </TabsContent>
+          {insightTypes?.map((insightType, index) => (
+            <TabsContent key={index} value={insightType.type}>
+              {/* ✅ First Tab → Show Blogs + Interviews + Awards */}
+              {index === 0 && (
+                <>
+                  <InsightSection type={insightType.slug} />
+                  {/* <InterviewSection interviews={interviews} /> */}
+                  <AwardSection about_cms={awards?.data} accreditation={awards?.awards} />
+                </>
+              )}
 
-          {/* Surgery Tab */}
-          <TabsContent value="YouTube">
-            <YouTubeGallerySection />
-          </TabsContent>
-          <TabsContent value="Health">
-            <InsightSection type="health" />
-          </TabsContent>
+              {/* ✅ Videos Tab → YouTube */}
+              {insightType.type === "video" && <YouTubeGallerySection type={insightType.slug} />}
 
-          {/* Nutrition Tab */}
-          <TabsContent value="Events">
-            <InsightSection type="events" />
-          </TabsContent>
+              {/* ✅ All other tabs → Normal Insight Section */}
+              {insightType.type !== "video" && index !== 0 && <InsightSection type={insightType.slug} />}
+            </TabsContent>
+          ))}
         </Tabs>
       </section>
     </>

@@ -29,10 +29,9 @@ const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular te
 outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 
            focus-visible:shadow-none bg-transparent border-none`;
 
-export default function BookAnAppointment() {
+export default function BookAnAppointment({ services, reasons, insurance }) {
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const { slug, source } = data;
-  const [dropDownFetching, setDropDownFetching] = useState(true);
 
   const isConsultant = source === "consultants";
 
@@ -82,10 +81,6 @@ export default function BookAnAppointment() {
   const { formState } = form;
   const { isSubmitting } = formState;
 
-  const [serviceOptions, setServiceOptions] = useState([]);
-  const [reasonOptions, setReasonOptions] = useState([]);
-  const [insuranceOptions, setInsuranceOptions] = useState([]);
-
   const onSubmit = async (data) => {
     function toNumber(value) {
       const num = Number(value);
@@ -117,33 +112,10 @@ export default function BookAnAppointment() {
     }
   };
 
-  const loadDropdownData = async () => {
-    try {
-      const [servicesData, reasonsData, insuranceData] = await Promise.all([
-        fetchDropdownDataAPI("get-services"),
-        fetchDropdownDataAPI("get-reason-for-consultations"),
-        fetchDropdownDataAPI("get-insurance-providers"),
-      ]);
-      ``;
-
-      setServiceOptions(servicesData.data);
-      setReasonOptions(reasonsData.data);
-      setInsuranceOptions(insuranceData.data);
-    } catch (error) {
-      console.error("Error fetching dropdown data:", error);
-    } finally {
-      setDropDownFetching(false);
-    }
-  };
-
   const handleClose = () => {
     form.reset(); // Clears all fields, errors, and touched states
     closeDialog();
   };
-
-  useEffect(() => {
-    loadDropdownData();
-  }, []);
 
   return (
     <AlertDialog open={isOpen} onOpenChange={(open) => (open ? openDialog() : closeDialog())}>
@@ -325,8 +297,7 @@ export default function BookAnAppointment() {
                               </FormControl>
 
                               <SelectContent className="bg-white max-h-48 overflow-y-auto">
-                                {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
-                                {serviceOptions?.map((option) => (
+                                {services?.map((option) => (
                                   <SelectItem key={option.id} value={String(option.id)}>
                                     {option.name}
                                   </SelectItem>
@@ -367,8 +338,7 @@ export default function BookAnAppointment() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-white max-h-48 overflow-y-auto">
-                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
-                              {reasonOptions?.map((option) => (
+                              {reasons?.map((option) => (
                                 <SelectItem key={option.id} value={String(option.id)}>
                                   {option.title}
                                 </SelectItem>
@@ -407,8 +377,7 @@ export default function BookAnAppointment() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-white max-h-48 overflow-y-auto">
-                              {dropDownFetching && <div className="p-4 text-start text-sm text-gray-500">Searching...</div>}
-                              {insuranceOptions?.map((option) => (
+                              {insurance?.map((option) => (
                                 <SelectItem key={option.id} value={String(option.id)}>
                                   {option.title}
                                 </SelectItem>

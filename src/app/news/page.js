@@ -1,23 +1,29 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import NewsSection from "@/components/features/News/NewsSection";
+import { fetchFromAPI } from "@/lib/api";
 
 export default async function Page() {
-  const awardsData = await fetch("http://localhost:3000/api/insights/awards").then((res) => res.json());
-  const interviewsData = await fetch("http://localhost:3000/api/insights/interviews").then((res) => res.json());
+  const { data } = await fetchFromAPI("blogs");
 
-  const awards = awardsData.awards;
-  const interviews = interviewsData;
+  console.log(data);
+
+  const { accreditation_cms, accreditation, interviews, banner_and_meta_tags: bannerData, blog_categories: insightTypes } = data;
+
+  const awards = {
+    data: accreditation_cms,
+    awards: accreditation,
+  };
 
   return (
     <>
       <InnerBanner
-        img="/images/newsbanner.jpg"
-        alt="NEWS"
-        subTitle="NEWS"
-        Title="News & Insights"
-        description="Be part of a hospital dedicated to excellence, compassion, and innovation."
+        img={bannerData?.banner_value || "/images/newsbanner.jpg"}
+        alt={bannerData?.banner_alt_text_value || "NEWS"}
+        subTitle={bannerData?.banner_pre_title || "News & Insights"}
+        Title={bannerData?.banner_title || "News & Insights"}
+        description={bannerData?.banner_description || "Be part of a hospital dedicated to excellence, compassion, and innovation."}
       />
-      <NewsSection awards={awards} interviews={interviews} />
+      <NewsSection awards={awards} interviews={interviews} insightTypes={insightTypes} />
     </>
   );
 }
