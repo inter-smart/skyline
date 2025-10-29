@@ -5,9 +5,7 @@ import { Heading, SubTitle } from "@/components/layout/Heading";
 import InsightCard from "@/components/common/InsightCard";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
-import InnerBanner from "@/components/common/InnerBanner";
 
 // ✅ Load Isotope only on the client to avoid SSR issues
 let Isotope;

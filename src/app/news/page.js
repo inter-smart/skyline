@@ -8,9 +8,6 @@ export default async function Page() {
   const awards = awardsData.awards;
   const interviews = interviewsData;
 
-  console.log("Awards Data:", awards);
-  console.log("Interviews Data:", interviews);
-
   return (
     <>
       <InnerBanner

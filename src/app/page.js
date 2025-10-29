@@ -1,11 +1,10 @@
 import AboutSection from "@/components/features/home/AboutSection";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
-import BannerSection from "@/components/features/home/BannerSection";
-import ConsultantSection from "@/components/features/home/ConsultantSection";
-import InsightSection from "@/components/features/home/InsightSection";
+import HomeBannerClient from "@/components/features/home/BannerClient";
 import SpecialistSection from "@/components/features/home/SpecialistSection";
 import TestimonialSection from "@/components/features/home/TestimonialSection";
 import WhySection from "@/components/features/home/WhySection";
+import { Skeleton } from "@/components/ui/skeleton";
 import { fetchFromAPI } from "@/lib/api";
 
 export default async function Home() {
@@ -18,7 +17,7 @@ export default async function Home() {
 
   return (
     <>
-      <BannerSection sliders={sliders} />
+      <HomeBannerClient sliders={sliders} />
       <AboutSection home_cms={home_cms} announcements={announcements} />
       <WhySection home_cms={home_cms} features={home_cms?.section2_features} />
       <SpecialistSection
