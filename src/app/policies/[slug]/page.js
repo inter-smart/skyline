@@ -8,10 +8,10 @@ export default async function Policies({ params }) {
 
   const { data, error } = await fetchFromAPI(`policy?slug=${slug}`);
 
+  console.log(error)
 
   if(error)
     return <div>
-      <Page />
     </div>
 
   const {

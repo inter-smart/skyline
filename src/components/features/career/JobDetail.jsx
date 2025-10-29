@@ -22,6 +22,7 @@ export default function JobDetail({careerId, careers }) {
 
   const handleFormSubmit = () => {
     setOpen(false);
+    
   };
 
   return (
