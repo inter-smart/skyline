@@ -682,29 +682,25 @@ export default function Header({ site_settings, social_links, services }) {
                     value="item-5"
                     className="border-b border-[#f4f4f4]"
                   >
-                    <Link
-                      href="/"
+                    <div
                       className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
-                      aria-label="menuLink"
                     >
                       <div className="flex items-center">
                         <span>News & Insights </span>
                       </div>
-                    </Link>
+                    </div>
                   </AccordionItem>
                   <AccordionItem
                     value="item-6"
                     className="border-b border-[#f4f4f4]"
                   >
-                    <Link
-                      href="/"
+                    <div
                       className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
-                      aria-label="menuLink"
                     >
                       <div className="flex items-center">
                         <span>Contact</span>
                       </div>
-                    </Link>
+                    </div>
                   </AccordionItem>
                 </Accordion>
               </SheetDescription>
