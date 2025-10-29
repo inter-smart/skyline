@@ -11,6 +11,7 @@ import RelatedSection from "@/components/features/service/RelatedSection";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
+import Page from "@/app/404/page";
 
 
 // Map template keys to components
@@ -134,7 +135,7 @@ export default async function Service({ params }) {
   if (error || !data) {
     return (
       <div className="text-center py-20">
-        Failed to load service details. Please try again later.
+        <Page />
       </div>
     );
   }
