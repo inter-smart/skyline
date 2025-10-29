@@ -30,7 +30,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
            focus-visible:shadow-none bg-transparent border-none`;
 
 export default function BookAnAppointment({ services, reasons, insurance }) {
-  const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
+  const { isOpen, openDialog, closeDialog, data, showSuccess, openSuccess, closeSuccess } = useBookingFormContext();
   const { slug, source } = data;
 
   const isConsultant = source === "consultants";
@@ -104,8 +104,8 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
       // ✅ Reset only after success
       form.reset();
-      toast.success("Appointment booked successfully!");
       closeDialog();
+      openSuccess();
     } catch (error) {
       toast.error("Error submitting form. Please try again.");
       console.error("Error submitting form:", error);

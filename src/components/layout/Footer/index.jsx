@@ -1,16 +1,60 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { renderHtml } from "@/utils/parseHtml";
 
 const menuLink = `text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block
     before:absolute before:top-[5px] 2xl:before:top-[5px] 3xl:before:top-[8px] pl-[15px] transition-all duration-100 hover:opacity-70 
     before:left-0 before:content-[''] before:w-[4px] before:h-[4px] before:rounded-full before:bg-white`;
 
-export default function index({ site_settings, social_links }) {
+const quickLinks = [
+  {
+    title: "Home",
+    link: "/",
+    clickable: true,
+  },
+  {
+    title: "About Us",
+    link: "/about",
+    clickable: true,
+  },
+  {
+    title: "Our Services",
+    link: "/service",
+    clickable: true,
+  },
+  {
+    title: "Our Consultants",
+    link: "/consultants",
+    clickable: false
+  },
+  {
+    title: "Career",
+    link: "/career",
+    clickable: false,
+  },
+];
+
+export default function index({
+  site_settings,
+  social_links,
+  policies,
+  services,
+}) {
   return (
     <footer className="w-full bg-base2 pt-[80px] relative z-0">
-      <Image src="/images/footerBg.png" width="1920" height="850" className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt="footerBg" />
+      <Image
+        src="/images/footerBg.png"
+        width="1920"
+        height="850"
+        className="absolute top-0 left-0 w-full h-full object-cover -z-1"
+        alt="footerBg"
+      />
       <div className="container realtive z-10 mb-[50px]">
         <div
           className="bg-[#FDFDFD] p-[15px] sm:p-[20px] lg:p-[10px_20px] xl:p-[10px_35px] 2xl:p-[12px_45px] 3xl:p-[17px_55px]
@@ -45,7 +89,10 @@ export default function index({ site_settings, social_links }) {
                 <ul className="flex items-center max-sm:w-full  ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                      <a href={social.link} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
+                      <a
+                        href={social.link}
+                        className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2"
+                      >
                         <div className="w-[7px] h-[13px] flex items-center justify-center">
                           <Image
                             src={social?.icon_value} // <-- replace with correct image path
@@ -72,40 +119,30 @@ export default function index({ site_settings, social_links }) {
               <div className="sm:hidden">
                 <AccordionItem value="quick-links">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Quick Links</div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
+                      Quick Links
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <ul>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Home
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Our Services
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Consultants
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          About us
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="/policies" className={`${menuLink}`} aria-label="menuLink">
-                          Privacy Policy
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="/terms-and-conditions" className={`${menuLink}`} aria-label="menuLink">
-                          Terms & conditions
-                        </Link>
-                      </li>
+                      {quickLinks?.map((item, index) => (
+                        <li
+                          key={index}
+                          className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
+                        >
+                          {item?.clickable ? (
+                            <Link
+                              href={item?.link}
+                              className={menuLink}
+                              aria-label="menuLink"
+                            >
+                              {item?.title}
+                            </Link>
+                          ) : (
+                            <span className={menuLink}>{item?.title}</span>
+                          )}
+                        </li>
+                      ))}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -115,79 +152,104 @@ export default function index({ site_settings, social_links }) {
                   Quick Links
                 </div>
                 <ul>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Our Services
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Consultants
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      About us
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="/policies" className={`${menuLink}`} aria-label="menuLink">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="/terms-and-conditions" className={`${menuLink}`} aria-label="menuLink">
-                      Terms & conditions
-                    </Link>
-                  </li>
+                  {quickLinks?.map((item, index) => (
+                    <li
+                      key={index}
+                      className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
+                    >
+                      {item?.clickable ? (
+                        <Link
+                          href={item?.link}
+                          className={menuLink}
+                          aria-label="menuLink"
+                        >
+                          {item?.title}
+                        </Link>
+                      ) : (
+                        <span className={menuLink}>{item?.title}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Policies */}
+            <div className="w-full sm:w-4/12 lg:w-2/12 p-[10px] lg:pl-[25px]  3xl:pl-[40px]">
+              <div className="sm:hidden">
+                <AccordionItem value="our-services">
+                  <AccordionTrigger className="!gap-0 !p-0 m-0">
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
+                      Policies
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="p-0 mt-[15px]">
+                    <ul>
+                      {policies?.map((item, index) => (
+                        <li
+                          key={index}
+                          className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
+                        >
+                          {/* <Link
+                            href={`/policies/${item?.slug}`}
+                            className={`${menuLink}`}
+                            aria-label="menuLink"
+                          >
+                            {item?.title}
+                          </Link> */}
+                           <span className={menuLink}>{item?.title}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+              <div className="hidden sm:block">
+                <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[20px] 3xl:mb-[30px]">
+                  Policies
+                </div>
+                <ul>
+                  {policies?.map((item, index) => (
+                    <li
+                      key={index}
+                      className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
+                    >
+                      {/* <Link
+                        href={`/policies/${item?.slug}`}
+                        className={`${menuLink}`}
+                        aria-label="menuLink"
+                      >
+                        {item?.title}
+                      </Link> */}
+                       <span className={menuLink}>{item?.title}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
 
             {/* Our Services */}
-            <div className="w-full sm:w-4/12 lg:w-2/12 p-[10px] lg:pl-[25px]  3xl:pl-[40px]">
+            <div className="w-full sm:w-4/12 lg:w-2/12 p-[10px] lg:pl-[25px] 3xl:pl-[40px]">
               <div className="sm:hidden">
-                <AccordionItem value="our-services">
+                <AccordionItem value="patient-resources">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Our Services</div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
+                      Our Services
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <ul>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Home
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Our Services
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Consultants
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          About us
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="/policies" className={`${menuLink}`} aria-label="menuLink">
-                          Privacy Policy
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="/terms-and-conditions" className={`${menuLink}`} aria-label="menuLink">
-                          Terms & conditions
-                        </Link>
-                      </li>
+                      {services?.map((item, index) => (
+                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                          <Link
+                            href={`/service/${item?.slug}`}
+                            className={`${menuLink}`}
+                            aria-label="menuLink"
+                          >
+                            {item?.name}
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -197,108 +259,17 @@ export default function index({ site_settings, social_links }) {
                   Our Services
                 </div>
                 <ul>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Our Services
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Consultants
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      About us
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="/policies" className={`${menuLink}`} aria-label="menuLink">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="/terms-and-conditions" className={`${menuLink}`} aria-label="menuLink">
-                      Terms & conditions
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Patient Resources */}
-            <div className="w-full sm:w-4/12 lg:w-2/12 p-[10px] lg:pl-[25px] 3xl:pl-[40px]">
-              <div className="sm:hidden">
-                <AccordionItem value="patient-resources">
-                  <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Patient Resources</div>
-                  </AccordionTrigger>
-                  <AccordionContent className="p-0 mt-[15px]">
-                    <ul>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Book Appointment
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Blog
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          FAQ
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Patient Feedback
-                        </Link>
-                      </li>
-                      <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                        <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                          Contact
-                        </Link>
-                      </li>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[20px] 3xl:mb-[30px]">
-                  Patient Resources
-                </div>
-                <ul>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Book Appointment
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Blog
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      FAQ
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Patient Feedback
-                    </Link>
-                  </li>
-                  <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                    <Link href="#" className={`${menuLink}`} aria-label="menuLink">
-                      Contact
-                    </Link>
-                  </li>
+                  {services?.map((item, index) => (
+                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                      <Link
+                        href={`/service/${item?.slug}`}
+                        className={`${menuLink}`}
+                        aria-label="menuLink"
+                      >
+                        {item?.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -308,20 +279,27 @@ export default function index({ site_settings, social_links }) {
               <div className="sm:hidden">
                 <AccordionItem value="contact-info">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Contact Information</div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
+                      Contact Information
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <div className="w-full mb-[20px]">
-                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                      <div
+                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                      >
                         Location
                       </div>
                       {renderHtml(
-                        site_settings?.footer_address_value || "Skyline Hospitals Coventry",
+                        site_settings?.footer_address_value ||
+                          "Skyline Hospitals Coventry",
                         "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
                       )}
                     </div>
                     <div className="w-full mb-[20px]">
-                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                      <div
+                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                      >
                         Phone
                       </div>
                       <div
@@ -329,33 +307,47 @@ export default function index({ site_settings, social_links }) {
                       >
                         Main:{" "}
                         <a
-                          href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
+                          href={`tel:${
+                            site_settings?.main_phone_number || "024 7XXX XXXX"
+                          }`}
                           className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
                         >
                           {" "}
                           {site_settings?.main_phone_number || "024 7XXX XXXX"}
                         </a>
                       </div>
-                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
+                      <div
+                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}
+                      >
                         Main:{" "}
                         <a
-                          href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
+                          href={`tel:${
+                            site_settings?.emergency_phone_number ||
+                            "024 7XXX XXXX"
+                          }`}
                           className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
                         >
-                          {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
+                          {site_settings?.emergency_phone_number ||
+                            "024 7XXX XXXX"}
                         </a>
                       </div>
                     </div>
                     <div className="w-full mb-0">
-                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                      <div
+                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                      >
                         Email
                       </div>
                       <a
-                        href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
+                        href={`mailto:${
+                          site_settings?.email ||
+                          "info@skylinehospitalscoventry.co.uk"
+                        } `}
                         className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                          3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                       >
-                        {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
+                        {site_settings?.email ||
+                          "info@skylinehospitalscoventry.co.uk"}
                       </a>
                     </div>
                   </AccordionContent>
@@ -366,16 +358,21 @@ export default function index({ site_settings, social_links }) {
                   Contact Information
                 </div>
                 <div className="w-full mb-[20px]">
-                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                  <div
+                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                  >
                     Location
                   </div>
                   {renderHtml(
-                    site_settings?.footer_address_value || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
+                    site_settings?.footer_address_value ||
+                      "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
                     "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
                   )}
                 </div>
                 <div className="w-full mb-[20px]">
-                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                  <div
+                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                  >
                     Phone
                   </div>
                   <div
@@ -383,16 +380,22 @@ export default function index({ site_settings, social_links }) {
                   >
                     Main:{" "}
                     <a
-                      href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
+                      href={`tel:${
+                        site_settings?.main_phone_number || "024 7XXX XXXX"
+                      }`}
                       className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
                     >
                       {site_settings?.main_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
-                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
+                  <div
+                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}
+                  >
                     Emergency:{" "}
                     <a
-                      href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
+                      href={`tel:${
+                        site_settings?.emergency_phone_number || "024 7XXX XXXX"
+                      }`}
                       className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
                     >
                       {" "}
@@ -401,15 +404,21 @@ export default function index({ site_settings, social_links }) {
                   </div>
                 </div>
                 <div className="w-full mb-0">
-                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
+                  <div
+                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
+                  >
                     Email
                   </div>
                   <a
-                    href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
+                    href={`mailto:${
+                      site_settings?.email ||
+                      "info@skylinehospitalscoventry.co.uk"
+                    } `}
                     className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                      3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                   >
-                    {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}{" "}
+                    {site_settings?.email ||
+                      "info@skylinehospitalscoventry.co.uk"}{" "}
                   </a>
                 </div>
               </div>
@@ -420,7 +429,9 @@ export default function index({ site_settings, social_links }) {
               <div className="sm:hidden">
                 <AccordionItem value="opening-hours">
                   <AccordionTrigger className="!gap-0 !p-0 m-0 lg:hidden">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Opening Hours</div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
+                      Opening Hours
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <Link
@@ -429,14 +440,25 @@ export default function index({ site_settings, social_links }) {
                       aria-label="location_link"
                     >
                       <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
-                        <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />
+                        <Image
+                          src="/images/location.jpg"
+                          width="330"
+                          height="150"
+                          className="w-full h-full object-cover"
+                          alt="location-img"
+                        />
                       </div>
                       <div
                         className="absolute left-0 right-0 bottom-0 top-0 w-fit h-fit m-auto transition-all duration-300 text-center 
                                                 flex items-center justify-center flex-col"
                       >
                         <div className="w-[42px] h-[42px] flex items-center justify-center transition-all duration-300 group-hover:translate-y-[-10px]">
-                          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+                          <svg
+                            width="42"
+                            height="42"
+                            viewBox="0 0 42 42"
+                            fill="none"
+                          >
                             <path
                               d="M21.0803 3.28176C20.6267 3.27848 20.2567 3.64352 20.2534 4.09633C20.2502 4.54915 20.6144 4.91911 21.068 4.92239C21.5208 4.92567 21.8908 4.56145 21.8941 4.10864C21.8973 3.65582 21.5331 3.28586 21.0803 3.28176Z"
                               fill="#00335B"
@@ -455,7 +477,9 @@ export default function index({ site_settings, social_links }) {
                             />
                           </svg>
                         </div>
-                        <div className="text-[14px] text-base2 font-medium transition-all duration-all">View Map</div>
+                        <div className="text-[14px] text-base2 font-medium transition-all duration-all">
+                          View Map
+                        </div>
                       </div>
                     </Link>
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
@@ -482,11 +506,16 @@ export default function index({ site_settings, social_links }) {
                 >
                   <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
                     <Image
-                      src={site_settings?.map_image_value || "/images/location.jpg"}
+                      src={
+                        site_settings?.map_image_value || "/images/location.jpg"
+                      }
                       width="330"
                       height="150"
                       className="w-full h-full object-cover"
-                      alt={site_settings?.map_image_alt_text_value || "location-img"}
+                      alt={
+                        site_settings?.map_image_alt_text_value ||
+                        "location-img"
+                      }
                     />
                   </div>
                   <div
@@ -494,7 +523,12 @@ export default function index({ site_settings, social_links }) {
                                     flex items-center justify-center flex-col"
                   >
                     <div className="w-[42px] h-[42px] flex items-center justify-center transition-all duration-300 group-hover:translate-y-[-10px]">
-                      <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+                      <svg
+                        width="42"
+                        height="42"
+                        viewBox="0 0 42 42"
+                        fill="none"
+                      >
                         <path
                           d="M21.0803 3.28176C20.6267 3.27848 20.2567 3.64352 20.2534 4.09633C20.2502 4.54915 20.6144 4.91911 21.068 4.92239C21.5208 4.92567 21.8908 4.56145 21.8941 4.10864C21.8973 3.65582 21.5331 3.28586 21.0803 3.28176Z"
                           fill="#00335B"
@@ -513,7 +547,9 @@ export default function index({ site_settings, social_links }) {
                         />
                       </svg>
                     </div>
-                    <div className="text-[14px] text-base2 font-medium underline transition-all duration-all">View Map</div>
+                    <div className="text-[14px] text-base2 font-medium underline transition-all duration-all">
+                      View Map
+                    </div>
                   </div>
                 </Link>
                 <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
@@ -544,7 +580,13 @@ export default function index({ site_settings, social_links }) {
             <div className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-white flex items-center max-sm:justify-center max-sm:w-full">
               Designed By :
               <a href="/" className="px-[5px]" aria-label="logo">
-                <Image src="/images/interLogo.svg" width="105" height="20" className="w-[105px]" alt="logo" />
+                <Image
+                  src="/images/interLogo.svg"
+                  width="105"
+                  height="20"
+                  className="w-[105px]"
+                  alt="logo"
+                />
               </a>
             </div>
           </div>

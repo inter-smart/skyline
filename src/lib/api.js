@@ -1,4 +1,5 @@
-const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/` || "http://localhost:3001";
+const API_BASE_URL =
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/` || "http://localhost:3001";
 export const MEDIA_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export class APIError extends Error {
@@ -12,7 +13,6 @@ export class APIError extends Error {
 export async function fetchFromAPI(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
 
-  console.log(url);
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
@@ -98,5 +98,24 @@ export async function postToAPI(endpoint, data) {
   } catch (error) {
     console.log(error);
     throw new APIError(error.message, error.status || 500);
+  }
+}
+
+export async function multipartPostToAPI(endpoint, formData) {
+  const url = `${API_BASE_URL}${endpoint}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      // ❌ DO NOT manually set Content-Type
+      // The browser automatically adds the multipart boundary.
+      body: formData,
+    });
+
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error("❌ multipartPostToAPI error:", error);
+    throw error;
   }
 }
