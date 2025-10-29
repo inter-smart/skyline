@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useBookingFormContext } from "@/context/BookingFormContext";
+import { ChevronUp } from "lucide-react"; // ✅ Use lucide-react icon
 
 const items = [
   {
@@ -41,8 +42,8 @@ const items = [
 export default function OurconsultantSection({ consultants, searchTerm }) {
   const [expanded, setExpanded] = useState({}); // track which item is expanded
   const { openDialog } = useBookingFormContext();
-  const [visibleCount, setVisibleCount] = useState(6); // ✅ initially show 2 consultants
-
+  const [visibleCount, setVisibleCount] = useState(2); // initially show 2 consultants
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const router = useRouter();
 
   const toggleExpand = (id) => {
@@ -68,10 +69,28 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
   };
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 6);
+    setVisibleCount((prev) => prev + 2);
   };
 
   const visibleConsultants = filtered.slice(0, visibleCount);
+
+  // Scroll to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+    const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
 
   return (
     <section className="py-[40px] 3xl:py-[60px]">
@@ -134,7 +153,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                                                     before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]"
                           >
                             <strong className="font-medium">
-                              {item.experience>0
+                              {item.experience > 0
                                 ? item?.experience + "+ years"
                                 : item.experience}
                             </strong>{" "}
@@ -150,7 +169,7 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                           >
                             Languages :{" "}
                             {item?.languages?.map((lang, index) => (
-                              <strong className="font-medium">
+                              <strong key={index} className="font-medium">
                                 {lang?.name}
                                 {index < item.languages.length - 1 ? ", " : ""}
                               </strong>
@@ -229,6 +248,17 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
           </div>
         )}
       </div>
+
+      {/* Scroll on top */}
+      {showScrollTop && (
+        <button
+          className="fixed bottom-[20px] right-[120px] bg-[#671448] w-[40px] h-[40px] rounded-full flex items-center justify-center z-50 text-white"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
+      )}
     </section>
   );
 }
