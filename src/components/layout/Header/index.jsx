@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import SuccessModal from "@/components/features/career/SuccesModal";
 
 import {
   Sheet,
@@ -165,6 +166,7 @@ export default function Header({ site_settings, social_links, services }) {
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
                     <BookAnAppointment />
+                    <SuccessModal/>
                   </div>
                   <div className="p-[12px]">
                     <Sheet>
@@ -554,6 +556,7 @@ export default function Header({ site_settings, social_links, services }) {
               <div className="flex items-center">
                 <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
                   <BookAnAppointment />
+                  <SuccessModal />
                 </div>
                 <SheetTrigger className="w-[25px] h-[25px] flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 464.205 464.205">

@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 
 import SuccesModal from "./SuccesModal";
 import { multipartPostToAPI, postToAPI } from "@/lib/api";
+import { useBookingFormContext } from "@/context/BookingFormContext";
 
 const formcontrol = `text-[8px] xl:!text-[10px] 2xl:!text-[11px] 3xl:!text-[15px] !text-[#000000] w-full border border-[#E4E4E4] rounded-[6px] 
         placeholder:!text-[8px] xl:placeholder:!text-[10px] 2xl:placeholder:!text-[11px] 3xl:!placeholder:text-[15px] 
@@ -41,7 +42,7 @@ const formcontrol = `text-[8px] xl:!text-[10px] 2xl:!text-[11px] 3xl:!text-[15px
 
 export default function CareerForm({ careerId, onSubmitSuccess }) {
   const [dragActive, setDragActive] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+const { showSuccess, openSuccess, closeSuccess } = useBookingFormContext();
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   const ACCEPTED_FILE_TYPES = [
@@ -128,7 +129,6 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
       }
 
       if (response.status) {
-        toast.success("Application submitted successfully!");
         form.reset({
           name: "",
           email: "",
@@ -137,7 +137,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
           resume: undefined,
           terms: false, // Explicitly reset checkbox to false
         });
-        setShowSuccessModal(true);
+        openSuccess();
         onSubmitSuccess?.();
       }
     } catch (error) {
@@ -200,7 +200,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
           </svg>
         </AlertDialogCancel>
         <AlertDialogHeader>
-          <div className="w-full relative p-[10px] 2xl:p-[12px] 3xl:p-[20px] mb-[5px] 2xl:mb-[10px] 3xl:mb-[20px]">
+          <div className="w-full relative p-[10px] 2xl:p-[12px] 3xl:p-[20px] mb-[5px] 2xl:mb-[10px] 3xl0px]">
             <div className="text-[25px] xl:text-[33px] 2xl:text-[40px] 3xl:text-[50px] text-[#212121] mb-[15px] leading-none">
               Apply Now
             </div>
@@ -461,12 +461,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                       </Button>
                     </div>
                     <div className="px-[5px]">
-                      {showSuccessModal && (
-                        <SuccesModal
-                          isOpen={showSuccessModal}
-                          onOpenChange={setShowSuccessModal}
-                        />
-                      )}
+                      <SuccesModal />
                     </div>
                   </div>
                 </div>

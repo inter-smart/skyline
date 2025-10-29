@@ -133,7 +133,6 @@ export default function BookAnAppointment() {
 
       // ✅ Reset only after success
       form.reset();
-      toast.success("Appointment booked successfully!");
       closeDialog();
       openSuccess();
     } catch (error) {
