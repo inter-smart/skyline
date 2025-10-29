@@ -25,22 +25,23 @@ export default function HeaderClient({ site_settings, social_links, services, re
     return () => window?.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const servicesList = services.map((service) => ({
+  const servicesList = services?.map((service) => ({
     name: service?.name,
     link: `/service/${service?.slug}`,
   }));
 
   const menus = [
-    { name: "Home", link: "/" },
-    { name: "About Us", link: "/about" },
+    { name: "Home", link: "/", clickable: true },
+    { name: "About Us", link: "/about", clickable: true },
     {
       name: "Services",
       link: "/service",
       submenu: servicesList,
+      clickable: true,
     },
-    { name: "Consultants", link: "/consultants" },
-    { name: "News & Insights", link: "/news" },
-    { name: "Contact", link: "/contact" },
+    { name: "Consultants", link: "/consultants", clickable: false },
+    { name: "News & Insights", link: "/news", clickable: false },
+    { name: "Contact", link: "/contact", clickable: false },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
@@ -81,9 +82,13 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       }`}
                     >
                       {/* Main link */}
-                      <Link href={item.link} className={menuLinks} aria-label="menulinks">
-                        {item.name}
-                      </Link>
+                      {item.clickable ? (
+                        <Link href={item.link} className={menuLinks} aria-label="menulinks">
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <span className={menuLinks}>{item.name}</span>
+                      )}
 
                       {/* Dropdown (if submenu exists) */}
                       {item.submenu && (
