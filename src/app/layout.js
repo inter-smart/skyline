@@ -78,7 +78,7 @@ const unna = UnnaFont({
 export default async function RootLayout({ children }) {
   const { data } = await fetchFromAPI("site-settings");
   const { data: services } = await fetchDropdownDataAPI("get-services");
-  const { site_settings, social_links } = data;
+  const { site_settings, social_links, policies } = data;
 
   return (
     <html lang="en">
@@ -87,7 +87,7 @@ export default async function RootLayout({ children }) {
           <Header site_settings={site_settings} social_links={social_links} services={services} />
           <main className="flex-grow">{children}</main>
           <WidgetSection />
-          <Footer site_settings={site_settings} social_links={social_links} />
+          <Footer site_settings={site_settings} social_links={social_links} policies={policies} services={services} />
           <Toaster position="top-right" />
         </BookingFormContextProvider>
       </body>

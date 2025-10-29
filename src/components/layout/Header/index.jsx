@@ -71,7 +71,7 @@ export default function Header({ site_settings, social_links, services }) {
               <div className="w-full flex items-center justify-between">
                 {/* menus */}
                 <div className="flex items-center relative">
-                  {menus.map((item, id) => (
+                  {menus?.map((item, id) => (
                     <div
                       key={id}
                       className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
