@@ -80,7 +80,7 @@ export default function index({
               </div>
 
               {/* social Links */}
-              <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
+              {/* <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
                 <div
                   className={`text-[11px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] font-semibold text-[#671448] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}
                 >
@@ -105,8 +105,8 @@ export default function index({
                       </a>
                     </li>
                   ))}
-                </ul>
-              </div>
+                </ul> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -558,6 +558,7 @@ export default function index({
 
                 {site_settings?.opening_hours?.map((hours, index) => (
                   <div
+                    key={index}
                     className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] text-white font-normal mb-[8px] flex items-center`}
                     aria-label="email_link"
                   >
