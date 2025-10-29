@@ -35,33 +35,17 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
   const isConsultant = source === "consultants";
 
-  const formSchema = z
-    .object({
-      name: z.string().min(2, "Name must be at least 2 characters"),
-      email: z.string().email("Please enter a valid email address"),
-      phone_number: z.string().optional(),
-      country_code: z.string().optional(),
-      country: z.string().optional(),
-      service_id: z.string().optional(), // Always optional in base schema
-      reason_for_consultation_id: z.string().min(1, "Please select a reason_for_consultation_id"),
-      insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
-      additionalNotes: z.string().optional(),
-    })
-    .refine(
-      (data) => {
-        // If condition is true, service_id is required
-        const shouldRequireServiceId = !isConsultant; // Your condition
-
-        if (shouldRequireServiceId) {
-          return Boolean(data.service_id);
-        }
-        return true;
-      },
-      {
-        message: "Please select a service",
-        path: ["service_id"], // Points to the field
-      }
-    );
+  const formSchema = z.object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    phone_number: z.string().optional(),
+    country_code: z.string().optional(),
+    country: z.string().optional(),
+    service_id: z.string().min(1, "Please select a service_id"), // Always required in base schema
+    reason_for_consultation_id: z.string().min(1, "Please select a reason_for_consultation_id"),
+    insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
+    additionalNotes: z.string().optional(),
+  });
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -102,20 +86,24 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     try {
       await postToAPI("appointments", formattedData);
 
-      // ✅ Reset only after success
-      form.reset();
-      closeDialog();
-      openSuccess();
+      toast.success("Your form has been submitted successfully.");
+      handleClose();
     } catch (error) {
       toast.error("Error submitting form. Please try again.");
       console.error("Error submitting form:", error);
     }
   };
-
   const handleClose = () => {
-    form.reset(); // Clears all fields, errors, and touched states
+    form.reset();
     closeDialog();
   };
+
+  useEffect(() => {
+    if (source === "services" && slug) {
+      // Set the service_id field with the slug value
+      form.setValue("service_id", String(slug));
+    }
+  }, [source, slug, form]);
 
   return (
     <AlertDialog open={isOpen} onOpenChange={(open) => (open ? openDialog() : closeDialog())}>
@@ -271,6 +259,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
                 {/* Service Select Dropdown */}
 
+                {/* Service Select Dropdown */}
                 {!isConsultant && (
                   <div className={`w-full 2xs:w-1/2 p-[5px] 2xl:p-[10px]`}>
                     <FormField
@@ -312,7 +301,6 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                     />
                   </div>
                 )}
-
                 {/* Reason Select Dropdown */}
                 <div className={`w-full p-[5px] 2xl:p-[10px]`}>
                   <FormField

@@ -13,10 +13,9 @@ import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
 
-
 // Map template keys to components
 const TEMPLATE_COMPONENTS = {
-  "template-1": (section) => (
+  "template-1": (section, undefined, id) => (
     <FeaturedSection
       path={section?.service_section_cms?.image_value}
       alt={section?.service_section_cms?.image_alt_text_value}
@@ -25,6 +24,7 @@ const TEMPLATE_COMPONENTS = {
       description={section?.service_section_cms?.description}
       button_text={section?.service_section_cms?.button_text}
       button_link={section?.service_section_cms?.button_link}
+      id={id}
     />
   ),
 
@@ -47,11 +47,7 @@ const TEMPLATE_COMPONENTS = {
   ),
 
   "template-4": (section) => (
-    <OurTreatmentsection
-      sub_title={section?.title}
-      title={section?.service_section_cms?.title}
-      treatments={section?.service_section_items}
-    />
+    <OurTreatmentsection sub_title={section?.title} title={section?.service_section_cms?.title} treatments={section?.service_section_items} />
   ),
 
   "template-5": (section) => (
@@ -124,13 +120,8 @@ const TEMPLATE_COMPONENTS = {
   ),
 };
 
-
-
-
 export default async function Service({ params }) {
-  const { data, error } = await fetchFromAPI(
-    `service-details?slug=${params.slug}`
-  );
+  const { data, error } = await fetchFromAPI(`service-details?slug=${params.slug}`);
 
   if (error || !data) {
     return (
@@ -141,6 +132,7 @@ export default async function Service({ params }) {
   }
 
   const {
+    id,
     banner_value,
     banner_mobile_value,
     banner_alt_text_value,
@@ -166,17 +158,12 @@ export default async function Service({ params }) {
         />
       )}
 
-
       {/* ✅ Dynamically Render All Templates */}
       {service_sections?.map((section) => {
         const key = section?.service_section_template?.key;
         const RenderComponent = TEMPLATE_COMPONENTS[key];
         if (!RenderComponent) return null; // skip unknown template
-        return (
-          <div key={section?.id}>
-            {RenderComponent(section, related_services_list)}
-          </div>
-        );
+        return <div key={section?.id}>{RenderComponent(section, related_services_list, id)}</div>;
       })}
     </>
   );
