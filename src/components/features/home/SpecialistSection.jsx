@@ -105,7 +105,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
               "Comprehensive medical care across multiple specialties, delivered by expert consultants using state-of-the-art facilities"}
           </motion.div>
 
-          <Link href="/services" className="btn-base1 hover" aria-label="know_more">
+          <Link href="/service" className="btn-base1 hover" aria-label="know_more">
             View All Services
           </Link>
         </div>
@@ -183,7 +183,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
                     <ul>{parseDescriptionToListItems(item?.description, className)}</ul>
 
                     <Link
-                      href={`/services/${item?.slug}`}
+                      href={`/service/${item?.slug}`}
                       className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all mt-[20px]
                                          group duration-200 hover:text-base2 hover:tracking-[1px]"
                     >

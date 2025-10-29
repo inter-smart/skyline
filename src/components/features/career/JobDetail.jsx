@@ -14,10 +14,12 @@ import { Button } from "@/components/ui/button";
 import CareerForm from "./CareerForm";
 import { renderHtml } from "@/utils/parseHtml";
 
-export default function JobDetail({ careers }) {
+export default function JobDetail({careerId, careers }) {
   const [open, setOpen] = useState(false); // Track open/close state
 
   // Close alert when form is submitted
+
+
   const handleFormSubmit = () => {
     setOpen(false);
   };
@@ -123,7 +125,7 @@ export default function JobDetail({ careers }) {
             </div>
           </div>
           <div className="w-full  mt-[15px] 2xl:mt-[25px]">
-            <CareerForm onSubmitSuccess={handleFormSubmit} />
+            <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
           </div>
         </AlertDialogDescription>
       </AlertDialogContent>

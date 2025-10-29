@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { SubTitle, Heading } from "@/components/layout/Heading";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton"; // shadcn skeleton
 
 // ✅ Load Isotope and imagesLoaded only on the client
 let Isotope, imagesLoaded;
@@ -11,24 +12,6 @@ if (typeof window !== "undefined") {
   Isotope = require("isotope-layout");
   imagesLoaded = require("imagesloaded");
 }
-
-const youtubes = [
-  { id: 1, category: "news", youtubeId: "jbct2ZM8Rj4?si=WWwQmBcnmpGwhiD9" },
-  { id: 2, category: "consultant", youtubeId: "Muql4WIajH8?si=aW9UfnXJCWdxlrJr" },
-  { id: 3, category: "patient", youtubeId: "V-JheO-yva8Nk?si=h8CBVOwL1Fik-I0S" },
-  { id: 4, category: "explainers", youtubeId: "jbct2ZM8Rj4?si=WWwQmBcnmpGwhiD9" },
-  { id: 5, category: "educational", youtubeId: "Muql4WIajH8?si=aW9UfnXJCWdxlrJr" },
-  { id: 6, category: "patient", youtubeId: "V-JheO-yva8Nk?si=h8CBVOwL1Fik-I0S" },
-];
-
-const filters = [
-  { label: "All Posts", value: "*" },
-  { label: "News", value: ".news" },
-  { label: "Consultant", value: ".consultant" },
-  { label: "Patient", value: ".patient" },
-  { label: "Explainers", value: ".explainers" },
-  { label: "Educational", value: ".educational" },
-];
 
 const tabButton = `
   text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-black font-normal flex items-center justify-center
@@ -39,36 +22,119 @@ const tabButton = `
 export default function YouTubeGallerySection() {
   const isotope = useRef(null);
   const [filterKey, setFilterKey] = useState("*");
+  const [filters, setFilters] = useState([]);
+  const [headings, setHeadings] = useState(null);
+  const [videos, setVideos] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [error, setError] = useState(null);
 
+  const PER_PAGE = 6;
+
+  // ✅ Fetch filters on mount
   useEffect(() => {
-    // ✅ Only run on client
-    if (typeof window === "undefined" || !Isotope || !imagesLoaded) return;
+    const fetchFilters = async () => {
+      try {
+        const response = await fetch("/api/youtube/filters?key=videos");
+        const data = await response.json();
+        setFilters(data.filters?.tags);
+        setHeadings(data.headings?.headings);
+      } catch (err) {
+        console.error("Failed to fetch filters:", err);
+        setError("Failed to load filters");
+      }
+    };
+
+    fetchFilters();
+  }, []);
+
+  // ✅ Fetch initial videos
+  useEffect(() => {
+    const fetchVideos = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const category = filterKey === "*" ? "" : filterKey.replace(".", "");
+        const response = await fetch(`/api/youtube/videos?page=${page}&perPage=${PER_PAGE}&category=${category}`);
+
+        if (!response.ok) throw new Error("Failed to fetch videos");
+
+        const data = await response.json();
+
+        if (page === 1) {
+          setVideos(data.videos);
+        } else {
+          setVideos((prev) => [...prev, ...data.videos]);
+        }
+
+        setHasMore(data.hasMore);
+      } catch (err) {
+        console.error("Failed to fetch videos:", err);
+        setError("Failed to load videos");
+      } finally {
+        setIsLoading(false);
+        setIsLoadingMore(false);
+      }
+    };
+
+    fetchVideos();
+  }, [page, filterKey]);
+
+  // ✅ Initialize Isotope after videos load
+  useEffect(() => {
+    if (typeof window === "undefined" || !Isotope || !imagesLoaded || isLoading) return;
 
     const grid = document.querySelector(".youtube-grid");
     if (!grid) return;
 
-    isotope.current = new Isotope(grid, {
-      itemSelector: ".youtube-item",
-      layoutMode: "fitRows",
-      percentPosition: true,
-      transitionDuration: "0.3s",
-    });
+    // Destroy existing instance
+    if (isotope.current) {
+      isotope.current.destroy();
+    }
 
-    imagesLoaded(grid, () => isotope.current.layout());
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      isotope.current = new Isotope(grid, {
+        itemSelector: ".youtube-item",
+        layoutMode: "fitRows",
+        percentPosition: true,
+        transitionDuration: "0.3s",
+      });
+
+      imagesLoaded(grid, () => {
+        isotope.current?.layout();
+      });
+    }, 100);
 
     return () => {
       isotope.current?.destroy();
       isotope.current = null;
     };
-  }, []);
+  }, [videos, isLoading]);
 
+  // ✅ Apply filter
   useEffect(() => {
     if (isotope.current) {
-      filterKey === "*"
-        ? isotope.current.arrange({ filter: "*" })
-        : isotope.current.arrange({ filter: filterKey });
+      filterKey === "*" ? isotope.current.arrange({ filter: "*" }) : isotope.current.arrange({ filter: filterKey });
     }
   }, [filterKey]);
+
+  // ✅ Handle filter change
+  const handleFilterChange = (value) => {
+    setFilterKey(value);
+    setPage(1);
+    setVideos([]);
+    setIsLoading(true);
+  };
+
+  // ✅ Handle load more
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setPage((prev) => prev + 1);
+  };
 
   return (
     <section className="py-[30px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[70px]">
@@ -95,55 +161,107 @@ export default function YouTubeGallerySection() {
           {/* Filters */}
           <div className="w-auto p-[5px]">
             <div className="flex flex-wrap items-center bg-transparent -m-[5px] !h-auto">
-              {filters.map((filter) => (
-                <div className="p-[5px]" key={filter.value}>
-                  <button
-                    onClick={() => setFilterKey(filter.value)}
-                    className={`${tabButton} ${
-                      filterKey === filter.value
-                        ? "bg-[#671448] text-white"
-                        : "text-[#212121] hover:bg-[#f4f4f4]"
-                    }`}
-                  >
-                    {filter.label}
-                  </button>
-                </div>
-              ))}
+              {filters.length > 0 ? (
+                filters.map((filter) => (
+                  <div className="p-[5px]" key={filter.value}>
+                    <button
+                      onClick={() => handleFilterChange(filter.value)}
+                      disabled={isLoading}
+                      className={`${tabButton} ${filterKey === filter.value ? "bg-[#671448] text-white" : "text-[#212121] hover:bg-[#f4f4f4]"} ${
+                        isLoading ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                    >
+                      {filter.label}
+                    </button>
+                  </div>
+                ))
+              ) : (
+                // Skeleton for filters
+                <>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div className="p-[5px]" key={i}>
+                      <Skeleton className="h-[25px] 2xl:h-[31px] 3xl:h-[40px] w-[78px] 2xl:w-[95px] 3xl:w-[115px] rounded-[6px]" />
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
 
-        {/* YouTube Grid */}
-        <div className="youtube-grid flex flex-wrap w-full -m-[6px] md:-m-[8px] 3xl:-m-[15px]">
-          {youtubes.map((youtube) => (
-            <div
-              key={youtube.id}
-              className={`youtube-item ${youtube.category} w-full 2xs:w-1/2 sm:w-1/3 p-[6px] md:p-[8px] 3xl:p-[15px]`}
-            >
-              <div className="w-full aspect-video overflow-hidden rounded-[6px]">
-                <iframe
-                  className="w-full h-full"
-                  src={`https://www.youtube.com/embed/${youtube.youtubeId}`}
-                  title={`Video ${youtube.id}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-10">
+            <p className="text-red-500 mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()} className="bg-[#671448] text-white">
+              Retry
+            </Button>
+          </div>
+        )}
 
-        {/* Load More Button */}
-        <div className="mt-[20px] text-center">
-          <Button
-            className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
-                       border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center
-                       h-[32px] 2xl:h-[40px] 3xl:h-[50px] hover m-auto bg-transparent cursor-pointer rounded-[3px]
-                       hover:bg-[#671448] hover:text-white transition-all duration-300"
-          >
-            LOAD MORE
-          </Button>
-        </div>
+        {/* YouTube Grid */}
+        {!error && (
+          <>
+            <div className="youtube-grid flex flex-wrap w-full -m-[6px] md:-m-[8px] 3xl:-m-[15px]">
+              {isLoading && videos.length === 0 ? (
+                // Skeleton Loading for initial load
+                <>
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <div key={index} className="w-full 2xs:w-1/2 sm:w-1/3 p-[6px] md:p-[8px] 3xl:p-[15px]">
+                      <Skeleton className="w-full aspect-video rounded-[6px]" />
+                    </div>
+                  ))}
+                </>
+              ) : (
+                videos.map((youtube) => (
+                  <div key={youtube.id} className={`youtube-item ${youtube.category} w-full 2xs:w-1/2 sm:w-1/3 p-[6px] md:p-[8px] 3xl:p-[15px]`}>
+                    <div className="w-full aspect-video overflow-hidden rounded-[6px]">
+                      <iframe
+                        className="w-full h-full"
+                        src={`https://www.youtube.com/embed/${youtube.youtubeId}`}
+                        title={youtube.title || `Video ${youtube.id}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))
+              )}
+
+              {/* Skeleton for Load More */}
+              {isLoadingMore &&
+                Array.from({ length: 6 }).map((_, index) => (
+                  <div key={`loading-${index}`} className="w-full 2xs:w-1/2 sm:w-1/3 p-[6px] md:p-[8px] 3xl:p-[15px]">
+                    <Skeleton className="w-full aspect-video rounded-[6px]" />
+                  </div>
+                ))}
+            </div>
+
+            {/* Load More Button */}
+            {!isLoading && hasMore && videos.length > 0 && (
+              <div className="mt-[20px] text-center">
+                <Button
+                  onClick={handleLoadMore}
+                  disabled={isLoadingMore}
+                  className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] relative font-medium text-base1 border
+                           border-base1 tracking-widest min-w-[130px] 3xl:min-w-[152px] flex items-center justify-center
+                           h-[32px] 2xl:h-[40px] 3xl:h-[50px] m-auto bg-transparent cursor-pointer rounded-[3px]
+                           hover:bg-[#671448] hover:text-white transition-all duration-300
+                           disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoadingMore ? "LOADING..." : "LOAD MORE"}
+                </Button>
+              </div>
+            )}
+
+            {/* No More Videos */}
+            {!isLoading && !hasMore && videos.length > 0 && <div className="mt-[20px] text-center text-gray-500 text-sm">No more videos to load</div>}
+
+            {/* No Results */}
+            {!isLoading && videos.length === 0 && <div className="text-center py-10 text-gray-500">No videos found for this category</div>}
+          </>
+        )}
       </div>
     </section>
   );
