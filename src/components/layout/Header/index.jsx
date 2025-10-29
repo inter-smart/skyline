@@ -7,8 +7,20 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import BookAnAppointment from "../../common/BookAnAppointment";
 import { renderHtml } from "@/utils/parseHtml";
 
@@ -31,16 +43,17 @@ export default function Header({ site_settings, social_links, services }) {
   }));
 
   const menus = [
-    { name: "Home", link: "/" },
-    { name: "About Us", link: "/about" },
+    { name: "Home", link: "/", clickable: true },
+    { name: "About Us", link: "/about", clickable: true },
     {
       name: "Services",
       link: "/service",
       submenu: servicesList,
+      clickable: true,
     },
-    { name: "Consultants", link: "/consultants" },
-    { name: "News & Insights", link: "/news" },
-    { name: "Contact", link: "/contact" },
+    { name: "Consultants", link: "/consultants", clickable: false },
+    { name: "News & Insights", link: "/news", clickable: false },
+    { name: "Contact", link: "/contact", clickable: false },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
@@ -52,7 +65,11 @@ export default function Header({ site_settings, social_links, services }) {
 
   return (
     <header>
-      <div className={`w-full transition-all duration-100 max-lg:hidden ${isScrolled ? "stickyHeader" : ""}`}>
+      <div
+        className={`w-full transition-all duration-100 max-lg:hidden ${
+          isScrolled ? "stickyHeader" : ""
+        }`}
+      >
         <div className="container">
           <div className="flex items-center">
             <div className="lg:w-[135px] xl:w-[165px] 2xl:w-[200px] 3xl:w-[250px] logo transition-all duration-150 p-[10px_0]">
@@ -81,10 +98,17 @@ export default function Header({ site_settings, social_links, services }) {
                       }`}
                     >
                       {/* Main link */}
-                      <Link href={item.link} className={menuLinks} aria-label="menulinks">
+                      {item.clickable ? (
+                          <Link
+                        href={item.link}
+                        className={menuLinks}
+                        aria-label="menulinks"
+                      >
                         {item.name}
                       </Link>
-
+                      ) : (
+                        <span className={menuLinks}>{item.name}</span>
+                      )}
                       {/* Dropdown (if submenu exists) */}
                       {item.submenu && (
                         <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
@@ -109,7 +133,11 @@ export default function Header({ site_settings, social_links, services }) {
                     <div className="flex ">
                       <div className="w-[15px] 3xl:w-[20px]">
                         <div className="w-full flex items-center">
-                          <svg className="w-full h-full " viewBox="0 0 21 21" fill="none">
+                          <svg
+                            className="w-full h-full "
+                            viewBox="0 0 21 21"
+                            fill="none"
+                          >
                             <path
                               d="M20.0625 12.4018V14.5513C20.0608 15.1945 19.8427 15.8184 19.4435 16.3227C19.0442 16.8269 18.487 17.1822 17.8614 17.3314C17.7103 18.3504 17.1984 19.2812 16.4188 19.9545C15.6393 20.6278 14.6439 20.9988 13.6138 21H11.4643C10.8942 21 10.3474 20.7735 9.94432 20.3704C9.5412 19.9673 9.31473 19.4205 9.31473 18.8504C9.31473 18.6604 9.39022 18.4782 9.5246 18.3438C9.65897 18.2094 9.84122 18.1339 10.0312 18.1339C10.2213 18.1339 10.4035 18.2094 10.5379 18.3438C10.6723 18.4782 10.7478 18.6604 10.7478 18.8504C10.7478 19.0405 10.8233 19.2227 10.9576 19.3571C11.092 19.4915 11.2743 19.567 11.4643 19.567H13.6138C14.2474 19.5646 14.8623 19.3524 15.3625 18.9634C15.8626 18.5745 16.2198 18.0309 16.3782 17.4174H15.7634C15.5734 17.4174 15.3911 17.3419 15.2567 17.2075C15.1224 17.0732 15.0469 16.8909 15.0469 16.7009V10.2522C15.0469 10.0622 15.1224 9.87995 15.2567 9.74558C15.3911 9.6112 15.5734 9.53571 15.7634 9.53571H16.4799V8.8192C16.4799 7.10891 15.8005 5.46866 14.5911 4.2593C13.3818 3.04995 11.7415 2.37054 10.0312 2.37054C8.32096 2.37054 6.68072 3.04995 5.47136 4.2593C4.262 5.46866 3.58259 7.10891 3.58259 8.8192V9.53571H4.29911C4.48914 9.53571 4.67139 9.6112 4.80576 9.74558C4.94014 9.87995 5.01562 10.0622 5.01562 10.2522V16.7009C5.01562 16.8909 4.94014 17.0732 4.80576 17.2075C4.67139 17.3419 4.48914 17.4174 4.29911 17.4174H2.86607C2.10594 17.4174 1.37695 17.1154 0.839453 16.578C0.30196 16.0405 0 15.3115 0 14.5513V12.4018C0.00237436 11.7682 0.214608 11.1533 0.603522 10.6532C0.992436 10.153 1.53611 9.79585 2.14955 9.63746V8.8192C2.14955 6.72884 2.97994 4.7241 4.45805 3.246C5.93615 1.76789 7.94089 0.9375 10.0312 0.9375C12.1216 0.9375 14.1263 1.76789 15.6045 3.246C17.0826 4.7241 17.9129 6.72884 17.9129 8.8192V9.63746C18.5264 9.79585 19.0701 10.153 19.459 10.6532C19.8479 11.1533 20.0601 11.7682 20.0625 12.4018Z"
                               fill="#671448"
@@ -122,11 +150,15 @@ export default function Header({ site_settings, social_links, services }) {
                           Call Emergency
                         </div>
                         <Link
-                          href={`tel:${site_settings?.emergency_phone_number || "024 123 456 789"}`}
+                          href={`tel:${
+                            site_settings?.emergency_phone_number ||
+                            "024 123 456 789"
+                          }`}
                           className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black leading-none overflow-hidden transition-all duration-100 hover:text-base1"
                           aria-label="call"
                         >
-                          {site_settings?.emergency_phone_number || "024 123 456 789"}
+                          {site_settings?.emergency_phone_number ||
+                            "024 123 456 789"}
                         </Link>
                       </div>
                     </div>
@@ -137,12 +169,44 @@ export default function Header({ site_settings, social_links, services }) {
                   <div className="p-[12px]">
                     <Sheet>
                       <SheetTrigger className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer ">
-                        <svg className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2" viewBox="0 0 48 48" fill="none">
+                        <svg
+                          className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2"
+                          viewBox="0 0 48 48"
+                          fill="none"
+                        >
                           <circle cx="24" cy="24" r="24" />
-                          <rect x="13" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-                          <rect x="27.666" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-                          <rect x="27.666" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-                          <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+                          <rect
+                            x="13"
+                            y="14"
+                            width="7.33333"
+                            height="7.33333"
+                            rx="3.66667"
+                            fill="white"
+                          />
+                          <rect
+                            x="27.666"
+                            y="14"
+                            width="7.33333"
+                            height="7.33333"
+                            rx="3.66667"
+                            fill="white"
+                          />
+                          <rect
+                            x="27.666"
+                            y="26.4667"
+                            width="7.33333"
+                            height="7.33333"
+                            rx="3.66667"
+                            fill="white"
+                          />
+                          <rect
+                            x="13"
+                            y="26.4667"
+                            width="7.33333"
+                            height="7.33333"
+                            rx="3.66667"
+                            fill="white"
+                          />
                         </svg>
                       </SheetTrigger>
 
@@ -168,47 +232,89 @@ export default function Header({ site_settings, social_links, services }) {
                             <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                               <div className={`${cmnMenuClass}`}>Email</div>
                               <a
-                                href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
+                                href={`mailto:${
+                                  site_settings?.email ||
+                                  "info@skylinehospitalscoventry.co.uk"
+                                } `}
                                 className={`${cmnMenuClass} font-normal mb-[12px] block`}
                                 aria-label="email_link"
                               >
-                                {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
+                                {site_settings?.email ||
+                                  "info@skylinehospitalscoventry.co.uk"}
                               </a>
                             </li>
                             <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                               <div className={`${cmnMenuClass}`}>Phone</div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                              <div
+                                className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                                aria-label="email_link"
+                              >
                                 Main:{" "}
-                                <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                                <a
+                                  href={`tel:${
+                                    site_settings?.main_phone_number ||
+                                    "024 7XXX XXXX"
+                                  }`}
+                                  className="flex items-center pl-1"
+                                >
                                   {" "}
-                                  {site_settings?.main_phone_number || "024 7XXX XXXX"}
+                                  {site_settings?.main_phone_number ||
+                                    "024 7XXX XXXX"}
                                 </a>
                               </div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                              <div
+                                className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                                aria-label="email_link"
+                              >
                                 Emergency:{" "}
-                                <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                                  {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
+                                <a
+                                  href={`tel:${
+                                    site_settings?.emergency_phone_number ||
+                                    "024 7XXX XXXX"
+                                  }`}
+                                  className="flex items-center pl-1"
+                                >
+                                  {site_settings?.emergency_phone_number ||
+                                    "024 7XXX XXXX"}
                                 </a>
                               </div>
                             </li>
                             <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Opening Hours</div>
-                              {site_settings?.opening_hours?.map((hours, index) => (
-                                <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                  <span className="font-light">{hours?.key}</span>
-                                  <span className="pl-[5px]">: {hours?.value}</span>
-                                </div>
-                              ))}
+                              <div className={`${cmnMenuClass}`}>
+                                Opening Hours
+                              </div>
+                              {site_settings?.opening_hours?.map(
+                                (hours, index) => (
+                                  <div
+                                    className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                                    aria-label="email_link"
+                                  >
+                                    <span className="font-light">
+                                      {hours?.key}
+                                    </span>
+                                    <span className="pl-[5px]">
+                                      : {hours?.value}
+                                    </span>
+                                  </div>
+                                )
+                              )}
                             </li>
                           </ul>
 
                           {/* social Links */}
                           <div className="w-full">
-                            <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                            <div
+                              className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}
+                            >
+                              Follow us on
+                            </div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
                                 <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                                  <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
+                                  <a
+                                    href={social?.url}
+                                    className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white"
+                                  >
                                     <div className="w-[7px] h-[13px] flex items-center justify-center">
                                       <Image
                                         src={social?.icon_value} // <-- replace with correct image path
@@ -231,10 +337,16 @@ export default function Header({ site_settings, social_links, services }) {
                               aria-label="logo"
                             >
                               <Image
-                                src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
+                                src={
+                                  site_settings?.footer_logo_value ||
+                                  "/images/whiteLogo.png"
+                                }
                                 width="250"
                                 height="250"
-                                alt={site_settings?.footer_logo_alt_text_value || "logo"}
+                                alt={
+                                  site_settings?.footer_logo_alt_text_value ||
+                                  "logo"
+                                }
                                 className="w-full h-full object-contain"
                               />
                             </Link>
@@ -255,12 +367,44 @@ export default function Header({ site_settings, social_links, services }) {
             className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
            flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer "
           >
-            <svg className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2" viewBox="0 0 48 48" fill="none">
+            <svg
+              className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2"
+              viewBox="0 0 48 48"
+              fill="none"
+            >
               <circle cx="24" cy="24" r="24" />
-              <rect x="13" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="27.666" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="27.666" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+              <rect
+                x="13"
+                y="14"
+                width="7.33333"
+                height="7.33333"
+                rx="3.66667"
+                fill="white"
+              />
+              <rect
+                x="27.666"
+                y="14"
+                width="7.33333"
+                height="7.33333"
+                rx="3.66667"
+                fill="white"
+              />
+              <rect
+                x="27.666"
+                y="26.4667"
+                width="7.33333"
+                height="7.33333"
+                rx="3.66667"
+                fill="white"
+              />
+              <rect
+                x="13"
+                y="26.4667"
+                width="7.33333"
+                height="7.33333"
+                rx="3.66667"
+                fill="white"
+              />
             </svg>
           </SheetTrigger>
 
@@ -286,25 +430,45 @@ export default function Header({ site_settings, social_links, services }) {
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                   <div className={`${cmnMenuClass}`}>Email</div>
                   <a
-                    href={`mailto:${site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"} `}
+                    href={`mailto:${
+                      site_settings?.email ||
+                      "mailto:info@skylinehospitalscoventry.co.uk"
+                    } `}
                     className={`${cmnMenuClass} font-normal mb-[12px] block`}
                     aria-label="email_link"
                   >
-                    {site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"}
+                    {site_settings?.email ||
+                      "mailto:info@skylinehospitalscoventry.co.uk"}
                   </a>
                 </li>
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                   <div className={`${cmnMenuClass}`}>Phone</div>
-                  <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                  <div
+                    className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                    aria-label="email_link"
+                  >
                     Main:{" "}
-                    <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                    <a
+                      href={`tel:${
+                        site_settings?.main_phone_number || "024 7XXX XXXX"
+                      }`}
+                      className="flex items-center pl-1"
+                    >
                       {" "}
                       {site_settings?.main_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
-                  <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                  <div
+                    className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                    aria-label="email_link"
+                  >
                     Emergency:{" "}
-                    <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                    <a
+                      href={`tel:${
+                        site_settings?.emergency_phone_number || "024 7XXX XXXX"
+                      }`}
+                      className="flex items-center pl-1"
+                    >
                       {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
@@ -312,7 +476,10 @@ export default function Header({ site_settings, social_links, services }) {
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                   <div className={`${cmnMenuClass}`}>Opening Hours</div>
                   {site_settings?.opening_hours?.map((hours, index) => (
-                    <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                    <div
+                      className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`}
+                      aria-label="email_link"
+                    >
                       <span className="font-light">{hours?.key}</span>
                       <span className="pl-[5px]">: {hours?.value}</span>
                     </div>
@@ -322,11 +489,18 @@ export default function Header({ site_settings, social_links, services }) {
 
               {/* social Links */}
               <div className="w-full">
-                <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                <div
+                  className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}
+                >
+                  Follow us on
+                </div>
                 <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                      <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
+                      <a
+                        href={social?.url}
+                        className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white"
+                      >
                         <div className="w-[7px] h-[13px] flex items-center justify-center">
                           <Image
                             src={social?.icon} // <-- change to your actual icon path
@@ -344,9 +518,16 @@ export default function Header({ site_settings, social_links, services }) {
 
                 {/* logo section */}
 
-                <Link href="#" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
+                <Link
+                  href="#"
+                  className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
+                  aria-label="logo"
+                >
                   <Image
-                    src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
+                    src={
+                      site_settings?.footer_logo_value ||
+                      "/images/whiteLogo.png"
+                    }
                     width="250"
                     height="250"
                     alt={site_settings?.footer_logo_alt_text_value || "logo"}
@@ -362,7 +543,13 @@ export default function Header({ site_settings, social_links, services }) {
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <div className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
-                <Image src="/images/logo.svg" width="200" height="115" className="object-contain" alt="logo" />
+                <Image
+                  src="/images/logo.svg"
+                  width="200"
+                  height="115"
+                  className="object-contain"
+                  alt="logo"
+                />
               </div>
               <div className="flex items-center">
                 <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
@@ -405,21 +592,38 @@ export default function Header({ site_settings, social_links, services }) {
               </div>
               <SheetDescription>
                 <Accordion type="single" collapsible>
-                  <AccordionItem value="item-1" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                  <AccordionItem
+                    value="item-1"
+                    className="border-b border-[#f4f4f4]"
+                  >
+                    <Link
+                      href="/"
+                      className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
+                      aria-label="menuLink"
+                    >
                       <div className="flex items-center">
                         <span>Home</span>
                       </div>
                     </Link>
                   </AccordionItem>
-                  <AccordionItem value="item-2" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                  <AccordionItem
+                    value="item-2"
+                    className="border-b border-[#f4f4f4]"
+                  >
+                    <Link
+                      href="/"
+                      className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
+                      aria-label="menuLink"
+                    >
                       <div className="flex items-center">
                         <span>About Us</span>
                       </div>
                     </Link>
                   </AccordionItem>
-                  <AccordionItem value="item-3" className="border-b border-[#f4f4f4]">
+                  <AccordionItem
+                    value="item-3"
+                    className="border-b border-[#f4f4f4]"
+                  >
                     <AccordionTrigger className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Services</span>
@@ -460,7 +664,10 @@ export default function Header({ site_settings, social_links, services }) {
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
+                  <AccordionItem
+                    value="item-4"
+                    className="border-b border-[#f4f4f4]"
+                  >
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Consultants</span>
@@ -468,15 +675,29 @@ export default function Header({ site_settings, social_links, services }) {
                     </div>
                   </AccordionItem>
 
-                  <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                  <AccordionItem
+                    value="item-5"
+                    className="border-b border-[#f4f4f4]"
+                  >
+                    <Link
+                      href="/"
+                      className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
+                      aria-label="menuLink"
+                    >
                       <div className="flex items-center">
                         <span>News & Insights </span>
                       </div>
                     </Link>
                   </AccordionItem>
-                  <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                  <AccordionItem
+                    value="item-6"
+                    className="border-b border-[#f4f4f4]"
+                  >
+                    <Link
+                      href="/"
+                      className="text-[12px] font-normal text-black py-[8px] w-full flex items-center"
+                      aria-label="menuLink"
+                    >
                       <div className="flex items-center">
                         <span>Contact</span>
                       </div>
