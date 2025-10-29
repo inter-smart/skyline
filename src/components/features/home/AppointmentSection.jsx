@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function AppointmentSection({bannerImage}) {
+export default function AppointmentSection({ bannerImage }) {
   // Fade-up animation
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -11,10 +11,14 @@ export default function AppointmentSection({bannerImage}) {
   };
 
   return (
-    <section className="relative w-full h-full py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[165px]">
+    <section
+      className="relative w-full h-full py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[165px]
+              after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
+              after:bg-gradient-to-r after:from-[rgba(0,0,0,0.5)] after:to-[rgba(0,0,0,0.2)] after:z-[1]"
+                >
       {/* Background image */}
       <Image
-        src={bannerImage }
+        src={bannerImage}
         className="object-cover absolute top-0 left-0 w-full h-full"
         priority
         width={1920}
@@ -22,12 +26,12 @@ export default function AppointmentSection({bannerImage}) {
         alt="appointmentBanner"
       />
 
-      <div className="container w-full h-full flex items-center">
+      <div className="container w-full h-full flex items-center relative z-20">
         <motion.div
           className="max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
           initial="hidden"
-          whileInView="visible"         
-          viewport={{ once: true, amount: 0.3 }}  
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           <motion.p
             className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]"
