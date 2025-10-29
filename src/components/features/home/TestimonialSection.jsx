@@ -39,6 +39,26 @@ const testimonials = [
   },
 ];
 
+
+const sideImages =[
+  {
+    id: 1,
+    image: "/images/testimonial_1.jpg",
+  },
+  {
+    id: 2,
+    image: "/images/testimonial_2.jpg",
+  },
+  {
+    id: 3,
+    image: "/images/testimonial_3.jpg",
+  },
+    {
+    id: 4,
+    image: "/images/testimonial_4.jpg",
+  },
+]
+
 export default function TestimonialSection({ title, pre_title, textTestimonials = [], videoTestimonials = [] }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -158,12 +178,12 @@ export default function TestimonialSection({ title, pre_title, textTestimonials 
                 }}
                 className="relative w-full h-full"
               >
-                {[1, 2].map((video, index) => (
+                {sideImages?.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="w-full h-full rounded-[6px] overflow-hidden relative aspect-[450/340] before:absolute before:bottom-0 before:left-0 before:w-full before:h-full before:bg-[linear-gradient(0deg,rgba(0,0,0,0.6)_2.34%,rgba(0,0,0,0)_99.42%)]">
                       {/* <video src={`/videos/testimonial${video}.mp4`} autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
                       <Image
-                        src="/images/consult1.jpg" // ✅ update path/extension based on your asset
+                        src={item?.image} // ✅ update path/extension based on your asset
                         alt="testimonial-thumbnail"
                         fill
                         className="object-cover"
