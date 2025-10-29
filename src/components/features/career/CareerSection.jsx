@@ -243,8 +243,8 @@ export default function CareerSection({
                                     </div>
                                 </div>
                                 <div className="flex flex-wrap gap-[8px]">
-                                    <JobDetail careers={item} />
-                                    <CareerForm />
+                                    <JobDetail careerId={item?.id} careers={item} />
+                                    <CareerForm careerId={item?.id}/>
                                 </div>
                             </div>
                         </div>
