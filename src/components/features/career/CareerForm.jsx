@@ -234,7 +234,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                             className={`${formcontrol}`}
                           />
                         </FormControl>
-                        <FormMessage className="text-[10px] text-red-500 mt-1 ml-2" />
+                        <FormMessage className="text-[10px] text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -257,7 +257,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                               className={`${formcontrol}`}
                             />
                           </FormControl>
-                          <FormMessage className="text-[10px] text-red-500 mt-1 ml-2" />
+                          <FormMessage className="text-[10px] text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -282,7 +282,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                               className={`${formcontrol}`}
                             />
                           </FormControl>
-                          <FormMessage className="text-[10px] text-red-500 mt-1 ml-2" />
+                          <FormMessage className="text-[10px] text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -307,7 +307,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                               className={`${formcontrol}`}
                             />
                           </FormControl>
-                          <FormMessage className="text-[10px] text-red-500 mt-1 ml-2" />
+                          <FormMessage className="text-[10px] text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -396,7 +396,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                           </div>
                         </FormControl>
 
-                        <FormMessage className="text-[10px] text-red-500 mt-1 ml-2" />
+                        <FormMessage className="text-[10px] text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -421,7 +421,7 @@ export default function CareerForm({ careerId, onSubmitSuccess }) {
                             I agree to the terms & conditions *
                           </p>
                         </div>
-                        <FormMessage />
+                        <FormMessage className="text-[10px] text-red-500" />
                       </FormItem>
                     )}
                   />
