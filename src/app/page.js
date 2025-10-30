@@ -4,12 +4,25 @@ import BannerSection from "@/components/features/home/BannerSection";
 import SpecialistSection from "@/components/features/home/SpecialistSection";
 import TestimonialSection from "@/components/features/home/TestimonialSection";
 import WhySection from "@/components/features/home/WhySection";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  console.log("Calling meta");
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("home");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Home() {
   const { data, error } = await fetchFromAPI("home");
 
-  const { sliders, home_cms, announcements, banner_and_meta_tags, services, consultants, testimonials, blogs } = data;
+  const { sliders, home_cms, announcements, services, testimonials } = data;
 
   const textTestimonials = testimonials?.filter((item) => item?.type == "text");
   const videoTestimonials = testimonials?.filter((item) => item?.type == "video");
