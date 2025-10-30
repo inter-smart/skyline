@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { renderHtml } from "@/utils/parseHtml";
+import { renderHtml, renderHtmlWithClassName } from "@/utils/parseHtml";
 import Link from "next/link";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
@@ -60,7 +60,7 @@ export default function AppointmentSection({ sub_title, title, description, path
             className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
             variants={fadeUp}
           >
-            {renderHtml(description)}
+            {renderHtmlWithClassName(description, "text-white")}
           </motion.div>
 
           <motion.button

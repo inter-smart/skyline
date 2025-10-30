@@ -143,7 +143,7 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
                       >
                         {item?.title}
                       </Heading>
-                      <ul>
+                      <ul className="[&_*]:!text-white">
                         {parseDescriptionToListItems(
                           item?.description,
                           className
