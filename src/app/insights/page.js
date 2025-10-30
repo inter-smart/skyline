@@ -1,5 +1,5 @@
 import InnerBanner from "@/components/common/InnerBanner";
-import NewsSection from "@/components/features/News/NewsSection";
+import NewsSection from "@/components/features/insights/NewsSection";
 import { fetchFromAPI } from "@/lib/api";
 
 export default async function Page() {
