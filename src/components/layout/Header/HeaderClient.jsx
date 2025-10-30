@@ -228,6 +228,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                               ))}
                             </ul>  */}
 
+                            {/* logo section */}
                             <Link
                               href="#"
                               className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
