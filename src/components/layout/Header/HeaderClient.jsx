@@ -39,9 +39,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
       submenu: servicesList,
       clickable: true,
     },
-    { name: "Consultants", link: "/consultants", clickable: false },
-    { name: "News & Insights", link: "/news", clickable: false },
-    { name: "Contact", link: "/contact", clickable: false },
+    { name: "Consultants", link: "/consultants", clickable: true },
+    { name: "News & Insights", link: "/news", clickable: true },
+    { name: "Contact", link: "/contact", clickable: true },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
@@ -208,7 +208,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           </ul>
 
                           {/* social Links */}
-                           <div className="w-full">
+                          <div className="w-full">
                             {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
@@ -242,7 +242,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 className="w-full h-full object-contain"
                               />
                             </Link>
-                          </div> 
+                          </div>
                         </SheetDescription>
                       </SheetContent>
                     </Sheet>
