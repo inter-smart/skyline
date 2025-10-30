@@ -34,7 +34,7 @@ export default function EnquirySection({ title, description, contact_items }) {
               {/* Emergency */}
 
               {contact_items?.map((card, index) => (
-                <div className="flex items-start space-x-3 ">
+                <div key={index} className="flex items-start space-x-3 ">
                   <div>
                     <Image
                       src={card?.icon_value}

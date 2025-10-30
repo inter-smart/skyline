@@ -20,7 +20,7 @@ export default function FeaturedSection({ path, alt, sub_title, title, descripti
   };
 
   return (
-    <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
+    <section className="w-full pt-[80px] sm:pt-[60px] xl:pt-[80px] 3xl:pt-[100px] relative z-0">
       <div className="container container-sm relative after:content-[''] after:absolute after:clear-both after:block">
         <div className="w-full md:w-[calc(40%+40px)] xl:w-[calc(50%+50px)] 2xl:w-[calc(50%+60px)] 3xl:w-[calc(50%+75px)] md:pr-[30px] xl:pr-[50px] 2xl:pr-[60px] 3xl:pr-[75px] mb-[30px] md:float-left">
           <div className="w-full overflow-hidden ">
