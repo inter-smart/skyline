@@ -1,4 +1,6 @@
+import { renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
+import Link from "next/link";
 
 const recentNews = [
   {
@@ -18,22 +20,24 @@ const recentNews = [
   },
 ];
 
-export default function NewsDetailSection() {
+export default function NewsDetailSection({
+  Insights
+}) {
   return (
     <section className="py-[40px_50px] border border-t-[rgb(145,145,147,0.25)]">
       <div className="container">
         <div className="flex flex-wrap w-full">
           <div className="lg:w-[calc(100%-295px)] xl:w-[calc(100%-365px)] 2xl:w-[calc(100%-440px)] 3xl:w-[calc(100%-550px)] lg:pr-[25px] xl:pr-[30px] 2xl:pr-[40px] 3xl:pr-[50px]">
             <div className="w-full mb-[15px] rounded-[6px] aspect-[1100/455]">
-              <Image src="/images/newsDetail.jpg" className="w-full object-cover" width="1100" height="455" alt="img" />
+              <Image src={Insights?.image_value} className="w-full object-cover" width="1100" height="455" alt={Insights?.image_alt_text_value} />
             </div>
-            <div className="2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-normal mb-[8px]">The Latest Advances in Cataract Surgery</div>
+            <div className="2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-normal mb-[8px]">{Insights?.title}</div>
             <div className="flex items-center gap-3 mb-[15px]">
               <div className="flex items-center">
-                <div className="w-[25px] h-[25px] rounded-full flex overflow-hidden">
+                {/* <div className="w-[25px] h-[25px] rounded-full flex overflow-hidden">
                   <Image src="/images/avatar3.png" className="w-full object-cover" width="25" height="25" alt="img" />
-                </div>
-                <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-medium text-black w-[calc(100%-25px)] pl-[5px]">Sarah James</div>
+                </div> */}
+                <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-medium text-black w-[calc(100%-25px)] pl-[5px]">{Insights?.author}</div>
               </div>
               <div className="flex items-center">
                 <div className="w-[15px] h-[15px] rounded-full flex items-center overflow-hidden">
@@ -44,57 +48,23 @@ export default function NewsDetailSection() {
                     />
                   </svg>
                 </div>
-                <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-medium text-[#671448] w-[calc(100%-15px)] pl-[5px]">8 mins read</div>
+                <div className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-medium text-[#671448] w-[calc(100%-15px)] pl-[5px]">{Insights?.published_on}</div>
               </div>
             </div>
             <div className="[&>p]:mb-[15px]">
-              <p>
-                Dummy text used in laying out pring There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a
-                passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It
-                uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Loreout print, graphic or
-                web designs.t, graphic or web designs. century who is thougeb designs...
-              </p>
-              <p>
-                Dummy text used in laying out pring There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a
-                passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as necessary, making t his tDummy text used in laying out pring There are
-                many variations of passages of Lorem Ipsum available, butDummy text used in laying out pring There are many variations of passages of
-                Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't
-                look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
-                hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making
-                this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence
-                structures, to generate Loreout print, graphic or web designs.t, graphic or web designs. century who is thougeb designs... the
-                majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If
-                you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All
-                the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the
-                Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Loreout
-                print, graphic or web designs.t, graphic or web designs. century who is thougeb designs...he first true generator on the Internet. It
-                uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Loreout print, graphic or
-                web designs.t, graphic or web designs. century who is thougeb designs...
-              </p>
-              <p>
-                Dummy text used in laying out pring There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a
-                passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It
-                uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Loreout print, graphic or
-                web designs.t, graphic or web designs. century who is thougeb designs...
-              </p>
+             {renderHtml(Insights?.content)}
             </div>
           </div>
           <div className="w-full lg:w-[295px] xl:w-[365px] 2xl:w-[440px] 3xl:w-[550px]">
             <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-regular uppercase text-[#00335B] tracking-widest mb-[15px]">
-              RECENT NEWS
+              RECENT BLOGS
             </div>
             <div className="flex flex-wrap w-full -m-[6px] 3xl:-m-[9px]">
-              {recentNews.map((news, idx) => (
+              {Insights?.related_blogs_list?.map((item, idx) => (
                 <div className="w-full sm:w-1/2 md:w-1/3 lg:w-full p-[6px] 3xl:p-[9px]" key={idx}>
                   <div className="flex flex-wrap w-full">
                     <div className="w-[75px] xl:w-[90px] 2xl:w-[110px] 3xl:w-[140px] rounded-[6px] overflow-hidden">
-                      <Image src={news.image} className="w-full h-full object-cover" width={140} height={125} alt={news.title} />
+                      <Image src={item?.image_value} className="w-full h-full object-cover" width={140} height={125} alt={item?.image_alt_text_value} />
                     </div>
                     <div className="w-[calc(100%-75px)] xl:w-[calc(100%-90px)] 2xl:w-[calc(100%-110px)] 3xl:w-[calc(100%-140px)] pl-[15px]">
                       <div
@@ -102,16 +72,17 @@ export default function NewsDetailSection() {
                                                     before:absolute before:top-[4px] before:2xl:top-[6px] before:3xl:top-[8px] before:left-0 before:content-[''] 
                                                     before:w-[2px] before:h-[2px] before:rounded-full mb-[5px] 2xl:mb-[8px] 3xl:mb-[10px] before:bg-[#313131]"
                       >
-                        {news.date}
+                        {item?.published_on}
                       </div>
                       <div
                         className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] mb-[8px] text-[#212121] font-normal line-clamp-2 
                                                 capitalize  lg:w-[200px] 2xl:max-w-[240px] 3xl:max-w-[300px]"
                       >
-                        {news.title}
+                        {item?.title}
                       </div>
                       <div className="border-[rgba(0,51,91,0.1)] border-t pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px]">
                         <div className="text-[8px] lg:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all duration-200 group-hover:text-base2 group-hover:tracking-[1px]">
+                         <Link href={`/insights/${item?.slug}`}>
                           Read More
                           <div className="w-[9px] lg:w-[13px] h-[9px] lg:h-[13px] flex mx-[10px]">
                             <svg
@@ -124,6 +95,7 @@ export default function NewsDetailSection() {
                               <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
                             </svg>
                           </div>
+                         </Link>
                         </div>
                       </div>
                     </div>
