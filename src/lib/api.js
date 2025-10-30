@@ -143,8 +143,9 @@ export async function getMetaData(pageKey, pagename = "") {
     const result = await response.json();
 
     const meta = result.data;
+    console.log("META RESPONSE", meta);
 
-    if (result.success) {
+    if (result.status) {
       return {
         title: meta?.meta_title || metaTitle,
         description: meta?.meta_description || metaDescription,
