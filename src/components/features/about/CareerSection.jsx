@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Heading, SubTitle } from "@/components/layout/Heading";
 import parse from "html-react-parser";
-import {  renderHtml } from "@/utils/parseHtml";
+import {  renderHtml, renderHtmlWithClassName } from "@/utils/parseHtml";
 
 export default function CareerSection({about_cms}) {
     // Fade-up animation
@@ -44,7 +44,7 @@ export default function CareerSection({about_cms}) {
                     <Heading size="heading1" as="div" className="text-white leading-none">
                         {about_cms?.section8_title}
                     </Heading>
-                    <p>{renderHtml(about_cms?.section8_description)}</p>
+                    <div>{renderHtmlWithClassName(about_cms?.section8_description, "text-white")}</div>
                     <Link href="" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">APPLY NOW</Link>
                 </motion.div>
             </div>

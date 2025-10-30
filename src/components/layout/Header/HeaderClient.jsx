@@ -208,8 +208,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           </ul>
 
                           {/* social Links */}
-                          <div className="w-full">
-                            <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                           <div className="w-full">
+                            {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
                                 <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -226,10 +226,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                   </a>
                                 </li>
                               ))}
-                            </ul>
+                            </ul>  */}
 
                             {/* logo section */}
-
                             <Link
                               href="#"
                               className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
@@ -243,7 +242,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 className="w-full h-full object-contain"
                               />
                             </Link>
-                          </div>
+                          </div> 
                         </SheetDescription>
                       </SheetContent>
                     </Sheet>
@@ -327,8 +326,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
               {/* social Links */}
               <div className="w-full">
-                <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
-                <ul className="flex items-center ">
+                {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div> */}
+                {/* <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
                       <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
@@ -345,7 +344,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       </a>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
 
                 {/* logo section */}
 
