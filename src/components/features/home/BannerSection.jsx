@@ -57,7 +57,7 @@ export default function HeroSlider({ sliders = slides }) {
         fadeEffect={{ crossFade: true }}
         slidesPerView={1}
         loop={true}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 3000 }}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="w-full h-full"
       >

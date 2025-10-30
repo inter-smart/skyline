@@ -8,13 +8,7 @@ export default function OurStory({ preTitle, title, description, img, alt }) {
         <div className="flex flex-wrap w-full justify-center -m-[8px]">
           <div className="sm:w-5/12 xl:w-1/2 p-[8px] max-sm:order-2">
             <div className="w-full m-auto max-w-[700px]">
-              <Image
-                src={img}
-                className="w-full h-full object-contain"
-                width="700"
-                height="570"
-                alt={alt}
-              />
+              <Image src={img} className="w-full h-full object-contain" width="700" height="570" alt={alt} />
             </div>
           </div>
           <div className="w-full sm:w-7/12 xl:w-1/2 p-[8px] flex items-center">
@@ -25,9 +19,8 @@ export default function OurStory({ preTitle, title, description, img, alt }) {
               <Heading size="heading1" as="div">
                 {title}
               </Heading>
-              <div className="line-clamp-4">
-                 {renderHtml(description)}
-              </div>
+              {/* <div className="line-clamp-4"> */}
+              <div>{renderHtml(description)}</div>
             </div>
           </div>
         </div>
