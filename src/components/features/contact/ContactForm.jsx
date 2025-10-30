@@ -123,7 +123,7 @@ export default function ContactFormSection() {
                     />
                   </div>
                 </FormControl>
-                <FormMessage className="text-red-300 text-xs mt-1" />
+                <FormMessage className="text-red-300 text-[10px] mt-1" />
               </FormItem>
             )}
           />
@@ -143,7 +143,7 @@ export default function ContactFormSection() {
                     />
                   </div>
                 </FormControl>
-                <FormMessage className="text-red-300 text-xs mt-1" />
+                <FormMessage className="text-red-300 text-[10px] mt-1" />
               </FormItem>
             )}
           />
@@ -168,7 +168,7 @@ export default function ContactFormSection() {
                     />
                   </div>
                 </FormControl>
-                <FormMessage className="text-red-300 text-xs mt-1" />
+                <FormMessage className="text-red-300 text-[10px] mt-1" />
               </FormItem>
             )}
           />
@@ -242,13 +242,12 @@ export default function ContactFormSection() {
             />
           </div>
           {/* Submit Button */}
-          <div className="w-full p-[10px] mt-[15px] text-center">
+          <div className="w-full p-[10px] mt-[15px]">
             <Button
               type="submit"
-              disabled={isSubmitting}
               className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] tracking-wider btn-base1 
-                          bg-white text-base1 hover:bg-base1 hover:text-white rounded-[3px] 
-                          2xl:h-[40px] 3xl:h-[50px] 2xl:min-w-[185px] 3xl:min-w-[235px]"
+                                hover bg-white text-base1 rounded-[3px] 2xl:h-[40px] 3xl:h-[50px] 2xl:min-w-[185px] 3xl:min-w-[235px] hover:text-white"
+              aria-label="consultation_btn"
             >
               {isSubmitting ? "Submitting..." : "Book Consultation"}
             </Button>
