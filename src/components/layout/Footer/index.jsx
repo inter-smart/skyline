@@ -46,6 +46,7 @@ export default function index({ site_settings, social_links, policies, services 
         >
           <div className="flex flex-wrap items-center ">
             <div className="w-[150px] lg:w-[190px] xl:w-[240px] 2xl:w-[290px] 3xl:w-[360px] max-sm:m-auto">
+              <Link href="/" className="block">
               <div className="xl:max-w-[240px] 2xl:max-w-[285px] 3xl:max-w-[350px]">
                 <Image
                   src={site_settings?.header_logo_value || "/images/logo.svg"}
@@ -54,6 +55,7 @@ export default function index({ site_settings, social_links, policies, services 
                   height="165"
                 />
               </div>
+              </Link>
             </div>
             <div
               className="w-full md:w-[calc(100%-150px)] lg:w-[calc(100%-190px)] xl:w-[calc(100%-240px)] 2xl:w-[calc(100%-290px)] 3xl:w-[calc(100%-360px)] md:pl-[15px] lg:pl-[30px] 2xl:pl-[50px] 3xl:pl-[60px] flex
