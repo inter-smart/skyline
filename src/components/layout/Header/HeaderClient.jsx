@@ -39,9 +39,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
       submenu: servicesList,
       clickable: true,
     },
-    { name: "Consultants", link: "/consultants", clickable: false },
-    { name: "News & Insights", link: "/news", clickable: false },
-    { name: "Contact", link: "/contact", clickable: false },
+    { name: "Consultants", link: "/consultants", clickable: true },
+    { name: "News & Insights", link: "/insights", clickable: true },
+    { name: "Contact", link: "/contact", clickable: true },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
