@@ -7,7 +7,7 @@ export default async function Page() {
 
   console.log(data);
 
-  const { accreditation_cms, accreditation, interviews, banner_and_meta_tags: bannerData, blog_categories: insightTypes } = data;
+  const { accreditation_cms, accreditation, interviews, banner_and_meta_tags: bannerData, blog_categories: insightTypes, blog_cms } = data;
 
   const awards = {
     data: accreditation_cms,
@@ -23,7 +23,7 @@ export default async function Page() {
         Title={bannerData?.banner_title || "News & Insights"}
         description={bannerData?.banner_description || "Be part of a hospital dedicated to excellence, compassion, and innovation."}
       />
-      <NewsSection awards={awards} interviews={interviews} insightTypes={insightTypes} />
+      <NewsSection awards={awards} interviews={interviews} insightTypes={insightTypes} blog_cms={blog_cms} />
     </>
   );
 }

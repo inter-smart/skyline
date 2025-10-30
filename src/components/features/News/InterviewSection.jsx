@@ -8,8 +8,9 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { renderHtml } from "@/utils/parseHtml";
 
-export default function InterviewSection({ interviews }) {
+export default function InterviewSection({ interviews, blog_cms }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   console.log("interviews", interviews);
@@ -25,12 +26,12 @@ export default function InterviewSection({ interviews }) {
           viewport={{ once: true, amount: 0.3 }}
         >
           <SubTitle size="SubTitle" as="div" className="!mb-[10px] 3xl:!mb-[15px] leading-none">
-            {interviews?.data?.pre_title}
+            {blog_cms?.pre_title}
           </SubTitle>
           <Heading size="heading1" as="div" className="leading-none !mb-[20px] 2xl:!mb-[25px] 3xl:!mb-[30px]">
-            {interviews?.data?.title}
+            {blog_cms?.title}
           </Heading>
-          <p>{interviews?.data?.description}</p>
+          {blog_cms?.description ? renderHtml(blog_cms?.description) : ""}
         </motion.div>
 
         {/* Slider Section */}
@@ -52,10 +53,16 @@ export default function InterviewSection({ interviews }) {
             }}
             className="interviewSlider"
           >
-            {interviews?.interviews?.map((interview, index) => (
+            {interviews?.map((interview, index) => (
               <SwiperSlide>
                 <div className="w-full aspect-[1200/580] rounded-[6px] overflow-hidden">
-                  <Image src={interview.image_value} className="w-full h-full object-cover" width={1200} height={580} alt="Consultant Interview" />
+                  <Image
+                    src={interview.video_thumbnail_image_value}
+                    className="w-full h-full object-cover"
+                    width={1200}
+                    height={580}
+                    alt="Consultant Interview"
+                  />
                 </div>
               </SwiperSlide>
             ))}
