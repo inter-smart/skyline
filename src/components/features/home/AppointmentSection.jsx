@@ -60,7 +60,7 @@ export default function AppointmentSection({ sub_title, title, description, path
             className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
             variants={fadeUp}
           >
-            {renderHtmlWithClassName(description, "text-white")}
+            {renderHtml(description, "[&>p]:text-white")}
           </motion.div>
 
           <motion.button

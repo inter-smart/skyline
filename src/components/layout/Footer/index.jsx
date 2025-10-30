@@ -1,11 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { renderHtml } from "@/utils/parseHtml";
 
 const menuLink = `text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block
@@ -31,7 +26,7 @@ const quickLinks = [
   {
     title: "Our Consultants",
     link: "/consultants",
-    clickable: false
+    clickable: false,
   },
   {
     title: "Career",
@@ -40,21 +35,10 @@ const quickLinks = [
   },
 ];
 
-export default function index({
-  site_settings,
-  social_links,
-  policies,
-  services,
-}) {
+export default function index({ site_settings, social_links, policies, services }) {
   return (
     <footer className="w-full bg-base2 pt-[80px] relative z-0">
-      <Image
-        src="/images/footerBg.png"
-        width="1920"
-        height="850"
-        className="absolute top-0 left-0 w-full h-full object-cover -z-1"
-        alt="footerBg"
-      />
+      <Image src="/images/footerBg.png" width="1920" height="850" className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt="footerBg" />
       <div className="container realtive z-10 mb-[50px]">
         <div
           className="bg-[#FDFDFD] p-[15px] sm:p-[20px] lg:p-[10px_20px] xl:p-[10px_35px] 2xl:p-[12px_45px] 3xl:p-[17px_55px]
@@ -119,23 +103,14 @@ export default function index({
               <div className="sm:hidden">
                 <AccordionItem value="quick-links">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
-                      Quick Links
-                    </div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Quick Links</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <ul>
                       {quickLinks?.map((item, index) => (
-                        <li
-                          key={index}
-                          className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
-                        >
+                        <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                           {item?.clickable ? (
-                            <Link
-                              href={item?.link}
-                              className={menuLink}
-                              aria-label="menuLink"
-                            >
+                            <Link href={item?.link} className={menuLink} aria-label="menuLink">
                               {item?.title}
                             </Link>
                           ) : (
@@ -153,16 +128,9 @@ export default function index({
                 </div>
                 <ul>
                   {quickLinks?.map((item, index) => (
-                    <li
-                      key={index}
-                      className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
-                    >
+                    <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                       {item?.clickable ? (
-                        <Link
-                          href={item?.link}
-                          className={menuLink}
-                          aria-label="menuLink"
-                        >
+                        <Link href={item?.link} className={menuLink} aria-label="menuLink">
                           {item?.title}
                         </Link>
                       ) : (
@@ -179,17 +147,12 @@ export default function index({
               <div className="sm:hidden">
                 <AccordionItem value="our-services">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
-                      Policies
-                    </div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Policies</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <ul>
                       {policies?.map((item, index) => (
-                        <li
-                          key={index}
-                          className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
-                        >
+                        <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                           {/* <Link
                             href={`/policies/${item?.slug}`}
                             className={`${menuLink}`}
@@ -197,7 +160,7 @@ export default function index({
                           >
                             {item?.title}
                           </Link> */}
-                           <span className={menuLink}>{item?.title}</span>
+                          <span className={menuLink}>{item?.title}</span>
                         </li>
                       ))}
                     </ul>
@@ -210,10 +173,7 @@ export default function index({
                 </div>
                 <ul>
                   {policies?.map((item, index) => (
-                    <li
-                      key={index}
-                      className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0"
-                    >
+                    <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                       {/* <Link
                         href={`/policies/${item?.slug}`}
                         className={`${menuLink}`}
@@ -221,7 +181,7 @@ export default function index({
                       >
                         {item?.title}
                       </Link> */}
-                       <span className={menuLink}>{item?.title}</span>
+                      <span className={menuLink}>{item?.title}</span>
                     </li>
                   ))}
                 </ul>
@@ -233,19 +193,13 @@ export default function index({
               <div className="sm:hidden">
                 <AccordionItem value="patient-resources">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
-                      Our Services
-                    </div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Our Services</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <ul>
                       {services?.map((item, index) => (
-                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                          <Link
-                            href={`/service/${item?.slug}`}
-                            className={`${menuLink}`}
-                            aria-label="menuLink"
-                          >
+                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
+                          <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                             {item?.name}
                           </Link>
                         </li>
@@ -260,12 +214,8 @@ export default function index({
                 </div>
                 <ul>
                   {services?.map((item, index) => (
-                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                      <Link
-                        href={`/service/${item?.slug}`}
-                        className={`${menuLink}`}
-                        aria-label="menuLink"
-                      >
+                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
+                      <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                         {item?.name}
                       </Link>
                     </li>
@@ -279,27 +229,20 @@ export default function index({
               <div className="sm:hidden">
                 <AccordionItem value="contact-info">
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
-                      Contact Information
-                    </div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Contact Information</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <div className="w-full mb-[20px]">
-                      <div
-                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                      >
+                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                         Location
                       </div>
                       {renderHtml(
-                        site_settings?.footer_address_value ||
-                          "Skyline Hospitals Coventry",
+                        site_settings?.footer_address_value || "Skyline Hospitals Coventry",
                         "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
                       )}
                     </div>
                     <div className="w-full mb-[20px]">
-                      <div
-                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                      >
+                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                         Phone
                       </div>
                       <div
@@ -307,47 +250,33 @@ export default function index({
                       >
                         Main:{" "}
                         <a
-                          href={`tel:${
-                            site_settings?.main_phone_number || "024 7XXX XXXX"
-                          }`}
+                          href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
                           className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
                         >
                           {" "}
                           {site_settings?.main_phone_number || "024 7XXX XXXX"}
                         </a>
                       </div>
-                      <div
-                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}
-                      >
+                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
                         Main:{" "}
                         <a
-                          href={`tel:${
-                            site_settings?.emergency_phone_number ||
-                            "024 7XXX XXXX"
-                          }`}
+                          href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
                           className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
                         >
-                          {site_settings?.emergency_phone_number ||
-                            "024 7XXX XXXX"}
+                          {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
                         </a>
                       </div>
                     </div>
                     <div className="w-full mb-0">
-                      <div
-                        className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                      >
+                      <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                         Email
                       </div>
                       <a
-                        href={`mailto:${
-                          site_settings?.email ||
-                          "info@skylinehospitalscoventry.co.uk"
-                        } `}
+                        href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
                         className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                          3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                       >
-                        {site_settings?.email ||
-                          "info@skylinehospitalscoventry.co.uk"}
+                        {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
                       </a>
                     </div>
                   </AccordionContent>
@@ -358,21 +287,16 @@ export default function index({
                   Contact Information
                 </div>
                 <div className="w-full mb-[20px]">
-                  <div
-                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                  >
+                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                     Location
                   </div>
                   {renderHtml(
-                    site_settings?.footer_address_value ||
-                      "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
+                    site_settings?.footer_address_value || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
                     "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
                   )}
                 </div>
                 <div className="w-full mb-[20px]">
-                  <div
-                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                  >
+                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                     Phone
                   </div>
                   <div
@@ -380,22 +304,16 @@ export default function index({
                   >
                     Main:{" "}
                     <a
-                      href={`tel:${
-                        site_settings?.main_phone_number || "024 7XXX XXXX"
-                      }`}
+                      href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`}
                       className="flex font-light px-[8px]  transition-all duration-100 hover:opacity-70 "
                     >
                       {site_settings?.main_phone_number || "024 7XXX XXXX"}
                     </a>
                   </div>
-                  <div
-                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}
-                  >
+                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative flex items-center`}>
                     Emergency:{" "}
                     <a
-                      href={`tel:${
-                        site_settings?.emergency_phone_number || "024 7XXX XXXX"
-                      }`}
+                      href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`}
                       className="flex font-light px-[8px]   transition-all duration-100 hover:opacity-70 "
                     >
                       {" "}
@@ -404,21 +322,15 @@ export default function index({
                   </div>
                 </div>
                 <div className="w-full mb-0">
-                  <div
-                    className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}
-                  >
+                  <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                     Email
                   </div>
                   <a
-                    href={`mailto:${
-                      site_settings?.email ||
-                      "info@skylinehospitalscoventry.co.uk"
-                    } `}
+                    href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
                     className="text-[10px] xl:text-[12px] 2xl:text-[14px] 
                                      3xl:text-[18px] text-white font-light relative flex items-center transition-all duration-100 hover:opacity-70 mb-[2px]"
                   >
-                    {site_settings?.email ||
-                      "info@skylinehospitalscoventry.co.uk"}{" "}
+                    {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}{" "}
                   </a>
                 </div>
               </div>
@@ -429,9 +341,7 @@ export default function index({
               <div className="sm:hidden">
                 <AccordionItem value="opening-hours">
                   <AccordionTrigger className="!gap-0 !p-0 m-0 lg:hidden">
-                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">
-                      Opening Hours
-                    </div>
+                    <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Opening Hours</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <Link
@@ -440,25 +350,14 @@ export default function index({
                       aria-label="location_link"
                     >
                       <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
-                        <Image
-                          src="/images/location.jpg"
-                          width="330"
-                          height="150"
-                          className="w-full h-full object-cover"
-                          alt="location-img"
-                        />
+                        <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />
                       </div>
                       <div
                         className="absolute left-0 right-0 bottom-0 top-0 w-fit h-fit m-auto transition-all duration-300 text-center 
                                                 flex items-center justify-center flex-col"
                       >
                         <div className="w-[42px] h-[42px] flex items-center justify-center transition-all duration-300 group-hover:translate-y-[-10px]">
-                          <svg
-                            width="42"
-                            height="42"
-                            viewBox="0 0 42 42"
-                            fill="none"
-                          >
+                          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
                             <path
                               d="M21.0803 3.28176C20.6267 3.27848 20.2567 3.64352 20.2534 4.09633C20.2502 4.54915 20.6144 4.91911 21.068 4.92239C21.5208 4.92567 21.8908 4.56145 21.8941 4.10864C21.8973 3.65582 21.5331 3.28586 21.0803 3.28176Z"
                               fill="#00335B"
@@ -477,9 +376,7 @@ export default function index({
                             />
                           </svg>
                         </div>
-                        <div className="text-[14px] text-base2 font-medium transition-all duration-all">
-                          View Map
-                        </div>
+                        <div className="text-[14px] text-base2 font-medium transition-all duration-all">View Map</div>
                       </div>
                     </Link>
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
@@ -506,16 +403,11 @@ export default function index({
                 >
                   <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
                     <Image
-                      src={
-                        site_settings?.map_image_value || "/images/location.jpg"
-                      }
+                      src={site_settings?.map_image_value || "/images/location.jpg"}
                       width="330"
                       height="150"
                       className="w-full h-full object-cover"
-                      alt={
-                        site_settings?.map_image_alt_text_value ||
-                        "location-img"
-                      }
+                      alt={site_settings?.map_image_alt_text_value || "location-img"}
                     />
                   </div>
                   <div
@@ -523,12 +415,7 @@ export default function index({
                                     flex items-center justify-center flex-col"
                   >
                     <div className="w-[42px] h-[42px] flex items-center justify-center transition-all duration-300 group-hover:translate-y-[-10px]">
-                      <svg
-                        width="42"
-                        height="42"
-                        viewBox="0 0 42 42"
-                        fill="none"
-                      >
+                      <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
                         <path
                           d="M21.0803 3.28176C20.6267 3.27848 20.2567 3.64352 20.2534 4.09633C20.2502 4.54915 20.6144 4.91911 21.068 4.92239C21.5208 4.92567 21.8908 4.56145 21.8941 4.10864C21.8973 3.65582 21.5331 3.28586 21.0803 3.28176Z"
                           fill="#00335B"
@@ -547,9 +434,7 @@ export default function index({
                         />
                       </svg>
                     </div>
-                    <div className="text-[14px] text-base2 font-medium underline transition-all duration-all">
-                      View Map
-                    </div>
+                    <div className="text-[14px] text-base2 font-medium underline transition-all duration-all">View Map</div>
                   </div>
                 </Link>
                 <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
@@ -581,13 +466,7 @@ export default function index({
             <div className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-white flex items-center max-sm:justify-center max-sm:w-full">
               Designed By :
               <a href="/" className="px-[5px]" aria-label="logo">
-                <Image
-                  src="/images/interLogo.svg"
-                  width="105"
-                  height="20"
-                  className="w-[105px]"
-                  alt="logo"
-                />
+                <Image src="/images/interLogo.svg" width="105" height="20" className="w-[105px]" alt="logo" />
               </a>
             </div>
           </div>
