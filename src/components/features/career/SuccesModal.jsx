@@ -1,21 +1,12 @@
 "use client";
 
-import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-} from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 
-export default function SuccesModal() {
-
-    const { showSuccess, closeSuccess } = useBookingFormContext();
-
-
-
+export default function SuccesModal({ open, setOpen }) {
   return (
-    <AlertDialog open={showSuccess} onOpenChange={closeSuccess}>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTitle className="sr-only">success</AlertDialogTitle>
       <AlertDialogContent className="max-w-[95%] sm:!max-w-[360px] 2xl:!max-w-[430px] 3xl:!max-w-[540px] bg-white rounded-[4px]">
         <AlertDialogCancel className="bg-transparent border-none cursor-pointer absolute top-[25px] right-[25px] w-[20px] h-[20px] flex items-center group hover:bg-transparent">
           <svg
@@ -31,8 +22,10 @@ export default function SuccesModal() {
 
         <AlertDialogDescription className="mb-0 text-center">
           <div className="max-w-[250px] 2xl:max-w-[400px] m-auto">
-            <div className="w-[50px] xl:w-[80px] 2xl:w-[95px] 3xl:w-[120px] h-[50px] xl:h-[80px] 2xl:h-[95px] 3xl:h-[120px]
-             m-auto flex items-center justify-center mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+            <div
+              className="w-[50px] xl:w-[80px] 2xl:w-[95px] 3xl:w-[120px] h-[50px] xl:h-[80px] 2xl:h-[95px] 3xl:h-[120px]
+             m-auto flex items-center justify-center mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]"
+            >
               <svg width="121" height="121" viewBox="0 0 121 121" fill="none">
                 <path
                   d="M60.1 120.2C93.2923 120.2 120.2 93.2923 120.2 60.1C120.2 26.9077 93.2923 0 60.1 0C26.9077 0 0 26.9077 0 60.1C0 93.2923 26.9077 120.2 60.1 120.2Z"
@@ -52,9 +45,7 @@ export default function SuccesModal() {
                 />
               </svg>
             </div>
-            <div className="xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-[#212121] font-medium mb-[5px]">
-              Submitted SUCCESSFULLY!
-            </div>
+            <div className="xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-[#212121] font-medium mb-[5px]">Submitted SUCCESSFULLY!</div>
             <p className="text-[10px] 2xl:text-[12px] 3xl:text-[16px]">
               Your application has been received. We’ll review it and get back to you soon.
             </p>
