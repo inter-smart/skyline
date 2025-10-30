@@ -31,7 +31,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
   }));
 
   const menus = [
-    { name: "Home", link: "/", clickable: true },
+    { name: "Homes", link: "/", clickable: true },
     { name: "About Us", link: "/about", clickable: true },
     {
       name: "Services",
@@ -208,7 +208,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           </ul>
 
                           {/* social Links */}
-                           <div className="w-full">
+                          <div className="w-full">
                             {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
@@ -242,7 +242,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 className="w-full h-full object-contain"
                               />
                             </Link>
-                          </div> 
+                          </div>
                         </SheetDescription>
                       </SheetContent>
                     </Sheet>
@@ -417,7 +417,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </Link>
                   </AccordionItem>
                   <AccordionItem value="item-2" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <Link href="/about" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <div className="flex items-center">
                         <span>About Us</span>
                       </div>
@@ -425,42 +425,24 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   </AccordionItem>
                   <AccordionItem value="item-3" className="border-b border-[#f4f4f4]">
                     <AccordionTrigger className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      <div className="flex items-center">
+                      <Link href="/service" className="flex items-center">
                         <span>Services</span>
-                      </div>
+                      </Link>
                     </AccordionTrigger>
                     <AccordionContent className="text-[12px] bg-[#671448] p-[10px] ">
                       <ul>
-                        <li className="last-of-type:mb-0">
-                          <Link
-                            href="/"
-                            aria-label="category_link"
-                            className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
+                        {servicesList?.map((item, index) => (
+                          <li key={index} className="last-of-type:mb-0">
+                            <Link
+                              href={item?.link}
+                              aria-label="category_link"
+                              className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
                              transition-all duration-200"
-                          >
-                            Agriculture & Food
-                          </Link>
-                        </li>
-                        <li className="last-of-type:mb-0">
-                          <Link
-                            href="/"
-                            aria-label="category_link"
-                            className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
-                              transition-all duration-200"
-                          >
-                            Apparel & Fashion
-                          </Link>
-                        </li>
-                        <li className="last-of-type:mb-0">
-                          <Link
-                            href="/"
-                            aria-label="category_link"
-                            className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
-                             transition-all duration-200"
-                          >
-                            Automotive & Transport
-                          </Link>
-                        </li>
+                            >
+                              {item?.name}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -473,14 +455,14 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <Link href="/news" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <div className="flex items-center">
                         <span>News & Insights </span>
                       </div>
                     </Link>
                   </AccordionItem>
                   <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <Link href="/contact" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <div className="flex items-center">
                         <span>Contact</span>
                       </div>

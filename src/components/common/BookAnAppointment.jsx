@@ -35,17 +35,33 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
   const isConsultant = source === "consultants";
 
-  const formSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Please enter a valid email address"),
-    phone_number: z.string().optional(),
-    country_code: z.string().optional(),
-    country: z.string().optional(),
-    service_id: z.string().min(1, "Please select a service_id"), // Always required in base schema
-    reason_for_consultation_id: z.string().min(1, "Please select a reason_for_consultation_id"),
-    insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
-    additionalNotes: z.string().optional(),
-  });
+  const formSchema = z
+    .object({
+      name: z.string().min(2, "Name must be at least 2 characters"),
+      email: z.string().email("Please enter a valid email address"),
+      phone_number: z.string().optional(),
+      country_code: z.string().optional(),
+      country: z.string().optional(),
+      service_id: z.string().optional(), // Always optional in base schema
+      reason_for_consultation_id: z.string().min(1, "Please select a reason"),
+      insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
+      additionalNotes: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        // If condition is true, service_id is required
+        const shouldRequireServiceId = !isConsultant; // Your condition
+
+        if (shouldRequireServiceId) {
+          return Boolean(data.service_id);
+        }
+        return true;
+      },
+      {
+        message: "Please select a service",
+        path: ["service_id"], // Points to the field
+      }
+    );
 
   const form = useForm({
     resolver: zodResolver(formSchema),

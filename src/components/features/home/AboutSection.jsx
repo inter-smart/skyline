@@ -131,7 +131,7 @@ export default function AboutSection({ home_cms = {}, announcements = [] }) {
                 }}
               >
                 {announcements?.map((announcement, idx) => (
-                  <SwiperSlide key={idx}>
+                  <SwiperSlide key={idx} className="!h-auto">
                     <motion.div
                       className="relative w-full border-b border-[#2121211c] pb-[15px]"
                       initial={{ opacity: 0, y: 20 }}
