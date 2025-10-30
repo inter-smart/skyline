@@ -11,13 +11,7 @@ import { fetchFromAPI } from "@/lib/api";
 export default async function Page() {
   const { data, error } = await fetchFromAPI("about-us");
 
-  const {
-    about_cms,
-    values,
-    team_members,
-    accreditation,
-    banner_and_meta_tags,
-  } = data;
+  const { about_cms, values, team_members, accreditation, banner_and_meta_tags } = data;
 
   return (
     <>
@@ -42,13 +36,13 @@ export default async function Page() {
       <OverviewSection about_cms={about_cms} />
 
       {/* section 3 */}
-      <OurvalueSection values={values} about_cms={about_cms} />
+      {/* <OurvalueSection values={values} about_cms={about_cms} /> */}
 
       {/* section 4 */}
       {/* <ConsultantSection /> */}
 
       <AwardSection about_cms={about_cms} accreditation={accreditation} />
-      <CareerSection  about_cms={about_cms}/>
+      <CareerSection about_cms={about_cms} />
       <ContactusSection about_cms={about_cms} />
     </>
   );
