@@ -87,7 +87,7 @@ export default function ContactDetails({ description: dynamicPreTitle, title, co
 
               <div className="text-sm text-gray-700 group-hover:text-white">
                 <Text
-                  as="p"
+                  as="div"
                   size="text1"
                   className="break-words !group-hover:text-white"
                 >
