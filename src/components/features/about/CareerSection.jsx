@@ -45,7 +45,7 @@ export default function CareerSection({about_cms}) {
                         {about_cms?.section8_title}
                     </Heading>
                     <div>{renderHtmlWithClassName(about_cms?.section8_description, "text-white")}</div>
-                    <Link href="" className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">APPLY NOW</Link>
+                    <div className="bg-[#671448] btn-base1 hover min-w-[110px] 2xl:min-w-[130px] 3xl:min-[165px]" aria-label="apply_btn">APPLY NOW</div>
                 </motion.div>
             </div>
         </section>
