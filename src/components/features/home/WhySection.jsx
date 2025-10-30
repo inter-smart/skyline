@@ -65,7 +65,7 @@ export default function WhySection({ home_cms = {}, features = items }) {
                   {section2_card_title || "Your Health is Always Our Priority"}
                 </div>
                 <ul>
-                  {section2_card_points?.map((item, idx) => (
+                  {Object.values(section2_card_points)?.map((item, idx) => (
                     <motion.li
                       key={idx}
                       className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal relative pl-[20px] mb-[5px] before:absolute before:content-[''] 
