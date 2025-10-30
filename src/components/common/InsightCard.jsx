@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function InsightCard({ insight }) {
   return (
-    <Link href={`/insight/${insight?.slug}`} className="w-full h-full group">
+    <Link href={`/insights/${insight?.slug}`} className="w-full h-full group">
       {/* Image */}
       {insight.image_value && (
         <div className="w-full aspect-[530/275] mb-[15px] 3xl:mb-[20px] overflow-hidden rounded-[6px]">
