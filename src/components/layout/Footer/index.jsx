@@ -457,7 +457,7 @@ export default function index({ site_settings, social_links, policies, services 
             </div>
             <div className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-white flex items-center max-sm:justify-center max-sm:w-full">
               Designed By :
-              <a href="/" className="px-[5px]" aria-label="logo">
+              <a href="https://www.intersmartsolution.com/" target="_blank" className="px-[5px]" aria-label="logo">
                 <Image src="/images/interLogo.svg" width="105" height="20" className="w-[105px]" alt="logo" />
               </a>
             </div>
