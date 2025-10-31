@@ -151,15 +151,20 @@ export default function PatientJourneySection({
                                     <div className="w-full text-start">
                                         <div>
                                             {/* {item?.procedureList.map((procedure, liIndex) => ( */}
-                                                <div
-                                                    // key={liIndex}
-                                                    className={`${index % 2 === 0 ? "text-white before:bg-[#fff]" : "text-[#671448] before:bg-[#671448]"} w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px]
+                                               <ul className="list-none p-0 m-0">
+                                                {parseDescriptionToListItems(
+                                                  item?.description,
+                                                  `${index % 2 === 0
+                                                    ? "text-white before:bg-[#fff]"
+                                                    : "text-[#671448] before:bg-[#671448]"
+                                                  } w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px]
                                                     before:absolute before:top-[4px] 2xl:before:top-[6px] before:left-0 
                                                     before:w-[3px] 2xl:before:w-[5px] before:h-[3px] 2xl:before:h-[5px] 
                                                     before:rounded-full before:bg-no-repeat before:bg-contain 
-                                                    before:content-[''] block mb-[6px] xl:mb-[10px] 3xl:mb-[15px]`}>
-                                                    {parseDescriptionToListItems(item?.description)}
-                                                </div>
+                                                    before:content-[''] block mb-[6px] xl:mb-[10px] 3xl:mb-[15px]`
+                                                )}
+                                              </ul>
+
                                             {/* ))} */}
                                         </div>
                                     </div>

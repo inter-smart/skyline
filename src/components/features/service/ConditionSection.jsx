@@ -1,7 +1,12 @@
 "use client";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 const conditionData = [
@@ -62,7 +67,12 @@ const conditionData = [
 ];
 
 const className = `w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px] pl-[15px] before:absolute before:top-[4px] 2xl:before:top-[6px] before:left-0  before:w-[3px] 2xl:before:w-[5px] before:h-[3px] 2xl:before:h-[5px]  before:rounded-full before:content-[''] mb-[6px] xl:mb-[10px] 3xl:mb-[15px] text-[#212121] before:bg-[#671448]`;
-export default function ConditionSection({ sub_title, title, description, conditionData }) {
+export default function ConditionSection({
+  sub_title,
+  title,
+  description,
+  conditionData,
+}) {
   return (
     <section className="py-[30px_60px] bg-[#F6F6F6]">
       <div className="container">
@@ -86,35 +96,55 @@ export default function ConditionSection({ sub_title, title, description, condit
           >
             {title}
           </Heading>
-          <Text as="div" size="text1" className="text-center xs:text-start font-normal  text-[#1E1E1E]">
+          <Text
+            as="div"
+            size="text1"
+            className="text-center xs:text-start font-normal  text-[#1E1E1E]"
+          >
             {renderHtml(description)}
           </Text>
         </div>
         <div className="w-full">
-          <Accordion type="single" collapsible className="gap-[30px] xl:gap-[40px] 2xl:gap-[50px] 3xl:gap-[80px]" defaultValue="item-1">
-            {conditionData?.map((item, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index + 1}`}
-                className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] "
-              >
-                <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">
-                  {item?.title}
-                </AccordionTrigger>
-                <AccordionContent>
-                  {/* {item.procedureList && item.procedureList.length > 0 && ( */}
-                  <div className="w-full text-start">
-                    <ul>
-                      {/* {item.procedureList.map((procedure, liIndex) => ( */}
+          <Accordion
+            type="single"
+            collapsible
+            className="gap-[30px] xl:gap-[40px] 2xl:gap-[50px] 3xl:gap-[80px]"
+            defaultValue="item-1"
+          >
+            {conditionData?.map((item, index) => {
+              const hasContent =
+                item?.description && item?.description.trim() !== "";
 
-                      {parseDescriptionToListItems(item?.description, className)}
-                      {/* ))} */}
-                    </ul>
-                  </div>
-                  {/* )} */}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+              return hasContent ? (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index + 1}`}
+                  className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] "
+                >
+                  <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">
+                    {item?.title}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="w-full text-start">
+                      <ul>
+                        {parseDescriptionToListItems(
+                          item?.description,
+                          className
+                        )}
+                      </ul>
+                    </div>
+                    {/* )} */}
+                  </AccordionContent>
+                </AccordionItem>
+              ) : (
+                <div
+                  key={index}
+                  className="bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] py-4 text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium text-start"
+                >
+                  {item?.title}
+                </div>
+              );
+            })}
           </Accordion>
         </div>
       </div>
