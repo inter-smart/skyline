@@ -2,13 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import { renderHtml } from "@/utils/parseHtml";
 import { useState } from "react";
@@ -23,15 +17,7 @@ const textAnimation = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
-export default function InnerBanner({
-  img,
-  subTitle,
-  Title,
-  description,
-  alt,
-  showFormBox = false,
-  onSearch = "",
-}) {
+export default function InnerBanner({ img, mobile_img, subTitle, Title, description, alt, showFormBox = false, onSearch = "" }) {
   const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
@@ -48,14 +34,7 @@ export default function InnerBanner({
           : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px]"
       }`}
     >
-      <Image
-        src={img}
-        alt={alt}
-        width={1920}
-        height={565}
-        className="object-cover absolute top-0 left-0 w-full h-full"
-        priority
-      />
+      <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
 
       <div className="container h-full w-full flex items-center relative ">
         <div className="w-full relative">
@@ -86,9 +65,7 @@ export default function InnerBanner({
             </motion.h2>
 
             <motion.div
-              className={`text-[12px] 2xl:text-[14px] 3xl:text-[18px]   ${
-                showFormBox ? "text-white " : "text-[#212121]"
-              } mb-[20px] max-w-[650px]`}
+              className={`text-[12px] 2xl:text-[14px] 3xl:text-[18px]   ${showFormBox ? "text-white " : "text-[#212121]"} mb-[20px] max-w-[650px]`}
               variants={textAnimation}
               transition={{ delay: 0.6 }}
             >
@@ -111,12 +88,7 @@ export default function InnerBanner({
                   <div className="w-full 2xs:w-full max-2xs:p-[5px] px-[5px] ">
                     <div className="w-full  bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
                       <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
-                        <svg
-                          width="23"
-                          height="28"
-                          viewBox="0 0 23 28"
-                          fill="none"
-                        >
+                        <svg width="23" height="28" viewBox="0 0 23 28" fill="none">
                           <path
                             d="M20.6704 18.0055C19.0198 17.1722 17.2062 16.5984 15.4204 16.2379C14.998 15.7846 14.7075 15.2246 14.5801 
                         14.6182C15.6856 13.7536 16.5319 12.4568 16.9956 10.912C18.2759 10.7182 18.6088 8.75083 18.101 7.67353C20.4326 -2.54352 2.63608 

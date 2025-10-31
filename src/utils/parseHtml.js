@@ -1,4 +1,4 @@
-import parse, {domToReact} from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 import React from "react";
 
 export function renderHtml(htmlString, containerClass = "") {
@@ -45,34 +45,16 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     }
   }
 
-  return items.map((item, i) => <li key={i} className={className} dangerouslySetInnerHTML={{ __html: item }} />);
+  console.log(items);
+
+  return items.map((item, i) => <li key={i} className={className} style={{ marginBottom: "10px" }} dangerouslySetInnerHTML={{ __html: item }} />);
 };
-
-
-
-
-
 
 export function renderHtmlWithClassName(htmlString, colorClass = "text-white") {
   if (!htmlString) return null;
 
   // ✅ List of HTML void/self-closing elements
-  const voidElements = new Set([
-    "area",
-    "base",
-    "br",
-    "col",
-    "embed",
-    "hr",
-    "img",
-    "input",
-    "link",
-    "meta",
-    "param",
-    "source",
-    "track",
-    "wbr",
-  ]);
+  const voidElements = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
 
   const options = {
     replace: (domNode) => {
@@ -99,27 +81,15 @@ export function renderHtmlWithClassName(htmlString, colorClass = "text-white") {
         }
 
         // ✅ Normal elements: recursively parse children
-        return React.createElement(
-          domNode.name,
-          attribs,
-          domToReact(domNode.children, options)
-        );
+        return React.createElement(domNode.name, attribs, domToReact(domNode.children, options));
       }
       return undefined;
     },
   };
 
   // 🧩 Apply a global Tailwind fallback to ensure all descendants stay white
-  return (
-    <div className={`[&_*]:${colorClass}`}>
-      {parse(htmlString, options)}
-    </div>
-  );
+  return <div className={`[&_*]:${colorClass}`}>{parse(htmlString, options)}</div>;
 }
-
-
-
-
 
 export const parseDescriptionToListItemsWithColor = (htmlString, colorClass = "text-white") => {
   if (!htmlString) return [];
@@ -178,12 +148,5 @@ export const parseDescriptionToListItemsWithColor = (htmlString, colorClass = "t
   }
 
   // ✅ Return React list items with uniform text color
-  return items.map((item, i) => (
-    <li
-      key={i}
-      className={`${colorClass}`}
-      dangerouslySetInnerHTML={{ __html: item }}
-    />
-  ));
+  return items.map((item, i) => <li key={i} className={`${colorClass}`} dangerouslySetInnerHTML={{ __html: item }} />);
 };
-

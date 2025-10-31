@@ -33,7 +33,7 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const className =
-    "relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[8px before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
+    "relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[20px before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
 
   return (
     <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
@@ -62,17 +62,12 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
               onSwiper={setThumbsSwiper}
               watchSlidesProgress
               spaceBetween={0}
-              slidesPerView={4}
+              slidesPerView={treatments?.length}
               direction="vertical"
               className="h-[165px] xl:h-[175px] 2xl:h-[225px] 3xl:h-[320px]"
             >
               {treatments.map((item, index) => (
-                <SwiperSlide
-                  key={index}
-                  className={`${
-                    index === treatments.length - 1 ? "!mb-0" : ""
-                  }`}
-                >
+                <SwiperSlide key={index} className={`${index === treatments.length - 1 ? "!mb-0" : ""}`}>
                   <div
                     className={`group flex items-center justify-between w-full px-0 py-[6px] sm:py-[10px] 2xl:py-[15px] border-b border-[#919193] cursor-pointer hover:text-base2 hover:border-[#00335B] transition
                                     ${activeIndex === index ? "" : ""}`}
@@ -80,21 +75,13 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
                   >
                     <div
                       className={`text-[12px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-medium text-start  text-[#919193] w-[calc(100%-10px)] 2xl:w-[calc(100%-15px)] mb-0 
-                                        ${
-                                          activeIndex === index
-                                            ? "text-base2"
-                                            : "border-[#00335B]"
-                                        } group-hover:text-base2`}
+                                        ${activeIndex === index ? "text-base2" : "border-[#00335B]"} group-hover:text-base2`}
                     >
                       {item.title}
                     </div>
                     <span className="w-[10px] xl:w-[15px] h-[10px] xl:h-[15px] flex items-center justify-center">
                       <Image
-                        src={
-                          activeIndex === index
-                            ? "/images/arrw-active.svg"
-                            : "/images/arrw.svg"
-                        }
+                        src={activeIndex === index ? "/images/arrw-active.svg" : "/images/arrw.svg"}
                         alt="icon"
                         width={13}
                         height={13}
@@ -114,10 +101,7 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
           <div
             className="relative w-full h-full p-[15px] sm:p-[25px] lg:p-[30px] xl:p-[40px] 2xl:p-[50px] 3xl:p-[60px] rounded-[6px] overflow-hidden bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${
-                treatments[activeIndex]?.image_value ||
-                "/images/traetmentBg.png"
-              })`,
+              backgroundImage: `url(${treatments[activeIndex]?.image_value || "/images/traetmentBg.png"})`,
             }}
           >
             {/* Dark overlay for contrast */}
@@ -136,19 +120,10 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
                 {treatments.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="text-white">
-                      <Heading
-                        as="h4"
-                        size="heading4"
-                        className="text-start font-medium text-white mb-[25px]"
-                      >
+                      <Heading as="h4" size="heading4" className="text-start font-medium text-white mb-[25px]">
                         {item?.title}
                       </Heading>
-                      <ul className="[&_*]:!text-white">
-                        {parseDescriptionToListItems(
-                          item?.description,
-                          className
-                        )}
-                      </ul>
+                      <ul className="[&_*]:!text-white">{parseDescriptionToListItems(item?.description, className)}</ul>
                     </div>
                   </SwiperSlide>
                 ))}
