@@ -85,7 +85,7 @@ export default function PatientJourneySection({ sub_title, title, description, D
         <div className="w-full">
           <Swiper
             modules={[Autoplay]}
-            loop={true}
+            loop={Disciplinary_list?.length >= 5}
             watchSlidesProgress={true}
             spaceBetween={10}
             autoplay={{ delay: 2000, disableOnInteraction: false }}
