@@ -86,7 +86,7 @@ export default async function RootLayout({ children }) {
         <BookingFormContextProvider>
           <Header site_settings={site_settings} social_links={social_links} services={services} />
           <main className="flex-grow">{children}</main>
-          <WidgetSection />
+          <WidgetSection site_settings={site_settings} />
           <Footer site_settings={site_settings} social_links={social_links} policies={policies} services={services} />
           <Toaster position="top-right" />
         </BookingFormContextProvider>
