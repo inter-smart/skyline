@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,9 +29,20 @@ const treatmentData = [
   },
 ];
 
-export default function OurTreatmentsection({ title, sub_title, treatments }) {
+function OurTreatmentsection({ title, sub_title, treatments }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const rightScrollRef = useRef(null);
+
+  useEffect(() => {
+    if (rightScrollRef.current) {
+      rightScrollRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [activeIndex]);
+
   const className =
     "relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-normal pl-[28px] mb-[8px before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/teartIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
 
@@ -59,7 +70,9 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
           <div className="mt-[30px]">
             <Swiper
               modules={[Thumbs]}
-              onSwiper={setThumbsSwiper}
+              onSwiper={(swiper) => {
+                if (!thumbsSwiper) setThumbsSwiper(swiper);
+              }}
               watchSlidesProgress
               spaceBetween={0}
               slidesPerView={4}
@@ -109,7 +122,6 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
         </div>
 
         {/* Right Column */}
-        {/* Right Column */}
         <div className="w-full sm:w-[45%] xl:w-[50%]">
           <div
             className="relative w-full h-full p-[15px] sm:p-[25px] lg:p-[30px] xl:p-[40px] 2xl:p-[50px] 3xl:p-[60px] rounded-[6px] overflow-hidden bg-cover bg-center bg-no-repeat"
@@ -123,7 +135,10 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
             {/* Dark overlay for contrast */}
 
             {/* Scrollable inner content */}
-            <div className="relative z-[2] max-h-[300px] overflow-y-auto scroll-smooth pr-2 scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent">
+            <div
+              ref={rightScrollRef}
+              className="relative z-[2] max-h-[300px] overflow-y-auto scroll-smooth pr-2 scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent"
+            >
               <Swiper
                 modules={[Thumbs, EffectFade]}
                 thumbs={{ swiper: thumbsSwiper }}
@@ -160,3 +175,6 @@ export default function OurTreatmentsection({ title, sub_title, treatments }) {
     </section>
   );
 }
+
+
+export default React.memo(OurTreatmentsection);
