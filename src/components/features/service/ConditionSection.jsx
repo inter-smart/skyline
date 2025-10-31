@@ -96,13 +96,13 @@ export default function ConditionSection({
           >
             {title}
           </Heading>
-          <Text
+          {/* <Text
             as="div"
             size="text1"
             className="text-center xs:text-start font-normal  text-[#1E1E1E]"
           >
             {renderHtml(description)}
-          </Text>
+          </Text> */}
         </div>
         <div className="w-full">
           <Accordion

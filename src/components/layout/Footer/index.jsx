@@ -107,7 +107,7 @@ export default function index({ site_settings, social_links, policies, services 
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Quick Links</div>
                   </AccordionTrigger>
-                  <AccordionContent className="p-0 mt-[15px]">
+                  <AccordionContent className="p-0 my-[15px]">
                     <ul>
                       {quickLinks?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
@@ -151,7 +151,7 @@ export default function index({ site_settings, social_links, policies, services 
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Policies</div>
                   </AccordionTrigger>
-                  <AccordionContent className="p-0 mt-[15px]">
+                  <AccordionContent className="p-0 my-[15px]">
                     <ul>
                       {policies?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
@@ -189,7 +189,7 @@ export default function index({ site_settings, social_links, policies, services 
                   <AccordionTrigger className="!gap-0 !p-0 m-0">
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Our Services</div>
                   </AccordionTrigger>
-                  <AccordionContent className="p-0 mt-[15px]">
+                  <AccordionContent className="p-0 my-[15px]">
                     <ul>
                       {services?.map((item, index) => (
                         <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
@@ -261,7 +261,7 @@ export default function index({ site_settings, social_links, policies, services 
                         </a>
                       </div>
                     </div>
-                    <div className="w-full mb-0">
+                    <div className="w-full mb-[15px]">
                       <div className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-medium relative block mb-[10px]`}>
                         Email
                       </div>
