@@ -75,16 +75,16 @@ export default function AboutSection({ home_cms = {}, announcements = [] }) {
                 muted
                 playsInline
                 className="
-    w-full h-full object-cover
-    [mask-image:url('/images/aboutMask.svg')]
-    [mask-repeat:no-repeat]
-    [mask-position:center]
-    [mask-size:cover]
-    [-webkit-mask-image:url('/images/aboutMask.svg')]
-    [-webkit-mask-repeat:no-repeat]
-    [-webkit-mask-position:center]
-    [-webkit-mask-size:cover]
-  "
+                    w-full h-full object-cover
+                    [mask-image:url('/images/aboutMask.svg')]
+                    [mask-repeat:no-repeat]
+                    [mask-position:center]
+                    [mask-size:cover]
+                    [-webkit-mask-image:url('/images/aboutMask.svg')]
+                    [-webkit-mask-repeat:no-repeat]
+                    [-webkit-mask-position:center]
+                    [-webkit-mask-size:cover]
+                  "
               />
 
               <motion.div

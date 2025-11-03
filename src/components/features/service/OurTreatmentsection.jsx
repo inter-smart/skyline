@@ -126,9 +126,10 @@ function OurTreatmentsection({ title, sub_title, treatments }) {
               <Swiper
                 modules={[Thumbs, EffectFade]}
                 thumbs={{ swiper: thumbsSwiper }}
-                effect="fade" // 👈 restores fade transition and prevents overlap
+                effect="fade"
                 fadeEffect={{ crossFade: true }}
                 spaceBetween={10}
+                autoHeight={true}
                 slidesPerView={1}
                 onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               >

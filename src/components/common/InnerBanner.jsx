@@ -28,16 +28,17 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
 
   return (
     <section
-      className={`w-full relative py-[30px] flex items-center ${
-        showFormBox
-          ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px]"
-          : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px]"
-      }`}
+      className={`w-full relative py-[30px] flex items-center
+         after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
+  after:bg-gradient-to-r  after:z-[1]"
+        ${showFormBox ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px] after:from-[#00335B] after:to-[rgba(0,51,91,0.08)]" : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
+        }`}
     >
       <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
 
-      <div className="container h-full w-full flex items-center relative ">
-        <div className="w-full relative">
+      <div className="container h-full w-full flex items-center relative z-20">
+        <div className="w-full relative z-20">
+
           <motion.div
             className="max-w-[480px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
             initial="hidden"
@@ -46,9 +47,8 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
             variants={textAnimation}
           >
             <motion.h1
-              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${
-                showFormBox ? "text-white " : "text-[#671448]"
-              } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
+              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${showFormBox ? "text-white " : "text-[#671448]"
+                } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
               variants={textAnimation}
             >
               {subTitle}
@@ -76,21 +76,23 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
           {/* formBox */}
 
           {showFormBox && (
-            <div
-              className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px]   
+            <div className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px] relative z-20
+           max-w-[550px] xl:max-w-[690px] 2xl:max-w-[820px] 3xl:max-w-[1040px] w-full mt-[20px] xs:mt-[30px] xl:mt-[40px]">
+              <div
+                className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px]   
            max-w-[550px] xl:max-w-[690px] 2xl:max-w-[820px] 3xl:max-w-[1040px] w-full mt-[20px] xs:mt-[30px] xl:mt-[40px]"
-            >
-              <div className="flex flex-wrap w-full h-full">
-                <div
-                  className="w-full h-full xs:w-[calc(100%-105px)] xl:w-[calc(100%-130px)] 2xl:w-[calc(100%-160px)] 3xl:w-[calc(100%-200px)] 
+              >
+                <div className="flex flex-wrap w-full h-full">
+                  <div
+                    className="w-full h-full xs:w-[calc(100%-105px)] xl:w-[calc(100%-130px)] 2xl:w-[calc(100%-160px)] 3xl:w-[calc(100%-200px)] 
                 flex flex-wrap  xs:-mx-[5px] xs:pr-[8px] 2xl:pr-[12px]"
-                >
-                  <div className="w-full 2xs:w-full max-2xs:p-[5px] px-[5px] ">
-                    <div className="w-full  bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
-                      <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
-                        <svg width="23" height="28" viewBox="0 0 23 28" fill="none">
-                          <path
-                            d="M20.6704 18.0055C19.0198 17.1722 17.2062 16.5984 15.4204 16.2379C14.998 15.7846 14.7075 15.2246 14.5801 
+                  >
+                    <div className="w-full 2xs:w-full max-2xs:p-[5px] px-[5px] ">
+                      <div className="w-full  bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
+                        <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
+                          <svg width="23" height="28" viewBox="0 0 23 28" fill="none">
+                            <path
+                              d="M20.6704 18.0055C19.0198 17.1722 17.2062 16.5984 15.4204 16.2379C14.998 15.7846 14.7075 15.2246 14.5801 
                         14.6182C15.6856 13.7536 16.5319 12.4568 16.9956 10.912C18.2759 10.7182 18.6088 8.75083 18.101 7.67353C20.4326 -2.54352 2.63608 
                         -2.56472 4.91222 7.65126C4.37792 8.72802 4.71038 10.7219 6.00556 10.913C6.46312 12.4579 7.31555 13.7547 8.42102 14.6192C8.28878 15.2523 
                         7.97993 15.835 7.53016 16.2997C6.68486 16.4475 6.16452 16.572 6.15336 16.5842C2.69023 17.5375 -0.383011 18.6088 0.0389115 22.8719C-0.136899 
@@ -113,12 +115,12 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
                          16.7272 17.3991C16.965 18.2688 17.1262 19.1576 17.2091 20.0555C15.2731 20.7523 16.2604 23.6489 18.2188 23.0183C19.6994 22.5649 19.5589 20.2859 
                          18.0433 20.0069C17.9696 19.2227 17.8413 18.4447 17.6596 17.6784C20.5301 18.6053 22.4528 19.4529 22.1322 22.8718ZM17.7153 20.7975C18.6665 20.807 
                          18.6689 22.2502 17.7146 22.2547C16.7598 22.2481 16.7662 20.8053 17.7174 20.7975H17.7153Z"
-                            fill="#919193"
-                          />
-                        </svg>
-                      </div>
-                      <div className="w-[calc(100%-15px)] 2xl:w-[calc(100%-23px)] ">
-                        {/* <Select className="h-full">
+                              fill="#919193"
+                            />
+                          </svg>
+                        </div>
+                        <div className="w-[calc(100%-15px)] 2xl:w-[calc(100%-23px)] ">
+                          {/* <Select className="h-full">
                           <SelectTrigger
                             className={`${selectTrigger} !text-[10px] 2xl:!text-[11px] 3xl:!text-[15px] w-full border-none outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 focus-visible:shadow-none`}
                           >
@@ -140,18 +142,18 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
                             </SelectItem>
                           </SelectContent>
                         </Select> */}
-                        <input
-                          type="text"
-                          value={query}
-                          onChange={handleChange}
-                          placeholder="Search by name"
-                          className={`${selectTrigger} w-full rounded-md px-3 py-2 text-[10px] outline-none 2xl:text-[11px] 3xl:text-[15px]`}
-                        />
+                          <input
+                            type="text"
+                            value={query}
+                            onChange={handleChange}
+                            placeholder="Search by name"
+                            className={`${selectTrigger} w-full rounded-md px-3 py-2 text-[10px] outline-none 2xl:text-[11px] 3xl:text-[15px]`}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <div className="w-full 2xs:w-1/2 max-2xs:p-[5px] px-[5px] "> */}
-                  {/* <div className="w-full   bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
+                    {/* <div className="w-full 2xs:w-1/2 max-2xs:p-[5px] px-[5px] "> */}
+                    {/* <div className="w-full   bg-white flex items-center p-[0_10px] 2xl:p-[5px_10px] 3xl:p-[5px_15px]">
                       <div className="w-[15px] 2xl:w-[23px] h-[15px] 2xl:h-[23px] flex items-center">
                         <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -219,20 +221,22 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
                         </Select>
                       </div>
                     </div> */}
-                  {/* </div> */}
-                </div>
-                <div className="w-full   xs:w-[105px] xl:w-[130px] 2xl:w-[160px] 3xl:w-[200px]  max-xs:p-[5px]">
-                  <Button
-                    className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[15px] btn-base1 hover bg-base2 rounded-[2px] 
+                    {/* </div> */}
+                  </div>
+                  <div className="w-full   xs:w-[105px] xl:w-[130px] 2xl:w-[160px] 3xl:w-[200px]  max-xs:p-[5px]">
+                    <Button
+                      className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[15px] btn-base1 hover bg-base2 rounded-[2px] 
                   w-full !min-h-full !h-full tracking-wider"
-                    aria-label="consultation_btn"
-                  >
-                    SEARCH
-                  </Button>
+                      aria-label="consultation_btn"
+                    >
+                      SEARCH
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
           )}
+
         </div>
       </div>
     </section>

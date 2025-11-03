@@ -16,7 +16,7 @@ export default function CareerSection({about_cms}) {
     };
 
     return (
-        <section className="relative w-full h-full py-[60px] lg:py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[170px]  min-h-[300px] lg:min-h-[420px] xl:min-h-[500px] 2xl:min-h-[670px] 3xl:min-h-[690px] 
+        <section className="relative w-full h-full py-[60px] lg:py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[170px]  min-h-[250px] lg:min-h-[320px] xl:min-h-[450px] 2xl:min-h-[540px] 3xl:min-h-[690px] 
             after:absolute after:top-0 after:left-0 after:w-full after:h-full 
             max-md:after:bg-[rgba(0,0,0,0.5)]
             md:after:bg-[linear-gradient(270deg,rgba(0,0,0,0.7)_23.07%,rgba(0,0,0,0.35)_34.69%,rgba(0,0,0,0)_53.34%)] 

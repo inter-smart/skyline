@@ -111,7 +111,7 @@ export default function MethodUsedSection({
                     {why_choose_list?.map((item, index) => (
                         
                         <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group px-[8px] lg:px-[12px] xl:px-15px] 2xl:px-[20px] 3xl:px-[25px] py-[8px] lg:py-[12px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] bg-white relative transition-transform duration-300 hover:scale-98">
-                            <div className="flex flex-wrap p-[5px] hover:shadow-lg transition  duration-300">
+                            <div className="flex flex-wrap p-[5px] hover:shadow-lg transition items-center  duration-300">
                                 <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto mb-[10px] xs:mb-[0]">
                                     <Image
                                         src={item?.image_value}
@@ -125,14 +125,14 @@ export default function MethodUsedSection({
                                     <Heading
                                         as="h6"
                                         size="heading6"
-                                        className="text-center xs:text-start font-medium text-[#212121] mb-[5px]"
+                                        className="text-center xs:text-start font-medium text-[#212121]"
                                     >
                                         {item?.title}
                                     </Heading>
                                     <Text
                                         as="div"
                                         size="text2"
-                                        className="text-center xs:text-start text-[#212121] mb-[5px]"
+                                        className="text-center xs:text-start text-[#212121] mt-[5px]"
                                     >
                                         {renderHtml(item?.description)}
                                     </Text>

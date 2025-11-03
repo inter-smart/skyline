@@ -144,9 +144,11 @@ export default function SpecialistSection({ title, pre_title, description, servi
             {services?.map((item, index) => (
               <SwiperSlide
                 key={index}
-                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px] ${
+                className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px]
+                   ${
                   activeIndex === index ? "scaleX-125 z-20" : "scale-95"
-                }`}
+                }
+                `}
               >
                 <div
                   className={`relative w-full rounded-[6px] overflow-hidden p-[20px] flex items-end justify-center transition-all duration-500 

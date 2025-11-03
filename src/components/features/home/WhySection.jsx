@@ -43,7 +43,7 @@ export default function WhySection({ home_cms = {}, features = items }) {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-full h-full lg:pr-[20px] xl:pr-[25px] 2xl:pr-[30px] 3xl:pr-[40px] relative">
+            <div className="w-full lg:pr-[20px] xl:pr-[25px] 2xl:pr-[30px] 3xl:pr-[40px] relative">
               {/* Overlay Box */}
               <motion.div
                 className="bg-[#00335B] rounded-[6px] overflow-hidden p-[15px] xl:p-[25px_25px_40px] 2xl:p-[28px_30px_60px] 3xl:p-[35px_40px_65px] absolute bottom-[15px] lg:bottom-[60px] left-[15px] lg:left-0 lg:max-w-[185px] xl:max-w-[230px] 2xl:max-w-[275px] 3xl:max-w-[330px]"

@@ -140,7 +140,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
         </AlertDialogTrigger>
         <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
         <AlertDialogContent
-          className="xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px] 
+          className="max-w-[95%] md:max-w-[650px] xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px] z-999 
                 xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[50px_45px] rounded-[15px] border-none lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 
                 3xl:max-h-[860px] overflow-auto"
         >
@@ -190,7 +190,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
                   {/* Name Field */}
-                  <div className="w-full xs:w-1/2 p-[5px] 2xl:p-[10px]">
+                  <div className="w-full sm:w-1/2 p-[5px] 2xl:p-[10px]">
                     <FormField
                       control={form.control}
                       name="name"
@@ -220,7 +220,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                   </div>
 
                   {/* Phone Number Field */}
-                  <div className="w-full xs:w-1/2 p-[5px] 2xl:p-[10px]">
+                  <div className="w-full sm:w-1/2 p-[5px] 2xl:p-[10px]">
                     <FormField
                       control={form.control}
                       name="phone_number"
