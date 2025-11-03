@@ -1,9 +1,14 @@
+export const dynamic = "force-dynamic";
+
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Unna as UnnaFont } from "next/font/google";
 import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
+import { Toaster } from "react-hot-toast";
+import { BookingFormContextProvider } from "@/context/BookingFormContext";
+import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -70,14 +75,21 @@ const unna = UnnaFont({
   variable: "--font-unna",
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const { data } = await fetchFromAPI("site-settings");
+  const { data: services } = await fetchDropdownDataAPI("get-services");
+  const { site_settings, social_links, policies } = data;
+
   return (
     <html lang="en">
       <body className={` ${graphik.variable}  ${unna.variable}`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <WidgetSection />
-        <Footer />
+        <BookingFormContextProvider>
+          <Header site_settings={site_settings} social_links={social_links} services={services} />
+          <main className="flex-grow">{children}</main>
+          <WidgetSection />
+          <Footer site_settings={site_settings} social_links={social_links} policies={policies} services={services} />
+          <Toaster position="top-right" />
+        </BookingFormContextProvider>
       </body>
     </html>
   );

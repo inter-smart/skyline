@@ -32,15 +32,34 @@ const testimonials = [
   {
     id: 3,
     quote: "Highly recommended hospital with kind staff.",
-    description:
-      "Doctors and nurses went above and beyond to ensure comfort and recovery. The facility is clean, modern, and well-maintained.",
+    description: "Doctors and nurses went above and beyond to ensure comfort and recovery. The facility is clean, modern, and well-maintained.",
     name: "David Smith",
     location: "Toronto, Canada",
     image: "/images/avatar.jpg",
   },
 ];
 
-export default function TestimonialSection() {
+
+const sideImages =[
+  {
+    id: 1,
+    image: "/images/testimonial_1.jpg",
+  },
+  {
+    id: 2,
+    image: "/images/testimonial_2.jpg",
+  },
+  {
+    id: 3,
+    image: "/images/testimonial_3.jpg",
+  },
+    {
+    id: 4,
+    image: "/images/testimonial_4.jpg",
+  },
+]
+
+export default function TestimonialSection({ title, pre_title, textTestimonials = [], videoTestimonials = [] }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const fadeUp = {
@@ -52,35 +71,19 @@ export default function TestimonialSection() {
     <section className="py-[50px_70px]">
       <div className="container">
         {/* Heading */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <div className="flex items-end justify-between mb-[35px] lg:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] flex-wrap gap-[20px]">
             <div className="max-w-[650px]">
-              <SubTitle
-                size="SubTitle"
-                as="div"
-              >
-                Testimonials
+              <SubTitle size="SubTitle" as="div">
+                {pre_title || "Testimonials"}
               </SubTitle>
-              <Heading
-                size="heading1"
-                as="div"
-                className="!mb-0"
-              >
-                What Our Patients <br /> Say About Our Service
+              <Heading size="heading1" as="div" className="!mb-0">
+                {title || "What Our Patients Say About Us"}
               </Heading>
             </div>
-            <Link
-              href="/"
-              aria-label="View All Testimonials"
-              className="btn-base1 hover min-[105px] 3xl:min-w-[150px]"
-            >
+            {/* <Link href="/" aria-label="View All Testimonials" className="btn-base1 hover min-[105px] 3xl:min-w-[150px]">
               View All Testimonials
-            </Link>
+            </Link> */}
           </div>
         </motion.div>
 
@@ -106,7 +109,7 @@ export default function TestimonialSection() {
                 1280: { slidesPerView: 2, spaceBetween: 20 },
               }}
             >
-              {testimonials.map((item, index) => (
+              {textTestimonials?.map((item, index) => (
                 <SwiperSlide key={item.id}>
                   <motion.div
                     initial="hidden"
@@ -117,44 +120,29 @@ export default function TestimonialSection() {
                     className="w-full h-full bg-[#F8FAFB] p-[15px_20px] xl:p-[20px_25px] 2xl:p-[25px_30px] 3xl:p-[30px_40px] rounded-[8px]"
                   >
                     <div className="w-[18px] xl:w-[24px] 2xl:w-[27px] 3xl:w-[34px] h-[18px] xl:h-[24px] 2xl:h-[20px] 3xl:h-[24px] flex mb-[10px] 3xl:mb-[15px]">
-                      <svg
-                        className="w-full h-full"
-                        viewBox="0 0 21 19"
-                        fill="none"
-                      >
+                      <svg className="w-full h-full" viewBox="0 0 21 19" fill="none">
                         <g clipPath="url(#clip0_2101_2520)">
-                          <path
-                            d="M-0.753174 10.6743H3.1992L0.564265 15.9441H4.51664L7.15158 10.6743V2.76953H-0.753174V10.6743Z"
-                            fill="#671448"
-                          />
-                          <path
-                            d="M9.78638 2.76953V10.6743H13.7388L11.1038 15.9441H15.0562L17.6911 10.6743V2.76953H9.78638Z"
-                            fill="#671448"
-                          />
+                          <path d="M-0.753174 10.6743H3.1992L0.564265 15.9441H4.51664L7.15158 10.6743V2.76953H-0.753174V10.6743Z" fill="#671448" />
+                          <path d="M9.78638 2.76953V10.6743H13.7388L11.1038 15.9441H15.0562L17.6911 10.6743V2.76953H9.78638Z" fill="#671448" />
                         </g>
                         <defs>
                           <clipPath id="clip0_2101_2520">
-                            <rect
-                              width="19.6957"
-                              height="18.4444"
-                              fill="white"
-                              transform="translate(0.692627 0.134766)"
-                            />
+                            <rect width="19.6957" height="18.4444" fill="white" transform="translate(0.692627 0.134766)" />
                           </clipPath>
                         </defs>
                       </svg>
                     </div>
 
                     <div className="text-[12px] 2xl:text-[15px] 3xl:text-[20px] text-[#212121] font-medium mb-[10px] 3xl:mb-[15px]">
-                      {item.quote}
+                      {item?.headline}
                     </div>
-                    <p className="mb-[20px] line-clamp-3">{item.description}</p>
+                    <p className="mb-[20px] line-clamp-3">{item?.content}</p>
 
                     <div className="flex items-center">
                       <div className="2xl:w-[40px] 3xl:w-[50px] 2xl:h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
                         <Image
-                          src={item.image}
-                          alt={item.name}
+                          src={item?.avatar_value}
+                          alt={item.avatar_alt_text_value}
                           width={50}
                           height={50}
                           className="w-full h-full object-cover"
@@ -164,9 +152,7 @@ export default function TestimonialSection() {
                         <div className="text-[12px] 2xl:text-[15px] 3xl:text-[20px] text-base1 font-medium capitalize xl:mb-[3px] 3xl:mb-[5px]">
                           {item.name}
                         </div>
-                        <div className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-base1 font-normal">
-                          {item.location}
-                        </div>
+                        <div className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-base1 font-normal">{item.location}</div>
                       </div>
                     </div>
                   </motion.div>
@@ -177,9 +163,7 @@ export default function TestimonialSection() {
 
           {/* Right Video Swiper */}
           <div className="w-full md:w-1/2 p-[12px]">
-            <div
-              className="relative w-full h-full"
-            >
+            <div className="relative w-full h-full">
               <Swiper
                 modules={[Autoplay, Navigation]}
                 slidesPerView={1}
@@ -194,60 +178,46 @@ export default function TestimonialSection() {
                 }}
                 className="relative w-full h-full"
               >
-                {[1, 2].map((video, index) => (
+                {sideImages?.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="w-full h-full rounded-[6px] overflow-hidden relative aspect-[450/340] before:absolute before:bottom-0 before:left-0 before:w-full before:h-full before:bg-[linear-gradient(0deg,rgba(0,0,0,0.6)_2.34%,rgba(0,0,0,0)_99.42%)]">
-                      <video
-                        src={`/videos/testimonial${video}.mp4`}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
+                      {/* <video src={`/videos/testimonial${video}.mp4`} autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+                      <Image
+                        src={item?.image} // ✅ update path/extension based on your asset
+                        alt="testimonial-thumbnail"
+                        fill
+                        className="object-cover"
+                        sizes="100%"
+                        priority
                       />
 
-                      <div className="flex items-center justify-between w-full absolute left-0 bottom-0 p-[25px] 2xl:p-[30px] 3xl:p-[40px_45px]">
+                      {/* <div className="flex items-center justify-between w-full absolute left-0 bottom-0 p-[25px] 2xl:p-[30px] 3xl:p-[40px_45px]">
                         <div className="flex items-center">
                           <div className="w-[40px] 3xl:w-[50px] h-[40px] 3xl:h-[50px] rounded-full overflow-hidden">
-                            <Image
-                              src="/images/avatar.jpg"
-                              alt="avatar"
-                              width={50}
-                              height={50}
-                              className="w-full h-full object-cover"
-                            />
+                            <Image src="/images/avatar.jpg" alt="avatar" width={50} height={50} className="w-full h-full object-cover" />
                           </div>
                           <div className="2xl:w-[calc(100%-40px)] 3xl:w-[calc(100%-50px)] pl-[15px] 2xl:pl-[20px] 3xl:pl-[25px]">
                             <div className="text-[12px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium capitalize xl:mb-[3px] 3xl:mb-[5px]">
                               Johnson James
                             </div>
-                            <div className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-white font-normal">
-                              London , UK
-                            </div>
+                            <div className="text-[10px] 2xl:text-[12px] 3xl:text-[15px] text-white font-normal">London , UK</div>
                           </div>
                         </div>
                         <Button className="w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] rounded-full cursor-pointer bg-[rgba(217,217,217,0.5)] backdrop-blur-3xl">
                           <div className="w-[12px] :h-[12px] flex items-center">
-                            <svg
-                              className="w-full h-full"
-                              viewBox="0 0 11 12"
-                              fill="none"
-                            >
-                              <path
-                                d="M10.1953 5.73134L0.499678 11.3291L0.499679 0.133557L10.1953 5.73134Z"
-                                fill="white"
-                              />
+                            <svg className="w-full h-full" viewBox="0 0 11 12" fill="none">
+                              <path d="M10.1953 5.73134L0.499678 11.3291L0.499679 0.133557L10.1953 5.73134Z" fill="white" />
                             </svg>
                           </div>
                         </Button>
-                      </div>
+                      </div> */}
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
 
               {/* Navigation Arrows */}
-              <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-0 m-auto">
+              {/* <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-0 m-auto">
                 <button className="navbts-prev absolute left-[25px] lg:left-[30px] -translate-y-1/2 z-20 bg-base1 w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[9px] md:p-[10px] flex items-center justify-center cursor-pointer group hover:bg-[#2E4C99]">
                   <svg className="w-full h-full" viewBox="0 0 13 9" fill="none">
                     <path
@@ -264,7 +234,7 @@ export default function TestimonialSection() {
                     />
                   </svg>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

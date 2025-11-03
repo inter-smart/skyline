@@ -1,12 +1,13 @@
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import WhyChooseUsSlider from "./WhyChooseSlider";
+import { renderHtml } from "@/utils/parseHtml";
 
 export default function WhyChooseUsSection({
     sub_title,
     title,
     description,
-
+    why_choose_list
 }) {
     return (
         <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
@@ -30,16 +31,16 @@ export default function WhyChooseUsSection({
                         {title}
                     </Heading>
                     <Text
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center xs:text-start font-normal  text-[#1E1E1E]"
                     >
-                        {description}
+                        {renderHtml(description)}
                     </Text>
 
                 </div>
                 <div className="w-full">
-                    <WhyChooseUsSlider />
+                    <WhyChooseUsSlider why_choose_list={why_choose_list} />
 
                 </div>
             </div>

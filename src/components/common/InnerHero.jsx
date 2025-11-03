@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heading } from "../layout/Heading";
 import { Text } from "../layout/Text";
+import { renderHtml } from "@/utils/parseHtml";
 export default function InnerHero({
     type,
     path_mob,
@@ -31,7 +32,7 @@ export default function InnerHero({
                     <source media="(max-width: 640px)" srcSet={path_mob} />
                     <Image
                         src={path}
-                        alt={alt}
+                        alt={alt || "image alt text"}
                         fill
                         sizes="1920px"
                         className="-z-2 object-cover"
@@ -58,11 +59,11 @@ export default function InnerHero({
                     </Heading>
                     <Text
                         noMotion
-                        as="p"
+                        as="div"
                         size="text1"
                         className="text-center sm:text-start text-[#1E1E1E] font-normal"
                     >
-                        {description}
+                        {renderHtml(description) || "sample description"}
                     </Text>
                     {children}
                 </div>
