@@ -9,10 +9,9 @@ import { renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
 
 export default function EnquirySection({ title, description, contact_items }) {
-
-  console.log(contact_items)
+  console.log(contact_items);
   return (
-    <section className="w-full py-16 bg-white">
+    <section id="connect-us" className="w-full py-16 bg-white">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 xl:grid-cols-3">
           {/* Left Side - Info */}
@@ -20,12 +19,7 @@ export default function EnquirySection({ title, description, contact_items }) {
             <Heading size="heading1" as="div" className="leading-none">
               {title}
             </Heading>
-            <Text
-              noMotion
-              as="div"
-              size="text1"
-              className="text-center sm:text-start text-[#1E1E1E] font-normal"
-            >
+            <Text noMotion as="div" size="text1" className="text-center sm:text-start text-[#1E1E1E] font-normal">
               {/* {renderHtml(description)} */}
               {renderHtml(description)}
             </Text>
@@ -36,21 +30,12 @@ export default function EnquirySection({ title, description, contact_items }) {
               {contact_items?.map((card, index) => (
                 <div key={index} className="flex items-start space-x-3 ">
                   <div>
-                    <Image
-                      src={card?.icon_value}
-                      alt={card?.icon_alt_text_value}
-                      width={24}
-                      height={24}
-                    />
+                    <Image src={card?.icon_value} alt={card?.icon_alt_text_value} width={24} height={24} />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-800">{card?.title}</div>
-                    <p className="text-sm text-gray-500">
-                      {card?.subtitle}
-                    </p>
-                    <div>
-                     {renderHtml(card?.content)}
-                    </div>
+                    <p className="text-sm text-gray-500">{card?.subtitle}</p>
+                    <div>{renderHtml(card?.content)}</div>
                   </div>
                 </div>
               ))}

@@ -31,7 +31,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
   }));
 
   const menus = [
-    { name: "Homes", link: "/", clickable: true },
+    { name: "Home", link: "/", clickable: true },
     { name: "About Us", link: "/about", clickable: true },
     {
       name: "Services",
@@ -57,15 +57,15 @@ export default function HeaderClient({ site_settings, social_links, services, re
         <div className="container">
           <div className="flex items-center">
             <Link href="/">
-            <div className="lg:w-[135px] xl:w-[165px] 2xl:w-[200px] 3xl:w-[250px] logo transition-all duration-150 p-[10px_0]">
-              <Image
-                src={site_settings?.header_logo_value || "/images/logo.svg"}
-                width="250"
-                height="115"
-                className="object-contain"
-                alt={site_settings?.header_logo_alt_text_value || "logo"}
-              />
-            </div>
+              <div className="lg:w-[135px] xl:w-[165px] 2xl:w-[200px] 3xl:w-[250px] logo transition-all duration-150 p-[10px_0]">
+                <Image
+                  src={site_settings?.header_logo_value || "/images/logo.svg"}
+                  width="250"
+                  height="115"
+                  className="object-contain"
+                  alt={site_settings?.header_logo_alt_text_value || "logo"}
+                />
+              </div>
             </Link>
             <div
               className="lg:w-[calc(100%-135px)] xl:w-[calc(100%-165px)] 2xl:w-[calc(100%-200px)] 3xl:w-[calc(100%-250px)] pl-[25px] xl:pl-[60px] 

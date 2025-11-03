@@ -105,15 +105,27 @@ export default function HeroSlider({ sliders = slides }) {
                     {slide?.description}
                   </motion.p>
 
-                  <motion.button
-                    variants={textAnimation}
-                    onClick={() => handleClick(slide?.action_type, slide?.action_url)}
-                    transition={{ delay: 0.9 }}
-                    className="btn-base1 hover transitiona-all duration-100"
-                    aria-label="appointment"
-                  >
-                    {slide?.action_title || "Book an Appointment"}
-                  </motion.button>
+                  <div className="flex gap-3">
+                    <motion.button
+                      variants={textAnimation}
+                      onClick={() => openDialog()}
+                      transition={{ delay: 0.9 }}
+                      className="btn-base1 hover transitiona-all duration-100"
+                      aria-label="appointment"
+                    >
+                      {"Book an Appointment"}
+                    </motion.button>
+                    {slide?.action_url && slide?.action_title && (
+                      <motion.button
+                        variants={textAnimation}
+                        transition={{ delay: 0.9 }}
+                        className="btn-base1 hover transitiona-all duration-100"
+                        aria-label="appointment"
+                      >
+                        <Link href={slide?.action_url}>{slide?.action_title || "Contact Us"}</Link>
+                      </motion.button>
+                    )}
+                  </div>
                 </motion.div>
               </div>
             </div>
