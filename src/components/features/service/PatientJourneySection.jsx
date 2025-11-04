@@ -58,7 +58,7 @@ const Disciplinary_list = [
 
 export default function PatientJourneySection({ sub_title, title, description, Disciplinary_list }) {
   return (
-    <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
+    <section className="w-full py-[30px] sm:py-[40px] xl:py-[60px] 3xl:py-[100px] relative z-0">
       <div className="container container-sm">
         <div
           className={`w-full [&_p,&_li]:3xl:text-[18px] [&_p,&_li]:2xl:text-[16px] [&_p,&_li]:xl:text-[14px] [&_p,&_li]:text-[12px] [&_li]:relative [&_li]:pl-[25px] [&_li]:inline-block [&_li]:before:absolute [&_li]:before:top-[4px] [&_li]:before:left-0 [&_li]:before:w-[2.667px] [&_li]:before:h-[2.667px] [&_li]:before:bg-[#00335B] [&_li]:before:content-['']

@@ -31,7 +31,7 @@ export default function FeaturedSection({ path, alt, sub_title, title, descripti
         <div
           className={`[&_p,&_li]:text-[12px] xl:[&_p,&_li]:text-[14px] 2xl:[&_p,&_li]:text-[16px] 3xl:[&_p,&_li]:text-[18px] [&_li]:relative [&_li]:inline-block [&_li]:pl-[25px]
                      [&_li]:before:absolute [&_li]:before:top-[4px] [&_li]:before:left-0 [&_li]:before:w-[15px] [&_li]:before:h-[17px] [&_li]:before:bg-[url('/images/expertIcon.svg')] [&_li]:before:bg-no-repeat
-                      [&_li]:before:bg-contain [&_li]:before:content-[''] pt-[20px] xl:pt-[30px] 2xl:pt-[50px] 3xl:pt-[70px] pl-0`}
+                      [&_li]:before:bg-contain [&_li]:before:content-[''] pt-[10px] xl:pt-[0px] 2xl:pt-[30px] 3xl:pt-[40px] pl-0`}
         >
           <Heading
             as="h6"

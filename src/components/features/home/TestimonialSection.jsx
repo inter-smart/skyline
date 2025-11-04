@@ -73,7 +73,7 @@ export default function TestimonialSection({ title, pre_title, textTestimonials 
         {/* Heading */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <div className="flex items-end justify-between mb-[35px] lg:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] flex-wrap gap-[20px]">
-            <div className="max-w-[650px]">
+            <div className="max-w-full">
               <SubTitle size="SubTitle" as="div">
                 {pre_title || "Testimonials"}
               </SubTitle>
@@ -101,7 +101,7 @@ export default function TestimonialSection({ title, pre_title, textTestimonials 
                 disableOnInteraction: false,
               }}
               direction="vertical"
-              className="relative w-full h-[340px] sm:h-[380px] xl:h-[450px] 2xl:h-[500px] 3xl:h-[650px] before:content-[''] before:w-full before:h-[5%] md:before:h-[8%] before:bg-[#FFF] before:blur-[10px] before:absolute before:z-[2] before:-top-[3px] before:right-0 before:left-0 before:pointer-events-none
+              className="relative w-full h-[340px] sm:h-[380px] lg:h-[450px] 2xl:h-[500px] 3xl:h-[650px] before:content-[''] before:w-full before:h-[5%] md:before:h-[8%] before:bg-[#FFF] before:blur-[10px] before:absolute before:z-[2] before:-top-[3px] before:right-0 before:left-0 before:pointer-events-none
                  after:content-[''] after:w-full after:h-[5%] md:after:h-[8%] after:bg-[#FFF] after:blur-[10px] after:absolute after:z-[2] after:-bottom-[3px] after:right-0 after:left-0 after:pointer-events-none"
               breakpoints={{
                 768: { slidesPerView: 1.7, spaceBetween: 10 },
@@ -133,7 +133,7 @@ export default function TestimonialSection({ title, pre_title, textTestimonials 
                       </svg>
                     </div>
 
-                    <div className="text-[12px] 2xl:text-[15px] 3xl:text-[20px] text-[#212121] font-medium mb-[10px] 3xl:mb-[15px]">
+                    <div className="text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-[#212121] font-medium mb-[10px] 3xl:mb-[15px]">
                       {item?.headline}
                     </div>
                     <p className="mb-[20px] line-clamp-3">{item?.content}</p>

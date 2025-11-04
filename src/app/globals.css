@@ -101,7 +101,7 @@ body {
   }
 
   p {
-    @apply text-[12px] lg:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px];
+    @apply text-[13px] lg:text-[15px] 2xl:text-[17px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ;
   }
 
   .typography {
@@ -299,9 +299,11 @@ body {
   backdrop-filter: blur(30px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   border: 0 !important;
-  z-index: 999;
+  z-index: 9;
 }
-
+section{
+  z-index: 0;
+}
 .stickyHeader .logo {
   width: 165px;
 }
