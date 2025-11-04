@@ -26,7 +26,7 @@ const subTitleClasses =
 // Heading size classes
 const sizes = {
   heading1:
-    "text-[24px] md:text-[28px] lg:text-[33px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[65px] text-[#212121] font-unna font-normal leading-[34px] xl:leading-[40px] 2xl:leading-[47px] 3xl:leading-[60px] mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]",
+    "text-[24px] md:text-[28px] lg:text-[33px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[65px] text-[#212121] font-unna font-normal leading-[34px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[65px] mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]",
   heading2:
     "text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] font-semibold leading-[1.2] text-black relative after:absolute after:content-[''] after:bottom-[4px] after:3xl:bottom-[7px] after:m-[auto_10px] after:p-[3px] after:w-[5px] after:h-[5px] after:3xl:w-[7px] after:3xl:h-[7px] after:rounded-full after:bg-[#F67436]",
   heading3:

@@ -19,7 +19,7 @@ export default function ProcedureSection({
     className
 }) {
     return (
-        <section className="w-full py-[80px] sm:py-[60px] xl:py-[80px] 3xl:py-[100px] relative z-0">
+        <section className="w-full py-[30px] sm:py-[40px] xl:py-[50px] 3xl:py-[80px] relative z-0">
 
             <div className="container container-sm relative flex flex-wrap after:content-[''] after:absolute after:clear-both after:block">
 

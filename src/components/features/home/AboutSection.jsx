@@ -26,6 +26,7 @@ const defaultAnnouncements = [
     title: "New Pediatric Wing Inauguration - January 15th",
     description:
       "Join us for the grand opening of our state-of-the-art pediatric wing, featuring advanced facilities for children's healthcare.",
+    
   },
 ];
 

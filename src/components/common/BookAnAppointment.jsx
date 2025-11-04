@@ -140,7 +140,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
         </AlertDialogTrigger>
         <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
         <AlertDialogContent
-          className="max-w-[95%] md:max-w-[650px] xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px] z-999 
+          className="max-w-[95%] md:max-w-[650px] xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px]  
                 xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[50px_45px] rounded-[15px] border-none max-h-[90vh] lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 
                 3xl:max-h-[860px] overflow-auto  flex flex-col"
         >

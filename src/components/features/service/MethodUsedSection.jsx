@@ -87,7 +87,7 @@ export default function MethodUsedSection({
                     <Heading
                         as="h6"
                         size="heading6"
-                        className=" leading-[1] font-normal tracking-[3.06px] text-center xs:text-start uppercase text-base1 mb-[6px] lg:mb-[10px]"
+                        className=" !leading-7 font-normal tracking-[3.06px] text-center xs:text-start uppercase text-base1 mb-[6px] lg:mb-[10px]"
                     >
                         {sub_title}
                     </Heading>
@@ -110,22 +110,22 @@ export default function MethodUsedSection({
                 <div className="w-full flex flex-wrap">
                     {why_choose_list?.map((item, index) => (
                         
-                        <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group px-[8px] lg:px-[12px] xl:px-15px] 2xl:px-[20px] 3xl:px-[25px] py-[8px] lg:py-[12px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] bg-white relative transition-transform duration-300 hover:scale-98">
-                            <div className="flex flex-wrap p-[5px] hover:shadow-lg transition items-center  duration-300">
-                                <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto mb-[10px] xs:mb-[0]">
+                        <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group  bg-white relative transition-transform duration-300 hover:scale-98">
+                            <div className="flex flex-wrap p-[5px] transition items-center pb-[15px]  max-w-[380px] duration-300">
+                                <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto  ">
                                     <Image
                                         src={item?.image_value}
                                         alt={item?.image_alt_text_value}
                                         width={50}
                                         height={50}
-                                        className="w-[70%] h-auto object-cover block"
+                                        className="w-[70%] h-auto object-contain block"
                                     />
                                 </div>
                                 <div className="text-start w-full xs:w-[calc(100%-35px)] xl:w-[calc(100%-40px)] 2xl:w-[calc(100%-50px)] pl-[10px] xl:pl-[15px]">
                                     <Heading
                                         as="h6"
                                         size="heading6"
-                                        className="text-center xs:text-start font-medium text-[#212121]"
+                                        className="text-center xs:text-start font-medium text-[#212121] !leading-7"
                                     >
                                         {item?.title}
                                     </Heading>

@@ -221,7 +221,7 @@ export default function ContactFormSection() {
 
           {/* Message */}
           {/* Additional Notes Field */}
-          <div className="w-full p-[5px] 2xl:p-[10px]">
+          
             <FormField
               control={form.control}
               name="message"
@@ -239,10 +239,9 @@ export default function ContactFormSection() {
                   <FormMessage className="text-[10px] text-red-300 mt-1 ml-2" />
                 </FormItem>
               )}
-            />
-          </div>
+            /> 
           {/* Submit Button */}
-          <div className="w-full p-[10px] mt-[15px]">
+          <div className="w-full  mt-[25px]">
             <Button
               type="submit"
               className="text-[10px] 2xl:text-[11px] 3xl:text-[15px] tracking-wider btn-base1 
