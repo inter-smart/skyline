@@ -20,7 +20,12 @@ export default async function ContactUsPage() {
         description={banner_and_meta_tags?.banner_description}
       />
       <ContactDetails description={contact_cms?.section1_description} title={contact_cms?.section1_title} contact_infos={contact_infos} />
-      <EnquirySection description={contact_cms?.section2_description} title={contact_cms?.section2_title} contact_items={contact_items} />
+      <EnquirySection
+        description={contact_cms?.section2_description}
+        title={contact_cms?.section2_title}
+        contact_items={contact_items}
+        form_title={contact_cms?.section3_title}
+      />
     </>
   );
 }
