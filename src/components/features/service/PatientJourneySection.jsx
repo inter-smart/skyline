@@ -13,55 +13,35 @@ const Disciplinary_list = [
     media: { path: "/images/chooseIcon01.svg", alt: "choose-link" },
     slNo: "01",
     title: "Initial Consultation",
-    procedureList: [
-      "Full history, review of symptoms, and examination",
-      "Arrangement of any urgent tests or scans",
-    ],
+    procedureList: ["Full history, review of symptoms, and examination", "Arrangement of any urgent tests or scans"],
   },
   {
     media: { path: "/images/chooseIcon02.svg", alt: "choose-link" },
     slNo: "02",
     title: "Diagnosis & Staging",
-    procedureList: [
-      "Rapid access to imaging, biopsy, and pathology",
-      "Clarified diagnosis with discussion of next steps",
-    ],
+    procedureList: ["Rapid access to imaging, biopsy, and pathology", "Clarified diagnosis with discussion of next steps"],
   },
   {
     media: { path: "/images/chooseIcon03.svg", alt: "choose-link" },
     slNo: "03",
     title: "Treatment Plan",
-    procedureList: [
-      "Explanation of options, risks, and benefits",
-      "Decision-making support with compassionate guidance",
-    ],
+    procedureList: ["Explanation of options, risks, and benefits", "Decision-making support with compassionate guidance"],
   },
   {
     media: { path: "/images/chooseIcon04.svg", alt: "choose-link" },
     slNo: "04",
     title: "Ongoing Monitoring",
-    procedureList: [
-      "Regular reviews, treatment evaluation, and follow-up scans",
-      "Access to holistic and emotional support resources",
-    ],
+    procedureList: ["Regular reviews, treatment evaluation, and follow-up scans", "Access to holistic and emotional support resources"],
   },
   {
     media: { path: "/images/chooseIcon04.svg", alt: "choose-link" },
     slNo: "05",
     title: "Follow-Up & Recovery",
-    procedureList: [
-      "Full history, review of symptoms, and examination",
-      "Arrangement of any urgent tests or scans",
-    ],
+    procedureList: ["Full history, review of symptoms, and examination", "Arrangement of any urgent tests or scans"],
   },
 ];
 
-export default function PatientJourneySection({
-  sub_title,
-  title,
-  description,
-  Disciplinary_list,
-}) {
+export default function PatientJourneySection({ sub_title, title, description, Disciplinary_list }) {
   return (
     <section className="w-full py-[30px] sm:py-[40px] xl:py-[60px] 3xl:py-[100px] relative z-0">
       <div className="container container-sm">
@@ -84,11 +64,7 @@ export default function PatientJourneySection({
           >
             {title}
           </Heading>
-          <Text
-            as="div"
-            size="text1"
-            className="text-center xs:text-start font-normal text-[#1E1E1E]"
-          >
+          <Text as="div" size="text1" className="text-center xs:text-start font-normal text-[#1E1E1E]">
             {renderHtml(description)}
           </Text>
         </div>
@@ -112,44 +88,29 @@ export default function PatientJourneySection({
           >
             {Disciplinary_list.map((item, index) => {
               const menuItem = `
-                ${
-                  index % 2 === 0
-                    ? "text-white before:bg-white "
-                    : "text-[#671448] before:bg-[#671448] "
-                }
-                w-full relative text-[11px] 2xl:text-[14px] 3xl:text-[16px]  pl-[15px]
+                ${index % 2 === 0 ? "text-white before:bg-white " : "text-[#671448] before:bg-[#671448] "}
+                w-full relative text-[12px] 2xl:text-[14px] 3xl:text-[16px]  pl-[15px]
                 before:absolute  before:left-0 before:w-[3px] 2xl:before:w-[5px]
                 before:top-[8px] before:h-[3px] 2xl:before:h-[5px] before:rounded-full
                 before:bg-no-repeat before:bg-contain before:content-[''] block mb-[6px]
-                xl:mb-[10px] 3xl:mb-[15px]
+                xl:mb-[10px] 3xl:mb-[15px] [&>*]:text-[12px] [&>*]:2xl:text-[14px] [&>*]:3xl:text-[16px]
               `;
 
               return (
-                <SwiperSlide
-                  key={index}
-                  className="w-full !h-auto pt-[15px] xl:pt-[25px] 2xl:pt-[30px] 3xl:pt-[35px]"
-                >
+                <SwiperSlide key={index} className="w-full !h-auto pt-[15px] xl:pt-[25px] 2xl:pt-[30px] 3xl:pt-[35px]">
                   <div
                     className={`w-full h-full group p-[15px_10px_25px] xl:p-[15px_10px_35px] 2xl:p-[20px_15px_45px] 3xl:p-[25px_15px_55px] 
                       overflow-hidden rounded-[4px] relative transition-transform duration-400 hover:-translate-y-[15px] xl:hover:-translate-y-[25px] 2xl:hover:-translate-y-[30px] 3xl:hover:-translate-y-[35px]
-                      ${
-                        index % 2 === 0
-                          ? "bg-[#671448]"
-                          : "bg-[rgba(103,20,72,0.17)]"
-                      }`}
+                      ${index % 2 === 0 ? "bg-[#671448]" : "bg-[rgba(103,20,72,0.17)]"}`}
                   >
                     <div
                       className={`${
-                        index % 2 === 0
-                          ? "border-b border-white/50"
-                          : "border-b border-[rgba(103,20,72,0.17)]"
+                        index % 2 === 0 ? "border-b border-white/50" : "border-b border-[rgba(103,20,72,0.17)]"
                       } w-full flex items-end pb-[10px] mb-[10px] xl:mb-[14px] 2xl:mb-[20px]`}
                     >
                       <div
                         className={`${
-                          index % 2 === 0
-                            ? "text-[rgba(255,255,255,0.66)]"
-                            : "text-[rgba(103,20,72,0.36)]"
+                          index % 2 === 0 ? "text-[rgba(255,255,255,0.66)]" : "text-[rgba(103,20,72,0.36)]"
                         } text-[18px] sm:text-[20px] md:text-[25px] lg:text-[30px] xl:text-[35px] 2xl:text-[40px] 3xl:text-[45px] font-light leading-[1] capitalize`}
                       >
                         {(index + 1).toString().padStart(2, "0")}
@@ -158,9 +119,7 @@ export default function PatientJourneySection({
                         <Heading
                           as="h5"
                           size="heading5"
-                          className={`${
-                            index % 2 === 0 ? "text-white" : "text-[#671448]"
-                          } text-center xs:text-start font-medium`}
+                          className={`${index % 2 === 0 ? "text-white" : "text-[#671448]"} text-center xs:text-start font-medium`}
                         >
                           {item?.title}
                         </Heading>
@@ -168,9 +127,7 @@ export default function PatientJourneySection({
                     </div>
 
                     {/* Procedure list */}
-                    <ul>
-                      {parseDescriptionToListItems(item?.description, menuItem)}
-                    </ul>
+                    <ul>{parseDescriptionToListItems(item?.description, menuItem)}</ul>
                   </div>
                 </SwiperSlide>
               );
