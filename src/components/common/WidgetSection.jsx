@@ -2,7 +2,7 @@ export default function WidgetSection() {
   return (
     <section>
       <div className="w-[35px] lg:w-[37px] 2xl:w-[45px] 3xl:w-[50px] h-fit fixed right-[2px] sm:right-[10px]
-       2xl:right-[15px] 3xl:right-[20px] bottom-[20px]  xs:bottom-[40px] 3xl:bottom-[60px]  m-auto z-10">
+       2xl:right-[12px] 3xl:right-[15px] sm:bottom-0 sm:top-0  xs:bottom-[40px]  m-auto z-10">
         {/* Top social icons */}
 
         <ul className="flex flex-col items-center max-xs:w-full">
