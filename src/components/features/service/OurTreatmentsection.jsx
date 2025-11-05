@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, EffectFade } from "swiper/modules";
+import { Thumbs, EffectFade, Scrollbar, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
@@ -61,7 +61,7 @@ function OurTreatmentsection({ title, sub_title, treatments }) {
           <Heading
             as="h1"
             size="heading1"
-            className="text-center xs:text-start font-unna text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+            className="text-center xs:text-start font-unna  text-black mb-[15px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
           >
             {title}
           </Heading>
@@ -69,13 +69,15 @@ function OurTreatmentsection({ title, sub_title, treatments }) {
           {/* Thumbnails */}
           <div className="mt-[30px]">
             <Swiper
-              modules={[Thumbs]}
+              modules={[Thumbs, Scrollbar, Mousewheel]}
               onSwiper={(swiper) => {
                 if (!thumbsSwiper) setThumbsSwiper(swiper);
               }}
               watchSlidesProgress
+              mousewheel={true}
+              scrollbar={true}
               spaceBetween={0}
-              slidesPerView={treatments?.length}
+              slidesPerView={4}
               direction="vertical"
               className="h-[165px] xl:h-[175px] 2xl:h-[225px] 3xl:h-[320px]"
             >
@@ -151,6 +153,5 @@ function OurTreatmentsection({ title, sub_title, treatments }) {
     </section>
   );
 }
-
 
 export default React.memo(OurTreatmentsection);

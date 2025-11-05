@@ -2,7 +2,8 @@
 
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
-import { renderHtml } from "@/utils/parseHtml";
+import { parseDescriptionToListItemsWithColor, renderHtml } from "@/utils/parseHtml";
+import parse from "html-react-parser";
 import Image from "next/image";
 
 export default function ContactDetails({ description, title, contact_infos }) {
@@ -21,21 +22,14 @@ export default function ContactDetails({ description, title, contact_infos }) {
         </Heading>
 
         {/* Description */}
-        <Text
-          as="div"
-          size="text1"
-          className="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-sm md:text-base"
-        >
+        <Text as="div" size="text1" className="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-sm md:text-base">
           {renderHtml(displayPreTitle)}
         </Text>
 
         {/* Contact Info Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {contact_infos?.map((card, index) => (
-            <div
-              key={index}
-              className="group bg-blue-50 rounded-2xl p-6 hover:shadow-lg hover:bg-base2 transition-all duration-300"
-            >
+            <div key={index} className="group bg-blue-50 rounded-2xl p-6 hover:shadow-lg hover:bg-base2 transition-all duration-300">
               {/* Icon */}
               <div className="w-12 h-12 bg-base2 text-white group-hover:bg-white group-hover:text-base2 rounded-full flex items-center justify-center mb-4">
                 <Image
@@ -47,21 +41,13 @@ export default function ContactDetails({ description, title, contact_infos }) {
               </div>
 
               {/* Title */}
-              <Heading
-                as="h5"
-                size="heading5"
-                className="font-bold text-lg mb-2 text-[#1e1e1e] group-hover:text-white"
-              >
+              <Heading as="h5" size="heading5" className="font-bold text-lg mb-2 text-[#1e1e1e] group-hover:text-white">
                 {card?.title}
               </Heading>
 
               {/* Content */}
-              <Text
-                as="div"
-                size="text1"
-                className="text-sm text-[#1e1e1e] group-hover:!text-white [&>p]:!mb-0 [&>br]:hidden [&>p]:!text-[#1e1e1e] group-hover:[&>p]:!text-white"
-              >
-                {renderHtml(card?.content)}
+              <Text as="div" size="text1">
+                {renderHtml(card?.content, "text-sm [&>p]:text-black group-hover:[&>p]:text-white")}
               </Text>
             </div>
           ))}

@@ -9,6 +9,7 @@ import WidgetSection from "@/components/common/WidgetSection";
 import { Toaster } from "react-hot-toast";
 import { BookingFormContextProvider } from "@/context/BookingFormContext";
 import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
+import Script from "next/script"; // ✅ Import Script from next/script
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -17,51 +18,15 @@ export const metadata = {
 
 export const graphik = localFont({
   src: [
-    {
-      path: "../../public/fonts/Graphik-Thin.woff2",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Extralight.woff2",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Light.woff2",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Semibold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Black.woff2",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Graphik-Super.woff2",
-      weight: "900",
-      style: "normal",
-    },
+    { path: "../../public/fonts/Graphik-Thin.woff2", weight: "100", style: "normal" },
+    { path: "../../public/fonts/Graphik-Extralight.woff2", weight: "200", style: "normal" },
+    { path: "../../public/fonts/Graphik-Light.woff2", weight: "300", style: "normal" },
+    { path: "../../public/fonts/Graphik-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/Graphik-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/Graphik-Semibold.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/Graphik-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../../public/fonts/Graphik-Black.woff2", weight: "800", style: "normal" },
+    { path: "../../public/fonts/Graphik-Super.woff2", weight: "900", style: "normal" },
   ],
   variable: "--font-graphik",
   preload: true,
@@ -82,7 +47,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={` ${graphik.variable}  ${unna.variable}`}>
+      <body className={`${graphik.variable} ${unna.variable}`}>
         <BookingFormContextProvider>
           <Header site_settings={site_settings} social_links={social_links} services={services} />
           <main className="flex-grow">{children}</main>
@@ -90,6 +55,22 @@ export default async function RootLayout({ children }) {
           <Footer site_settings={site_settings} social_links={social_links} policies={policies} services={services} />
           <Toaster position="top-right" />
         </BookingFormContextProvider>
+
+        {/* ✅ Add the Tawk.to Script here */}
+        <Script id="tawkto-script" strategy="afterInteractive">
+          {`
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),
+              s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/690aee654ff5db195c83385f/1j99b6g18';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();
+          `}
+        </Script>
       </body>
     </html>
   );
