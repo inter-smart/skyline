@@ -144,7 +144,7 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
                           type="text"
                           value={query}
                           onChange={handleChange}
-                          placeholder="Search by name"
+                          placeholder="Search by name, speciality"
                           className={`${selectTrigger} w-full rounded-md px-3 py-2 text-[10px] outline-none 2xl:text-[11px] 3xl:text-[15px]`}
                         />
                       </div>
