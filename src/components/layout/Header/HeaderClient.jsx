@@ -72,7 +72,6 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   2xl:pl-[65px] 3xl:pl-[85px] ritBx"
             >
               <div className="w-full flex items-center justify-between">
-                {/* menus */}
                 <div className="flex items-center relative">
                   {menus.map((item, id) => (
                     <div
@@ -83,7 +82,6 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           : ""
                       }`}
                     >
-                      {/* Main link */}
                       {item.clickable ? (
                         <Link href={item.link} className={menuLinks} aria-label="menulinks">
                           {item.name}
@@ -92,7 +90,6 @@ export default function HeaderClient({ site_settings, social_links, services, re
                         <span className={menuLinks}>{item.name}</span>
                       )}
 
-                      {/* Dropdown (if submenu exists) */}
                       {item.submenu && (
                         <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
                           {item.submenu.map((sub, subId) => (
@@ -232,7 +229,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                             {/* logo section */}
                             <Link
-                              href="#"
+                              href="/"
                               className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
                               aria-label="logo"
                             >
@@ -350,7 +347,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                 {/* logo section */}
 
-                <Link href="#" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
+                <Link href="/" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
                   <Image
                     src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
                     width="250"
@@ -367,9 +364,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
         <Sheet>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
-              <div className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
-                <Image src="/images/logo.svg" width="200" height="115" className="object-contain" alt="logo" />
-              </div>
+              <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
+                <Image src={site_settings?.header_logo_value || "/images/logo.svg"} width="200" height="115" className="object-contain" alt="logo" />
+              </Link>
               <div className="flex items-center">
                 <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
                   <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
@@ -449,11 +446,11 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
-                    <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                    <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Consultants</span>
                       </div>
-                    </div>
+                    </Link>
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">

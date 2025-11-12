@@ -47,14 +47,14 @@ export default function index({ site_settings, social_links, policies, services 
           <div className="flex flex-wrap items-center ">
             <div className="w-[150px] lg:w-[190px] xl:w-[240px] 2xl:w-[290px] 3xl:w-[360px] max-sm:m-auto">
               <Link href="/" className="block">
-              <div className="xl:max-w-[240px] 2xl:max-w-[285px] 3xl:max-w-[350px]">
-                <Image
-                  src={site_settings?.header_logo_value || "/images/logo.svg"}
-                  alt={site_settings?.header_logo_alt_text_value || "logo"}
-                  width="360"
-                  height="165"
-                />
-              </div>
+                <div className="xl:max-w-[240px] 2xl:max-w-[285px] 3xl:max-w-[350px]">
+                  <Image
+                    src={site_settings?.header_logo_value || "/images/logo.svg"}
+                    alt={site_settings?.header_logo_alt_text_value || "logo"}
+                    width="360"
+                    height="165"
+                  />
+                </div>
               </Link>
             </div>
             <div
@@ -231,8 +231,8 @@ export default function index({ site_settings, social_links, policies, services 
                         Location
                       </div>
                       {renderHtml(
-                        site_settings?.footer_address_value || "Skyline Hospitals Coventry",
-                        "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
+                        site_settings?.address || "Skyline Hospitals Coventry",
+                        "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]"
                       )}
                     </div>
                     <div className="w-full mb-[20px]">
@@ -285,8 +285,8 @@ export default function index({ site_settings, social_links, policies, services 
                     Location
                   </div>
                   {renderHtml(
-                    site_settings?.footer_address_value || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
-                    "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block"
+                    site_settings?.address || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
+                    "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]"
                   )}
                 </div>
                 <div className="w-full mb-[20px]">
