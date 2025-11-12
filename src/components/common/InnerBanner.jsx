@@ -31,14 +31,16 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
       className={`w-full relative py-[30px] flex items-center
          after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
   after:bg-gradient-to-r  after:z-[1]"
-        ${showFormBox ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px] after:from-[#00335B] after:to-[rgba(0,51,91,0.08)]" : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
+        ${
+          showFormBox
+            ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px] after:from-[#00335B] after:to-[rgba(0,51,91,0.08)]"
+            : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
         }`}
     >
       <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
 
       <div className="container h-full w-full flex items-center relative z-20">
         <div className="w-full relative z-20">
-
           <motion.div
             className="max-w-[480px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
             initial="hidden"
@@ -47,8 +49,9 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
             variants={textAnimation}
           >
             <motion.h1
-              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${showFormBox ? "text-white " : "text-[#671448]"
-                } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
+              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${
+                showFormBox ? "text-white " : "text-[#671448]"
+              } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
               variants={textAnimation}
             >
               {subTitle}
@@ -76,8 +79,10 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
           {/* formBox */}
 
           {showFormBox && (
-            <div className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px] relative z-20
-           max-w-[550px] xl:max-w-[690px] 2xl:max-w-[820px] 3xl:max-w-[1040px] w-full mt-[20px] xs:mt-[30px] xl:mt-[40px]">
+            <div
+              className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px] relative z-20
+           max-w-[550px] xl:max-w-[690px] 2xl:max-w-[820px] 3xl:max-w-[1040px] w-full mt-[20px] xs:mt-[30px] xl:mt-[40px]"
+            >
               <div
                 className="bg-[rgba(255,255,255,0.4)] p-[10px_4px] lg:p-[8px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_15px]   
            max-w-[550px] xl:max-w-[690px] 2xl:max-w-[820px] 3xl:max-w-[1040px] w-full mt-[20px] xs:mt-[30px] xl:mt-[40px]"
@@ -146,7 +151,7 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
                             type="text"
                             value={query}
                             onChange={handleChange}
-                            placeholder="Search by name"
+                            placeholder="Search by name, speciality"
                             className={`${selectTrigger} w-full rounded-md px-3 py-2 text-[10px] outline-none 2xl:text-[11px] 3xl:text-[15px]`}
                           />
                         </div>
@@ -236,7 +241,6 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
               </div>
             </div>
           )}
-
         </div>
       </div>
     </section>
