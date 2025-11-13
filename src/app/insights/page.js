@@ -17,7 +17,7 @@ export default async function Page() {
   return (
     <>
       <InnerBanner
-        mobile_img={banner_and_meta_tags?.mobile_banner_value}
+        mobile_img={bannerData?.banner_mobile_value}
         img={bannerData?.banner_value || "/images/newsbanner.jpg"}
         alt={bannerData?.banner_alt_text_value || "NEWS"}
         subTitle={bannerData?.banner_pre_title || "News & Insights"}

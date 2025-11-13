@@ -392,6 +392,8 @@ export default function index({ site_settings, social_links, policies, services 
               <div className="hidden sm:block">
                 <Link
                   href={site_settings?.map_link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden "
                   aria-label="location_link"
                 >

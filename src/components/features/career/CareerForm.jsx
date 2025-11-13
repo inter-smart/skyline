@@ -69,6 +69,7 @@ export default function CareerForm({ careerId }) {
   const [successOpen, setSuccessOpen] = useState(false);
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024); // Convert bytes → MB
   const ACCEPTED_FILE_TYPES = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
   const formSchema = z.object({
@@ -214,6 +215,19 @@ export default function CareerForm({ careerId }) {
       setImage(e.dataTransfer.files[0]);
     }
   };
+
+  const handleClose = () => {
+    form.reset({
+      name: "",
+      email: "",
+      phone_number: "",
+      experience: "",
+      resume: undefined,
+      terms: false, // Explicitly reset checkbox to false
+    });
+    setOpen(false);
+  };
+
   return (
     <>
       <AlertDialog open={open} onOpenChange={setOpen}>
@@ -233,6 +247,7 @@ export default function CareerForm({ careerId }) {
                 xl:p-[55px] 2xl:p-[80px] 3xl:p-[100px] rounded-[6px]"
         >
           <AlertDialogCancel
+            onClick={handleClose}
             className="bg-transparent border-none cursor-pointer absolute md:top-[75px] top-[15px] right-[10px] md:right-[55px] 
                 w-[10px] h-[10px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] 
                 flex items-center group hover:bg-transparent"
@@ -400,15 +415,12 @@ export default function CareerForm({ careerId }) {
                                     />
                                   </svg>
                                 </div>
-                                Click or drag to upload your CV (PDF, DOC, DOCX)
+                                Click or drag to upload your CV (PDF, DOC, DOCX) <br />
+                                <span className="text-[#929293] text-[8px] 2xl:text-[12px] 3xl:text-[14px]">
+                                  Max file size: {MAX_FILE_SIZE_MB} MB
+                                </span>
                               </label>
-                              <input
-                                id="resume"
-                                type="file"
-                                accept=".pdf,.doc,.docx"
-                                onChange={(e) => field.onChange(e.target.files)}
-                                className="hidden"
-                              />
+                              <input id="resume" type="file" accept="*/*" onChange={(e) => field.onChange(e.target.files)} className="hidden" />
                               {field.value && field.value.length > 0 && (
                                 <p className="text-[10px] mt-2 text-[#212121]">Selected file: {field.value[0].name}</p>
                               )}
@@ -447,16 +459,7 @@ export default function CareerForm({ careerId }) {
                     <div className="flex items-center -m-[5px]">
                       <div className="px-[5px]">
                         <AlertDialogCancel
-                          onClick={() =>
-                            form.reset({
-                              name: "",
-                              email: "",
-                              phone_number: "",
-                              experience: "",
-                              resume: undefined,
-                              terms: false, // Explicitly reset checkbox to false
-                            })
-                          }
+                          onClick={handleClose}
                           className=" text-[8px] lg:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-[#671448] uppercase
                                         font-medium relative cursor-pointer 
                                         h-[25px] xl:!min-h-[32px] 2xl:!min-h-[35px] 3xl:!min-h-[50px] 3xl:leading-[32px;]

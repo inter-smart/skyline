@@ -4,17 +4,17 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import BookAnAppointment from "../../common/BookAnAppointment";
 import { renderHtml } from "@/utils/parseHtml";
+import { usePathname } from "next/navigation";
 
 export default function HeaderClient({ site_settings, social_links, services, reasons, insurance }) {
-  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const currentPath = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +24,22 @@ export default function HeaderClient({ site_settings, social_links, services, re
     window?.addEventListener("scroll", handleScroll);
     return () => window?.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isActive = (item) => {
+    // Exact match for home page
+    if (item.link === "/" && currentPath === "/") {
+      return true;
+    }
+
+    console.log("currentPath", currentPath);
+
+    // For pages with slugs, check if current path starts with the menu link
+    if (item.link !== "/" && currentPath.startsWith(item.link)) {
+      return true;
+    }
+
+    return false;
+  };
 
   const servicesList = services?.map((service) => ({
     name: service?.name,
@@ -73,38 +89,56 @@ export default function HeaderClient({ site_settings, social_links, services, re
             >
               <div className="w-full flex items-center justify-between">
                 <div className="flex items-center relative">
-                  {menus.map((item, id) => (
-                    <div
-                      key={id}
-                      className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
-                        item.submenu
-                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
-                          : ""
-                      }`}
-                    >
-                      {item.clickable ? (
-                        <Link href={item.link} className={menuLinks} aria-label="menulinks">
-                          {item.name}
-                        </Link>
-                      ) : (
-                        <span className={menuLinks}>{item.name}</span>
-                      )}
+                  {menus.map((item, id) => {
+                    const active = isActive(item);
 
-                      {item.submenu && (
-                        <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
-                          {item.submenu.map((sub, subId) => (
-                            <Link
-                              key={subId}
-                              href={sub.link}
-                              className="block text-[11px] xl:text-[12px] 2xl:text-[14px] text-[#010101] px-4 py-2 hover relative hover:text-white  "
-                            >
-                              {sub.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    return (
+                      <div
+                        key={id}
+                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
+                          item.submenu
+                            ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                            : ""
+                        }`}
+                      >
+                        {item.clickable ? (
+                          <a
+                            href={item.link}
+                            className={`${menuLinks} ${
+                              active ? "text-[#00335b] underline decoration-[#00335b] underline-offset-4" : "text-[#010101]"
+                            }`}
+                            aria-label="menulinks"
+                          >
+                            {item.name}
+                          </a>
+                        ) : (
+                          <span className={menuLinks}>{item.name}</span>
+                        )}
+
+                        {item.submenu && (
+                          <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
+                            {item.submenu.map((sub, subId) => {
+                              const subActive = currentPath === sub.link;
+
+                              return (
+                                <a
+                                  key={subId}
+                                  href={sub.link}
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover:bg-[#00335b] hover:text-white transition-colors duration-300 relative ${
+                                    subActive
+                                      ? "text-[#00335b] after:content-[''] after:absolute after:right-4 after:top-1/2 after:-translate-y-1/2 after:w-2 after:h-2 after:bg-[#00335b] after:rounded-full hover:after:bg-white"
+                                      : "text-[#010101]"
+                                  }`}
+                                >
+                                  {sub.name}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {/* .rightSec */}

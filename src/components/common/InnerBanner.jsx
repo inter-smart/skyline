@@ -37,7 +37,10 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
             : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
         }`}
     >
-      <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
+      <picture className="absolute -z-2 inset-0">
+        <source media="(max-width: 640px)" srcSet={mobile_img} />
+        <Image src={img} alt={alt} width={1920} height={565} className="object-cover absolute top-0 left-0 w-full h-full" priority />
+      </picture>
 
       <div className="container h-full w-full flex items-center relative z-20">
         <div className="w-full relative z-20">

@@ -43,7 +43,7 @@ export default function AwardSection({ about_cms, accreditation }) {
             >
               {accreditation?.map((item, index) => (
                 <SwiperSlide>
-                  <Link href="#" className="flex flex-col relative aspect-[360/250]" aria-label="consultants">
+                  <div className="flex flex-col relative aspect-[360/250]" aria-label="consultants">
                     <div className="bg-white flex items-center justify-center rounded-[5px] overflow-hidden z-0 w-full h-full border border-[#E3E5E8] ">
                       <Image
                         src={item.image_value}
@@ -53,7 +53,7 @@ export default function AwardSection({ about_cms, accreditation }) {
                         alt={item.image_alt_text_value}
                       />
                     </div>
-                  </Link>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
