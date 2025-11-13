@@ -124,9 +124,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <a
                                   key={subId}
                                   href={sub.link}
-                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover:bg-[#00335b] hover:text-white transition-colors duration-300 relative ${
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover-acive relative hover:text-white ${
                                     subActive
-                                      ? "text-[#00335b] after:content-[''] after:absolute after:right-4 after:top-1/2 after:-translate-y-1/2 after:w-2 after:h-2 after:bg-[#00335b] after:rounded-full hover:after:bg-white"
+                                      ? "text-[#00335b] before:content-[''] before:absolute before:right-4 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-[#00335b] before:rounded-full before:z-10 hover:before:bg-white"
                                       : "text-[#010101]"
                                   }`}
                                 >
