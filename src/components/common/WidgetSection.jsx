@@ -78,7 +78,7 @@ export default function WidgetSection({ site_settings }) {
               </div>
             </a>
           </li>
-          <li className="mb-[6px]">
+          {/* <li className="mb-[6px]">
             <a
               href=""
               className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px]  flex items-center justify-center bg-[#1574BE] group"
@@ -94,7 +94,7 @@ export default function WidgetSection({ site_settings }) {
                 </svg>
               </div>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </section>

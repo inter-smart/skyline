@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import BookAnAppointment from "../../common/BookAnAppointment";
 import { renderHtml } from "@/utils/parseHtml";
 import { usePathname } from "next/navigation";
+import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export default function HeaderClient({ site_settings, social_links, services, reasons, insurance }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,14 +32,10 @@ export default function HeaderClient({ site_settings, social_links, services, re
       return true;
     }
 
-    console.log("currentPath", currentPath);
-
     // For pages with slugs, check if current path starts with the menu link
     if (item.link !== "/" && currentPath.startsWith(item.link)) {
       return true;
     }
-
-    return false;
   };
 
   const servicesList = services?.map((service) => ({
@@ -47,17 +44,18 @@ export default function HeaderClient({ site_settings, social_links, services, re
   }));
 
   const menus = [
-    { name: "Home", link: "/", clickable: true },
-    { name: "About Us", link: "/about", clickable: true },
+    { id: 1, name: "Home", link: "/", clickable: true },
+    { id: 2, name: "About Us", link: "/about", clickable: true },
     {
+      id: 3,
       name: "Services",
       link: "/service",
       submenu: servicesList,
       clickable: true,
     },
-    { name: "Consultants", link: "/consultants", clickable: true },
-    { name: "News & Insights", link: "/insights", clickable: true },
-    { name: "Contact", link: "/contact", clickable: true },
+    { id: 4, name: "Consultants", link: "/consultants", clickable: true },
+    { id: 5, name: "News & Insights", link: "/insights", clickable: true },
+    { id: 6, name: "Contact", link: "/contact", clickable: true },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
@@ -89,12 +87,12 @@ export default function HeaderClient({ site_settings, social_links, services, re
             >
               <div className="w-full flex items-center justify-between">
                 <div className="flex items-center relative">
-                  {menus.map((item, id) => {
+                  {menus.map((item) => {
                     const active = isActive(item);
 
                     return (
                       <div
-                        key={id}
+                        key={item.id}
                         className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
                           item.submenu
                             ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
@@ -124,7 +122,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <a
                                   key={subId}
                                   href={sub.link}
-                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover-acive relative hover:text-white ${
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
                                     subActive
                                       ? "text-[#00335b] before:content-[''] before:absolute before:right-4 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-[#00335b] before:rounded-full before:z-10 hover:before:bg-white"
                                       : "text-[#010101]"
@@ -170,7 +168,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
-                    <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                    <RecaptchaProvider>
+                      <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                    </RecaptchaProvider>
                   </div>
                   <div className="p-[12px]">
                     <Sheet>

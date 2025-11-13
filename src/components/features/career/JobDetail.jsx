@@ -13,16 +13,15 @@ import {
 import { Button } from "@/components/ui/button";
 import CareerForm from "./CareerForm";
 import { renderHtml } from "@/utils/parseHtml";
+import RecaptchaProvider from "@/components/RecaptchaProvider";
 
-export default function JobDetail({careerId, careers }) {
+export default function JobDetail({ careerId, careers }) {
   const [open, setOpen] = useState(false); // Track open/close state
 
   // Close alert when form is submitted
 
-
   const handleFormSubmit = () => {
     setOpen(false);
-    
   };
 
   return (
@@ -100,7 +99,7 @@ export default function JobDetail({careerId, careers }) {
             </div>
 
             <ul className="flex flex-wrap items-center -m-[3px] 3xl:-m-[4px] mb-[10px] 3xl:mb-[20px]">
-              {careers?.job_tags?.map((job, index) =>(
+              {careers?.job_tags?.map((job, index) => (
                 <li className="p-[3px] 3xl:p-[4px]">
                   <div
                     className="text-[8px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] border
@@ -120,13 +119,13 @@ export default function JobDetail({careerId, careers }) {
               Job Description:
             </div>
             <div className="w-full">
-              <div className="2xl:text-[12px] 3xl:text-[16px] text-[#1E1E1E] w-max-full mb-0 ">
-               {renderHtml(careers?.description)}
-              </div>
+              <div className="2xl:text-[12px] 3xl:text-[16px] text-[#1E1E1E] w-max-full mb-0 ">{renderHtml(careers?.description)}</div>
             </div>
           </div>
           <div className="w-full  mt-[15px] 2xl:mt-[25px]">
-            <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
+            <RecaptchaProvider>
+              <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
+            </RecaptchaProvider>
           </div>
         </AlertDialogDescription>
       </AlertDialogContent>

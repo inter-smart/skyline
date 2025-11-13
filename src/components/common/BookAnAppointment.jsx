@@ -23,6 +23,7 @@ import toast from "react-hot-toast";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { AlertDialogTitle } from "@radix-ui/react-alert-dialog";
 import SuccesModal from "../features/career/SuccesModal";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const SECURITY_PATTERNS = {
   xssPattern: /<[^>]*>?|javascript:|on\w+\s*=/gi,
@@ -78,6 +79,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
 export default function BookAnAppointment({ services, reasons, insurance }) {
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const [successOpen, setSuccessOpen] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const { slug, source } = data;
 
   const isConsultant = source === "consultants";
@@ -188,6 +190,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     const serviceReason = toNumber(data.reason_for_consultation_id);
     const insurance_provider_id = toNumber(data.insurance_provider_id);
     const service = toNumber(data.service_id);
+    const recaptchaToken = await executeRecaptcha("bookappointment");
 
     const formattedData = {
       ...data,
@@ -195,11 +198,11 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       insurance_provider_id: insurance_provider_id,
       service_id: isConsultant ? null : service,
       consultant_id: isConsultant ? toNumber(slug) : null,
+      captcha_key: recaptchaToken,
     };
 
     try {
-      // await postToAPI("appointments", formattedData);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await postToAPI("appointments", formattedData);
 
       handleClose();
       setTimeout(() => {

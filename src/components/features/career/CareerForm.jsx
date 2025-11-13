@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 
 import SuccesModal from "./SuccesModal";
 import { multipartPostToAPI, postToAPI } from "@/lib/api";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formcontrol = `text-[8px] xl:!text-[10px] 2xl:!text-[11px] 3xl:!text-[15px] !text-[#000000] w-full border border-[#E4E4E4] rounded-[6px] 
         placeholder:!text-[8px] xl:placeholder:!text-[10px] 2xl:placeholder:!text-[11px] 3xl:!placeholder:text-[15px] 
@@ -67,6 +68,7 @@ export default function CareerForm({ careerId }) {
   const [dragActive, setDragActive] = useState(false);
   const [open, setOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   const MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024); // Convert bytes → MB
@@ -152,12 +154,12 @@ export default function CareerForm({ careerId }) {
   const { isSubmitting } = formState;
 
   const onSubmit = async (data) => {
-    console.log("Submitting form...");
-
     if (!careerId) {
       toast.error("Career ID missing!");
       return;
     }
+
+    const recaptchaToken = await executeRecaptcha("careers");
 
     const formData = new FormData();
     formData.append("career_id", careerId);
@@ -165,6 +167,7 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
+    formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);
@@ -217,6 +220,7 @@ export default function CareerForm({ careerId }) {
   };
 
   const handleClose = () => {
+    console.log("clickable");
     form.reset({
       name: "",
       email: "",
@@ -247,22 +251,20 @@ export default function CareerForm({ careerId }) {
                 xl:p-[55px] 2xl:p-[80px] 3xl:p-[100px] rounded-[6px]"
         >
           <AlertDialogCancel
-            onClick={handleClose}
+            onClick={(e) => {
+              handleClose();
+            }}
             className="bg-transparent border-none cursor-pointer absolute md:top-[75px] top-[15px] right-[10px] md:right-[55px] 
-                w-[10px] h-[10px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] 
-                flex items-center group hover:bg-transparent"
+    w-[10px] h-[10px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] 
+    flex items-center group hover:bg-transparent z-50"
           >
-            <svg
-              viewBox="0 0 13 13"
-              fill="none"
-              className="fill-black transition-all duration-all group-hover:scale-75 group-hover:bg-transparent w-full h-full object-cover"
-            >
+            <svg viewBox="0 0 13 13" fill="none" className="fill-black transition-all w-full h-full pointer-events-none">
               <path
                 d="M7.69099 6.5001L12.7529 1.4379C13.0824 1.10862 13.0824 0.576231 12.7529 0.246956C12.4237 -0.0823187 11.8913 -0.0823187 11.562 
-                        0.246956L6.49992 5.30915L1.43798 0.246956C1.10856 -0.0823187 0.576335 -0.0823187 0.247067 0.246956C-0.0823556 0.576231 -0.0823556 
-                        1.10862 0.247067 1.4379L5.30901 6.5001L0.247067 11.5623C-0.0823556 11.8916 -0.0823556 12.424 0.247067 12.7532C0.411161 12.9175 0.62692 
-                        13 0.842525 13C1.05813 13 1.27374 12.9175 1.43798 12.7532L6.49992 7.69104L11.562 12.7532C11.7263 12.9175 11.9419 13 12.1575 13C12.3731 
-                        13 12.5887 12.9175 12.7529 12.7532C13.0824 12.424 13.0824 11.8916 12.7529 11.5623L7.69099 6.5001Z"
+        0.246956L6.49992 5.30915L1.43798 0.246956C1.10856 -0.0823187 0.576335 -0.0823187 0.247067 0.246956C-0.0823556 0.576231 -0.0823556 
+        1.10862 0.247067 1.4379L5.30901 6.5001L0.247067 11.5623C-0.0823556 11.8916 -0.0823556 12.424 0.247067 12.7532C0.411161 12.9175 0.62692 
+        13 0.842525 13C1.05813 13 1.27374 12.9175 1.43798 12.7532L6.49992 7.69104L11.562 12.7532C11.7263 12.9175 11.9419 13 12.1575 13C12.3731 
+        13 12.5887 12.9175 12.7529 12.7532C13.0824 12.424 13.0824 11.8916 12.7529 11.5623L7.69099 6.5001Z"
               />
             </svg>
           </AlertDialogCancel>
@@ -277,7 +279,7 @@ export default function CareerForm({ careerId }) {
 
           <AlertDialogDescription className="mb-0">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit, (err) => console.log(err))} className="">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="">
                 <div className="flex flex-wrap w-full ">
                   <div className="p-[5px] lg:p-[10px] 2xl:p-[12px] 3xl:p-[20px] w-full">
                     <FormField

@@ -16,6 +16,7 @@ import { useBookingFormContext } from "@/context/BookingFormContext";
 import { Heading } from "@/components/layout/Heading";
 import SuccesModal from "../career/SuccesModal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const SECURITY_PATTERNS = {
   xssPattern: /<[^>]*>?|javascript:|on\w+\s*=/gi,
@@ -124,6 +125,7 @@ const contactSchema = z.object({
 
 export default function ContactFormSection({ form_title }) {
   const { openSuccess } = useBookingFormContext();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   // const [services, setServices] = useState([]);
 
   // useEffect(() => {
@@ -155,8 +157,15 @@ export default function ContactFormSection({ form_title }) {
   const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 shadow-none`;
 
   const onSubmit = async (data) => {
+    const recaptchaToken = await executeRecaptcha("contact");
+
+    const formattedData = {
+      ...data,
+      captcha_key: recaptchaToken,
+    };
+
     try {
-      await postToAPI("contact-enquiry", data);
+      await postToAPI("contact-enquiry", formattedData);
 
       toast.success("Form submitted successfully!");
       form.reset();
