@@ -64,7 +64,6 @@ const items = [
 
 import JobDetail from "./JobDetail";
 import CareerForm from "./CareerForm";
-import RecaptchaProvider from "@/components/RecaptchaProvider";
 const selectTrigger = `
   relative text-[#000000] [&>svg]:hidden
   after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[17px] !no-underline cursor-pointer
@@ -273,9 +272,7 @@ export default function CareerSection({ department, job_roles, careers }) {
 
                   <div className="flex flex-wrap gap-[8px]">
                     <JobDetail careerId={item?.id} careers={item} />
-                    {/* <RecaptchaProvider> */}
                     <CareerForm careerId={item?.id} />
-                    {/* </RecaptchaProvider> */}
                   </div>
                 </div>
               </div>

@@ -9,7 +9,8 @@ import WidgetSection from "@/components/common/WidgetSection";
 import { Toaster } from "react-hot-toast";
 import { BookingFormContextProvider } from "@/context/BookingFormContext";
 import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
-import Script from "next/script"; // ✅ Import Script from next/script
+import Script from "next/script";
+import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${graphik.variable} ${unna.variable}`}>
+        {/* <RecaptchaProvider> */}
         <BookingFormContextProvider>
           <Header site_settings={site_settings} social_links={social_links} services={services} />
           <main className="flex-grow">{children}</main>
@@ -55,6 +57,7 @@ export default async function RootLayout({ children }) {
           <Footer site_settings={site_settings} social_links={social_links} policies={policies} services={services} />
           <Toaster position="top-right" />
         </BookingFormContextProvider>
+        {/* </RecaptchaProvider> */}
 
         {/* ✅ Add the Tawk.to Script here */}
         <Script id="tawkto-script" strategy="afterInteractive">

@@ -11,7 +11,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import BookAnAppointment from "../../common/BookAnAppointment";
 import { renderHtml } from "@/utils/parseHtml";
 import { usePathname } from "next/navigation";
-import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export default function HeaderClient({ site_settings, social_links, services, reasons, insurance }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -168,9 +167,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
-                    {/* <RecaptchaProvider> */}
                     <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
-                    {/* </RecaptchaProvider> */}
                   </div>
                   <div className="p-[12px]">
                     <Sheet>

@@ -72,7 +72,7 @@ export default function HeroSlider({ sliders = slides }) {
                   width={1920}
                   height={875}
                   className="object-cover absolute top-0 left-0 w-full h-full"
-                  priority
+                  priority={true}
                 />
               </picture>
 

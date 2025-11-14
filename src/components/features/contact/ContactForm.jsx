@@ -125,7 +125,7 @@ const contactSchema = z.object({
 
 export default function ContactFormSection({ form_title }) {
   const { openSuccess } = useBookingFormContext();
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // const { executeRecaptcha } = useGoogleReCaptcha();
   // const [services, setServices] = useState([]);
 
   // useEffect(() => {
@@ -165,7 +165,9 @@ export default function ContactFormSection({ form_title }) {
     };
 
     try {
-      await postToAPI("contact-enquiry", formattedData);
+      console.log("Formatted Data:", formattedData);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await postToAPI("contact-enquiry", formattedData);
 
       toast.success("Form submitted successfully!");
       form.reset();

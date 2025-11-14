@@ -1,5 +1,3 @@
-// app/sitemap.ts
-import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 

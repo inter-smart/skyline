@@ -4,6 +4,8 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 export default function RecaptchaProvider({ children }) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
+  console.log("site key from provider", siteKey);
+
   if (!siteKey) {
     console.error("reCAPTCHA site key is not defined");
     return <>{children}</>;

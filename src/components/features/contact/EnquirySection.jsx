@@ -7,7 +7,6 @@ import PhoneInput from "@/components/ui/phone-input";
 import ContactFormSection from "./ContactForm";
 import { renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
-import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export default function EnquirySection({ title, description, contact_items, form_title }) {
   return (
@@ -20,7 +19,7 @@ export default function EnquirySection({ title, description, contact_items, form
               {title}
             </Heading>
             <Text as="div" size="text1" className="text-center sm:text-start text-[#1E1E1E] font-normal">
-              {/* {renderHtml(description)} */}˝{renderHtml(description)}
+              {renderHtml(description)}
             </Text>
 
             <div className="space-y-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[10px] mt-[44px]">
@@ -42,9 +41,9 @@ export default function EnquirySection({ title, description, contact_items, form
           </div>
 
           {/* Right Side - Contact Form */}
-          {/* <RecaptchaProvider> */}
-          <ContactFormSection form_title={form_title} />
-          {/* </RecaptchaProvider> */}
+          <div>
+            <ContactFormSection form_title={form_title} />
+          </div>
         </div>
       </div>
     </section>
