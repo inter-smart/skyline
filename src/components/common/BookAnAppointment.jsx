@@ -80,7 +80,6 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const [successOpen, setSuccessOpen] = useState(false);
-  // console.log("site key from form", executeRecaptcha);
   const { slug, source } = data;
 
   const isConsultant = source === "consultants";
@@ -203,7 +202,9 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     };
 
     try {
-      await postToAPI("appointments", formattedData);
+      console.log("Formatted Data:", formattedData);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await postToAPI("appointments", formattedData);
 
       handleClose();
       setTimeout(() => {

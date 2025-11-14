@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import CareerForm from "./CareerForm";
 import { renderHtml } from "@/utils/parseHtml";
-import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export default function JobDetail({ careerId, careers }) {
   const [open, setOpen] = useState(false); // Track open/close state
@@ -123,9 +122,7 @@ export default function JobDetail({ careerId, careers }) {
             </div>
           </div>
           <div className="w-full  mt-[15px] 2xl:mt-[25px]">
-            {/* <RecaptchaProvider> */}
             <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
-            {/* </RecaptchaProvider> */}
           </div>
         </AlertDialogDescription>
       </AlertDialogContent>

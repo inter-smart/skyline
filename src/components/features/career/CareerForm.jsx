@@ -159,7 +159,9 @@ export default function CareerForm({ careerId }) {
       return;
     }
 
-    // const recaptchaToken = await executeRecaptcha("careers");
+    const recaptchaToken = await executeRecaptcha("careers");
+
+    console.log("Formatted Data:", recaptchaToken);
 
     const formData = new FormData();
     formData.append("career_id", careerId);
@@ -167,30 +169,31 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
-    // formData.append("captcha_key", recaptchaToken);
+    formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);
     }
 
     try {
-      const response = await multipartPostToAPI("career-enquiry", formData);
-      console.log("API Response:", response);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      if (!response.status) {
-        toast.error(response.message);
-      }
+      // const response = await multipartPostToAPI("career-enquiry", formData);
 
-      if (response.status) {
-        form.reset({
-          name: "",
-          email: "",
-          phone_number: "",
-          experience: "",
-          resume: undefined,
-          terms: false, // Explicitly reset checkbox to false
-        });
-      }
+      // if (!response.status) {
+      //   toast.error(response.message);
+      // }
+
+      // if (response.status) {
+      //   form.reset({
+      //     name: "",
+      //     email: "",
+      //     phone_number: "",
+      //     experience: "",
+      //     resume: undefined,
+      //     terms: false, // Explicitly reset checkbox to false
+      //   });
+      // }
       setOpen(false);
       setTimeout(() => {
         setSuccessOpen(true);
@@ -243,7 +246,7 @@ export default function CareerForm({ careerId }) {
         >
           APPLY NOW
         </AlertDialogTrigger>
-
+        <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
         <AlertDialogContent
           className="!max-w-[95%] sm:!max-w-[630px] 2xl:!max-w-[1000px] 3xl:!max-w-[1270px] bg-white 
                  lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 
@@ -277,7 +280,7 @@ export default function CareerForm({ careerId }) {
             </div>
           </AlertDialogHeader>
 
-          <AlertDialogDescription className="mb-0">
+          <AlertDialogDescription asChild className="mb-0">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="">
                 <div className="flex flex-wrap w-full ">

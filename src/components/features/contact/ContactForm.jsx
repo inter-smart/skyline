@@ -126,27 +126,6 @@ const contactSchema = z.object({
 export default function ContactFormSection({ form_title }) {
   const { openSuccess } = useBookingFormContext();
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const recaptchaContext = useGoogleReCaptcha();
-
-  console.log("=== RECAPTCHA DEBUG ===");
-  console.log("Full context object:", recaptchaContext);
-  console.log("executeRecaptcha value:", recaptchaContext?.executeRecaptcha);
-  console.log("Type:", typeof recaptchaContext?.executeRecaptcha);
-  console.log("Is null?", recaptchaContext?.executeRecaptcha === null);
-  console.log("Is undefined?", recaptchaContext?.executeRecaptcha === undefined);
-
-  // Monitor changes
-  useEffect(() => {
-    console.log("Context updated:", recaptchaContext);
-  }, [recaptchaContext]);
-
-  // Check after delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("After 3 seconds:", recaptchaContext);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
   // const [services, setServices] = useState([]);
 
   // useEffect(() => {
@@ -178,22 +157,17 @@ export default function ContactFormSection({ form_title }) {
   const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 shadow-none`;
 
   const onSubmit = async (data) => {
-    console.log(executeRecaptcha);
-
-    if (!executeRecaptcha) {
-      toast.error("executeRecaptcha is not ready");
-      return;
-    }
-
     const recaptchaToken = await executeRecaptcha("contact");
 
     const formattedData = {
       ...data,
-      // captcha_key: recaptchaToken,
+      captcha_key: recaptchaToken,
     };
 
     try {
-      await postToAPI("contact-enquiry", formattedData);
+      console.log("Formatted Data:", formattedData);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await postToAPI("contact-enquiry", formattedData);
 
       toast.success("Form submitted successfully!");
       form.reset();
