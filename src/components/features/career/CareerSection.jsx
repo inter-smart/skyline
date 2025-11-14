@@ -273,9 +273,9 @@ export default function CareerSection({ department, job_roles, careers }) {
 
                   <div className="flex flex-wrap gap-[8px]">
                     <JobDetail careerId={item?.id} careers={item} />
-                    <RecaptchaProvider>
-                      <CareerForm careerId={item?.id} />
-                    </RecaptchaProvider>
+                    {/* <RecaptchaProvider> */}
+                    <CareerForm careerId={item?.id} />
+                    {/* </RecaptchaProvider> */}
                   </div>
                 </div>
               </div>

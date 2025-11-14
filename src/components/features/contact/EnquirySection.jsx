@@ -42,9 +42,9 @@ export default function EnquirySection({ title, description, contact_items, form
           </div>
 
           {/* Right Side - Contact Form */}
-          <RecaptchaProvider>
-            <ContactFormSection form_title={form_title} />
-          </RecaptchaProvider>
+          {/* <RecaptchaProvider> */}
+          <ContactFormSection form_title={form_title} />
+          {/* </RecaptchaProvider> */}
         </div>
       </div>
     </section>

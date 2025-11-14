@@ -123,9 +123,9 @@ export default function JobDetail({ careerId, careers }) {
             </div>
           </div>
           <div className="w-full  mt-[15px] 2xl:mt-[25px]">
-            <RecaptchaProvider>
-              <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
-            </RecaptchaProvider>
+            {/* <RecaptchaProvider> */}
+            <CareerForm careerId={careerId} onSubmitSuccess={handleFormSubmit} />
+            {/* </RecaptchaProvider> */}
           </div>
         </AlertDialogDescription>
       </AlertDialogContent>

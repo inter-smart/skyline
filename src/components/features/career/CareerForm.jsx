@@ -159,7 +159,7 @@ export default function CareerForm({ careerId }) {
       return;
     }
 
-    const recaptchaToken = await executeRecaptcha("careers");
+    // const recaptchaToken = await executeRecaptcha("careers");
 
     const formData = new FormData();
     formData.append("career_id", careerId);
@@ -167,7 +167,7 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
-    formData.append("captcha_key", recaptchaToken);
+    // formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);

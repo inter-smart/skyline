@@ -157,11 +157,11 @@ export default function ContactFormSection({ form_title }) {
   const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 shadow-none`;
 
   const onSubmit = async (data) => {
-    const recaptchaToken = await executeRecaptcha("contact");
+    // const recaptchaToken = await executeRecaptcha("contact");
 
     const formattedData = {
       ...data,
-      captcha_key: recaptchaToken,
+      // captcha_key: recaptchaToken,
     };
 
     try {

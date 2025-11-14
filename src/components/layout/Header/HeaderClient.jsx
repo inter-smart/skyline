@@ -168,9 +168,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
-                    <RecaptchaProvider>
-                      <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
-                    </RecaptchaProvider>
+                    {/* <RecaptchaProvider> */}
+                    <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                    {/* </RecaptchaProvider> */}
                   </div>
                   <div className="p-[12px]">
                     <Sheet>
