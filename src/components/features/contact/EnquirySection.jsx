@@ -8,8 +8,14 @@ import ContactFormSection from "./ContactForm";
 import { renderHtml } from "@/utils/parseHtml";
 import Image from "next/image";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function EnquirySection({ title, description, contact_items, form_title }) {
+  const site_key = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const siteKey = site_key;
+
+  console.log("site key from provider", siteKey);
+
   return (
     <section id="connect-us" className="w-full py-16 bg-white">
       <div className="container mx-auto">
@@ -42,9 +48,19 @@ export default function EnquirySection({ title, description, contact_items, form
           </div>
 
           {/* Right Side - Contact Form */}
-          {/* <RecaptchaProvider> */}
-          <ContactFormSection form_title={form_title} />
-          {/* </RecaptchaProvider> */}
+          <GoogleReCaptchaProvider
+            reCaptchaKey={siteKey}
+            scriptProps={{
+              async: true, // Changed to true
+              defer: true, // Changed to true
+              appendTo: "head",
+            }}
+          >
+            <div>
+              <p style={{ background: "yellow" }}>Provider is active</p>
+              <ContactFormSection form_title={form_title} />
+            </div>
+          </GoogleReCaptchaProvider>
         </div>
       </div>
     </section>

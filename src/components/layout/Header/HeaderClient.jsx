@@ -168,9 +168,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
-                    {/* <RecaptchaProvider> */}
-                    <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
-                    {/* </RecaptchaProvider> */}
+                    <RecaptchaProvider>
+                      <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                    </RecaptchaProvider>
                   </div>
                   <div className="p-[12px]">
                     <Sheet>
@@ -403,7 +403,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
               </Link>
               <div className="flex items-center">
                 <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
-                  <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                  <RecaptchaProvider>
+                    <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                  </RecaptchaProvider>
                 </div>
                 <SheetTrigger className="w-[25px] h-[25px] flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 464.205 464.205">
