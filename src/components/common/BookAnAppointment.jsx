@@ -77,7 +77,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
            focus-visible:shadow-none bg-transparent border-none`;
 
 export default function BookAnAppointment({ services, reasons, insurance }) {
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // const { executeRecaptcha } = useGoogleReCaptcha();
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const [successOpen, setSuccessOpen] = useState(false);
   const { slug, source } = data;
@@ -190,7 +190,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     const serviceReason = toNumber(data.reason_for_consultation_id);
     const insurance_provider_id = toNumber(data.insurance_provider_id);
     const service = toNumber(data.service_id);
-    const recaptchaToken = await executeRecaptcha("bookappointment");
+    // const recaptchaToken = await executeRecaptcha("bookappointment");
 
     const formattedData = {
       ...data,
@@ -198,7 +198,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       insurance_provider_id: insurance_provider_id,
       service_id: isConsultant ? null : service,
       consultant_id: isConsultant ? toNumber(slug) : null,
-      captcha_key: recaptchaToken,
+      // captcha_key: recaptchaToken,
     };
 
     try {

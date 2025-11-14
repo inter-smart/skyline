@@ -68,7 +68,7 @@ export default function CareerForm({ careerId }) {
   const [dragActive, setDragActive] = useState(false);
   const [open, setOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // const { executeRecaptcha } = useGoogleReCaptcha();
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   const MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024); // Convert bytes → MB
@@ -159,7 +159,7 @@ export default function CareerForm({ careerId }) {
       return;
     }
 
-    const recaptchaToken = await executeRecaptcha("careers");
+    // const recaptchaToken = await executeRecaptcha("careers");
 
     console.log("Formatted Data:", recaptchaToken);
 
@@ -169,7 +169,7 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
-    formData.append("captcha_key", recaptchaToken);
+    // formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);
