@@ -4,17 +4,18 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import BookAnAppointment from "../../common/BookAnAppointment";
 import { renderHtml } from "@/utils/parseHtml";
+import { usePathname } from "next/navigation";
+import RecaptchaProvider from "@/components/RecaptchaProvider";
 
 export default function HeaderClient({ site_settings, social_links, services, reasons, insurance }) {
-  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const currentPath = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,23 +26,36 @@ export default function HeaderClient({ site_settings, social_links, services, re
     return () => window?.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isActive = (item) => {
+    // Exact match for home page
+    if (item.link === "/" && currentPath === "/") {
+      return true;
+    }
+
+    // For pages with slugs, check if current path starts with the menu link
+    if (item.link !== "/" && currentPath.startsWith(item.link)) {
+      return true;
+    }
+  };
+
   const servicesList = services?.map((service) => ({
     name: service?.name,
     link: `/service/${service?.slug}`,
   }));
 
   const menus = [
-    { name: "Home", link: "/", clickable: true },
-    { name: "About Us", link: "/about", clickable: true },
+    { id: 1, name: "Home", link: "/", clickable: true },
+    { id: 2, name: "About Us", link: "/about", clickable: true },
     {
+      id: 3,
       name: "Services",
       link: "/service",
       submenu: servicesList,
       clickable: true,
     },
-    { name: "Consultants", link: "/consultants", clickable: true },
-    { name: "News & Insights", link: "/insights", clickable: true },
-    { name: "Contact", link: "/contact", clickable: true },
+    { id: 4, name: "Consultants", link: "/consultants", clickable: true },
+    { id: 5, name: "News & Insights", link: "/insights", clickable: true },
+    { id: 6, name: "Contact", link: "/contact", clickable: true },
   ];
 
   const menuLinkClass = `3xs:text-[11px] text-[9px] font-normal outline-0 underline-0 transition-all
@@ -72,42 +86,57 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   2xl:pl-[65px] 3xl:pl-[85px] ritBx"
             >
               <div className="w-full flex items-center justify-between">
-                {/* menus */}
                 <div className="flex items-center relative">
-                  {menus.map((item, id) => (
-                    <div
-                      key={id}
-                      className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
-                        item.submenu
-                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
-                          : ""
-                      }`}
-                    >
-                      {/* Main link */}
-                      {item.clickable ? (
-                        <Link href={item.link} className={menuLinks} aria-label="menulinks">
-                          {item.name}
-                        </Link>
-                      ) : (
-                        <span className={menuLinks}>{item.name}</span>
-                      )}
+                  {menus.map((item) => {
+                    const active = isActive(item);
 
-                      {/* Dropdown (if submenu exists) */}
-                      {item.submenu && (
-                        <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
-                          {item.submenu.map((sub, subId) => (
-                            <Link
-                              key={subId}
-                              href={sub.link}
-                              className="block text-[11px] xl:text-[12px] 2xl:text-[14px] text-[#010101] px-4 py-2 hover relative hover:text-white  "
-                            >
-                              {sub.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    return (
+                      <div
+                        key={item.id}
+                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
+                          item.submenu
+                            ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                            : ""
+                        }`}
+                      >
+                        {item.clickable ? (
+                          <a
+                            href={item.link}
+                            className={`${menuLinks} ${
+                              active ? "text-[#00335b] underline decoration-[#00335b] underline-offset-4" : "text-[#010101]"
+                            }`}
+                            aria-label="menulinks"
+                          >
+                            {item.name}
+                          </a>
+                        ) : (
+                          <span className={menuLinks}>{item.name}</span>
+                        )}
+
+                        {item.submenu && (
+                          <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
+                            {item.submenu.map((sub, subId) => {
+                              const subActive = currentPath === sub.link;
+
+                              return (
+                                <a
+                                  key={subId}
+                                  href={sub.link}
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
+                                    subActive
+                                      ? "text-[#00335b] before:content-[''] before:absolute before:right-4 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-[#00335b] before:rounded-full before:z-10 hover:before:bg-white"
+                                      : "text-[#010101]"
+                                  }`}
+                                >
+                                  {sub.name}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {/* .rightSec */}
@@ -139,7 +168,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </div>
                   </div>
                   <div className="p-[9px]  2xl:p-[12px]">
+                    {/* <RecaptchaProvider> */}
                     <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+                    {/* </RecaptchaProvider> */}
                   </div>
                   <div className="p-[12px]">
                     <Sheet>
@@ -232,7 +263,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                             {/* logo section */}
                             <Link
-                              href="#"
+                              href="/"
                               className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
                               aria-label="logo"
                             >
@@ -350,7 +381,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                 {/* logo section */}
 
-                <Link href="#" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
+                <Link href="/" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
                   <Image
                     src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
                     width="250"
@@ -367,9 +398,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
         <Sheet>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
-              <div className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
-                <Image src="/images/logo.svg" width="200" height="115" className="object-contain" alt="logo" />
-              </div>
+              <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
+                <Image src={site_settings?.header_logo_value || "/images/logo.svg"} width="200" height="115" className="object-contain" alt="logo" />
+              </Link>
               <div className="flex items-center">
                 <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
                   <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
@@ -449,11 +480,11 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
-                    <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                    <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Consultants</span>
                       </div>
-                    </div>
+                    </Link>
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">

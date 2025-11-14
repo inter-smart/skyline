@@ -100,8 +100,12 @@ body {
     @apply hover:bg-gradient-to-r hover:from-base1 hover:to-base2 hover:shadow-xl after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent after:translate-x-[-100%] hover:after:translate-x-[100%] after:transition-transform after:duration-1000;
   }
 
+  .hover-acive {
+    @apply hover:bg-gradient-to-r hover:from-base1 hover:to-base2 hover:shadow-xl after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent after:translate-x-[-100%] hover:after:translate-x-[100%] after:transition-transform after:duration-1000;
+  }
+
   p {
-    @apply text-[13px] lg:text-[15px] 2xl:text-[17px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ;
+    @apply text-[13px] lg:text-[15px] 2xl:text-[17px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px];
   }
 
   .typography {
@@ -301,7 +305,7 @@ body {
   border: 0 !important;
   z-index: 9;
 }
-section{
+section {
   z-index: 0;
 }
 .stickyHeader .logo {

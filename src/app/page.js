@@ -7,7 +7,6 @@ import WhySection from "@/components/features/home/WhySection";
 import { fetchFromAPI, getMetaData } from "@/lib/api";
 
 export async function generateMetadata() {
-  console.log("Calling meta");
   const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("home");
   return {
     title,

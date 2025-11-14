@@ -64,14 +64,17 @@ export default function HeroSlider({ sliders = slides }) {
         {sliders?.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
-              <Image
-                src={slide?.image_value}
-                alt={slide?.image_alt_text_value}
-                width={1920}
-                height={875}
-                className="object-cover absolute top-0 left-0 w-full h-full"
-                priority
-              />
+              <picture className="absolute -z-2 inset-0">
+                <source media="(max-width: 640px)" srcSet={slide?.image_mobile_value} />
+                <Image
+                  src={slide?.image_value}
+                  alt={slide?.image_alt_text_value}
+                  width={1920}
+                  height={875}
+                  className="object-cover absolute top-0 left-0 w-full h-full"
+                  priority
+                />
+              </picture>
 
               <div className="container w-full h-full flex items-center">
                 {/* Animated text content */}

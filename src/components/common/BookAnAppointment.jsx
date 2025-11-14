@@ -23,6 +23,52 @@ import toast from "react-hot-toast";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { AlertDialogTitle } from "@radix-ui/react-alert-dialog";
 import SuccesModal from "../features/career/SuccesModal";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
+const SECURITY_PATTERNS = {
+  xssPattern: /<[^>]*>?|javascript:|on\w+\s*=/gi,
+  sqlInjectionPattern: /('|`|;|--|"|\b(DROP|DELETE|INSERT|UPDATE|SELECT|UNION|CREATE|ALTER|EXEC|EXECUTE)\b)/gi,
+  scriptPattern: /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+  templateInjectionPattern: /\{\{.*?\}\}/g,
+};
+
+const validateSecurity = (value) => {
+  if (typeof value !== "string") return true;
+
+  return (
+    !SECURITY_PATTERNS.xssPattern.test(value) &&
+    !SECURITY_PATTERNS.sqlInjectionPattern.test(value) &&
+    !SECURITY_PATTERNS.scriptPattern.test(value) &&
+    !SECURITY_PATTERNS.templateInjectionPattern.test(value)
+  );
+};
+
+const validateNotOnlySpecialChars = (value) => {
+  if (typeof value !== "string") return true;
+  return !/^[^a-zA-Z0-9\s]+$/.test(value.trim());
+};
+
+const validateNotEmpty = (value) => {
+  if (typeof value !== "string") return false;
+  return value.trim().length > 0;
+};
+
+const validateNotOnlyWhitespace = (value) => {
+  if (typeof value !== "string") return false;
+  return /\S/.test(value);
+};
+
+const validateMessageLength = (value) => {
+  if (typeof value !== "string") return false;
+  // Reject extremely long messages (adjust limit as needed)
+  return value.length <= 5000;
+};
+
+const validateSingleCharacter = (value) => {
+  if (typeof value !== "string") return true;
+  // Reject single character messages (but allow 2+ characters)
+  return value.trim().length >= 2;
+};
 
 const formBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px] px-[10px] px-[15px] 3xl:px-[20px] flex items-center`;
 const selectBox = `w-full h-[35px] 3xl:h-[47px] bg-[rgba(255,255,255,0.3)] rounded-[6px]  flex items-center`;
@@ -33,21 +79,73 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
 export default function BookAnAppointment({ services, reasons, insurance }) {
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const [successOpen, setSuccessOpen] = useState(false);
+  // const { executeRecaptcha } = useGoogleReCaptcha();
   const { slug, source } = data;
 
   const isConsultant = source === "consultants";
 
   const formSchema = z
     .object({
-      name: z.string().min(2, "Name must be at least 2 characters"),
-      email: z.string().email("Please enter a valid email address"),
-      phone_number: z.string().optional(),
+      name: z
+        .string()
+        .transform((val) => val?.trim() || "")
+        .refine(validateNotEmpty, "Name is required")
+        .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
+        .refine((val) => val.length >= 2, "Name must be at least 2 characters")
+        .refine((val) => val.length <= 255, "Name is too long")
+        .refine(validateSecurity, "Invalid characters detected")
+        .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+        .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+        .refine(
+          (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+          "Name can only contain letters, spaces, hyphens, and apostrophes"
+        ),
+
+      phone_number: z
+        .string()
+        .transform((val) => val?.trim() || "")
+        .refine(validateNotEmpty, "Phone number is required")
+        .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
+        .refine(validateSecurity, "Invalid characters detected")
+        .refine((val) => {
+          const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+          return cleaned.length >= 5 && cleaned.length <= 15;
+        }, "Phone number must be between 5-15 digits")
+        .refine((val) => {
+          const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+          return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
+        }, "Phone number must contain valid digits and cannot be all zeros")
+        .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+
+      email: z
+        .string()
+        .email("Please enter a valid email address")
+        .transform((val) => val?.trim().toLowerCase() || "")
+        .refine(validateNotEmpty, "Email is required")
+        .refine(validateNotOnlyWhitespace, "Email cannot be only whitespace")
+        .refine(validateSecurity, "Invalid characters detected")
+        .refine((val) => val.length <= 256, "Email is too long")
+        .refine((val) => val.includes("@"), "Email must contain @ symbol")
+        .refine((val) => {
+          const parts = val.split("@");
+          return parts.length === 2 && parts[1].length > 0;
+        }, "Email must have a valid domain"),
       country_code: z.string().optional(),
       country: z.string().optional(),
       service_id: z.string().optional(), // Always optional in base schema
       reason_for_consultation_id: z.string().min(1, "Please select a reason"),
       insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
-      additionalNotes: z.string().optional(),
+      additionalNotes: z
+        .string()
+        .optional()
+        .transform((val) => val?.trim() || "")
+        // Only run validations if value is not empty
+        .refine((val) => !val || validateNotEmpty(val), "Message is required")
+        .refine((val) => !val || validateNotOnlyWhitespace(val), "Message cannot be only whitespace")
+        .refine((val) => !val || validateSingleCharacter(val), "Message must be at least 2 characters")
+        .refine((val) => !val || validateMessageLength(val), "Message is too long (maximum 5000 characters)")
+        .refine((val) => !val || validateSecurity(val), "Invalid characters or potential security risk detected")
+        .refine((val) => !val || validateNotOnlySpecialChars(val), "Message cannot contain only special characters"),
     })
     .refine(
       (data) => {
@@ -92,6 +190,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     const serviceReason = toNumber(data.reason_for_consultation_id);
     const insurance_provider_id = toNumber(data.insurance_provider_id);
     const service = toNumber(data.service_id);
+    // const recaptchaToken = await executeRecaptcha("bookappointment");
 
     const formattedData = {
       ...data,
@@ -99,11 +198,11 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       insurance_provider_id: insurance_provider_id,
       service_id: isConsultant ? null : service,
       consultant_id: isConsultant ? toNumber(slug) : null,
+      // captcha_key: recaptchaToken,
     };
 
     try {
-      // await postToAPI("appointments", formattedData);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await postToAPI("appointments", formattedData);
 
       handleClose();
       setTimeout(() => {

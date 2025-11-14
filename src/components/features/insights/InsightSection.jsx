@@ -32,7 +32,7 @@ export default function InsightSection({ type = "blogs" }) {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState(null);
 
-  const PER_PAGE = 6;
+  const PER_PAGE = 1;
 
   // ✅ Fetch filters on mount
   useEffect(() => {
@@ -244,9 +244,6 @@ export default function InsightSection({ type = "blogs" }) {
               </Button>
             </div>
           )}
-
-          {/* No More Videos */}
-          {!isLoading && !hasMore && blogs.length > 0 && <div className="mt-[20px] text-center text-gray-500 text-sm">No more blogs to load</div>}
 
           {/* No Results */}
           {!isLoading && blogs.length === 0 && <div className="text-center py-10 text-gray-500">No blogs found for this category</div>}

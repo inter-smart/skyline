@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 
 import SuccesModal from "./SuccesModal";
 import { multipartPostToAPI, postToAPI } from "@/lib/api";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formcontrol = `text-[8px] xl:!text-[10px] 2xl:!text-[11px] 3xl:!text-[15px] !text-[#000000] w-full border border-[#E4E4E4] rounded-[6px] 
         placeholder:!text-[8px] xl:placeholder:!text-[10px] 2xl:placeholder:!text-[11px] 3xl:!placeholder:text-[15px] 
@@ -30,20 +31,94 @@ const formcontrol = `text-[8px] xl:!text-[10px] 2xl:!text-[11px] 3xl:!text-[15px
          focus:outline-none focus:ring-0 focus:shadow-none
         focus-visible:ring-0 focus-visible:shadow-none`;
 
-// Forms
+const SECURITY_PATTERNS = {
+  xssPattern: /<[^>]*>?|javascript:|on\w+\s*=/gi,
+  sqlInjectionPattern: /('|`|;|--|"|\b(DROP|DELETE|INSERT|UPDATE|SELECT|UNION|CREATE|ALTER|EXEC|EXECUTE)\b)/gi,
+  scriptPattern: /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+  templateInjectionPattern: /\{\{.*?\}\}/g,
+};
+
+const validateSecurity = (value) => {
+  if (typeof value !== "string") return true;
+
+  return (
+    !SECURITY_PATTERNS.xssPattern.test(value) &&
+    !SECURITY_PATTERNS.sqlInjectionPattern.test(value) &&
+    !SECURITY_PATTERNS.scriptPattern.test(value) &&
+    !SECURITY_PATTERNS.templateInjectionPattern.test(value)
+  );
+};
+
+const validateNotOnlySpecialChars = (value) => {
+  if (typeof value !== "string") return true;
+  return !/^[^a-zA-Z0-9\s]+$/.test(value.trim());
+};
+
+const validateNotEmpty = (value) => {
+  if (typeof value !== "string") return false;
+  return value.trim().length > 0;
+};
+
+const validateNotOnlyWhitespace = (value) => {
+  if (typeof value !== "string") return false;
+  return /\S/.test(value);
+};
 
 export default function CareerForm({ careerId }) {
   const [dragActive, setDragActive] = useState(false);
   const [open, setOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024); // Convert bytes → MB
   const ACCEPTED_FILE_TYPES = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
   const formSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Please enter a valid email address"),
-    phone_number: z.string().min(10, "Phone number must be at least 10 digits").max(15, "Phone number too long"),
+    name: z
+      .string()
+      .transform((val) => val?.trim() || "")
+      .refine(validateNotEmpty, "Name is required")
+      .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
+      .refine((val) => val.length >= 2, "Name must be at least 2 characters")
+      .refine((val) => val.length <= 255, "Name is too long")
+      .refine(validateSecurity, "Invalid characters detected")
+      .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+      .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+      .refine(
+        (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+        "Name can only contain letters, spaces, hyphens, and apostrophes"
+      ),
+
+    phone_number: z
+      .string()
+      .transform((val) => val?.trim() || "")
+      .refine(validateNotEmpty, "Phone number is required")
+      .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
+      .refine(validateSecurity, "Invalid characters detected")
+      .refine((val) => {
+        const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+        return cleaned.length >= 5 && cleaned.length <= 15;
+      }, "Phone number must be between 5-15 digits")
+      .refine((val) => {
+        const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+        return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
+      }, "Phone number must contain valid digits and cannot be all zeros")
+      .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+
+    email: z
+      .string()
+      .email("Please enter a valid email address")
+      .transform((val) => val?.trim().toLowerCase() || "")
+      .refine(validateNotEmpty, "Email is required")
+      .refine(validateNotOnlyWhitespace, "Email cannot be only whitespace")
+      .refine(validateSecurity, "Invalid characters detected")
+      .refine((val) => val.length <= 256, "Email is too long")
+      .refine((val) => val.includes("@"), "Email must contain @ symbol")
+      .refine((val) => {
+        const parts = val.split("@");
+        return parts.length === 2 && parts[1].length > 0;
+      }, "Email must have a valid domain"),
     experience: z
       .string()
       .min(1, "Experience is required")
@@ -79,12 +154,12 @@ export default function CareerForm({ careerId }) {
   const { isSubmitting } = formState;
 
   const onSubmit = async (data) => {
-    console.log("Submitting form...");
-
     if (!careerId) {
       toast.error("Career ID missing!");
       return;
     }
+
+    // const recaptchaToken = await executeRecaptcha("careers");
 
     const formData = new FormData();
     formData.append("career_id", careerId);
@@ -92,6 +167,7 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
+    // formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);
@@ -142,6 +218,20 @@ export default function CareerForm({ careerId }) {
       setImage(e.dataTransfer.files[0]);
     }
   };
+
+  const handleClose = () => {
+    console.log("clickable");
+    form.reset({
+      name: "",
+      email: "",
+      phone_number: "",
+      experience: "",
+      resume: undefined,
+      terms: false, // Explicitly reset checkbox to false
+    });
+    setOpen(false);
+  };
+
   return (
     <>
       <AlertDialog open={open} onOpenChange={setOpen}>
@@ -161,21 +251,20 @@ export default function CareerForm({ careerId }) {
                 xl:p-[55px] 2xl:p-[80px] 3xl:p-[100px] rounded-[6px]"
         >
           <AlertDialogCancel
+            onClick={(e) => {
+              handleClose();
+            }}
             className="bg-transparent border-none cursor-pointer absolute md:top-[75px] top-[15px] right-[10px] md:right-[55px] 
-                w-[10px] h-[10px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] 
-                flex items-center group hover:bg-transparent"
+    w-[10px] h-[10px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] 
+    flex items-center group hover:bg-transparent z-50"
           >
-            <svg
-              viewBox="0 0 13 13"
-              fill="none"
-              className="fill-black transition-all duration-all group-hover:scale-75 group-hover:bg-transparent w-full h-full object-cover"
-            >
+            <svg viewBox="0 0 13 13" fill="none" className="fill-black transition-all w-full h-full pointer-events-none">
               <path
                 d="M7.69099 6.5001L12.7529 1.4379C13.0824 1.10862 13.0824 0.576231 12.7529 0.246956C12.4237 -0.0823187 11.8913 -0.0823187 11.562 
-                        0.246956L6.49992 5.30915L1.43798 0.246956C1.10856 -0.0823187 0.576335 -0.0823187 0.247067 0.246956C-0.0823556 0.576231 -0.0823556 
-                        1.10862 0.247067 1.4379L5.30901 6.5001L0.247067 11.5623C-0.0823556 11.8916 -0.0823556 12.424 0.247067 12.7532C0.411161 12.9175 0.62692 
-                        13 0.842525 13C1.05813 13 1.27374 12.9175 1.43798 12.7532L6.49992 7.69104L11.562 12.7532C11.7263 12.9175 11.9419 13 12.1575 13C12.3731 
-                        13 12.5887 12.9175 12.7529 12.7532C13.0824 12.424 13.0824 11.8916 12.7529 11.5623L7.69099 6.5001Z"
+        0.246956L6.49992 5.30915L1.43798 0.246956C1.10856 -0.0823187 0.576335 -0.0823187 0.247067 0.246956C-0.0823556 0.576231 -0.0823556 
+        1.10862 0.247067 1.4379L5.30901 6.5001L0.247067 11.5623C-0.0823556 11.8916 -0.0823556 12.424 0.247067 12.7532C0.411161 12.9175 0.62692 
+        13 0.842525 13C1.05813 13 1.27374 12.9175 1.43798 12.7532L6.49992 7.69104L11.562 12.7532C11.7263 12.9175 11.9419 13 12.1575 13C12.3731 
+        13 12.5887 12.9175 12.7529 12.7532C13.0824 12.424 13.0824 11.8916 12.7529 11.5623L7.69099 6.5001Z"
               />
             </svg>
           </AlertDialogCancel>
@@ -190,7 +279,7 @@ export default function CareerForm({ careerId }) {
 
           <AlertDialogDescription className="mb-0">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit, (err) => console.log(err))} className="">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="">
                 <div className="flex flex-wrap w-full ">
                   <div className="p-[5px] lg:p-[10px] 2xl:p-[12px] 3xl:p-[20px] w-full">
                     <FormField
@@ -328,15 +417,12 @@ export default function CareerForm({ careerId }) {
                                     />
                                   </svg>
                                 </div>
-                                Click or drag to upload your CV (PDF, DOC, DOCX)
+                                Click or drag to upload your CV (PDF, DOC, DOCX) <br />
+                                <span className="text-[#929293] text-[8px] 2xl:text-[12px] 3xl:text-[14px]">
+                                  Max file size: {MAX_FILE_SIZE_MB} MB
+                                </span>
                               </label>
-                              <input
-                                id="resume"
-                                type="file"
-                                accept=".pdf,.doc,.docx"
-                                onChange={(e) => field.onChange(e.target.files)}
-                                className="hidden"
-                              />
+                              <input id="resume" type="file" accept="*/*" onChange={(e) => field.onChange(e.target.files)} className="hidden" />
                               {field.value && field.value.length > 0 && (
                                 <p className="text-[10px] mt-2 text-[#212121]">Selected file: {field.value[0].name}</p>
                               )}
@@ -375,16 +461,7 @@ export default function CareerForm({ careerId }) {
                     <div className="flex items-center -m-[5px]">
                       <div className="px-[5px]">
                         <AlertDialogCancel
-                          onClick={() =>
-                            form.reset({
-                              name: "",
-                              email: "",
-                              phone_number: "",
-                              experience: "",
-                              resume: undefined,
-                              terms: false, // Explicitly reset checkbox to false
-                            })
-                          }
+                          onClick={handleClose}
                           className=" text-[8px] lg:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-[#671448] uppercase
                                         font-medium relative cursor-pointer 
                                         h-[25px] xl:!min-h-[32px] 2xl:!min-h-[35px] 3xl:!min-h-[50px] 3xl:leading-[32px;]
