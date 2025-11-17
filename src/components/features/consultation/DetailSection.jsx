@@ -33,7 +33,7 @@ export default function DetailSection({
     <section className="py-[35px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[70px] relative">
       <div className="container">
         <div className="flex flex-wrap">
-          <div className="md:w-[230px] lg:w-[265px] xl:w-[300px] 2xl:w-[395px] 3xl:w-[495px] max-md:mb-[10px]">
+          <div className="w-full md:w-[230px] lg:w-[265px] xl:w-[300px] 2xl:w-[395px] 3xl:w-[495px] max-md:mb-[10px]">
             <div className="flex md:flex-col flex-wrap">
               <div className="w-full border border-[#D6E2ED] p-[15px_10px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] md:mb-[20px] 3xl:mb-[30px]">
                 <div className="w-full lg:h-full rounded-[6px] overflow-hidden aspect-[375/380] mb-[20px] bg-[#D6E2ED] relative flex items-end">
@@ -98,7 +98,7 @@ export default function DetailSection({
               </div>
             </div>
           </div>
-          <div className="md:w-[calc(100%-230px)] lg:w-[calc(100%-265px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-395px)] 3xl:w-[calc(100%-495px)] md:pl-[30px]">
+          <div className="w-full md:w-[calc(100%-230px)] lg:w-[calc(100%-265px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-395px)] 3xl:w-[calc(100%-495px)] md:pl-[30px]">
             <div className="w-full">
               <Accordion
                 type="multiple"

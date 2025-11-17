@@ -37,7 +37,7 @@ export default function JobDetail({ careerId, careers }) {
 
       <AlertDialogContent
         className="max-w-[95%] sm:!max-w-[630px] 2xl:!max-w-[750px] 3xl:!max-w-[950px] bg-white p-[40px_20px] lg:p-[35px_25px] 
-                        xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[85px] rounded-[10px] 2xl:rounded-[15px] 3xl:rounded-[20px] overflow-auto"
+                        xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[85px] rounded-[10px] 2xl:rounded-[15px] 3xl:rounded-[20px] overflow-auto h-[95%] overfloa-auto"
       >
         <div
           className="Departments text-[11px] 2xl:text-[13px] 3xl:text-[17px] text-[#00335B] font-normal leading-normal 
