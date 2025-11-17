@@ -256,7 +256,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
           <AlertDialogHeader>
             <div className="w-full max-w-[615px] mb-[20px]">
               <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wider mb-[12px]">
-                connect me
+                connect us
               </div>
               <div className="text-[25px] xl:text-[33px] 2xl:text-[40px] 3xl:text-[50px] text-white mb-[15px] font-unna leading-none">
                 Book An Appointment
