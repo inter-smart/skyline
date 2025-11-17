@@ -188,13 +188,13 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                         <div className="p-[4px] 2xl:p-[8px] flex-grow">
                           <Link
                             href={`/consultants/${item?.slug}`}
-                            className="w-full btn-base1 tracking-widest bg-transparent border rounded-[3px] hover:text-white transition-none border-[rgba(103,20,72,0.2)] text-base1"
+                            className="w-full btn-base1 tracking-widest bg-transparent border rounded-[3px] hover hover:text-white transition-none border-[rgba(103,20,72,0.2)] text-base1"
                           >
                             View Details
                           </Link>
                         </div>
                         <div className="p-[4px] 2xl:p-[8px] flex-grow">
-                          <div onClick={() => handleClick(`${item?.id}`)} className="w-full btn-base1 tracking-widest rounded-[3px]">
+                          <div onClick={() => handleClick(`${item?.id}`)} className="w-full btn-base1 hover tracking-widest rounded-[3px]">
                             Book Consultation
                           </div>
                         </div>

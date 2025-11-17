@@ -63,7 +63,8 @@ export default function HeroSlider({ sliders = slides }) {
       >
         {sliders?.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
+              after:bg-gradient-to-r after:from-[rgba(0,0,0,0.5)] after:to-[rgba(0,0,0,0.07)]  md:after:from-[rgba(255,255,255,0.35)] md:after:to-[rgba(255,255,255,0.0)] after:z-[0]">
               <picture className="absolute -z-2 inset-0">
                 <source media="(max-width: 640px)" srcSet={slide?.image_mobile_value} />
                 <Image
@@ -71,12 +72,12 @@ export default function HeroSlider({ sliders = slides }) {
                   alt={slide?.image_alt_text_value}
                   width={1920}
                   height={875}
-                  className="object-cover absolute top-0 left-0 w-full h-full"
+                  className="object-cover absolute top-0 left-0 w-full h-full  "
                   priority={true}
                 />
               </picture>
 
-              <div className="container w-full h-full flex items-center">
+              <div className="container w-full h-full flex items-center relative z-1">
                 {/* Animated text content */}
                 <motion.div
                   key={currentSlide} // triggers re-animation on slide change
@@ -95,7 +96,7 @@ export default function HeroSlider({ sliders = slides }) {
                   <motion.h2
                     variants={textAnimation}
                     transition={{ delay: 0.5 }}
-                    className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
+                    className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] max-md:text-white  font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
                   >
                     {slide?.title}
                   </motion.h2>
@@ -103,17 +104,17 @@ export default function HeroSlider({ sliders = slides }) {
                   <motion.p
                     variants={textAnimation}
                     transition={{ delay: 0.7 }}
-                    className="text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1E1E1E] font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
+                    className="text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1E1E1E] max-md:text-white font-normal max-w-[75%] mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]"
                   >
                     {slide?.description}
                   </motion.p>
 
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
                     <motion.button
                       variants={textAnimation}
                       onClick={() => openDialog()}
                       transition={{ delay: 0.9 }}
-                      className="btn-base1 hover transitiona-all duration-100"
+                      className="btn-base1 hover transitiona-all duration-100 max-3xs:w-full"
                       aria-label="appointment"
                     >
                       {"Book an Appointment"}
@@ -122,7 +123,7 @@ export default function HeroSlider({ sliders = slides }) {
                       <motion.button
                         variants={textAnimation}
                         transition={{ delay: 0.9 }}
-                        className="btn-base1 hover transitiona-all duration-100"
+                        className="btn-base1 hover transitiona-all duration-100 max-3xs:w-full"
                         aria-label="appointment"
                       >
                         <Link href={slide?.action_url}>{slide?.action_title || "Contact Us"}</Link>
@@ -138,7 +139,7 @@ export default function HeroSlider({ sliders = slides }) {
 
       {/* Slide Counter */}
       <div className="container relative">
-        <div className="absolute bottom-5 right-[70px] z-20 text-[#EAF6FF]">
+        <div className="absolute bottom-5 right-[40px] md:right-[70px] z-20 text-[#EAF6FF]">
           <span className="text-[23px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[43px] text-[#EAF6FF]">0{currentSlide}</span> /{" "}
           <span className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[23px] text-white">0{sliders.length}</span>
         </div>

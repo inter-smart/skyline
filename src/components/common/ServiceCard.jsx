@@ -32,7 +32,7 @@ export default function ServiceCard({ service }) {
       {/* Info Card (visible only for active slide) */}
       <div
         className={`relative bg-[rgba(255,255,255,0.85)] rounded-[6px] p-[20px_15px] xl:p-[25px_20px] 
-            2xl:p-[22px_17px] 3xl:p-[25px_20px transition-all z-20 duration-300 max-h-[220px] overflow-auto
+            2xl:p-[22px_17px] 3xl:p-[25px_20px transition-all z-20 duration-300  
             w-full  sm:opacity-0 sm:invisible sm:translate-y-[40px]
             group-hover:h-auto group-hover:opacity-100 group-hover:visible group-hover:translate-y-[20px]`}
       >

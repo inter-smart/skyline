@@ -102,7 +102,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           <a
                             href={item.link}
                             className={`${menuLinks} ${
-                              active ? "text-[#00335b] underline decoration-[#00335b] underline-offset-4" : "text-[#010101]"
+                              active ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded" : "text-[#010101]"
                             }`}
                             aria-label="menulinks"
                           >
@@ -113,7 +113,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                         )}
 
                         {item.submenu && (
-                          <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] overflow-hidden group-hover:block z-50">
+                          <div className="absolute left-0 top-full hidden w-[220px] bg-white shadow-lg rounded-[6px] group-hover:block z-50 max-h-[350px] overflow-auto overflow-x-hidden">
                             {item.submenu.map((sub, subId) => {
                               const subActive = currentPath === sub.link;
 
@@ -123,7 +123,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                   href={sub.link}
                                   className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
                                     subActive
-                                      ? "text-[#00335b] before:content-[''] before:absolute before:right-4 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-[#00335b] before:rounded-full before:z-10 hover:before:bg-white"
+                                      ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
                                       : "text-[#010101]"
                                   }`}
                                 >
@@ -303,8 +303,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
             className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]"
           >
-            <SheetDescription>
-              <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">
+            <SheetDescription >
+              <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px] ">
                 Contact Information
               </div>
               <ul className="mb-[30px] 3xl:mb-[35px]">
@@ -424,7 +424,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
               </div>
             </div>
           </div>
-          <SheetContent side="right">
+          <SheetContent side="right" className="h-[100vh] overflow-auto">
             <SheetHeader>
               <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
                 <Link href="/" className="block max-w-[115px]  w-full h-full">
@@ -437,7 +437,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   />
                 </Link>
               </div>
-              <SheetDescription>
+              <SheetDescription >
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1" className="border-b border-[#f4f4f4]">
                     <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
