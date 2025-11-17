@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import Link from "next/link";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
@@ -57,7 +58,12 @@ export default function HeroSlider({ sliders = slides }) {
         fadeEffect={{ crossFade: true }}
         slidesPerView={1}
         loop={true}
-        autoplay={{ delay: 3000 }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+        }}
+        speed={800}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="w-full h-full"
       >
