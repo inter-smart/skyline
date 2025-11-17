@@ -5,7 +5,6 @@ export default async function Page({ params }) {
   const { slug } = await params;
 
   const { data, error } = await fetchFromAPI(`consultant-details?slug=${slug}`);
-  console.log(slug);
 
   const {
     name,

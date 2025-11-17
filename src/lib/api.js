@@ -26,7 +26,6 @@ export async function fetchFromAPI(endpoint, options = {}) {
     const response = await fetch(url, defaultOptions);
 
     if (!response.ok) {
-      console.log(response);
       return {
         data: null,
         error: true,
@@ -97,7 +96,6 @@ export async function postToAPI(endpoint, data) {
       data: responseData?.status ? responseData?.data : null,
     };
   } catch (error) {
-    console.log(error);
     throw new APIError(error.message, error.status || 500);
   }
 }
@@ -143,7 +141,6 @@ export async function getMetaData(pageKey, pagename = "") {
     const result = await response.json();
 
     const meta = result.data;
-    console.log("META RESPONSE", meta);
 
     if (result.status) {
       return {

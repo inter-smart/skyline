@@ -12,8 +12,6 @@ export default async function Policies({ params }) {
 
   const { title, content, meta_title, meta_description, meta_keywords, other_meta_tags } = data;
 
-  console.log(data);
-
   return (
     <div>
       <PrivacyPolicySection title={title} content={content} />

@@ -161,8 +161,6 @@ export default function CareerForm({ careerId }) {
 
     // const recaptchaToken = await executeRecaptcha("careers");
 
-    console.log("Formatted Data:", recaptchaToken);
-
     const formData = new FormData();
     formData.append("career_id", careerId);
     formData.append("name", data.name);
@@ -223,7 +221,6 @@ export default function CareerForm({ careerId }) {
   };
 
   const handleClose = () => {
-    console.log("clickable");
     form.reset({
       name: "",
       email: "",

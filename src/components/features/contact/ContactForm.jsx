@@ -165,7 +165,6 @@ export default function ContactFormSection({ form_title }) {
     };
 
     try {
-      console.log("Formatted Data:", formattedData);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       // await postToAPI("contact-enquiry", formattedData);
 
@@ -229,7 +228,6 @@ export default function ContactFormSection({ form_title }) {
                     <PhoneInput
                       value={field.value}
                       onChange={(val) => {
-                        console.log("VAL", val);
                         field.onChange(val.phoneNumber); // Set only numeric part
                         form.setValue("country_code", val.mobileCode);
                         form.setValue("country", val.countryCode);

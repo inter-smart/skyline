@@ -45,8 +45,6 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     }
   }
 
-  console.log("ITEMS", items);
-
   return items.map((item, i) => <li key={i} className={className} dangerouslySetInnerHTML={{ __html: item }} />);
 };
 

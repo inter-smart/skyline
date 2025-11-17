@@ -124,8 +124,6 @@ export const PhoneInput = ({
     // Update with consistent object format
     isInternalUpdate.current = true;
     if (onChange) {
-      console.log("Selected Country in onChange:", selectedCountry);
-
       onChange({
         fullNumber: selectedCountry.mobileCode + (numericValue ? " " + numericValue : ""),
         mobileCode: selectedCountry.mobileCode,
