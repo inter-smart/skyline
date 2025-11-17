@@ -34,7 +34,7 @@ export default function AppointmentSection({ sub_title, title, description, path
       className="relative w-full h-full py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[165px]
               after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
               after:bg-gradient-to-r after:from-[rgba(0,0,0,0.5)] after:to-[rgba(0,0,0,0.2)] after:z-[1]"
-                >
+    >
       {/* Background image */}
 
       <Image src={path} className="object-cover absolute top-0 left-0 w-full h-full" priority width={1920} height={460} alt={alt} />
@@ -70,12 +70,12 @@ export default function AppointmentSection({ sub_title, title, description, path
           <motion.button
             className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
             aria-label="appointment"
-            onClick={() => handleClick(button_text, button_link)}
+            onClick={() => handleClick(null, button_link)}
             variants={fadeUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {button_text || "Book an Appointment"}
+            {"Book an Appointment"}
           </motion.button>
         </motion.div>
       </div>
