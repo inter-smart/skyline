@@ -231,7 +231,7 @@ export default function ContactFormSection({ form_title }) {
                         form.setValue("country_code", val.mobileCode);
                         form.setValue("country", val.countryCode);
                       }}
-                      defaultCountry="UK"
+                      defaultCountry="GB"
                     />
                   </div>
                 </FormControl>

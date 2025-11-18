@@ -334,7 +334,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                                   form.setValue("country_code", val.mobileCode);
                                   form.setValue("country", val.countryCode);
                                 }}
-                                defaultCountry="AE"
+                                defaultCountry="GB"
                               />
                             </FormControl>
                           </div>

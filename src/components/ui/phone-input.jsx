@@ -13,7 +13,7 @@ export const PhoneInput = ({
   placeholder = "Phone number*",
   className = "",
   disabled = false,
-  defaultCountry = "AE",
+  defaultCountry = "GB",
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
