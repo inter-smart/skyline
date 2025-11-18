@@ -82,7 +82,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
       <div className="container">
         {/* Header Section */}
         <div className="flex items-end justify-between mb-[35px] 2xl:mb-[50px] 3xl:mb-[90px] flex-wrap gap-[20px]">
-          <motion.div className="max-w-[650px]" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div className="lg:max-w-[350px] xl:max-w-[400px] 3xl:max-w-[650px]" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <SubTitle size="SubTitle" as="div">
               {pre_title || "Specialist Services"}
             </SubTitle>
@@ -96,7 +96,7 @@ export default function SpecialistSection({ title, pre_title, description, servi
           </motion.div>
 
           <motion.div
-            className="line-clamp-4 max-w-[326px] xl:max-w-[400px] 2xl:max-w-[468px] 3xl:max-w-[600px] mb-0"
+            className="line-clamp-4 lg:max-w-[326px] xl:max-w-[400px] 2xl:max-w-[468px] 3xl:max-w-[600px] mb-0"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}

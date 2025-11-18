@@ -212,7 +212,7 @@ export const PhoneInput = ({
               placeholder="Search countries..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-3 py-2 text-[9px] sm:text-[10px] 3xl:text-[14px] border border-gray-300 rounded focus:outline-none focus:ring-2
+              className="text-black w-full px-3 py-2 text-[9px] sm:text-[10px] 3xl:text-[14px] border border-gray-300 rounded focus:outline-none focus:ring-2
                focus:ring-blue-500 focus:border-transparent"
             />
           </div>
