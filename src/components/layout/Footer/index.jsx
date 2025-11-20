@@ -193,13 +193,20 @@ export default function index({ site_settings, social_links, policies, services 
                   </AccordionTrigger>
                   <AccordionContent className="p-0 my-[15px]">
                     <ul>
-                      {services?.map((item, index) => (
+                      {services?.slice(0, 4).map((item, index) => (
                         <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                           <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                             {item?.name}
                           </Link>
                         </li>
                       ))}
+                      {services?.length > 4 && (
+                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                          <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                            View All Services
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -209,13 +216,20 @@ export default function index({ site_settings, social_links, policies, services 
                   Our Services
                 </div>
                 <ul>
-                  {services?.map((item, index) => (
+                  {services?.slice(0, 4).map((item, index) => (
                     <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                       <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                         {item?.name}
                       </Link>
                     </li>
                   ))}
+                  {services?.length > 4 && (
+                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                      <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                        View All Services
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
