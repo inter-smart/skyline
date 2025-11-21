@@ -16,14 +16,16 @@ export default function HeaderClient({ site_settings, social_links, services, re
   const [isScrolled, setIsScrolled] = useState(false);
   const currentPath = usePathname();
 
+  const [open, setOpen] = useState(false); 
   useEffect(() => {
+     setOpen(false);
     const handleScroll = () => {
       setIsScrolled(window?.scrollY > 0);
     };
 
     window?.addEventListener("scroll", handleScroll);
     return () => window?.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [currentPath]);
 
   const isActive = (item) => {
     // Exact match for home page
@@ -289,7 +291,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
         </div>
       </div>
       <div className="container min-lg:hidden relative pr-[40px]">
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
             className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
            flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer "
@@ -397,7 +399,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </SheetContent>
         </Sheet>
 
-        <Sheet>
+        <Sheet  open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
