@@ -54,8 +54,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
       submenu: servicesList,
       clickable: true,
     },
-    { id: 4, name: "Consultants", link: "/consultants", clickable: false },
-    { id: 5, name: "News & Insights", link: "/insights", clickable: false },
+    { id: 4, name: "Consultants", link: "/consultants", clickable: true },
+    { id: 5, name: "News & Insights", link: "/insights", clickable: true },
     { id: 6, name: "Contact", link: "/contact", clickable: true },
   ];
 
@@ -245,7 +245,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                             {/* social Links */}
                             <div className="w-full">
-                              {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                              <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
                                 <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -262,7 +262,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                   </a>
                                 </li>
                               ))}
-                            </ul>  */}
+                            </ul> 
 
                               {/* logo section */}
                               <Link
@@ -363,8 +363,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
               {/* social Links */}
               <div className="w-full">
-                {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div> */}
-                {/* <ul className="flex items-center ">
+                <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
                       <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
@@ -381,7 +381,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       </a>
                     </li>
                   ))}
-                </ul> */}
+                </ul>
 
                 {/* logo section */}
 
@@ -485,19 +485,21 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   </AccordionItem>
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      {/* <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  "> */}
+                      <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Consultants</span>
                       </div>
+                      </Link>
                     </div>
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      {/* <Link href="/news" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink"> */}
+                      <Link href="/insights" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <div className="flex items-center">
                         <span>News & Insights </span>
                       </div>
+                      </Link>
                     </div>
                   </AccordionItem>
                   <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
