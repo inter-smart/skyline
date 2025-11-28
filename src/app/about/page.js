@@ -5,7 +5,19 @@ import ConsultantSection from "@/components/features/about/ConsultantSection";
 import ContactusSection from "@/components/features/about/ContactusSection";
 import OurStory from "@/components/features/about/OurStory";
 import OverviewSection from "@/components/features/about/OverviewSection";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("about-us");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("about-us");

@@ -1,11 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 const accordionTrigger = `
@@ -23,12 +18,7 @@ const educationClassName = `
 const certificateClassName = `relative text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#212121] font-normal pl-[20px] 3xl:pl-[25px]
                                                     before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
                                                     before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]`;
-export default function DetailSection({
-  basicInfo,
-  languages,
-  specialInterests,
-  consultantTestimonials,
-}) {
+export default function DetailSection({ basicInfo, languages, specialInterests, consultantTestimonials }) {
   return (
     <section className="py-[35px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[70px] relative">
       <div className="container">
@@ -69,13 +59,9 @@ export default function DetailSection({
                   </div>
                   <div className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[40px] text-[#00335B] font-normal">
                     {basicInfo?.experience}
-                    <span className="text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] px-[5px] ">
-                      Years Experience
-                    </span>
+                    <span className="text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#1E1E1E] px-[5px] ">Years Experience</span>
                   </div>
-                  <div className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-[#656565]">
-                    {basicInfo?.bio}
-                  </div>
+                  <div className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-[#656565]">{basicInfo?.bio}</div>
                 </div>
               </div>
 
@@ -100,35 +86,15 @@ export default function DetailSection({
           </div>
           <div className="w-full md:w-[calc(100%-230px)] lg:w-[calc(100%-265px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-395px)] 3xl:w-[calc(100%-495px)] md:pl-[30px]">
             <div className="w-full">
-              <Accordion
-                type="multiple"
-                defaultValue={[
-                  "item-1",
-                  "item-2",
-                  "item-3",
-                  "item-4",
-                  "item-5",
-                ]}
-                collapsible
-              >
-                <AccordionItem
-                  value="item-1"
-                  className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0"
-                >
-                  <AccordionTrigger className={`${accordionTrigger}`}>
-                    Is it accessible?
-                  </AccordionTrigger>
+              <Accordion type="multiple" defaultValue={["item-1", "item-2", "item-3", "item-4", "item-5"]} collapsible>
+                <AccordionItem value="item-1" className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0">
+                  <AccordionTrigger className={`${accordionTrigger}`}>Description</AccordionTrigger>
                   <AccordionContent className="py-[10px] 3xl:py-[20px] [&>p]:mb-0">
                     <div>{renderHtml(basicInfo?.description)}</div>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem
-                  value="item-2"
-                  className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0"
-                >
-                  <AccordionTrigger className={`${accordionTrigger}`}>
-                    Special Interests
-                  </AccordionTrigger>
+                <AccordionItem value="item-2" className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0">
+                  <AccordionTrigger className={`${accordionTrigger}`}>Special Interests</AccordionTrigger>
                   <AccordionContent className="py-[10px] 3xl:py-[20px] [&>p]:mb-0">
                     <div className="flex flex-wrap">
                       {specialInterests?.map((item, index) => (
@@ -144,13 +110,8 @@ export default function DetailSection({
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem
-                  value="item-3"
-                  className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0"
-                >
-                  <AccordionTrigger className={`${accordionTrigger}`}>
-                    Languages Spoken
-                  </AccordionTrigger>
+                <AccordionItem value="item-3" className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0">
+                  <AccordionTrigger className={`${accordionTrigger}`}>Languages Spoken</AccordionTrigger>
                   <AccordionContent className="py-[10px] 3xl:py-[20px] [&>p]:mb-0">
                     <div className="flex flex-wrap">
                       {languages?.map((item, index) => (
@@ -175,68 +136,45 @@ export default function DetailSection({
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem
-                  value="item-4"
-                  className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0"
-                >
-                  <AccordionTrigger className={`${accordionTrigger}`}>
-                    Qualifications
-                  </AccordionTrigger>
+                <AccordionItem value="item-4" className="mb-[10px] 2xl:mb-[15px] 3xl:mb-[25px] border-0">
+                  <AccordionTrigger className={`${accordionTrigger}`}>Qualifications</AccordionTrigger>
                   <AccordionContent className="py-[10px] 3xl:py-[20px] [&>p]:mb-0">
                     <div className="text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] font-normal tracking-widest uppercase mb-[15px]">
                       Education
                     </div>
-                    <ul className="mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">
-                      {parseDescriptionToListItems(
-                        basicInfo?.education,
-                        educationClassName
-                      )}
-                    </ul>
+                    <ul className="mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">{parseDescriptionToListItems(basicInfo?.education, educationClassName)}</ul>
                     <div className="text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B]  font-normal tracking-widest uppercase mb-[15px]">
                       Certifications
                     </div>
-                    <ul>
-                      {parseDescriptionToListItems(
-                        basicInfo?.certifications,
-                        certificateClassName
-                      )}
-                    </ul>
+                    <ul>{parseDescriptionToListItems(basicInfo?.certifications, certificateClassName)}</ul>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem
-                  value="item-5"
-                  className="mb-[10px] md:mb-[15px] 3xl:mb-[25px] border-0"
-                >
-                  <AccordionTrigger className={`${accordionTrigger}`}>
-                    What Our Patients Says
-                  </AccordionTrigger>
+                <AccordionItem value="item-5" className="mb-[10px] md:mb-[15px] 3xl:mb-[25px] border-0">
+                  <AccordionTrigger className={`${accordionTrigger}`}>What Our Patients Says</AccordionTrigger>
                   <AccordionContent className="py-[10px] 3xl:py-[20px]  [&>p]:3xl:text-[16px]">
-
                     {consultantTestimonials?.map((item, index) => (
-                    <div key={index}>
-                      <div className="flex items-center mb-[15px]">
-                        <div className="w-[25px] 2xl:w-[33px] 3xl:w-[50px] h-[25px] 2xl:h-[33px] 3xl:h-[50px] rounded-full overflow-hidden   flex items-center justify-center">
-                          <Image
-                            src={item?.avatar_value}
-                            className="w-full h-full object-cover"
-                            width="50"
-                            height="50"
-                            alt={item?.avatar_alt_text_value}
-                          />
-                        </div>
-                        <div className="pl-[15px]">
-                          <div className="text-[10px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[20px] font-medium text-[#1E1E1E] mb-[1px]">
-                            {item?.name}
+                      <div key={index}>
+                        <div className="flex items-center mb-[15px]">
+                          <div className="w-[25px] 2xl:w-[33px] 3xl:w-[50px] h-[25px] 2xl:h-[33px] 3xl:h-[50px] rounded-full overflow-hidden   flex items-center justify-center">
+                            <Image
+                              src={item?.avatar_value}
+                              className="w-full h-full object-cover"
+                              width="50"
+                              height="50"
+                              alt={item?.avatar_alt_text_value}
+                            />
                           </div>
-                          <div className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[15px] font-normal text-[#1E1E1E]">
-                            {item?.location}
+                          <div className="pl-[15px]">
+                            <div className="text-[10px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[20px] font-medium text-[#1E1E1E] mb-[1px]">
+                              {item?.name}
+                            </div>
+                            <div className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[15px] font-normal text-[#1E1E1E]">
+                              {item?.location}
+                            </div>
                           </div>
                         </div>
+                        <div>{renderHtml(item?.content)}</div>
                       </div>
-                      <div>
-                      {renderHtml(item?.content)}
-                      </div>
-                    </div>
                     ))}
                   </AccordionContent>
                 </AccordionItem>

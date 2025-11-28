@@ -1,6 +1,18 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import CareerSection from "@/components/features/career/CareerSection";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("career");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("careers");

@@ -14,6 +14,56 @@ import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const { data: serviceData, error } = await fetchFromAPI(`service-details?slug=${slug}`);
+
+  if (!serviceData || error) {
+    return {
+      title: "Service Not Found",
+      description: "The requested service could not be found.",
+    };
+  }
+
+  const { meta_title, meta_description, meta_keywords, title, banner_value } = serviceData;
+
+  // Use service's own banner image or fallback
+  const ogImage = banner_value || DefaultOgImage;
+
+  return {
+    title: meta_title || title || "Our Service",
+    description: meta_description || "Learn more about our service",
+    keywords: meta_keywords || "",
+
+    // Enhanced SEO fields
+    openGraph: {
+      title: meta_title || title || "Our Service",
+      description: meta_description || "Learn more about our service",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: meta_title || title || "Service banner image",
+        },
+      ],
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/service/${slug}`,
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: meta_title || title || "Our Service",
+      description: meta_description || "Learn more about our service",
+      images: [ogImage],
+    },
+
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service/${slug}`,
+    },
+  };
+}
+
 // Map template keys to components
 const TEMPLATE_COMPONENTS = {
   "template-1": (section, undefined, id) => (
