@@ -81,7 +81,9 @@ const TEMPLATE_COMPONENTS = {
   ),
 
   "template-8": (section, _unused1, _unused2, consultants) => {
-    console.log("consultants in service page:", section);
+    if (!consultants || consultants.length === 0) {
+      return null;
+    }
 
     return (
       <ConsultantSection
