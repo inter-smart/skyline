@@ -12,6 +12,7 @@ import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
+import ConsultantSection from "@/components/features/home/ConsultantSection";
 
 // Map template keys to components
 const TEMPLATE_COMPONENTS = {
@@ -79,6 +80,20 @@ const TEMPLATE_COMPONENTS = {
     />
   ),
 
+  "template-8": (section, _unused1, _unused2, consultants) => {
+    console.log("consultants in service page:", section);
+
+    return (
+      <ConsultantSection
+        variant="servicedetail"
+        pre_title={section?.title}
+        title={section?.service_section_cms?.title}
+        description={section?.service_section_cms?.description}
+        consultants={consultants}
+      />
+    );
+  },
+
   "template-9": (section) => (
     <PricingInsuranceSection
       sub_title={section?.title}
@@ -141,6 +156,7 @@ export default async function Service({ params }) {
     banner_description,
     service_sections,
     related_services_list,
+    consultants,
   } = data;
 
   // Helper to find a section by template key
@@ -163,7 +179,7 @@ export default async function Service({ params }) {
         const key = section?.service_section_template?.key;
         const RenderComponent = TEMPLATE_COMPONENTS[key];
         if (!RenderComponent) return null; // skip unknown template
-        return <div key={section?.id}>{RenderComponent(section, related_services_list, id)}</div>;
+        return <div key={section?.id}>{RenderComponent(section, related_services_list, id, consultants)}</div>;
       })}
     </>
   );

@@ -1,6 +1,7 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import AwardSection from "@/components/features/about/AwardSection";
 import CareerSection from "@/components/features/about/CareerSection";
+import ConsultantSection from "@/components/features/about/ConsultantSection";
 import ContactusSection from "@/components/features/about/ContactusSection";
 import OurStory from "@/components/features/about/OurStory";
 import OverviewSection from "@/components/features/about/OverviewSection";
@@ -38,7 +39,12 @@ export default async function Page() {
       {/* <OurvalueSection values={values} about_cms={about_cms} /> */}
 
       {/* section 4 */}
-      {/* <ConsultantSection /> */}
+      <ConsultantSection
+        team_members={team_members}
+        title={about_cms?.section6_title}
+        preTitle={about_cms?.section6_pre_title}
+        image={about_cms?.section6_image_value}
+      />
 
       <AwardSection about_cms={about_cms} accreditation={accreditation} />
       <CareerSection about_cms={about_cms} />
