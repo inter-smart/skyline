@@ -13,6 +13,7 @@ import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
+import { DefaultOgImage } from "@/data/defaultMeta";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

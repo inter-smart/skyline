@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
         },
       ],
       type: "article",
-      publishedTime: published_on,
+      publishedTime: published_on ? published_on : undefined,
       authors: author ? [author] : undefined,
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`,
     },
