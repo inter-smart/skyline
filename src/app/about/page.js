@@ -48,7 +48,7 @@ export default async function Page() {
       <OverviewSection about_cms={about_cms} />
 
       {/* section 3 */}
-      {/* <OurvalueSection values={values} about_cms={about_cms} /> */}
+      <OurvalueSection values={values} about_cms={about_cms} />
 
       {/* section 4 */}
       <ConsultantSection
