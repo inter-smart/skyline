@@ -4,6 +4,7 @@ import CareerSection from "@/components/features/about/CareerSection";
 import ConsultantSection from "@/components/features/about/ConsultantSection";
 import ContactusSection from "@/components/features/about/ContactusSection";
 import OurStory from "@/components/features/about/OurStory";
+import OurvalueSection from "@/components/features/about/OurvalueSection";
 import OverviewSection from "@/components/features/about/OverviewSection";
 import { fetchFromAPI, getMetaData } from "@/lib/api";
 
