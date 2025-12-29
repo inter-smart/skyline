@@ -8,6 +8,7 @@
   --color-foreground: var(--foreground);
 
   --font-graphik: var(--font-graphik);
+  --font-unna: var(--font-unna);
 
   --color-base1: #671448;
   --color-base2: #00335b;
@@ -115,7 +116,7 @@ body {
 
     p,
     & {
-      @apply text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px];
+      @apply text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] font-normal font-unna mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px];
     }
 
     h1 {
@@ -136,6 +137,51 @@ body {
 
     h6 {
       @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-semibold leading-tight text-black;
+    }
+
+    ul,
+    ol {
+      @apply pl-[20px] lg:pl-[30px];
+    }
+
+    ul > li,
+    ol > li {
+      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929] my-[10px] lg:my-[15px];
+    }
+
+    ul > li {
+      @apply list-disc;
+    }
+  }
+
+  .text_editor {
+    & > * {
+      @apply my-[10px] lg:my-[15px];
+    }
+
+    p,
+    & {
+      @apply text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1E1E1E] font-normal mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px] mt-0;
+    }
+
+    h1 {
+      @apply text-[24px] lg:text-[36px] xl:text-[40px] 2xl:text-[48px] 3xl:text-[60px] font-normal font-unna leading-tight text-[#212121];
+    }
+
+    h2 {
+      @apply text-[20px] lg:text-[26px] xl:text-[32px] 2xl:text-[44px] 3xl:text-[54px] font-semibold leading-tight text-black;
+    }
+
+    h3 {
+      @apply text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-semibold leading-tight text-black;
+    }
+
+    h5 {
+      @apply text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] font-semibold leading-tight text-black;
+    }
+
+    h6 {
+      @apply 3xl:text-[20px] 2xl:text-[16px] text-[15px] font-medium leading-tight text-black mb-1;
     }
 
     ul,
@@ -393,6 +439,7 @@ textarea:-webkit-autofill:focus {
   transition: background-color 9999s ease-in-out 0s;
 }
 
-.navbts-prev, .navbts-next{
+.navbts-prev,
+.navbts-next {
   z-index: 1;
 }

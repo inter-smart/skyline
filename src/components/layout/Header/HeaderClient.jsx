@@ -16,9 +16,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
   const [isScrolled, setIsScrolled] = useState(false);
   const currentPath = usePathname();
 
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-     setOpen(false);
+    setOpen(false);
     const handleScroll = () => {
       setIsScrolled(window?.scrollY > 0);
     };
@@ -94,18 +94,16 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     return (
                       <div
                         key={item.id}
-                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
-                          item.submenu
+                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${item.submenu
                             ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
                             : ""
-                        }`}
+                          }`}
                       >
                         {item.clickable ? (
                           <a
                             href={item.link}
-                            className={`${menuLinks} ${
-                              active ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded" : "text-[#010101]"
-                            }`}
+                            className={`${menuLinks} ${active ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded" : "text-[#010101]"
+                              }`}
                             aria-label="menulinks"
                           >
                             {item.name}
@@ -123,11 +121,10 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <a
                                   key={subId}
                                   href={sub.link}
-                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
-                                    subActive
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${subActive
                                       ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
                                       : "text-[#010101]"
-                                  }`}
+                                    }`}
                                 >
                                   {sub.name}
                                 </a>
@@ -197,9 +194,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                               <div className={`${cmnMenuClass}`}>Location</div>
                               {site_settings?.address
                                 ? renderHtml(
-                                    site_settings.address,
-                                    "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                                  )
+                                  site_settings.address,
+                                  "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
+                                )
                                 : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
                             </li>
                             <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
@@ -314,9 +311,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   <div className={`${cmnMenuClass}`}>Location</div>
                   {site_settings?.address
                     ? renderHtml(
-                        site_settings.address,
-                        "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                      )
+                      site_settings.address,
+                      "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
+                    )
                     : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
                 </li>
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
@@ -394,7 +391,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </SheetContent>
         </Sheet>
 
-        <Sheet  open={open} onOpenChange={setOpen}>
+        <Sheet open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
