@@ -1,10 +1,14 @@
 import InnerBanner from "@/components/common/InnerBanner";
+import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
 import BookConsultationSection from "@/components/features/service/BookConsultationSection";
 import CareSection from "@/components/features/service/CareSection";
+import HospitalSection from "@/components/features/service/HospitalSection";
 import IntegatedSection from "@/components/features/service/IntegatedSection";
 import ManagingADHD from "@/components/features/service/ManagingADHD";
+import PricingSection from "@/components/features/service/PricingSection";
 import RecognizingSection from "@/components/features/service/RecognizingSection";
+import ServiceFaqSection from "@/components/features/service/ServiceFaqSection";
 import TableSection from "@/components/features/service/TableSection";
 import UnderstandingADHD from "@/components/features/service/UnderstandingADHD";
 import VideoSection from "@/components/features/service/VideoSection";
@@ -323,6 +327,195 @@ const local_data = {
       path: "/videos/service-detail-2.mp4",
     },
   },
+  consultant_section_data: {
+    section_background_color: "#ffffff",
+  },
+  pricing_section_data: {
+    section_background_color: "#ffffff",
+    heading_text_editor: `
+    <h1>Our Pricing</h1>
+    <p>Fees below are for online consultations. Add £200 for in-person consultations</p>
+    `,
+    table: {
+      table_background_color: "#eef6ff",
+      table_columns: [
+        "<h5>Service</h5>",
+        "<h5>Price (Adults)</h5>",
+        "<h5>Price (Child <18)</h5>",
+      ],
+      table_row_list: [
+        ["<P>Initial consultation</P>", "<h6>£0</h6>", "<h6>£0</h6>"],
+        ["<P><b>ADHD Assessment</b></P>"],
+        ["<P>New Consultation</P>", "<h6>£1195</h6>", "<h6>£1550</h6>"],
+        [
+          "<P>Follow-Up consultation (Consultant)</P>",
+          "<h6>£250</h6>",
+          "<h6>£250</h6>",
+        ],
+        ["<P><b>Follow-Up consultation (Specialist Nurse Prescriber)</b></P>"],
+        [
+          "<P>Repeat Prescription fee (medication NOT included)</P>",
+          "<h6>FREE</h6>",
+          "<h6>FREE</h6>",
+        ],
+        ["<P><b>CHILD AUTISM/ ASD assessment</b></P>"],
+        [
+          "<P>Package price (All inclusive)</P>",
+          "<h6>-</h6>",
+          "<h6>£1995</h6>",
+        ],
+      ],
+    },
+    media: {
+      path: "/images/our-pricing.jpg",
+      alt: "Pricing",
+    },
+  },
+  service_faq_section_data: {
+    section_background_color: "#ffffff",
+    heading_text_editor: `
+    <h2>Frequently Asked Questions </h2>
+    <p>Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the printing and typesetting ndsince the 1500s, when an unknown printer took a galleytext of the printing and typesetting industry</p>
+    `,
+    faq_list: [
+      {
+        id: 1,
+        faq_heading_text_editor: `
+        <h6> I feel anxious about starting this process. How gentle is the Initial Screening?</h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 2,
+        faq_heading_text_editor: `
+        <h6>I'm an adult. Is it too late to get a diagnosis? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 3,
+        faq_heading_text_editor: `
+        <h6> I also struggle with anxiety or low mood. Will you treat these co-occurring issues? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 4,
+        faq_heading_text_editor: `
+        <h6>Is medication mandatory if I pursue treatment? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 5,
+        faq_heading_text_editor: `
+        <h6>What if I have other questions that aren't listed here? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 6,
+        faq_heading_text_editor: `
+        <h6>How fast can I speak to someone who understands? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 7,
+        faq_heading_text_editor: `
+        <h6>Is my privacy and confidentiality guaranteed? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 8,
+        faq_heading_text_editor: `
+        <h6>What if I start treatment and don't feel better right away? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 9,
+        faq_heading_text_editor: `
+        <h6>Will the cost of medication be a surprise, or can I plan for it? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 10,
+        faq_heading_text_editor: `
+        <h6>Does ADHD affect my relationships, and do you offer support for my partner or family? </h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+      {
+        id: 11,
+        faq_heading_text_editor: `
+        <h6>What is the difference between the psychiatrist and the psychologist I might</h6>`,
+        faq_content_text_editor: `
+      <p>We understand. The Initial Screening Assessment is specifically designed to be low-stress. It's a focused conversation aimed at helping us determine if a full assessment is truly warranted, meaning you aren't committing time or money to a service you might not need. Our goal is to make the first step feel safe.</p>
+      `,
+      },
+    ],
+  },
+  hospital_section_data: {
+    section_background_color: "#ffff",
+    heading_text_editor: `
+    <h3>Skyline Hospitals:</h3>
+    `,
+    hospital_list: [
+      {
+        id: 1,
+        media: {
+          path: "/images/hospital-section-1.svg",
+          alt: "hospital-section-1",
+        },
+        text_editor: `
+        <h6>Doctor-Led Excellence</h6>
+        `,
+      },
+      {
+        id: 2,
+        media: {
+          path: "/images/hospital-section-2.svg",
+          alt: "hospital-section-1",
+        },
+        text_editor: `
+        <h6>Affordable Private Care</h6>
+        `,
+      },
+      {
+        id: 3,
+        media: {
+          path: "/images/hospital-section-3.svg",
+          alt: "hospital-section-1",
+        },
+        text_editor: `
+        <h6>Personalised Treatment.</h6>
+        `,
+      },
+      {
+        id: 4,
+        media: {
+          path: "/images/hospital-section-2.svg",
+          alt: "hospital-section-1",
+        },
+        text_editor: `
+        <h6>Doctor-Led Excellence</h6>
+        `,
+      },
+    ],
+  },
 };
 
 export default function page() {
@@ -330,8 +523,8 @@ export default function page() {
     <>
       <InnerBanner
         variant="service_Inner_detail"
-        mobile_img="/images/service-inner-detail.jpg"
-        img="/images/service-inner-detail.jpg"
+        mobile_img="/images/service-inner-detail.png"
+        img="/images/service-inner-detail.png"
         alt="service Inner Detail"
         subTitle="Services"
         Title="ADHD and Autism Diagnosis and Treatment in London and the Midlands"
@@ -348,7 +541,17 @@ export default function page() {
       <TableSection data={local_data?.table_section_data} />
       <IntegatedSection data={local_data?.integrated_section_data} />
       <VideoSection data={local_data?.service_video_section} />
-      <ConsultantSection data={local_data?.consultant_section_data} />
+      <ConsultantSection variant={"servicedetail"} />
+      <PricingSection data={local_data?.pricing_section_data} />
+      <ServiceFaqSection data={local_data?.service_faq_section_data} />
+      <AppointmentSection
+        variant={"service-detail"}
+        bannerImage="/images/service-detail-appointment.jpg"
+        title="Ready to take the next step toward understanding and support?"
+        description="Trust your care to the established expertise of Skyline Hospitals. We are here to listen.BOOK Your FREE Assessment Now!"
+        path="/images/service-detail-appointment.jpg"
+      />
+      <HospitalSection data={local_data?.hospital_section_data} />
     </>
   );
 }

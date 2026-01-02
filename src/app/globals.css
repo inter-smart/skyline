@@ -169,7 +169,7 @@ body {
     }
 
     h2 {
-      @apply text-[20px] lg:text-[26px] xl:text-[32px] 2xl:text-[44px] 3xl:text-[54px] font-semibold leading-tight text-black;
+      @apply text-[20px] lg:text-[26px] xl:text-[32px] 2xl:text-[44px] 3xl:text-[50px] font-normal leading-tight text-black font-unna;
     }
     
     h3 {

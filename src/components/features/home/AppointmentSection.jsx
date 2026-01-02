@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
 
-export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link }) {
+export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link,variant }) {
   const { openDialog } = useBookingFormContext();
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export default function AppointmentSection({ sub_title, title, description, path
 
       <div className="container w-full h-full flex items-center relative z-20">
         <motion.div
-          className="max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
+          className={`max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative ${variant === "service-detail" && "!max-w-full md:w-[50%]"} `}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -66,17 +66,28 @@ export default function AppointmentSection({ sub_title, title, description, path
           >
             {renderHtml(description, "[&>p]:text-white")}
           </motion.div>
-
-          <motion.button
-            className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
-            aria-label="appointment"
-            onClick={() => handleClick(null, button_link)}
-            variants={fadeUp}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {"Book an Appointment"}
-          </motion.button>
+          <div className="flex flex-wrap gap-[15px]">
+            <motion.button
+              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
+              aria-label="appointment"
+              onClick={() => handleClick(null, button_link)}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {"Book an Appointment"}
+            </motion.button>
+            <motion.button
+              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide"
+              aria-label="appointment"
+              onClick={() => handleClick(null, button_link)}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {"MAKE AN ENQUIRY"}
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>
