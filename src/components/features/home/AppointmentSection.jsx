@@ -78,7 +78,7 @@ export default function AppointmentSection({ sub_title, title, description, path
               {"Book an Appointment"}
             </motion.button>
             <motion.button
-              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide"
+              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide hover:text-white"
               aria-label="appointment"
               onClick={() => handleClick(null, button_link)}
               variants={fadeUp}
