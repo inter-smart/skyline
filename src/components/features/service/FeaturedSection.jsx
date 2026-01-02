@@ -8,7 +8,6 @@ import { renderHtml } from "@/utils/parseHtml";
 import { useRouter } from "next/navigation";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 export default function FeaturedSection({ path, alt, sub_title, title, description, button_text, button_link, className, id }) {
-  console.log("service id", id);
   const { openDialog } = useBookingFormContext();
   const router = useRouter();
 

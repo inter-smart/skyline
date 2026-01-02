@@ -68,7 +68,7 @@ export default function CareerForm({ careerId }) {
   const [dragActive, setDragActive] = useState(false);
   const [open, setOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
-  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   const MAX_FILE_SIZE_MB = MAX_FILE_SIZE / (1024 * 1024); // Convert bytes → MB
@@ -159,9 +159,7 @@ export default function CareerForm({ careerId }) {
       return;
     }
 
-    // const recaptchaToken = await executeRecaptcha("careers");
-
-    console.log("Formatted Data:", recaptchaToken);
+    const recaptchaToken = await executeRecaptcha("careers");
 
     const formData = new FormData();
     formData.append("career_id", careerId);
@@ -169,31 +167,29 @@ export default function CareerForm({ careerId }) {
     formData.append("email", data.email);
     formData.append("phone_number", data.phone_number);
     formData.append("experience", data.experience);
-    // formData.append("captcha_key", recaptchaToken);
+    formData.append("captcha_key", recaptchaToken);
 
     if (data.resume && data.resume[0]) {
       formData.append("resume", data.resume[0]);
     }
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await multipartPostToAPI("career-enquiry", formData);
 
-      // const response = await multipartPostToAPI("career-enquiry", formData);
+      if (!response.status) {
+        toast.error(response.message);
+      }
 
-      // if (!response.status) {
-      //   toast.error(response.message);
-      // }
-
-      // if (response.status) {
-      //   form.reset({
-      //     name: "",
-      //     email: "",
-      //     phone_number: "",
-      //     experience: "",
-      //     resume: undefined,
-      //     terms: false, // Explicitly reset checkbox to false
-      //   });
-      // }
+      if (response.status) {
+        form.reset({
+          name: "",
+          email: "",
+          phone_number: "",
+          experience: "",
+          resume: undefined,
+          terms: false, // Explicitly reset checkbox to false
+        });
+      }
       setOpen(false);
       setTimeout(() => {
         setSuccessOpen(true);
@@ -223,7 +219,6 @@ export default function CareerForm({ careerId }) {
   };
 
   const handleClose = () => {
-    console.log("clickable");
     form.reset({
       name: "",
       email: "",

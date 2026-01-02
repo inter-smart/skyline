@@ -3,7 +3,7 @@ import Image from "next/image";
 import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
 
 const className =
-  "relative text-[8px] 2xl:text-[10px] 3xl:text-[13px] text-[#212121] font-normal pl-[25px] mb-[8px] before:absolute before:top-[4px] before:left-0 before:w-[15px]  before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
+  "relative text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-normal pl-[25px] mb-[8px] before:absolute before:top-[4px] before:left-0 before:w-[15px] before:2xl:w-[17px] before:h-[15px] before:2xl:h-[17px] before:flex before:align-items-center before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-['']";
 export default function ServiceCard({ service }) {
   return (
     <Link

@@ -9,8 +9,6 @@ export default async function Page() {
 
   const { service_cms, services, featured_services, banner_and_meta_tags } = data;
 
-  console.log(data);
-
   return (
     <>
       <InnerBanner

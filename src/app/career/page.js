@@ -7,9 +7,6 @@ export default async function Page() {
 
   const { banner_and_meta_tags, careers, departments, job_roles } = data;
 
-  console.log(data?.careers);
-  console.log(data?.departments);
-  console.log(data?.job_roles);
   return (
     <>
       <InnerBanner

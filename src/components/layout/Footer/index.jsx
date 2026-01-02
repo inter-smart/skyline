@@ -26,12 +26,12 @@ const quickLinks = [
   {
     title: "Our Consultants",
     link: "/consultants",
-    clickable: true,
+    clickable: false,
   },
   {
     title: "Career",
     link: "/career",
-    clickable: true,
+    clickable: false,
   },
 ];
 
@@ -155,9 +155,10 @@ export default function index({ site_settings, social_links, policies, services 
                     <ul>
                       {policies?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                          <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
+                          {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
+                          <div className={`${menuLink}`} aria-label="menuLink">
                             {item?.title}
-                          </Link>
+                          </div>
                           {/* <span className={menuLink}>{item?.title}</span> */}
                         </li>
                       ))}
@@ -172,9 +173,10 @@ export default function index({ site_settings, social_links, policies, services 
                 <ul>
                   {policies?.map((item, index) => (
                     <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                      <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
+                      {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
+                      <div className={`${menuLink}`} aria-label="menuLink">
                         {item?.title}
-                      </Link>
+                      </div>
                       {/* <span className={menuLink}>{item?.title}</span> */}
                     </li>
                   ))}
@@ -191,13 +193,20 @@ export default function index({ site_settings, social_links, policies, services 
                   </AccordionTrigger>
                   <AccordionContent className="p-0 my-[15px]">
                     <ul>
-                      {services?.map((item, index) => (
+                      {services?.slice(0, 4).map((item, index) => (
                         <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                           <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                             {item?.name}
                           </Link>
                         </li>
                       ))}
+                      {services?.length > 4 && (
+                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                          <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                            View All Services
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -207,13 +216,20 @@ export default function index({ site_settings, social_links, policies, services 
                   Our Services
                 </div>
                 <ul>
-                  {services?.map((item, index) => (
+                  {services?.slice(0, 4).map((item, index) => (
                     <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                       <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                         {item?.name}
                       </Link>
                     </li>
                   ))}
+                  {services?.length > 4 && (
+                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                      <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                        View All Services
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -338,13 +354,21 @@ export default function index({ site_settings, social_links, policies, services 
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium">Opening Hours</div>
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
-                    <Link
-                      href="#"
+                    <div
+                      // href={site_settings?.map_link || "#"}
+                      // target="_blank"
+                      // rel="noopener noreferrer"
                       className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden "
                       aria-label="location_link"
                     >
                       <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
-                        <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />
+                        <Image
+                          src={site_settings?.map_image_value || "/images/location.jpg"}
+                          width="330"
+                          height="150"
+                          className="w-full h-full object-cover"
+                          alt="location-img"
+                        />
                       </div>
                       <div
                         className="absolute left-0 right-0 bottom-0 top-0 w-fit h-fit m-auto transition-all duration-300 text-center 
@@ -372,7 +396,7 @@ export default function index({ site_settings, social_links, policies, services 
                         </div>
                         <div className="text-[14px] text-base2 font-medium transition-all duration-all">View Map</div>
                       </div>
-                    </Link>
+                    </div>
                     <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
                       Opening Hours
                     </div>
@@ -390,10 +414,10 @@ export default function index({ site_settings, social_links, policies, services 
                 </AccordionItem>
               </div>
               <div className="hidden sm:block">
-                <Link
-                  href={site_settings?.map_link || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div
+                  // href={site_settings?.map_link || "#"}
+                  // target="_blank"
+                  // rel="noopener noreferrer"
                   className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden "
                   aria-label="location_link"
                 >
@@ -432,7 +456,7 @@ export default function index({ site_settings, social_links, policies, services 
                     </div>
                     <div className="text-[14px] text-base2 font-medium underline transition-all duration-all">View Map</div>
                   </div>
-                </Link>
+                </div>
                 <div className="text-[10px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] text-white font-medium  mb-[8px] 3xl:mb-[10px]">
                   Opening Hours
                 </div>

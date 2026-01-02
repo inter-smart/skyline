@@ -5,8 +5,6 @@ import { fetchFromAPI } from "@/lib/api";
 export default async function Page() {
   const { data } = await fetchFromAPI("blogs");
 
-  console.log(data);
-
   const { accreditation_cms, accreditation, interviews, banner_and_meta_tags: bannerData, blog_categories: insightTypes, blog_cms } = data;
 
   const awards = {

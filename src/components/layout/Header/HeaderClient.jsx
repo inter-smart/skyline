@@ -54,8 +54,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
       submenu: servicesList,
       clickable: true,
     },
-    { id: 4, name: "Consultants", link: "/consultants", clickable: true },
-    { id: 5, name: "News & Insights", link: "/insights", clickable: true },
+    { id: 4, name: "Consultants", link: "/consultants", clickable: false },
+    { id: 5, name: "News & Insights", link: "/insights", clickable: false },
     { id: 6, name: "Contact", link: "/contact", clickable: true },
   ];
 
@@ -95,14 +95,16 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       <div
                         key={item.id}
                         className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${item.submenu
-                            ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
-                            : ""
+                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                          : ""
                           }`}
                       >
                         {item.clickable ? (
                           <a
                             href={item.link}
-                            className={`${menuLinks} ${active ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded" : "text-[#010101]"
+                            className={`${menuLinks} ${active
+                                ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
+                                : "text-[#010101]"
                               }`}
                             aria-label="menulinks"
                           >
@@ -122,8 +124,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                   key={subId}
                                   href={sub.link}
                                   className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${subActive
-                                      ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
-                                      : "text-[#010101]"
+                                    ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
+                                    : "text-[#010101]"
                                     }`}
                                 >
                                   {sub.name}
@@ -179,66 +181,68 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
                         </svg>
                       </SheetTrigger>
+                      <SheetTitle className="sr-only">menu</SheetTitle>
 
                       <SheetContent
                         side="right"
                         className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]"
                       >
-                        <SheetDescription>
-                          <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">
-                            Contact Information
-                          </div>
-                          <ul className="mb-[30px] 3xl:mb-[35px]">
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Location</div>
-                              {site_settings?.address
-                                ? renderHtml(
-                                  site_settings.address,
-                                  "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                                )
-                                : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Email</div>
-                              <a
-                                href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
-                                className={`${cmnMenuClass} font-normal mb-[12px] block`}
-                                aria-label="email_link"
-                              >
-                                {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
-                              </a>
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Phone</div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                Main:{" "}
-                                <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                                  {" "}
-                                  {site_settings?.main_phone_number || "024 7XXX XXXX"}
-                                </a>
-                              </div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                Emergency:{" "}
-                                <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                                  {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
-                                </a>
-                              </div>
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Opening Hours</div>
-                              {site_settings?.opening_hours?.map((hours, index) => (
-                                <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                  <span className="font-light">{hours?.key}</span>
-                                  <span className="pl-[5px]">: {hours?.value}</span>
-                                </div>
-                              ))}
-                            </li>
-                          </ul>
+<<<<<<< HEAD
+  <SheetDescription>
+    <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">
+      Contact Information
+    </div>
+    <ul className="mb-[30px] 3xl:mb-[35px]">
+      <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+        <div className={`${cmnMenuClass}`}>Location</div>
+        {site_settings?.address
+          ? renderHtml(
+            site_settings.address,
+            "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
+          )
+          : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
+      </li>
+      <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+        <div className={`${cmnMenuClass}`}>Email</div>
+        <a
+          href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
+          className={`${cmnMenuClass} font-normal mb-[12px] block`}
+          aria-label="email_link"
+        >
+          {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
+>>>>>>> aa3596b520b9d3e28781923522afa016141ccdfc
+        </a>
+      </li>
+      <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+        <div className={`${cmnMenuClass}`}>Phone</div>
+        Main:{" "}
+        <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+          {" "}
+          {site_settings?.main_phone_number || "024 7XXX XXXX"}
+        </a>
+      </div>
+      <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+        Emergency:{" "}
+        <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+          {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
+        </a>
+      </div>
+    </li>
+    <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+      <div className={`${cmnMenuClass}`}>Opening Hours</div>
+      {site_settings?.opening_hours?.map((hours, index) => (
+        <div key={index} className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+          <span className="font-light">{hours?.key}</span>
+          <span className="pl-[5px]">: {hours?.value}</span>
+        </div>
+      ))}
+    </li>
+  </ul>
 
-                          {/* social Links */}
-                          <div className="w-full">
-                            {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+  {/* social Links */ }
+  <div className="w-full">
+    {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
                                 <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -257,106 +261,107 @@ export default function HeaderClient({ site_settings, social_links, services, re
                               ))}
                             </ul>  */}
 
-                            {/* logo section */}
-                            <Link
-                              href="/"
-                              className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
-                              aria-label="logo"
-                            >
-                              <Image
-                                src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
-                                width="250"
-                                height="250"
-                                alt={site_settings?.footer_logo_alt_text_value || "logo"}
-                                className="w-full h-full object-contain"
-                              />
-                            </Link>
-                          </div>
-                        </SheetDescription>
-                      </SheetContent>
-                    </Sheet>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container min-lg:hidden relative pr-[40px]">
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
+    {/* logo section */}
+    <Link
+      href="/"
+      className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
+      aria-label="logo"
+    >
+      <Image
+        src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
+        width="250"
+        height="250"
+        alt={site_settings?.footer_logo_alt_text_value || "logo"}
+        className="w-full h-full object-contain"
+      />
+    </Link>
+  </div>
+                          </div >
+                        </SheetDescription >
+                      </SheetContent >
+                    </Sheet >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    <div className="container min-lg:hidden relative pr-[40px]">
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger
+          className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
            flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer "
-          >
-            <svg className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="24" />
-              <rect x="13" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="27.666" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="27.666" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-              <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
-            </svg>
-          </SheetTrigger>
+        >
+          <svg className="!w-full !h-full object-cover fill-base1 group-hover:fill-base2" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="24" />
+            <rect x="13" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+            <rect x="27.666" y="14" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+            <rect x="27.666" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+            <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
+          </svg>
+        </SheetTrigger>
 
-          <SheetContent
-            side="right"
-            className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
+        <SheetContent
+          side="right"
+          className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]"
-          >
-            <SheetDescription >
-              <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px] ">
-                Contact Information
-              </div>
-              <ul className="mb-[30px] 3xl:mb-[35px]">
-                <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                  <div className={`${cmnMenuClass}`}>Location</div>
-                  {site_settings?.address
-                    ? renderHtml(
-                      site_settings.address,
-                      "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                    )
-                    : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
-                </li>
-                <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                  <div className={`${cmnMenuClass}`}>Email</div>
-                  <a
-                    href={`mailto:${site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"} `}
-                    className={`${cmnMenuClass} font-normal mb-[12px] block`}
-                    aria-label="email_link"
-                  >
-                    {site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"}
+        >
+          <SheetDescription>
+            <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px] ">
+              Contact Information
+            </div>
+            <ul className="mb-[30px] 3xl:mb-[35px]">
+              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                <div className={`${cmnMenuClass}`}>Location</div>
+                {site_settings?.address
+                  ? renderHtml(
+                    site_settings.address,
+                    "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
+                  )
+                  : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
+              </li>
+              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                <div className={`${cmnMenuClass}`}>Email</div>
+                <a
+                  href={`mailto:${site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"} `}
+                  className={`${cmnMenuClass} font-normal mb-[12px] block`}
+                  aria-label="email_link"
+                >
+                  {site_settings?.email || "mailto:info@skylinehospitalscoventry.co.uk"}
+                </a>
+              </li>
+              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                <div className={`${cmnMenuClass}`}>Phone</div>
+                <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                  Main:{" "}
+                  <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                    {" "}
+                    {site_settings?.main_phone_number || "024 7XXX XXXX"}
                   </a>
-                </li>
-                <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                  <div className={`${cmnMenuClass}`}>Phone</div>
-                  <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                    Main:{" "}
-                    <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                      {" "}
-                      {site_settings?.main_phone_number || "024 7XXX XXXX"}
-                    </a>
+                </div>
+                <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                  Emergency:{" "}
+                  <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                    {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
+                  </a>
+                </div>
+              </li>
+              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                <div className={`${cmnMenuClass}`}>Opening Hours</div>
+                {site_settings?.opening_hours?.map((hours, index) => (
+                  <div key={index} className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                    <span className="font-light">{hours?.key}</span>
+                    <span className="pl-[5px]">: {hours?.value}</span>
                   </div>
-                  <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                    Emergency:{" "}
-                    <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                      {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
-                    </a>
-                  </div>
-                </li>
-                <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                  <div className={`${cmnMenuClass}`}>Opening Hours</div>
-                  {site_settings?.opening_hours?.map((hours, index) => (
-                    <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                      <span className="font-light">{hours?.key}</span>
-                      <span className="pl-[5px]">: {hours?.value}</span>
-                    </div>
-                  ))}
-                </li>
-              </ul>
+                ))}
+              </li>
+            </ul>
 
-              {/* social Links */}
-              <div className="w-full">
-                {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div> */}
-                {/* <ul className="flex items-center ">
+            {/* social Links */}
+            <div className="w-full">
+              {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div> */}
+              {/* <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
                       <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
@@ -375,134 +380,136 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   ))}
                 </ul> */}
 
-                {/* logo section */}
+              {/* logo section */}
 
-                <Link href="/" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
-                  <Image
-                    src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
-                    width="250"
-                    height="250"
-                    alt={site_settings?.footer_logo_alt_text_value || "logo"}
-                    className="w-full h-full object-contain"
-                  />
-                </Link>
-              </div>
-            </SheetDescription>
-          </SheetContent>
-        </Sheet>
-
-        <Sheet open={open} onOpenChange={setOpen}>
-          <div className="flex items-center justify-between ">
-            <div className="flex items-center justify-between w-full">
-              <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
-                <Image src={site_settings?.header_logo_value || "/images/logo.svg"} width="200" height="115" className="object-contain" alt="logo" />
+              <Link href="/" className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]" aria-label="logo">
+                <Image
+                  src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
+                  width="250"
+                  height="250"
+                  alt={site_settings?.footer_logo_alt_text_value || "logo"}
+                  className="w-full h-full object-contain"
+                />
               </Link>
-              <div className="flex items-center">
-                <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
-                  <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
-                </div>
-                <SheetTrigger className="w-[25px] h-[25px] flex items-center justify-center">
-                  <svg className="w-full h-full" viewBox="0 0 464.205 464.205">
-                    <g id="grip-solid-horizontal_1_">
-                      <path
-                        d="m435.192 406.18h-406.179c-16.024 0-29.013-12.99-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.99 
+            </div>
+          </SheetDescription>
+        </SheetContent>
+      </Sheet>
+
+      <Sheet open={open} onOpenChange={setOpen}>
+        <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between w-full">
+            <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
+              <Image src={site_settings?.header_logo_value || "/images/logo.svg"} width="200" height="115" className="object-contain" alt="logo" />
+            </Link>
+            <div className="flex items-center">
+              <div className="mr-[10px] sm:mr-[20px] max-3xs:hidden">
+                <BookAnAppointment services={services} reasons={reasons} insurance={insurance} />
+              </div>
+              <SheetTrigger className="w-[25px] h-[25px] flex items-center justify-center">
+                <svg className="w-full h-full" viewBox="0 0 464.205 464.205">
+                  <g id="grip-solid-horizontal_1_">
+                    <path
+                      d="m435.192 406.18h-406.179c-16.024 0-29.013-12.99-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.99 
                             29.013 29.013-.001 16.023-12.99 29.013-29.014 29.013z"
-                      ></path>
-                      <path
-                        d="m435.192 261.115h-406.179c-16.024 0-29.013-12.989-29.013-29.012s12.989-29.013
+                    ></path>
+                    <path
+                      d="m435.192 261.115h-406.179c-16.024 0-29.013-12.989-29.013-29.012s12.989-29.013
                             29.013-29.013h406.18c16.023 0 29.013 12.989 
                           29.013 29.013s-12.99 29.012-29.014 29.012z"
-                      ></path>
-                      <path
-                        d="m435.192 116.051h-406.179c-16.024 0-29.013-12.989-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023
+                    ></path>
+                    <path
+                      d="m435.192 116.051h-406.179c-16.024 0-29.013-12.989-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023
                             0 29.013 12.989 29.013 29.013s-12.99 29.013-29.014 29.013z"
-                      ></path>
-                    </g>
-                  </svg>
-                </SheetTrigger>
-              </div>
+                    ></path>
+                  </g>
+                </svg>
+              </SheetTrigger>
             </div>
           </div>
-          <SheetContent side="right" className="h-[100vh] overflow-auto">
-            <SheetHeader>
-              <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
-                <Link href="/" className="block max-w-[115px]  w-full h-full">
-                  <Image
-                    src={site_settings?.header_logo_value || "/images/logo.svg"}
-                    alt={site_settings?.header_logo_alt_text_value || "logo"}
-                    width={175}
-                    height={100}
-                    className="w-full h-full 3xl:max-w-[125px] 2xl:max-w-[100px] max-w-[90px] object-contain block hover:scale-105 transition-transform duration-300"
-                  />
-                </Link>
-              </div>
-              <SheetDescription >
-                <Accordion type="single" collapsible>
-                  <AccordionItem value="item-1" className="border-b border-[#f4f4f4]">
-                    <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <div className="flex items-center">
-                        <span>Home</span>
-                      </div>
+        </div>
+        <SheetContent side="right" className="h-[100vh] overflow-auto">
+          <SheetHeader>
+            <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
+              <Link href="/" className="block max-w-[115px]  w-full h-full">
+                <Image
+                  src={site_settings?.header_logo_value || "/images/logo.svg"}
+                  alt={site_settings?.header_logo_alt_text_value || "logo"}
+                  width={175}
+                  height={100}
+                  className="w-full h-full 3xl:max-w-[125px] 2xl:max-w-[100px] max-w-[90px] object-contain block hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+            </div>
+            <SheetDescription>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1" className="border-b border-[#f4f4f4]">
+                  <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <div className="flex items-center">
+                      <span>Home</span>
+                    </div>
+                  </Link>
+                </AccordionItem>
+                <AccordionItem value="item-2" className="border-b border-[#f4f4f4]">
+                  <Link href="/about" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <div className="flex items-center">
+                      <span>About Us</span>
+                    </div>
+                  </Link>
+                </AccordionItem>
+                <AccordionItem value="item-3" className="border-b border-[#f4f4f4]">
+                  <AccordionTrigger className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                    <Link href="/service" className="flex items-center">
+                      <span>Services</span>
                     </Link>
-                  </AccordionItem>
-                  <AccordionItem value="item-2" className="border-b border-[#f4f4f4]">
-                    <Link href="/about" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <div className="flex items-center">
-                        <span>About Us</span>
-                      </div>
-                    </Link>
-                  </AccordionItem>
-                  <AccordionItem value="item-3" className="border-b border-[#f4f4f4]">
-                    <AccordionTrigger className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      <Link href="/service" className="flex items-center">
-                        <span>Services</span>
-                      </Link>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-[12px] bg-[#671448] p-[10px] ">
-                      <ul>
-                        {servicesList?.map((item, index) => (
-                          <li key={index} className="last-of-type:mb-0">
-                            <Link
-                              href={item?.link}
-                              aria-label="category_link"
-                              className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[12px] bg-[#671448] p-[10px] ">
+                    <ul>
+                      {servicesList?.map((item, index) => (
+                        <li key={index} className="last-of-type:mb-0">
+                          <Link
+                            href={item?.link}
+                            aria-label="category_link"
+                            className="text-[11px] text-white font-light relative w-full flex items-center py-[5px]
                              transition-all duration-200"
-                            >
-                              {item?.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
-                    <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      <div className="flex items-center">
-                        <span>Consultants</span>
-                      </div>
-                    </Link>
-                  </AccordionItem>
+                          >
+                            {item?.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
+                  <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                    {/* <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  "> */}
+                    <div className="flex items-center">
+                      <span>Consultants</span>
+                    </div>
+                  </div>
+                </AccordionItem>
 
-                  <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
-                    <Link href="/news" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <div className="flex items-center">
-                        <span>News & Insights </span>
-                      </div>
-                    </Link>
-                  </AccordionItem>
-                  <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
-                    <Link href="/contact" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <div className="flex items-center">
-                        <span>Contact</span>
-                      </div>
-                    </Link>
-                  </AccordionItem>
-                </Accordion>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
-      </div>
-    </header>
+                <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
+                  <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    {/* <Link href="/news" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink"> */}
+                    <div className="flex items-center">
+                      <span>News & Insights </span>
+                    </div>
+                  </div>
+                </AccordionItem>
+                <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
+                  <Link href="/contact" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <div className="flex items-center">
+                      <span>Contact</span>
+                    </div>
+                  </Link>
+                </AccordionItem>
+              </Accordion>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+    </div>
+    </header >
   );
 }

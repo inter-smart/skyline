@@ -13,8 +13,6 @@ import { renderHtml } from "@/utils/parseHtml";
 export default function InterviewSection({ interviews, blog_cms }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  console.log("interviews", interviews);
-
   return (
     <section className="bg-[#F6F6F6] py-[40px] 2xl:py-[60px] 3xl:py-[90px]">
       <div className="container">

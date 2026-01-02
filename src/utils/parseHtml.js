@@ -45,7 +45,7 @@ export const parseDescriptionToListItems = (htmlString, className) => {
     }
   }
 
-  return items.map((item, i) => <li key={i} className={className}  dangerouslySetInnerHTML={{ __html: item }} />);
+  return items.map((item, i) => <li key={i} className={className} dangerouslySetInnerHTML={{ __html: item }} />);
 };
 
 export function renderHtmlWithClassName(htmlString, colorClass = "text-white") {

@@ -77,7 +77,7 @@ outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus
            focus-visible:shadow-none bg-transparent border-none`;
 
 export default function BookAnAppointment({ services, reasons, insurance }) {
-  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const { isOpen, openDialog, closeDialog, data } = useBookingFormContext();
   const [successOpen, setSuccessOpen] = useState(false);
   const { slug, source } = data;
@@ -190,7 +190,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
     const serviceReason = toNumber(data.reason_for_consultation_id);
     const insurance_provider_id = toNumber(data.insurance_provider_id);
     const service = toNumber(data.service_id);
-    // const recaptchaToken = await executeRecaptcha("bookappointment");
+    const recaptchaToken = await executeRecaptcha("bookappointment");
 
     const formattedData = {
       ...data,
@@ -198,13 +198,11 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       insurance_provider_id: insurance_provider_id,
       service_id: isConsultant ? null : service,
       consultant_id: isConsultant ? toNumber(slug) : null,
-      // captcha_key: recaptchaToken,
+      captcha_key: recaptchaToken,
     };
 
     try {
-      console.log("Formatted Data:", formattedData);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // await postToAPI("appointments", formattedData);
+      await postToAPI("appointments", formattedData);
 
       handleClose();
       setTimeout(() => {
@@ -256,7 +254,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
           <AlertDialogHeader>
             <div className="w-full max-w-[615px] mb-[20px]">
               <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wider mb-[12px]">
-                connect me
+                connect us
               </div>
               <div className="text-[25px] xl:text-[33px] 2xl:text-[40px] 3xl:text-[50px] text-white mb-[15px] font-unna leading-none">
                 Book An Appointment
@@ -332,12 +330,11 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                               <PhoneInput
                                 value={field.value}
                                 onChange={(val) => {
-                                  console.log("VAL", val);
                                   field.onChange(val.phoneNumber); // Set only numeric part
                                   form.setValue("country_code", val.mobileCode);
                                   form.setValue("country", val.countryCode);
                                 }}
-                                defaultCountry="AE"
+                                defaultCountry="GB"
                               />
                             </FormControl>
                           </div>

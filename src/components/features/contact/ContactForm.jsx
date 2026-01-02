@@ -125,7 +125,7 @@ const contactSchema = z.object({
 
 export default function ContactFormSection({ form_title }) {
   const { openSuccess } = useBookingFormContext();
-  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   // const [services, setServices] = useState([]);
 
   // useEffect(() => {
@@ -157,17 +157,15 @@ export default function ContactFormSection({ form_title }) {
   const formControl = `text-[10px] 2xl:text-[12px] 3xl:text-[16px] font-regular text-white placeholder:text-white w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 shadow-none`;
 
   const onSubmit = async (data) => {
-    // const recaptchaToken = await executeRecaptcha("contact");
+    const recaptchaToken = await executeRecaptcha("contact");
 
     const formattedData = {
       ...data,
-      // captcha_key: recaptchaToken,
+      captcha_key: recaptchaToken,
     };
 
     try {
-      console.log("Formatted Data:", formattedData);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // await postToAPI("contact-enquiry", formattedData);
+      await postToAPI("contact-enquiry", formattedData);
 
       toast.success("Form submitted successfully!");
       form.reset();
@@ -229,12 +227,11 @@ export default function ContactFormSection({ form_title }) {
                     <PhoneInput
                       value={field.value}
                       onChange={(val) => {
-                        console.log("VAL", val);
                         field.onChange(val.phoneNumber); // Set only numeric part
                         form.setValue("country_code", val.mobileCode);
                         form.setValue("country", val.countryCode);
                       }}
-                      defaultCountry="UK"
+                      defaultCountry="GB"
                     />
                   </div>
                 </FormControl>

@@ -18,7 +18,7 @@ export default function OverviewSection({ about_cms }) {
               <Heading size="heading1" as="div">
                 {about_cms?.section2_title}
               </Heading>
-              <div className="line-clamp-4">{renderHtml(about_cms?.section2_description)}</div>
+              {renderHtml(about_cms?.section2_description)}
             </div>
           </div>
 
