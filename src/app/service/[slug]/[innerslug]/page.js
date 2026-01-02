@@ -1,4 +1,5 @@
 import InnerBanner from "@/components/common/InnerBanner";
+import ConsultantSection from "@/components/features/home/ConsultantSection";
 import BookConsultationSection from "@/components/features/service/BookConsultationSection";
 import CareSection from "@/components/features/service/CareSection";
 import IntegatedSection from "@/components/features/service/IntegatedSection";
@@ -316,6 +317,12 @@ const local_data = {
       },
     ],
   },
+  service_video_section: {
+    media: {
+      type: "video",
+      path: "/videos/service-detail-2.mp4",
+    },
+  },
 };
 
 export default function page() {
@@ -340,6 +347,8 @@ export default function page() {
       <RecognizingSection data={local_data?.recognizing_section_data} />
       <TableSection data={local_data?.table_section_data} />
       <IntegatedSection data={local_data?.integrated_section_data} />
+      <VideoSection data={local_data?.service_video_section} />
+      <ConsultantSection data={local_data?.consultant_section_data} />
     </>
   );
 }

@@ -66,13 +66,13 @@ export default function IntegatedSection({ data }) {
                         <AccordionItem
                             value={`item-${item.id}`}
                             key={item.id}
-                            className="w-full h-auto py-[5px] sm:py-[7px] lg:py-[10px] 2xl:py-[15px] 3xl:py-[20px] mb-[5px] sm:mb-[10px] 2xl:mb-[15px] bg-transparent overflow-hidden relative z-0">
-                            <AccordionTrigger className="[&>svg]:text-[#132C26] 2xl:[&>svg]:w-[17px] 2xl:[&>svg]:h-[17px]">
+                            className="w-full h-auto mb-[5px] sm:mb-[10px] 2xl:mb-[15px] bg-transparent overflow-hidden border-0 rounded-0 relative z-0">
+                            <AccordionTrigger className="[&>svg]:text-[#132C26] 2xl:[&>svg]:w-[17px] 2xl:[&>svg]:h-[17px] [&[data-state=open]>svg]:rotate-270 &[data-state=open]>svg]:fill-[#00335B] 3xl:[&_svg]:!w-[25px] 3xl:[&_svg]:!h-[25px] py-[10px] 2xl:py-[15px] 3xl:py-[20px] border-b border-[#8E8E8E]/40 !rounded-[0px]">
                                 <div className="text-[16px] 2xl:text-[18px] 3xl:text-[24px] leading-[1.4] font-medium text-[#00335B] max-w-[90%]">{item?.title}</div>
                             </AccordionTrigger>
                             <AccordionContent>
                                 <div
-                                    className="text_editor [&_p]:leading-[1.8] [&_p]:font-normal [&_p]:text-[#1E1E1E] [&_p]:last:my-0 mb-0 max-w-[90%] [&>*]:mb-[20px] 2xl:[&>*]:mb-[30px]"
+                                    className="text_editor [&_p]:leading-[1.8] [&_p]:font-normal [&_p]:text-[#1E1E1E] py-[20px_0] [&_p]:last:my-0 mb-0 max-w-[90%] [&>*]:mb-[20px] 2xl:[&>*]:mb-[30px]"
                                 >{parse(item?.text_editor)}</div>
                             </AccordionContent>
                         </AccordionItem>
