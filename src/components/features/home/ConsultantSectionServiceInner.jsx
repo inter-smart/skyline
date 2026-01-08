@@ -1,8 +1,6 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import Link from "next/link";
@@ -74,7 +72,7 @@ const items = [
   },
 ];
 
-export default function ConsultantSection({ variant, consultants, title, pre_title, description }) {
+export default function ConsultantSectionServiceInner({ consultants, data }) {
   const [expanded, setExpanded] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
   const { openDialog } = useBookingFormContext();
@@ -91,11 +89,7 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
   };
 
   return (
-    <section
-      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${
-        variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
-      }`}
-    >
+    <section style={{ "--bg-color": data?.backgroundColor }} className="bg-[var(--bg-color)] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0">
       <Image
         src="/images/logoBack.png"
         className="absolute top-0 left-[10%] bottom-0 m-auto pointer-events-none max-w-[1000px]  w-full h-full object-cover z-10"
@@ -106,16 +100,8 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</h1>
-            <div className="max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">{title}</div>
+            {renderHtml(data?.content, "max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]")}
           </div>
-          {variant === "servicedetail" ? (
-            <>{renderHtml(description, "xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:text-white")}</>
-          ) : (
-            <Link href="/consultants" aria-label="View All Consultants" className="btn-base1 hover">
-              View All Consultants
-            </Link>
-          )}
         </div>
         <div className="w-full realtive">
           <Swiper

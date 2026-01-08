@@ -3,6 +3,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {},
   images: {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 31536000, // 1 year
@@ -57,9 +58,9 @@ const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /pdf\.worker(\.min)?\.js$/,
-      use: {
-        loader: "file-loader",
-        options: { name: "[name].[contenthash].[ext]" },
+      type: "asset/resource",
+      generator: {
+        filename: "static/worker/[name].[contenthash][ext]",
       },
     });
 

@@ -11,6 +11,7 @@ import { BookingFormContextProvider } from "@/context/BookingFormContext";
 import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
 import Script from "next/script";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
+import SeasonalBackground from "nextjs-seasonal-plugin";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -51,6 +52,7 @@ export default async function RootLayout({ children }) {
       <body className={`${graphik.variable} ${unna.variable}`}>
         <RecaptchaProvider>
           <BookingFormContextProvider>
+            {/* <SeasonalBackground theme="onam" intensity={80} particleCount={60} zIndex={2} /> */}
             <Header site_settings={site_settings} social_links={social_links} services={services} />
             <main className="flex-grow">{children}</main>
             <WidgetSection site_settings={site_settings} />

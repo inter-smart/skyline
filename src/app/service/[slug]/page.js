@@ -89,12 +89,13 @@ const TEMPLATE_COMPONENTS = {
     />
   ),
 
-  "template-3": (section) => (
+  "template-3": (section, _unused, _unused2, _unused3, slug) => (
     <ConditionSection
       sub_title={section?.title}
       title={section?.service_section_cms?.title}
       description={section?.service_section_cms?.description}
       conditionData={section?.service_section_items}
+      slug={slug}
     />
   ),
 
@@ -232,7 +233,7 @@ export default async function Service({ params }) {
         const key = section?.service_section_template?.key;
         const RenderComponent = TEMPLATE_COMPONENTS[key];
         if (!RenderComponent) return null; // skip unknown template
-        return <div key={section?.id}>{RenderComponent(section, related_services_list, id, consultants)}</div>;
+        return <div key={section?.id}>{RenderComponent(section, related_services_list, id, consultants, params?.slug)}</div>;
       })}
     </>
   );

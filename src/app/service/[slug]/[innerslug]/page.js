@@ -1,6 +1,6 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
-import ConsultantSection from "@/components/features/home/ConsultantSection";
+import ConsultantSectionServiceInner from "@/components/features/home/ConsultantSectionServiceInner";
 import BookConsultationSection from "@/components/features/service/BookConsultationSection";
 import CareSection from "@/components/features/service/CareSection";
 import HospitalSection from "@/components/features/service/HospitalSection";
@@ -12,6 +12,7 @@ import ServiceFaqSection from "@/components/features/service/ServiceFaqSection";
 import TableSection from "@/components/features/service/TableSection";
 import UnderstandingADHD from "@/components/features/service/UnderstandingADHD";
 import VideoSection from "@/components/features/service/VideoSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const local_data = {
   managing_ahd_section_data: {
@@ -136,23 +137,19 @@ const local_data = {
       },
       {
         id: 2,
-        title:
-          "Feeling like your mind constantly wanders, leading to careless mistakes even when you try hard.",
+        title: "Feeling like your mind constantly wanders, leading to careless mistakes even when you try hard.",
       },
       {
         id: 3,
-        title:
-          "Having a hard time sticking with tasks that demand sustained mental effort, like filling out forms or studying.",
+        title: "Having a hard time sticking with tasks that demand sustained mental effort, like filling out forms or studying.",
       },
       {
         id: 4,
-        title:
-          "The constant feeling of losing important things (keys, phone, paperwork)—it’s frustrating, not deliberate.",
+        title: "The constant feeling of losing important things (keys, phone, paperwork)—it’s frustrating, not deliberate.",
       },
       {
         id: 5,
-        title:
-          "Often feeling like you're not listening, even when spoken to directly.",
+        title: "Often feeling like you're not listening, even when spoken to directly.",
       },
       {
         id: 6,
@@ -161,13 +158,11 @@ const local_data = {
       },
       {
         id: 7,
-        title:
-          "Frequently interrupting others, or blurting out answers—it's not rudeness, it's impulsivity.",
+        title: "Frequently interrupting others, or blurting out answers—it's not rudeness, it's impulsivity.",
       },
       {
         id: 8,
-        title:
-          "Difficulty waiting your turn or feeling like you are constantly on the go with no internal brakes.",
+        title: "Difficulty waiting your turn or feeling like you are constantly on the go with no internal brakes.",
       },
     ],
   },
@@ -180,11 +175,7 @@ const local_data = {
           table_header_bg_color: "#eef6ff",
           table_header_text_color: "#00335B",
           table_body_bg_color: "#ffff",
-          table_columns: [
-            "<h5>Step</h5>",
-            "<h5>What This Means for You</h5>",
-            "<h5>The Personal Touch</h5>",
-          ],
+          table_columns: ["<h5>Step</h5>", "<h5>What This Means for You</h5>", "<h5>The Personal Touch</h5>"],
           table_row_list: [
             [
               "<P><b>1. Initial Screening Assessment</b></P>",
@@ -219,11 +210,7 @@ const local_data = {
           table_header_bg_color: "#f0e7ed",
           table_header_text_color: "#671448",
           table_body_bg_color: "#ffff",
-          table_columns: [
-            "<h5>Feature</h5>",
-            "<h5>Skyline Hospitals (Hospital-Based)</h5>",
-            "<h5>Online-Only Provider</h5>",
-          ],
+          table_columns: ["<h5>Feature</h5>", "<h5>Skyline Hospitals (Hospital-Based)</h5>", "<h5>Online-Only Provider</h5>"],
           table_row_list: [
             [
               "<P><b>Physical Location</b></P>",
@@ -338,32 +325,16 @@ const local_data = {
     `,
     table: {
       table_background_color: "#eef6ff",
-      table_columns: [
-        "<h5>Service</h5>",
-        "<h5>Price (Adults)</h5>",
-        "<h5>Price (Child <18)</h5>",
-      ],
+      table_columns: ["<h5>Service</h5>", "<h5>Price (Adults)</h5>", "<h5>Price (Child <18)</h5>"],
       table_row_list: [
         ["<P>Initial consultation</P>", "<h6>£0</h6>", "<h6>£0</h6>"],
         ["<P><b>ADHD Assessment</b></P>"],
         ["<P>New Consultation</P>", "<h6>£1195</h6>", "<h6>£1550</h6>"],
-        [
-          "<P>Follow-Up consultation (Consultant)</P>",
-          "<h6>£250</h6>",
-          "<h6>£250</h6>",
-        ],
+        ["<P>Follow-Up consultation (Consultant)</P>", "<h6>£250</h6>", "<h6>£250</h6>"],
         ["<P><b>Follow-Up consultation (Specialist Nurse Prescriber)</b></P>"],
-        [
-          "<P>Repeat Prescription fee (medication NOT included)</P>",
-          "<h6>FREE</h6>",
-          "<h6>FREE</h6>",
-        ],
+        ["<P>Repeat Prescription fee (medication NOT included)</P>", "<h6>FREE</h6>", "<h6>FREE</h6>"],
         ["<P><b>CHILD AUTISM/ ASD assessment</b></P>"],
-        [
-          "<P>Package price (All inclusive)</P>",
-          "<h6>-</h6>",
-          "<h6>£1995</h6>",
-        ],
+        ["<P>Package price (All inclusive)</P>", "<h6>-</h6>", "<h6>£1995</h6>"],
       ],
     },
     media: {
@@ -518,32 +489,223 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function Page({ params }) {
+  const resolvedParams = await params;
+  const { slug, innerslug } = resolvedParams;
+
+  const { data, error } = await fetchFromAPI(`sub-service-details?serviceSlug=${slug}&slug=${innerslug}`);
+
+  if (error || !data) {
+    return (
+      <div className="text-center py-20">
+        <Page />
+      </div>
+    );
+  }
+
+  const {
+    banner_pre_title,
+    banner_title,
+    banner_description,
+    banner_value,
+    banner_mobile_value,
+    banner_alt_text_value,
+    meta_title,
+    meta_description,
+    meta_keywords,
+    other_meta_tags,
+    section1_content,
+    section1_side_note,
+    section1_side_note_background_color,
+    section1_image_value,
+    section1_image_alt_text_value,
+    section2_video_thumbnail_image_value,
+    section2_video_value,
+    section3_content,
+    section3_button_text,
+    section3_button_url,
+    section3_button_text_color,
+    section3_button_color,
+    section3_background_color,
+    section3_image_value,
+    section3_image_alt_text_value,
+    section4_content,
+    section5_content,
+    section5_box_content,
+    section5_box_background_color,
+    section5_image_value,
+    section5_image_alt_text_value,
+    section6_content,
+    section6_background_color,
+    section7_content,
+    section7_table,
+    section8_content,
+    section8_table,
+    section9_content,
+    section10_video_thumbnail_image_value,
+    section10_video_value,
+    section11_content,
+    section11_background_color,
+    section12_content,
+    section12_table,
+    section12_image_value,
+    section12_image_alt_text_value,
+    section13_content,
+    section14_content,
+    section14_button_text,
+    section14_button_url,
+    section14_image_value,
+    section14_image_alt_text_value,
+    section15_content,
+    consultants,
+    highlights,
+    sub_service_faqs,
+    sub_service_care_options,
+    sub_service_signals,
+    sub_service_treatment_components,
+    sub_service_treatment_steps,
+  } = data;
+
+  const bannerData = {
+    banner_pre_title,
+    banner_title,
+    banner_description,
+    banner_value,
+    banner_mobile_value,
+    banner_alt_text_value,
+  };
+
+  const seoData = {
+    meta_title,
+    meta_description,
+    meta_keywords,
+    other_meta_tags,
+  };
+
+  const section1Data = {
+    content: section1_content,
+    sideNote: section1_side_note,
+    sideNoteBg: section1_side_note_background_color,
+    image: section1_image_value,
+    imageAlt: section1_image_alt_text_value,
+  };
+
+  const section2Data = {
+    videoThumbnail: section2_video_thumbnail_image_value,
+    video: section2_video_value,
+  };
+
+  const section3Data = {
+    content: section3_content,
+    buttonText: section3_button_text,
+    buttonUrl: section3_button_url,
+    buttonTextColor: section3_button_text_color,
+    buttonColor: section3_button_color,
+    backgroundColor: section3_background_color,
+    image: section3_image_value,
+    imageAlt: section3_image_alt_text_value,
+  };
+
+  const section4Data = {
+    content: section4_content,
+    list: sub_service_care_options,
+  };
+
+  const section5Data = {
+    content: section5_content,
+    boxContent: section5_box_content,
+    boxBackground: section5_box_background_color,
+    image: section5_image_value,
+    imageAlt: section5_image_alt_text_value,
+  };
+
+  const section6Data = {
+    content: section6_content,
+    backgroundColor: section6_background_color,
+    list: sub_service_signals,
+  };
+
+  const section7Data = {
+    content: section7_content,
+    table: section7_table,
+    headColor: "#E6F1FFAB",
+    headTextColor: "#00335B",
+    opacity: "67%",
+  };
+
+  const section8Data = {
+    content: section8_content,
+    table: section8_table,
+    headColor: "#6714481A",
+    headTextColor: "#671448",
+    opacity: "10%",
+  };
+
+  const section9Data = {
+    content: section9_content,
+    treatments: sub_service_treatment_components,
+    steps: sub_service_treatment_steps,
+  };
+
+  const section10Data = {
+    videoThumbnail: section10_video_thumbnail_image_value,
+    video: section10_video_value,
+  };
+
+  const section11Data = {
+    content: section11_content,
+    backgroundColor: section11_background_color,
+  };
+
+  const section12Data = {
+    content: section12_content,
+    table: section12_table,
+    image: section12_image_value,
+    imageAlt: section12_image_alt_text_value,
+  };
+
+  const section13Data = {
+    content: section13_content,
+    faqs: sub_service_faqs,
+  };
+
+  const section14Data = {
+    content: section14_content,
+    buttonText: section14_button_text,
+    buttonUrl: section14_button_url,
+    image: section14_image_value,
+    imageAlt: section14_image_alt_text_value,
+  };
+
+  const section15Data = {
+    content: section15_content,
+    highlights: highlights,
+  };
+
   return (
     <>
       <InnerBanner
         variant="service_Inner_detail"
-        mobile_img="/images/service-inner-detail.png"
-        img="/images/service-inner-detail.png"
-        alt="service Inner Detail"
-        subTitle="Services"
-        Title="ADHD and Autism Diagnosis and Treatment in London and the Midlands"
-        description="Dedicated to providing exceptional healthcare with compassion, innovation, and excellence for over two decades."
+        mobile_img={bannerData?.banner_mobile_value || "/images/service-inner-detail.png"}
+        img={bannerData?.banner_value || "/images/service-inner-detail.png"}
+        alt={bannerData?.banner_alt_text_value || "service Inner Detail"}
+        subTitle={bannerData?.banner_pre_title || "Services"}
+        Title={bannerData?.banner_title || "ADHD and Autism Diagnosis and Treatment in London and the Midlands"}
+        description={bannerData?.banner_description || "ADHD and Autism Diagnosis and Treatment in London and the Midlands"}
       />
-      <ManagingADHD data={local_data?.managing_ahd_section_data} />
-      <VideoSection data={local_data?.service_video_section} />
-      <BookConsultationSection
-        data={local_data?.booking_consultation_section}
-      />
-      <CareSection data={local_data?.care_section_data} />
-      <UnderstandingADHD data={local_data?.understanding_ahd_section_data} />
-      <RecognizingSection data={local_data?.recognizing_section_data} />
-      <TableSection data={local_data?.table_section_data} />
-      <IntegatedSection data={local_data?.integrated_section_data} />
-      <VideoSection data={local_data?.service_video_section} />
-      <ConsultantSection variant={"servicedetail"} />
-      <PricingSection data={local_data?.pricing_section_data} />
-      <ServiceFaqSection data={local_data?.service_faq_section_data} />
+      <ManagingADHD data={section1Data} />
+      <VideoSection data={section2Data} />
+      <BookConsultationSection data={section3Data} />
+      <CareSection data={section4Data} />
+      <UnderstandingADHD data={section5Data} />
+      <RecognizingSection data={section6Data} />
+      <TableSection data={section7Data} />
+      <TableSection data={section8Data} />
+      <IntegatedSection data={section9Data} />
+      <VideoSection data={section10Data} />
+      <ConsultantSectionServiceInner consultants={consultants} data={section11Data} />
+      <PricingSection data={section12Data} />
+      <ServiceFaqSection data={section13Data} />
       <AppointmentSection
         variant={"service-detail"}
         bannerImage="/images/service-detail-appointment.jpg"
@@ -551,7 +713,7 @@ export default function page() {
         description="Trust your care to the established expertise of Skyline Hospitals. We are here to listen.BOOK Your FREE Assessment Now!"
         path="/images/service-detail-appointment.jpg"
       />
-      <HospitalSection data={local_data?.hospital_section_data} />
+      <HospitalSection data={section15Data} />
     </>
   );
 }
