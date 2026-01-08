@@ -91,7 +91,11 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
   };
 
   return (
-    <section className="bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0">
+    <section
+      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${
+        variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
+      }`}
+    >
       <Image
         src="/images/logoBack.png"
         className="absolute top-0 left-[10%] bottom-0 m-auto pointer-events-none max-w-[1000px]  w-full h-full object-cover z-10"
@@ -102,15 +106,22 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</h1>
-            <div className="max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">{title}</div>
-            {/* {renderHtml(title, "text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]")} */}
+            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r 3xl:mb-[20px]">Consultants</h1>
+            <div className="text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">
+              Meet Our <br />
+              ADHD Consultants
+            </div>
           </div>
           {variant === "servicedetail" ? (
-            <>{renderHtml(description, "xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:text-white")}</>
+            <div className="xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:!text-white">
+              <p>
+                {/* Our oncology specialists are GMC-registered and deeply committed to delivering expert, compassionate care. Many are involved in
+                cutting-edge clinical trials and hold academic or NHS leadership positions. */}
+              </p>
+            </div>
           ) : (
-            <Link href="/consultants" aria-label="View All Consultants" className="btn-base1 hover">
-              View All Consultants
+            <Link href="/" aria-label="View All Consultants" className="btn-base1 hover">
+              {/* View All Consultants */}
             </Link>
           )}
         </div>

@@ -109,7 +109,7 @@ export default function MethodUsedSection({
                 </div>
                 <div className="w-full flex flex-wrap">
                     {why_choose_list?.map((item, index) => (
-                        
+
                         <div key={index} className="w-full 3xs:w-1/2 md:w-1/3 xl:w-1/4 h-full group  bg-white relative transition-transform duration-300 hover:scale-98">
                             <div className="flex flex-wrap p-[5px] transition items-center pb-[15px]  max-w-[380px] duration-300">
                                 <div className="w-[35px] xl:w-[40px] 2xl:w-[50px] h-[35px] xl:h-[40px] 2xl:h-[50px] flex items-center justify-center max-xs:mx-auto xs:mr-auto  ">

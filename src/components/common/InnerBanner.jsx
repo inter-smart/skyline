@@ -17,7 +17,7 @@ const textAnimation = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
 };
 
-export default function InnerBanner({ img, mobile_img, subTitle, Title, description, alt, showFormBox = false, onSearch = "" }) {
+export default function InnerBanner({ img, mobile_img, subTitle, Title, description, alt, showFormBox = false, onSearch = "", variant = "default", }) {
   const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
@@ -31,10 +31,9 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
       className={`w-full relative py-[30px] flex items-center
          after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
   after:bg-gradient-to-r  after:z-[1]"
-        ${
-          showFormBox
-            ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px] after:from-[#00335B] after:to-[rgba(0,51,91,0.08)]"
-            : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
+        ${showFormBox
+          ? "h-auto min-h-[300px] xl:min-h-[375px] 2xl:min-h-[450px] 3xl:min-h-[565px] after:from-[#00335B] after:to-[rgba(0,51,91,0.08)]"
+          : "h-[300px] xl:h-[375px] 2xl:h-[450px] 3xl:h-[565px] after:from-[rgba(255,255,255,0.3)] after:to-[rgba(255,255,255,0.0)]"
         }`}
     >
       <picture className="absolute -z-2 inset-0">
@@ -45,16 +44,15 @@ export default function InnerBanner({ img, mobile_img, subTitle, Title, descript
       <div className="container h-full w-full flex items-center relative z-20">
         <div className="w-full relative z-20">
           <motion.div
-            className="max-w-[480px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
+            className={`relative ${variant === "service_Inner_detail" ? "sm:max-w-[70%]" : "max-w-[480px] 2xl:max-w-[600px] 3xl:max-w-[700px]"}`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={textAnimation}
           >
             <motion.h1
-              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${
-                showFormBox ? "text-white " : "text-[#671448]"
-              } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
+              className={`text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] ${showFormBox ? "text-white " : "text-[#671448]"
+                } uppercase font-normal tracking-[2px] mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]`}
               variants={textAnimation}
             >
               {subTitle}
