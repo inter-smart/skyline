@@ -10,14 +10,14 @@ export default function AppointmentInner({ data, service_id }) {
   const { openDialog } = useBookingFormContext();
   const router = useRouter();
 
+  const formOptions = {};
+  service_id && ((formOptions.slug = service_id), (formOptions.source = "services"));
+
   const handleClick = (text, link) => {
     if (text) {
       router.push(link || "/");
     } else {
-      openDialog({
-        slug: service_id,
-        source: "services",
-      });
+      openDialog(formOptions);
     }
   };
 

@@ -32,7 +32,7 @@ export default function InsightSection({ type = "blogs" }) {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState(null);
 
-  const PER_PAGE = 1;
+  const PER_PAGE = 6;
 
   // ✅ Fetch filters on mount
   useEffect(() => {

@@ -7,11 +7,11 @@ import { useBookingFormContext } from "@/context/BookingFormContext";
 const BookConsultationButtons = ({ data, service_id }) => {
   const { openDialog } = useBookingFormContext();
 
+  const formOptions = {};
+  service_id && ((formOptions.slug = service_id), (formOptions.source = "services"));
+
   const handleClick = () => {
-    openDialog({
-      slug: service_id,
-      source: "services",
-    });
+    openDialog(formOptions);
   };
 
   return (
