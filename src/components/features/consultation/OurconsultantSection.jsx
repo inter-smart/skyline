@@ -34,7 +34,7 @@ const items = [
 export default function OurconsultantSection({ consultants, searchTerm }) {
   const [expanded, setExpanded] = useState({}); // track which item is expanded
   const { openDialog } = useBookingFormContext();
-  const [visibleCount, setVisibleCount] = useState(2); // initially show 2 consultants
+  const [visibleCount, setVisibleCount] = useState(6); // initially show 2 consultants
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleExpand = (id) => {
