@@ -27,7 +27,6 @@
     "lucide-react": "^0.544.0",
     "motion": "^12.23.22",
     "next": "15.5.9",
-    "nextjs-seasonal-plugin": "^1.0.1",
     "prop-types": "^15.8.1",
     "react": "19.1.0",
     "react-country-flag": "^3.1.0",
