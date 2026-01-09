@@ -99,8 +99,13 @@ const TEMPLATE_COMPONENTS = {
     />
   ),
 
-  "template-4": (section) => (
-    <OurTreatmentsection sub_title={section?.title} title={section?.service_section_cms?.title} treatments={section?.service_section_items} />
+  "template-4": (section, _unused, _unused2, _unused3, slug) => (
+    <OurTreatmentsection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      treatments={section?.service_section_items}
+      slug={slug}
+    />
   ),
 
   "template-5": (section) => (

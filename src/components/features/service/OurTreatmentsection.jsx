@@ -9,6 +9,7 @@ import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 import { Heading } from "@/components/layout/Heading";
 import { parseDescriptionToListItems, renderHtml } from "@/utils/parseHtml";
+import Link from "next/link";
 
 const treatmentData = [
   {
@@ -29,7 +30,7 @@ const treatmentData = [
   },
 ];
 
-function OurTreatmentsection({ title, sub_title, treatments }) {
+function OurTreatmentsection({ title, sub_title, treatments, slug }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const rightScrollRef = useRef(null);
@@ -138,9 +139,27 @@ function OurTreatmentsection({ title, sub_title, treatments }) {
                 {treatments.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="text-white">
-                      <Heading as="h4" size="heading4" className="text-start font-medium text-white mb-[25px]">
-                        {item?.title}
-                      </Heading>
+                      {item?.sub_service?.slug ? (
+                        <Link
+                          href={`/service/${slug}/${item.sub_service.slug}`}
+                          className="block text-start font-medium text-white mb-[25px]
+               text-[14px] sm:text-[16px] lg:text-[18px]
+               xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px]
+               leading-[1.2]"
+                        >
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <div
+                          className="text-start font-medium text-white mb-[25px]
+               text-[14px] sm:text-[16px] lg:text-[18px]
+               xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px]
+               leading-[1.2] cursor-default"
+                        >
+                          {item.title}
+                        </div>
+                      )}
+
                       <ul className="[&_*]:!text-white">{parseDescriptionToListItems(item?.description, className)}</ul>
                     </div>
                   </SwiperSlide>

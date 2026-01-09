@@ -108,22 +108,23 @@ export default function ConditionSection({ sub_title, title, description, condit
                   value={`item-${index + 1}`}
                   className="break-inside-avoid bg-white border-none px-[15px] xl:px-[20px] 3xl:px-[25px] mb-[10px] 2xl:mb-[15px] rounded-[8px] "
                 >
-                  <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline cursor-pointer [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 ">
-                    {item?.title}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {hasSubService && (
+                  <AccordionTrigger className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium !no-underline [&>svg]:!opacity-100 [&>svg]:!text-black [&>svg]:rotate-275 [&[data-state=open]>svg]:rotate-0 [&>svg]:cursor-pointer hover:no-underline">
+                    {hasSubService ? (
                       <Link
                         href={`/service/${slug}/${item?.sub_service?.slug}`}
-                        className="inline-block mt-[10px] xl:mt-[15px] text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-[#671448] hover:underline font-medium"
+                        className="text-[11px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] font-medium text-[#671448] hover:underline"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        View more
+                        {item?.title}
                       </Link>
+                    ) : (
+                      <span className="pointer-events-none">{item?.title}</span>
                     )}
+                  </AccordionTrigger>
+                  <AccordionContent>
                     <div className="w-full text-start">
                       <ul>{parseDescriptionToListItems(item?.description, className)}</ul>
                     </div>
-                    {/* )} */}
                   </AccordionContent>
                 </AccordionItem>
               ) : (
