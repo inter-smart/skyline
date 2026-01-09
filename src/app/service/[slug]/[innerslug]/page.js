@@ -1,9 +1,10 @@
 import InnerBanner from "@/components/common/InnerBanner";
-import AppointmentSection from "@/components/features/home/AppointmentSection";
+import AppointmentSectionInner from "@/components/features/home/AppointmentSection";
 import ConsultantSectionServiceInner from "@/components/features/home/ConsultantSectionServiceInner";
 import BookConsultationSection from "@/components/features/service/BookConsultationSection";
 import CareSection from "@/components/features/service/CareSection";
 import HospitalSection from "@/components/features/service/HospitalSection";
+import AppointmentInner from "@/components/features/service/innerService/Appointment";
 import IntegatedSection from "@/components/features/service/IntegatedSection";
 import ManagingADHD from "@/components/features/service/ManagingADHD";
 import PricingSection from "@/components/features/service/PricingSection";
@@ -564,6 +565,7 @@ export default async function Page({ params }) {
     sub_service_signals,
     sub_service_treatment_components,
     sub_service_treatment_steps,
+    service_id,
   } = data;
 
   const bannerData = {
@@ -573,13 +575,6 @@ export default async function Page({ params }) {
     banner_value,
     banner_mobile_value,
     banner_alt_text_value,
-  };
-
-  const seoData = {
-    meta_title,
-    meta_description,
-    meta_keywords,
-    other_meta_tags,
   };
 
   const section1Data = {
@@ -695,7 +690,7 @@ export default async function Page({ params }) {
       />
       <ManagingADHD data={section1Data} />
       <VideoSection data={section2Data} />
-      <BookConsultationSection data={section3Data} />
+      <BookConsultationSection data={section3Data} service_id={service_id} />
       <CareSection data={section4Data} />
       <UnderstandingADHD data={section5Data} />
       <RecognizingSection data={section6Data} />
@@ -706,13 +701,7 @@ export default async function Page({ params }) {
       <ConsultantSectionServiceInner consultants={consultants} data={section11Data} />
       <PricingSection data={section12Data} />
       <ServiceFaqSection data={section13Data} />
-      <AppointmentSection
-        variant={"service-detail"}
-        bannerImage="/images/service-detail-appointment.jpg"
-        title="Ready to take the next step toward understanding and support?"
-        description="Trust your care to the established expertise of Skyline Hospitals. We are here to listen.BOOK Your FREE Assessment Now!"
-        path="/images/service-detail-appointment.jpg"
-      />
+      <AppointmentInner data={section14Data} service_id={service_id} />
       <HospitalSection data={section15Data} />
     </>
   );

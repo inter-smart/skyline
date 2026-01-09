@@ -100,7 +100,7 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            {renderHtml(data?.content, "max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]")}
+            {renderHtml(data?.content, "max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px]  font-unna leading-[1.1]")}
           </div>
         </div>
         <div className="w-full realtive">
@@ -239,7 +239,7 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
                           </li>
                         ))}
 
-                        {item?.special_interests.length > 3 && (
+                        {/* {item?.special_interests.length > 3 && (
                           <li className="p-[4px]">
                             <button
                               onClick={() => toggleExpand(item.id)}
@@ -248,7 +248,7 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
                               {expanded[item.id] ? "- Less" : "+ More"}
                             </button>
                           </li>
-                        )}
+                        )} */}
                       </ul>
 
                       <div

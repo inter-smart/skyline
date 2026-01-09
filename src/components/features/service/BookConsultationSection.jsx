@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import parse from "html-react-parser";
 import { renderHtml } from "@/utils/parseHtml";
+import BookConsultationButtons from "./BookConsultationButtons";
 
-export default function BookConsultationSection({ data }) {
+export default function BookConsultationSection({ data, service_id }) {
   return (
     <section className="w-full h-auto py-[30px] sm:py-[50px] 2xl:py-[60px] 3xl:py-[80px] block">
       <div className="container">
@@ -22,27 +22,7 @@ export default function BookConsultationSection({ data }) {
               )}
             </div>
           </div>
-          <div className="w-full xl:w-[30%]">
-            <div className="xl:mb-[15px] 2xl:mb-[25px] [&>*]:p-[5px] mx-[-5px] flex flex-wrap xl:justify-end">
-              <div className="flex">
-                <Link
-                  href={"/"}
-                  className="text-[10px] sm:text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-medium text-white w-fit h-auto p-[10px] 2xl:p-[15px] bg-transparent border-1 border-white rounded-[3px] hover:bg-white hover:text-base1 transition-all duration-300"
-                >
-                  {"BOOK AN APPOINTEMENT"}
-                </Link>
-              </div>
-              <div className="flex">
-                <Link
-                  href={data?.buttonUrl}
-                  //   target={data?.target ? "_blank" : "_self"}
-                  className="text-[10px] sm:text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-medium text-white w-fit h-auto p-[10px] 2xl:p-[15px] bg-transparent border-1 border-white rounded-[3px] hover:bg-white hover:text-base1 transition-all duration-300"
-                >
-                  {data?.buttonText}
-                </Link>
-              </div>
-            </div>
-          </div>
+          <BookConsultationButtons data={data} service_id={service_id} />
         </div>
       </div>
     </section>
