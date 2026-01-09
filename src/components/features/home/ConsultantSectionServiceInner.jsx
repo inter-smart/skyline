@@ -89,7 +89,10 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
   };
 
   return (
-    <section style={{ "--bg-color": data?.backgroundColor }} className="bg-[var(--bg-color)] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0">
+    <section
+      style={{ "--bg-color": data?.backgroundColor }}
+      className="bg-[var(--bg-color)] py-[40px] 3xl:py-[70px] mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px] overflow-hidden relative z-0"
+    >
       <Image
         src="/images/logoBack.png"
         className="absolute top-0 left-[10%] bottom-0 m-auto pointer-events-none max-w-[1000px]  w-full h-full object-cover z-10"
