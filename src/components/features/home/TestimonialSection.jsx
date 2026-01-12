@@ -40,7 +40,7 @@ const testimonials = [
 ];
 
 
-const sideImages =[
+const sideImages = [
   {
     id: 1,
     image: "/images/testimonial_1.jpg",
@@ -53,7 +53,7 @@ const sideImages =[
     id: 3,
     image: "/images/testimonial_3.jpg",
   },
-    {
+  {
     id: 4,
     image: "/images/testimonial_4.jpg",
   },

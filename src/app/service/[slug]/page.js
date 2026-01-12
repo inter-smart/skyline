@@ -12,6 +12,58 @@ import AppointmentSection from "@/components/features/home/AppointmentSection";
 import ConditionSection from "@/components/features/service/ConditionSection";
 import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
+import ConsultantSection from "@/components/features/home/ConsultantSection";
+import { DefaultOgImage } from "@/data/defaultMeta";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const { data: serviceData, error } = await fetchFromAPI(`service-details?slug=${slug}`);
+
+  if (!serviceData || error) {
+    return {
+      title: "Service Not Found",
+      description: "The requested service could not be found.",
+    };
+  }
+
+  const { meta_title, meta_description, meta_keywords, title, banner_value } = serviceData;
+
+  // Use service's own banner image or fallback
+  const ogImage = banner_value || DefaultOgImage;
+
+  return {
+    title: meta_title || title || "Our Service",
+    description: meta_description || "Learn more about our service",
+    keywords: meta_keywords || "",
+
+    // Enhanced SEO fields
+    openGraph: {
+      title: meta_title || title || "Our Service",
+      description: meta_description || "Learn more about our service",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: meta_title || title || "Service banner image",
+        },
+      ],
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/service/${slug}`,
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: meta_title || title || "Our Service",
+      description: meta_description || "Learn more about our service",
+      images: [ogImage],
+    },
+
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service/${slug}`,
+    },
+  };
+}
 
 // Map template keys to components
 const TEMPLATE_COMPONENTS = {
@@ -37,17 +89,23 @@ const TEMPLATE_COMPONENTS = {
     />
   ),
 
-  "template-3": (section) => (
+  "template-3": (section, _unused, _unused2, _unused3, slug) => (
     <ConditionSection
       sub_title={section?.title}
       title={section?.service_section_cms?.title}
       description={section?.service_section_cms?.description}
       conditionData={section?.service_section_items}
+      slug={slug}
     />
   ),
 
-  "template-4": (section) => (
-    <OurTreatmentsection sub_title={section?.title} title={section?.service_section_cms?.title} treatments={section?.service_section_items} />
+  "template-4": (section, _unused, _unused2, _unused3, slug) => (
+    <OurTreatmentsection
+      sub_title={section?.title}
+      title={section?.service_section_cms?.title}
+      treatments={section?.service_section_items}
+      slug={slug}
+    />
   ),
 
   "template-5": (section) => (
@@ -78,6 +136,22 @@ const TEMPLATE_COMPONENTS = {
       Disciplinary_list={section?.service_section_items}
     />
   ),
+
+  "template-8": (section, _unused1, _unused2, consultants) => {
+    if (!consultants || consultants.length === 0) {
+      return null;
+    }
+
+    return (
+      <ConsultantSection
+        variant="servicedetail"
+        pre_title={section?.title}
+        title={section?.service_section_cms?.title}
+        description={section?.service_section_cms?.description}
+        consultants={consultants}
+      />
+    );
+  },
 
   "template-9": (section) => (
     <PricingInsuranceSection
@@ -141,6 +215,7 @@ export default async function Service({ params }) {
     banner_description,
     service_sections,
     related_services_list,
+    consultants,
   } = data;
 
   // Helper to find a section by template key
@@ -163,7 +238,7 @@ export default async function Service({ params }) {
         const key = section?.service_section_template?.key;
         const RenderComponent = TEMPLATE_COMPONENTS[key];
         if (!RenderComponent) return null; // skip unknown template
-        return <div key={section?.id}>{RenderComponent(section, related_services_list, id)}</div>;
+        return <div key={section?.id}>{RenderComponent(section, related_services_list, id, consultants, params?.slug)}</div>;
       })}
     </>
   );

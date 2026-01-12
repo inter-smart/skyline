@@ -26,7 +26,7 @@ const defaultAnnouncements = [
     title: "New Pediatric Wing Inauguration - January 15th",
     description:
       "Join us for the grand opening of our state-of-the-art pediatric wing, featuring advanced facilities for children's healthcare.",
-    
+
   },
 ];
 
@@ -131,7 +131,7 @@ export default function AboutSection({ home_cms = {}, announcements = [] }) {
 
 
               {/* Rotating Shape */}
-            
+
               <motion.a
                 data-fancybox
                 href={videoUrl}
@@ -152,60 +152,60 @@ export default function AboutSection({ home_cms = {}, announcements = [] }) {
                   w-[8px] h-[8px] rotate-45 
                   border-b-[10px] border-r-[10px] border-white border-b-transparent"
                 ></span>
-              </motion.a> 
-        </div>
-      </motion.div>
+              </motion.a>
+            </div>
+          </motion.div>
 
-      {/* Right Announcements Section */}
-      <motion.div
-        className="w-full lg:w-4/12 p-[10px]"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="w-full relative">
-          <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] uppercase tracking-wider mb-[20px]">
-            {section1_block_title || "Announcements"}
-          </div>
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            slidesPerView={3}
-            loop={true}
-            speed={5000}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-            }}
-            direction="vertical"
-            className="relative w-full h-[250px] sm:h-[200px] xl:h-[260px] 2xl:h-[300px] 3xl:h-[380px]
+          {/* Right Announcements Section */}
+          <motion.div
+            className="w-full lg:w-4/12 p-[10px]"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="w-full relative">
+              <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#00335B] uppercase tracking-wider mb-[20px]">
+                {section1_block_title || "Announcements"}
+              </div>
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                slidesPerView={3}
+                loop={true}
+                speed={5000}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                }}
+                direction="vertical"
+                className="relative w-full h-[250px] sm:h-[200px] xl:h-[260px] 2xl:h-[300px] 3xl:h-[380px]
                  before:content-[''] before:w-full before:h-[8%] md:before:h-[10%] before:bg-[#FFF] before:blur-[10px] before:absolute before:z-[2] before:-top-[3px] before:right-0 before:left-0 before:pointer-events-none
                  after:content-[''] after:w-full after:h-[8%] md:after:h-[10%] after:bg-[#FFF] after:blur-[10px] after:absolute after:z-[2] after:-bottom-[3px] after:right-0 after:left-0 after:pointer-events-none"
-            breakpoints={{
-              1024: { slidesPerView: 2.1, spaceBetween: 10 },
-              1280: { slidesPerView: 3, spaceBetween: 10 },
-            }}
-          >
-            {(announcements.length ? announcements : defaultAnnouncements).map(
-              (announcement, idx) => (
-                <SwiperSlide key={idx} className="!h-auto">
-                  <motion.div
-                    className="relative w-full border-b border-[#2121211c] pb-[15px]"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.2 }}
-                  >
-                    <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-medium mb-[5px]">
-                      {announcement?.title}
-                    </div>
-                    <p className="mb-0">{announcement?.description}</p>
-                  </motion.div>
-                </SwiperSlide>
-              )
-            )}
-          </Swiper>
+                breakpoints={{
+                  1024: { slidesPerView: 2.1, spaceBetween: 10 },
+                  1280: { slidesPerView: 3, spaceBetween: 10 },
+                }}
+              >
+                {(announcements.length ? announcements : defaultAnnouncements).map(
+                  (announcement, idx) => (
+                    <SwiperSlide key={idx} className="!h-auto">
+                      <motion.div
+                        className="relative w-full border-b border-[#2121211c] pb-[15px]"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.2 }}
+                      >
+                        <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#212121] font-medium mb-[5px]">
+                          {announcement?.title}
+                        </div>
+                        <p className="mb-0">{announcement?.description}</p>
+                      </motion.div>
+                    </SwiperSlide>
+                  )
+                )}
+              </Swiper>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
       </div >
     </section >
   );

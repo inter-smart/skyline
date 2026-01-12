@@ -32,7 +32,7 @@ export default function InsightSection({ type = "blogs" }) {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState(null);
 
-  const PER_PAGE = 1;
+  const PER_PAGE = 6;
 
   // ✅ Fetch filters on mount
   useEffect(() => {
@@ -59,8 +59,6 @@ export default function InsightSection({ type = "blogs" }) {
       try {
         const category = filterKey === "*" ? "" : filterKey;
         const { data } = await fetchFromAPI(`blog-list?slug=${type}&per_page=${PER_PAGE}&page=${page}&tag=${category}`);
-
-        console.log(data);
 
         if (page === 1) {
           setBlogs(data?.blogs || []);

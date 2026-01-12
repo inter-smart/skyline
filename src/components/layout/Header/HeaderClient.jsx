@@ -16,9 +16,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
   const [isScrolled, setIsScrolled] = useState(false);
   const currentPath = usePathname();
 
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-     setOpen(false);
+    setOpen(false);
     const handleScroll = () => {
       setIsScrolled(window?.scrollY > 0);
     };
@@ -94,18 +94,18 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     return (
                       <div
                         key={item.id}
-                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
-                          item.submenu
-                            ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
-                            : ""
-                        }`}
+                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${item.submenu
+                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                          : ""
+                          }`}
                       >
                         {item.clickable ? (
                           <a
                             href={item.link}
-                            className={`${menuLinks} ${
-                              active ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded" : "text-[#010101]"
-                            }`}
+                            className={`${menuLinks} ${active
+                                ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
+                                : "text-[#010101]"
+                              }`}
                             aria-label="menulinks"
                           >
                             {item.name}
@@ -123,11 +123,10 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <a
                                   key={subId}
                                   href={sub.link}
-                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
-                                    subActive
-                                      ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
-                                      : "text-[#010101]"
-                                  }`}
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${subActive
+                                    ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
+                                    : "text-[#010101]"
+                                    }`}
                                 >
                                   {sub.name}
                                 </a>
@@ -182,66 +181,68 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
                         </svg>
                       </SheetTrigger>
+                      <SheetTitle className="sr-only">menu</SheetTitle>
 
                       <SheetContent
                         side="right"
                         className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]"
                       >
-                        <SheetDescription>
-                          <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">
-                            Contact Information
-                          </div>
-                          <ul className="mb-[30px] 3xl:mb-[35px]">
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Location</div>
-                              {site_settings?.address
-                                ? renderHtml(
+                        <SheetDescription asChild>
+                          <div id="menu">
+                            <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px]">
+                              Contact Information
+                            </div>
+                            <ul className="mb-[30px] 3xl:mb-[35px]">
+                              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                                <div className={`${cmnMenuClass}`}>Location</div>
+                                {site_settings?.address
+                                  ? renderHtml(
                                     site_settings.address,
                                     "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
                                   )
-                                : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Email</div>
-                              <a
-                                href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
-                                className={`${cmnMenuClass} font-normal mb-[12px] block`}
-                                aria-label="email_link"
-                              >
-                                {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
-                              </a>
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Phone</div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                Main:{" "}
-                                <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                                  {" "}
-                                  {site_settings?.main_phone_number || "024 7XXX XXXX"}
+                                  : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
+                              </li>
+                              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                                <div className={`${cmnMenuClass}`}>Email</div>
+                                <a
+                                  href={`mailto:${site_settings?.email || "info@skylinehospitalscoventry.co.uk"} `}
+                                  className={`${cmnMenuClass} font-normal mb-[12px] block`}
+                                  aria-label="email_link"
+                                >
+                                  {site_settings?.email || "info@skylinehospitalscoventry.co.uk"}
                                 </a>
-                              </div>
-                              <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                Emergency:{" "}
-                                <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
-                                  {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
-                                </a>
-                              </div>
-                            </li>
-                            <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
-                              <div className={`${cmnMenuClass}`}>Opening Hours</div>
-                              {site_settings?.opening_hours?.map((hours, index) => (
+                              </li>
+                              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                                <div className={`${cmnMenuClass}`}>Phone</div>
                                 <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
-                                  <span className="font-light">{hours?.key}</span>
-                                  <span className="pl-[5px]">: {hours?.value}</span>
+                                  Main:{" "}
+                                  <a href={`tel:${site_settings?.main_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                                    {" "}
+                                    {site_settings?.main_phone_number || "024 7XXX XXXX"}
+                                  </a>
                                 </div>
-                              ))}
-                            </li>
-                          </ul>
+                                <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                                  Emergency:{" "}
+                                  <a href={`tel:${site_settings?.emergency_phone_number || "024 7XXX XXXX"}`} className="flex items-center pl-1">
+                                    {site_settings?.emergency_phone_number || "024 7XXX XXXX"}
+                                  </a>
+                                </div>
+                              </li>
+                              <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
+                                <div className={`${cmnMenuClass}`}>Opening Hours</div>
+                                {site_settings?.opening_hours?.map((hours, index) => (
+                                  <div key={index} className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                                    <span className="font-light">{hours?.key}</span>
+                                    <span className="pl-[5px]">: {hours?.value}</span>
+                                  </div>
+                                ))}
+                              </li>
+                            </ul>
 
-                          {/* social Links */}
-                          <div className="w-full">
-                            {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                            {/* social Links */}
+                            <div className="w-full">
+                              <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                             <ul className="flex items-center ">
                               {social_links?.map((social, index) => (
                                 <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -258,22 +259,23 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                   </a>
                                 </li>
                               ))}
-                            </ul>  */}
+                            </ul> 
 
-                            {/* logo section */}
-                            <Link
-                              href="/"
-                              className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
-                              aria-label="logo"
-                            >
-                              <Image
-                                src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
-                                width="250"
-                                height="250"
-                                alt={site_settings?.footer_logo_alt_text_value || "logo"}
-                                className="w-full h-full object-contain"
-                              />
-                            </Link>
+                              {/* logo section */}
+                              <Link
+                                href="/"
+                                className="flex items-center justify-center w-full h-full max-w-[200px] 3xl:max-w-[250px] mt-[25px]"
+                                aria-label="logo"
+                              >
+                                <Image
+                                  src={site_settings?.footer_logo_value || "/images/whiteLogo.png"}
+                                  width="250"
+                                  height="250"
+                                  alt={site_settings?.footer_logo_alt_text_value || "logo"}
+                                  className="w-full h-full object-contain"
+                                />
+                              </Link>
+                            </div>
                           </div>
                         </SheetDescription>
                       </SheetContent>
@@ -305,7 +307,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
             className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
                       !max-w-[300px] xl:!max-w-[400px] 3xl:!max-w-[500px]"
           >
-            <SheetDescription >
+            <SheetDescription>
               <div className="text-[20px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[36px] font-normal text-white font-unna mb-[20px] ">
                 Contact Information
               </div>
@@ -314,9 +316,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   <div className={`${cmnMenuClass}`}>Location</div>
                   {site_settings?.address
                     ? renderHtml(
-                        site_settings.address,
-                        "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                      )
+                      site_settings.address,
+                      "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
+                    )
                     : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
                 </li>
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
@@ -348,7 +350,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
                   <div className={`${cmnMenuClass}`}>Opening Hours</div>
                   {site_settings?.opening_hours?.map((hours, index) => (
-                    <div className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
+                    <div key={index} className={`${cmnMenuClass} font-normal mb-[12px] flex items-center`} aria-label="email_link">
                       <span className="font-light">{hours?.key}</span>
                       <span className="pl-[5px]">: {hours?.value}</span>
                     </div>
@@ -358,8 +360,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
               {/* social Links */}
               <div className="w-full">
-                {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div> */}
-                {/* <ul className="flex items-center ">
+                <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
                       <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
@@ -376,7 +378,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       </a>
                     </li>
                   ))}
-                </ul> */}
+                </ul>
 
                 {/* logo section */}
 
@@ -394,7 +396,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </SheetContent>
         </Sheet>
 
-        <Sheet  open={open} onOpenChange={setOpen}>
+        <Sheet open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
@@ -439,7 +441,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   />
                 </Link>
               </div>
-              <SheetDescription >
+              <SheetDescription>
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1" className="border-b border-[#f4f4f4]">
                     <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
@@ -479,19 +481,23 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
-                    <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                    <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                      <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <div className="flex items-center">
                         <span>Consultants</span>
                       </div>
-                    </Link>
+                      </Link>
+                    </div>
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
-                    <Link href="/news" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                    <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
+                      <Link href="/insights" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <div className="flex items-center">
                         <span>News & Insights </span>
                       </div>
-                    </Link>
+                      </Link>
+                    </div>
                   </AccordionItem>
                   <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
                     <Link href="/contact" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">

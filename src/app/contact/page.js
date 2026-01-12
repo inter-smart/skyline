@@ -3,7 +3,19 @@ import FaqSection from "@/components/common/FaqSection";
 import ContactDetails from "@/components/features/contact/ContactDetails";
 import ContactFormSection from "@/components/features/contact/ContactForm";
 import EnquirySection from "@/components/features/contact/EnquirySection";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("contact-us");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function ContactUsPage() {
   const { data, error } = await fetchFromAPI("contact-us");

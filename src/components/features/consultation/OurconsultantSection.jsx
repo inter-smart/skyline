@@ -34,9 +34,8 @@ const items = [
 export default function OurconsultantSection({ consultants, searchTerm }) {
   const [expanded, setExpanded] = useState({}); // track which item is expanded
   const { openDialog } = useBookingFormContext();
-  const [visibleCount, setVisibleCount] = useState(2); // initially show 2 consultants
+  const [visibleCount, setVisibleCount] = useState(6); // initially show 2 consultants
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const router = useRouter();
 
   const toggleExpand = (id) => {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -74,10 +73,9 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-    const scrollToTop = () => {
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
 
   return (
     <section className="py-[40px] 3xl:py-[60px]">
@@ -134,12 +132,8 @@ export default function OurconsultantSection({ consultants, searchTerm }) {
                                                     before:absolute before:top-[0px] before:3xl:top-[4px] before:left-0 before:w-[11px] before:h-[11px] before:2xl:w-[14px] before:2xl:h-[14px] before:3xl:w-[17px] before:3xl:h-[17px]
                                                     before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain before:content-[''] last-of-type:mb-0 mb-[8px]"
                           >
-                            <strong className="font-medium">
-                              {item.experience > 0
-                                ? item?.experience + "+ years"
-                                : item.experience}
-                            </strong>{" "}
-                            NHS & Private experience
+                            <strong className="font-medium">{item.experience > 0 ? item?.experience + "+ years" : item.experience}</strong> NHS &
+                            Private experience
                           </li>
                         )}
 

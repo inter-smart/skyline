@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { renderHtml, renderHtmlWithClassName } from "@/utils/parseHtml";
-import Link from "next/link";
+import { renderHtml } from "@/utils/parseHtml";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
 
-export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link }) {
+export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link, variant }) {
   const { openDialog } = useBookingFormContext();
   const router = useRouter();
 
@@ -34,14 +33,14 @@ export default function AppointmentSection({ sub_title, title, description, path
       className="relative w-full h-full py-[90px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[165px]
               after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
               after:bg-gradient-to-r after:from-[rgba(0,0,0,0.5)] after:to-[rgba(0,0,0,0.2)] after:z-[1]"
-                >
+    >
       {/* Background image */}
 
       <Image src={path} className="object-cover absolute top-0 left-0 w-full h-full" priority width={1920} height={460} alt={alt} />
 
       <div className="container w-full h-full flex items-center relative z-20">
         <motion.div
-          className="max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative"
+          className={`max-w-[470px] 2xl:max-w-[600px] 3xl:max-w-[700px] relative ${variant === "service-detail" && "!max-w-full md:w-[50%]"} `}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -66,17 +65,28 @@ export default function AppointmentSection({ sub_title, title, description, path
           >
             {renderHtml(description, "[&>p]:text-white")}
           </motion.div>
-
-          <motion.button
-            className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
-            aria-label="appointment"
-            onClick={() => handleClick(button_text, button_link)}
-            variants={fadeUp}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {button_text || "Book an Appointment"}
-          </motion.button>
+          <div className="flex flex-wrap gap-[15px]">
+            <motion.button
+              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
+              aria-label="appointment"
+              onClick={() => handleClick(null, button_link)}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {"Book an Appointment"}
+            </motion.button>
+            <motion.button
+              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide hover:text-white"
+              aria-label="appointment"
+              onClick={() => handleClick(null, button_link)}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {"MAKE AN ENQUIRY"}
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

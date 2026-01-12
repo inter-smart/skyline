@@ -1,5 +1,17 @@
 import ConsultantClient from "@/components/features/consultation/ConsultantClient";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("consultation");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("consultants");
@@ -10,8 +22,5 @@ export default async function Page() {
 
   const { banner_and_meta_tags, consultants } = data;
 
-
-  return(
-    <ConsultantClient banner_and_meta_tags={banner_and_meta_tags} consultants={consultants} />
-  )
+  return <ConsultantClient banner_and_meta_tags={banner_and_meta_tags} consultants={consultants} />;
 }

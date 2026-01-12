@@ -2,14 +2,24 @@ import InnerBanner from "@/components/common/InnerBanner";
 import AppointmentSection from "@/components/features/home/AppointmentSection";
 import FeaturedserviceSection from "@/components/features/service/FeaturedserviceSection";
 import OurserviceSection from "@/components/features/service/OurserviceSection";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData("services");
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("services");
 
   const { service_cms, services, featured_services, banner_and_meta_tags } = data;
-
-  console.log(data);
 
   return (
     <>

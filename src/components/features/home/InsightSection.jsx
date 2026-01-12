@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import { motion } from "framer-motion";
 import { Heading, SubTitle } from "@/components/layout/Heading";
 
-export default function InsightSection() {
+export default function InsightSection({ blogs }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const insights = [
@@ -63,28 +63,15 @@ export default function InsightSection() {
         {/* Heading */}
         <div className="flex items-end justify-between mb-[35px] lg:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            <SubTitle
-              size="SubTitle"
-              as="div"
-            >
+            <SubTitle size="SubTitle" as="div">
               Insights
             </SubTitle>
-            <Heading
-              size="heading1"
-              as="div"
-              className="!mb-0"
-            >
+            <Heading size="heading1" as="div" className="!mb-0">
               Health <br />
               Insights & News
             </Heading>
-
-
           </div>
-          <Link
-            href="/"
-            aria-label="View All Insights"
-            className="btn-base1 hover min-[105px] 3xl:min-w-[150px]"
-          >
+          <Link href="/insights" aria-label="View All Insights" className="btn-base1 hover min-[105px] 3xl:min-w-[150px]">
             View All
           </Link>
         </div>
@@ -108,7 +95,7 @@ export default function InsightSection() {
               1536: { slidesPerView: 3, spaceBetween: 60 },
             }}
           >
-            {insights.map((item, index) => (
+            {blogs.map((item, index) => (
               <SwiperSlide key={item.id}>
                 <motion.div
                   initial="hidden"
@@ -117,15 +104,15 @@ export default function InsightSection() {
                   variants={fadeUp}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <Link href={item.link} className="w-full h-full group">
+                  <Link href={`/insights/${item.slug}`} className="w-full h-full group">
                     {/* Image */}
                     <div className="w-full aspect-[530/275] mb-[15px] 3xl:mb-[20px] overflow-hidden rounded-[6px]">
                       <Image
-                        src={item.image}
+                        src={item.image_value}
                         className="w-full h-full object-cover transition-all duration-150 group-hover:scale-[1.1]"
                         width={530}
                         height={275}
-                        alt={item.title}
+                        alt={item.image_alt_text_value}
                       />
                     </div>
 
@@ -135,7 +122,7 @@ export default function InsightSection() {
                     before:absolute before:top-[4px] before:2xl:top-[8px] before:3xl:top-[10px] before:left-0 before:content-[''] 
                     before:w-[4px] before:h-[4px] before:rounded-full mb-[10px] 3xl:mb-[15px] before:bg-[#313131]"
                     >
-                      {item.date}
+                      {item.published_on}
                     </div>
 
                     {/* Title */}
@@ -169,24 +156,29 @@ export default function InsightSection() {
             <button
               className="instnavbts-prev absolute left-0 md:-left-[35px] xl:left-[-55px] z-20 bg-white border border-[#671448]
                                    w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px]
-                                    flex items-center justify-center cursor-pointer group hover:bg-base1"  >
-              <svg className="w-full h-full group-hover:fill-white fill-base1" viewBox="0 0 8 6"   >
-                <path d="M2.78099 0.947449C2.8655 1.03283 2.86572 1.1715 2.78099 1.25688L1.00565 3.04999L6.98327 3.04999C7.10288 3.04999 7.19995 
+                                    flex items-center justify-center cursor-pointer group hover:bg-base1"
+            >
+              <svg className="w-full h-full group-hover:fill-white fill-base1" viewBox="0 0 8 6">
+                <path
+                  d="M2.78099 0.947449C2.8655 1.03283 2.86572 1.1715 2.78099 1.25688L1.00565 3.04999L6.98327 3.04999C7.10288 3.04999 7.19995 
                                 3.14794 7.19995 3.26886C7.19995 3.38977 7.10287 3.48772 6.98327 3.48772L1.00565 3.48772L2.78077 5.28084C2.8655 5.36621 2.8655 5.50489 
                                 2.78077 5.59026C2.69604 5.67564 2.55888 5.67564 2.47437 5.59026L0.329353 3.42358C0.245705 3.33907 0.245705 3.19845 0.329353 3.11393L2.47437 
-                                0.94725C2.5591 0.861855 2.69626 0.861856 2.78099 0.947449C2.69626 0.861856 2.8655 1.03283 2.78099 0.947449Z"   />
+                                0.94725C2.5591 0.861855 2.69626 0.861856 2.78099 0.947449C2.69626 0.861856 2.8655 1.03283 2.78099 0.947449Z"
+                />
               </svg>
-
             </button>
             <button
               className=" instnavbts-next absolute right-0  md:-right-[35px] xl:right-[-55px] z-10 bg-white border border-[#671448]
                               w-[28px] md:w-[35px] 2xl:w-[40px] h-[28px] md:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px]
-                              flex items-center justify-center cursor-pointer group hover:bg-base1"  >
-              <svg className="w-full h-full group-hover:fill-white  fill-base1" viewBox="0 0 8 6" fill="none" >
-                <path d="M5.15236 0.947449C5.06785 1.03283 5.06763 1.1715 5.15236 1.25688L6.9277 3.04999L0.950083 3.04999C0.830465 3.04999 0.733398 
+                              flex items-center justify-center cursor-pointer group hover:bg-base1"
+            >
+              <svg className="w-full h-full group-hover:fill-white  fill-base1" viewBox="0 0 8 6" fill="none">
+                <path
+                  d="M5.15236 0.947449C5.06785 1.03283 5.06763 1.1715 5.15236 1.25688L6.9277 3.04999L0.950083 3.04999C0.830465 3.04999 0.733398 
                                 3.14794 0.733398 3.26886C0.733398 3.38977 0.830483 3.48772 0.950083 3.48772L6.9277 3.48772L5.15258 5.28084C5.06785 5.36621 5.06785 
                                 5.50489 5.15258 5.59026C5.23731 5.67564 5.37447 5.67564 5.45898 5.59026L7.604 3.42358C7.68764 3.33907 7.68764 3.19845 7.604 
-                                3.11393L5.45898 0.94725C5.37425 0.861855 5.23709 0.861856 5.15236 0.947449C5.23709 0.861856 5.06785 1.03283 5.15236 0.947449Z"  />
+                                3.11393L5.45898 0.94725C5.37425 0.861855 5.23709 0.861856 5.15236 0.947449C5.23709 0.861856 5.06785 1.03283 5.15236 0.947449Z"
+                />
               </svg>
             </button>
           </div>

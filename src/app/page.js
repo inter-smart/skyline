@@ -5,6 +5,8 @@ import AboutSection from "@/components/features/home/AboutSection";
 import BannerSection from "@/components/features/home/BannerSection";
 import SpecialistSection from "@/components/features/home/SpecialistSection";
 import WhySection from "@/components/features/home/WhySection";
+import ConsultantSection from "@/components/features/home/ConsultantSection";
+import InsightSection from "@/components/features/home/InsightSection";
 const TestimonialSection = dynamic(() => import("@/components/features/home/TestimonialSection"), { loading: () => <div className="h-[400px]" /> });
 const AppointmentSection = dynamic(() => import("@/components/features/home/AppointmentSection"), { loading: () => <div className="h-[300px]" /> });
 
@@ -49,7 +51,7 @@ export default function Home() {
   }
 
   async function ContentWrapper() {
-    const { home_cms, announcements, services, testimonials } = await getHomeContent();
+    const { home_cms, announcements, services, testimonials, consultants, blogs } = await getHomeContent();
     const textTestimonials = testimonials?.filter((item) => item?.type === "text");
     const videoTestimonials = testimonials?.filter((item) => item?.type === "video");
 
@@ -63,7 +65,7 @@ export default function Home() {
           description={home_cms?.section3_description}
           services={services}
         />
-        {/* <ConsultantSection /> */} 
+        <ConsultantSection consultants={consultants} title={home_cms?.section4_title} pre_title={home_cms?.section4_pre_title} />
         <TestimonialSection
           textTestimonials={textTestimonials}
           videoTestimonials={videoTestimonials}
@@ -77,7 +79,7 @@ export default function Home() {
           sub_title={home_cms?.section6_pre_title}
           description={home_cms?.section6_description}
         />
-        {/* <InsightSection /> */}
+        {blogs?.length > 0 && <InsightSection blogs={blogs} />}
       </>
     );
   }

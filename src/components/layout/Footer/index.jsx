@@ -65,8 +65,8 @@ export default function index({ site_settings, social_links, policies, services 
                 {site_settings?.footer_tagline || "Excellence in Healthcare"}
               </div>
 
-              {/* social Links */}
-              {/* <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
+        
+               <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
                 <div
                   className={`text-[11px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] font-semibold text-[#671448] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}
                 >
@@ -91,8 +91,8 @@ export default function index({ site_settings, social_links, policies, services 
                       </a>
                     </li>
                   ))}
-                </ul> */}
-              {/* </div> */}
+                </ul> 
+               </div> 
             </div>
           </div>
         </div>
@@ -156,6 +156,7 @@ export default function index({ site_settings, social_links, policies, services 
                       {policies?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                           <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
+                          {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
                             {item?.title}
                           </Link>
                           {/* <span className={menuLink}>{item?.title}</span> */}
@@ -173,6 +174,7 @@ export default function index({ site_settings, social_links, policies, services 
                   {policies?.map((item, index) => (
                     <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
                       <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
+                      {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
                         {item?.title}
                       </Link>
                       {/* <span className={menuLink}>{item?.title}</span> */}
@@ -191,13 +193,20 @@ export default function index({ site_settings, social_links, policies, services 
                   </AccordionTrigger>
                   <AccordionContent className="p-0 my-[15px]">
                     <ul>
-                      {services?.map((item, index) => (
+                      {services?.slice(0, 4).map((item, index) => (
                         <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                           <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                             {item?.name}
                           </Link>
                         </li>
                       ))}
+                      {services?.length > 4 && (
+                        <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                          <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                            View All Services
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -207,13 +216,20 @@ export default function index({ site_settings, social_links, policies, services 
                   Our Services
                 </div>
                 <ul>
-                  {services?.map((item, index) => (
+                  {services?.slice(0, 4).map((item, index) => (
                     <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0" key={item?.id}>
                       <Link href={`/service/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                         {item?.name}
                       </Link>
                     </li>
                   ))}
+                  {services?.length > 4 && (
+                    <li className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
+                      <Link href="/service" className={`${menuLink} font-medium`} aria-label="View All Services">
+                        View All Services
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -339,12 +355,20 @@ export default function index({ site_settings, social_links, policies, services 
                   </AccordionTrigger>
                   <AccordionContent className="p-0 mt-[15px]">
                     <Link
-                      href="#"
+                      href={site_settings?.map_link || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-full flex items-center mb-[20px] xl:mb-[25px] group relative rounded-[6px] overflow-hidden "
                       aria-label="location_link"
                     >
                       <div className="w-full h-full rounded-[6px] overflow-hidden  transition-all duration-200 group-hover:scale-110">
-                        <Image src="/images/location.jpg" width="330" height="150" className="w-full h-full object-cover" alt="location-img" />
+                        <Image
+                          src={site_settings?.map_image_value || "/images/location.jpg"}
+                          width="330"
+                          height="150"
+                          className="w-full h-full object-cover"
+                          alt="location-img"
+                        />
                       </div>
                       <div
                         className="absolute left-0 right-0 bottom-0 top-0 w-fit h-fit m-auto transition-all duration-300 text-center 

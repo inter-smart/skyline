@@ -145,9 +145,8 @@ export default function SpecialistSection({ title, pre_title, description, servi
               <SwiperSlide
                 key={index}
                 className={`!flex items-center transition-all duration-500 not:[.swiper-slide-visible]:!h-[470px]
-                   ${
-                  activeIndex === index ? "scaleX-125 z-20" : "scale-95"
-                }
+                   ${activeIndex === index ? "scaleX-125 z-20" : "scale-95"
+                  }
                 `}
               >
                 <div
@@ -157,9 +156,8 @@ export default function SpecialistSection({ title, pre_title, description, servi
                 >
                   {/* Title (only visible on inactive slides) */}
                   <div
-                    className={`text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white realtive z-20 font-medium transition-all duration-500 ${
-                      activeIndex === index ? "opacity-0 hidden" : "opacity-100 visible"
-                    }`}
+                    className={`text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white realtive z-20 font-medium transition-all duration-500 ${activeIndex === index ? "opacity-0 hidden" : "opacity-100 visible"
+                      }`}
                   >
                     {item?.name}
                   </div>
@@ -175,9 +173,8 @@ export default function SpecialistSection({ title, pre_title, description, servi
 
                   {/* Info Card (visible only for active slide) */}
                   <div
-                    className={`relative w-full bg-[rgba(255,255,255,0.85)] rounded-[6px] p-[20px_15px] xl:p-[25px_20px] 2xl:p-[30px_25px] 3xl:p-[30px_40px_20px] transition-all z-20 duration-500 ${
-                      activeIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px] hidden"
-                    }`}
+                    className={`relative w-full bg-[rgba(255,255,255,0.85)] rounded-[6px] p-[20px_15px] xl:p-[25px_20px] 2xl:p-[30px_25px] 3xl:p-[30px_40px_20px] transition-all z-20 duration-500 ${activeIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px] hidden"
+                      }`}
                   >
                     <div className="text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-[#212121] font-medium mb-[15px] xl:mb-[20px] capitalize">
                       {item?.name}
