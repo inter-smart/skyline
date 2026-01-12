@@ -112,7 +112,7 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
             key={consultants?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultants?.length > 1}
+            loop={consultants?.length > 2}
             centerInsufficientSlides={true}
             autoplay={{
               delay: 8000,
@@ -135,12 +135,12 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
                 slidesPerView: 3,
               },
               1280: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultants?.length > 2,
                 spaceBetween: 30,
                 slidesPerView: 3,
               },
               1536: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultants?.length > 2,
                 spaceBetween: 40,
                 slidesPerView: 3,
               },
