@@ -43,24 +43,17 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</h1>
-            <div className="max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">{title}</div>
+            {renderHtml(data?.content, "max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px]  font-unna leading-[1.1]")}
           </div>
-          {variant === "servicedetail" ? (
-            <>{renderHtml(description, "xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:text-white")}</>
-          ) : (
-            <Link href="/consultants" aria-label="View All Consultants" className="btn-base1 hover">
-              View All Consultants
-            </Link>
-          )}
         </div>
         <div className="w-full realtive">
           <Swiper
             key={consultants?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultants?.length > 2}
+            loop={consultants?.length > 4}
             centerInsufficientSlides={true}
+            rewind={true}
             autoplay={{
               delay: 8000,
               disableOnInteraction: false,

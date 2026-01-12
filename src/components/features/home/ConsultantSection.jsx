@@ -12,7 +12,7 @@ import { useBookingFormContext } from "@/context/BookingFormContext";
 import { renderHtml } from "@/utils/parseHtml";
 import ConsultantCard from "./ConsultantCard";
 
-const consultantss = [
+const consultants = [
   {
     id: 1,
     name: "Dr. Arun Kumar",
@@ -213,7 +213,7 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
             key={consultants?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultantss?.length > 4}
+            loop={consultants?.length > 4}
             centerInsufficientSlides={true}
             rewind={true}
             autoplay={{
@@ -237,12 +237,12 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
                 slidesPerView: 3,
               },
               1280: {
-                centeredSlides: consultantss?.length > 2,
+                centeredSlides: consultants?.length > 2,
                 spaceBetween: 30,
                 slidesPerView: 3,
               },
               1536: {
-                centeredSlides: consultantss?.length > 2,
+                centeredSlides: consultants?.length > 2,
                 spaceBetween: 40,
                 slidesPerView: 3,
               },
