@@ -75,6 +75,159 @@ const items = [
   },
 ];
 
+const consultantss = [
+  {
+    id: 1,
+    name: "Dr. Arun Kumar",
+    slug: "dr-arun-kumar",
+    designation: "Consultant Ophthalmologist",
+    qualifications: "MBBS, MS, FRCS",
+    experience: 18,
+    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+    profile_image_alt_text_value: "Dr. Arun Kumar",
+    languages: [
+      {
+        id: 1,
+        name: "English",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "English",
+      },
+      {
+        id: 2,
+        name: "Hindi",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "Hindi",
+      },
+    ],
+    special_interests: [
+      { id: 1, name: "Cataract Surgery" },
+      { id: 2, name: "Glaucoma Management" },
+    ],
+  },
+  {
+    id: 2,
+    name: "Dr. Sneha Menon",
+    slug: "dr-sneha-menon",
+    designation: "Senior Ophthalmologist",
+    qualifications: "MBBS, DO, DNB",
+    experience: 12,
+    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+    profile_image_alt_text_value: "Dr. Sneha Menon",
+    languages: [
+      {
+        id: 1,
+        name: "English",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "English",
+      },
+      {
+        id: 3,
+        name: "Malayalam",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "Malayalam",
+      },
+    ],
+    special_interests: [
+      { id: 3, name: "Lens Replacement Surgery" },
+      { id: 4, name: "Refractive Surgery" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Dr. Rahul Verma",
+    slug: "dr-rahul-verma",
+    designation: "Consultant Eye Surgeon",
+    qualifications: "MBBS, MS, FICO",
+    experience: 22,
+    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+    profile_image_alt_text_value: "Dr. Rahul Verma",
+    languages: [
+      {
+        id: 1,
+        name: "English",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "English",
+      },
+      {
+        id: 2,
+        name: "Hindi",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "Hindi",
+      },
+    ],
+    special_interests: [
+      { id: 5, name: "Pediatric Ophthalmology" },
+      { id: 6, name: "Corneal Transplant" },
+    ],
+  },
+  {
+    id: 4,
+    name: "Dr. AAAA",
+    slug: "dr-rahul-verma",
+    designation: "Consultant Eye Surgeon",
+    qualifications: "MBBS, MS, FICO",
+    experience: 22,
+    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+    profile_image_alt_text_value: "Dr. Rahul Verma",
+    languages: [
+      {
+        id: 1,
+        name: "English",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "English",
+      },
+      {
+        id: 2,
+        name: "Hindi",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "Hindi",
+      },
+    ],
+    special_interests: [
+      { id: 5, name: "Pediatric Ophthalmology" },
+      { id: 6, name: "Corneal Transplant" },
+    ],
+  },
+  {
+    id: 5,
+    name: "Dr. BBBBB",
+    slug: "dr-rahul-verma",
+    designation: "Consultant Eye Surgeon",
+    qualifications: "MBBS, MS, FICO",
+    experience: 22,
+    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+    profile_image_alt_text_value: "Dr. Rahul Verma",
+    languages: [
+      {
+        id: 1,
+        name: "English",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "English",
+      },
+      {
+        id: 2,
+        name: "Hindi",
+        image_value:
+          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+        image_alt_text_value: "Hindi",
+      },
+    ],
+    special_interests: [
+      { id: 5, name: "Pediatric Ophthalmology" },
+      { id: 6, name: "Corneal Transplant" },
+    ],
+  },
+];
+
 export default function ConsultantSection({ variant, consultants, title, pre_title, description }) {
   const [expanded, setExpanded] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
@@ -93,8 +246,9 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
 
   return (
     <section
-      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
-        }`}
+      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${
+        variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
+      }`}
     >
       <Image
         src="/images/logoBack.png"
@@ -119,10 +273,10 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
         </div>
         <div className="w-full realtive">
           <Swiper
-            key={consultants?.length}
+            key={consultantss?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultants?.length > 1}
+            loop={consultantss?.length > 1}
             centerInsufficientSlides={true}
             autoplay={{
               delay: 8000,
@@ -145,19 +299,19 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
                 slidesPerView: 3,
               },
               1280: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultantss?.length > 1,
                 spaceBetween: 30,
                 slidesPerView: 3,
               },
               1536: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultantss?.length > 1,
                 spaceBetween: 40,
                 slidesPerView: 3,
               },
             }}
             className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
           >
-            {consultants?.map((item) => (
+            {consultantss?.map((item) => (
               <SwiperSlide key={item.id}>
                 <ConsultantCard item={item} expanded={expanded} toggleExpand={toggleExpand} />
               </SwiperSlide>
@@ -165,7 +319,7 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
           </Swiper>
 
           {/* arrows */}
-          {consultants?.length > 1 && (
+          {consultantss?.length > 1 && (
             <div className="flex items-end justify-center relative z-1 max-w-[95px] m-auto mt-[30px] ">
               <div className="w-1/2 p-[10px]">
                 <button className="navbts-prevs z-20 bg-white w-[28px] lg:w-[35px] 2xl:w-[40px] h-[28px] lg:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px] flex items-center justify-center cursor-pointer group hover:bg-base1">
