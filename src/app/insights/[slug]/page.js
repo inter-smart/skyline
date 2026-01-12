@@ -1,5 +1,5 @@
 import { DefaultOgImage } from "@/data/defaultMeta";
-import { fetchFromAPI } from "@/lib/api";
+import { fetchFromAPI, getMetaDataForInnerPages } from "@/lib/api";
 
 import InnerBanner from "@/components/common/InnerBanner";
 import ConsultantSectionServiceInner from "@/components/features/home/ConsultantSectionServiceInner";
@@ -16,55 +16,22 @@ import TableSection from "@/components/features/service/TableSection";
 import UnderstandingADHD from "@/components/features/service/UnderstandingADHD";
 import VideoSection from "@/components/features/service/VideoSection";
 
-// export async function generateMetadata({ params }) {
-//   const { slug } = await params;
-//   const { data: Insights, error } = await fetchFromAPI(`blog-details?slug=${params.slug}`);
-
-//   if (!Insights || error) {
-//     return {
-//       title: "Blog Not Found",
-//       description: "The requested blog post could not be found.",
-//     };
-//   }
-
-//   const { meta_title, meta_description, meta_keywords, title, image_value, image_alt_text_value, published_on, author } = Insights;
-
-//   const ogImage = image_value || DefaultOgImage;
-
-//   return {
-//     title: meta_title || title || "Blog Post",
-//     description: meta_description || "Read our latest blog post",
-//     keywords: meta_keywords || "",
-
-//     openGraph: {
-//       title: meta_title || title || "Blog Post",
-//       description: meta_description || "Read our latest blog post",
-//       images: [
-//         {
-//           url: ogImage,
-//           width: 1200,
-//           height: 630,
-//           alt: image_alt_text_value || title || "Blog post image",
-//         },
-//       ],
-//       type: "article",
-//       publishedTime: published_on ? published_on : undefined,
-//       authors: author ? [author] : undefined,
-//       url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`,
-//     },
-
-//     twitter: {
-//       card: "summary_large_image",
-//       title: meta_title || title || "Blog Post",
-//       description: meta_description || "Read our latest blog post",
-//       images: [ogImage],
-//     },
-
-//     alternates: {
-//       canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/insights/${slug}`,
-//     },
-//   };
-// }
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaDataForInnerPages(
+    `meta-inner?type=blog&slug=${slug}`,
+    `insights/${slug}`
+  );
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
 export default async function Page({ params }) {
   const resolvedParams = await params;
