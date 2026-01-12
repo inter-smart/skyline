@@ -304,6 +304,8 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   border: 0 !important;
   z-index: 9;
+  left: 0;
+  width: 100%;
 }
 section {
   z-index: 0;

@@ -63,7 +63,7 @@ export default function Home() {
           description={home_cms?.section3_description}
           services={services}
         />
-        {/* <ConsultantSection /> */}
+        {/* <ConsultantSection /> */} 
         <TestimonialSection
           textTestimonials={textTestimonials}
           videoTestimonials={videoTestimonials}
