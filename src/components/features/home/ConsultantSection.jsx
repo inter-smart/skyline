@@ -12,69 +12,6 @@ import { useBookingFormContext } from "@/context/BookingFormContext";
 import { renderHtml } from "@/utils/parseHtml";
 import ConsultantCard from "./ConsultantCard";
 
-const items = [
-  {
-    id: 1,
-    name: "Dr. Jessy Jhon",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 2,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 3,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 4,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 5,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 6,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-];
-
 const consultantss = [
   {
     id: 1,
@@ -166,66 +103,66 @@ const consultantss = [
       { id: 6, name: "Corneal Transplant" },
     ],
   },
-  {
-    id: 4,
-    name: "Dr. AAAA",
-    slug: "dr-rahul-verma",
-    designation: "Consultant Eye Surgeon",
-    qualifications: "MBBS, MS, FICO",
-    experience: 22,
-    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
-    profile_image_alt_text_value: "Dr. Rahul Verma",
-    languages: [
-      {
-        id: 1,
-        name: "English",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "English",
-      },
-      {
-        id: 2,
-        name: "Hindi",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "Hindi",
-      },
-    ],
-    special_interests: [
-      { id: 5, name: "Pediatric Ophthalmology" },
-      { id: 6, name: "Corneal Transplant" },
-    ],
-  },
-  {
-    id: 5,
-    name: "Dr. BBBBB",
-    slug: "dr-rahul-verma",
-    designation: "Consultant Eye Surgeon",
-    qualifications: "MBBS, MS, FICO",
-    experience: 22,
-    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
-    profile_image_alt_text_value: "Dr. Rahul Verma",
-    languages: [
-      {
-        id: 1,
-        name: "English",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "English",
-      },
-      {
-        id: 2,
-        name: "Hindi",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "Hindi",
-      },
-    ],
-    special_interests: [
-      { id: 5, name: "Pediatric Ophthalmology" },
-      { id: 6, name: "Corneal Transplant" },
-    ],
-  },
+  // {
+  //   id: 4,
+  //   name: "Dr. AAAA",
+  //   slug: "dr-rahul-verma",
+  //   designation: "Consultant Eye Surgeon",
+  //   qualifications: "MBBS, MS, FICO",
+  //   experience: 22,
+  //   profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+  //   profile_image_alt_text_value: "Dr. Rahul Verma",
+  //   languages: [
+  //     {
+  //       id: 1,
+  //       name: "English",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "English",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Hindi",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "Hindi",
+  //     },
+  //   ],
+  //   special_interests: [
+  //     { id: 5, name: "Pediatric Ophthalmology" },
+  //     { id: 6, name: "Corneal Transplant" },
+  //   ],
+  // },
+  // {
+  //   id: 5,
+  //   name: "Dr. BBBBB",
+  //   slug: "dr-rahul-verma",
+  //   designation: "Consultant Eye Surgeon",
+  //   qualifications: "MBBS, MS, FICO",
+  //   experience: 22,
+  //   profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+  //   profile_image_alt_text_value: "Dr. Rahul Verma",
+  //   languages: [
+  //     {
+  //       id: 1,
+  //       name: "English",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "English",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Hindi",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "Hindi",
+  //     },
+  //   ],
+  //   special_interests: [
+  //     { id: 5, name: "Pediatric Ophthalmology" },
+  //     { id: 6, name: "Corneal Transplant" },
+  //   ],
+  // },
 ];
 
 export default function ConsultantSection({ variant, consultants, title, pre_title, description }) {
@@ -276,8 +213,9 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
             key={consultants?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultants?.length > 1}
+            loop={consultantss?.length > 4}
             centerInsufficientSlides={true}
+            rewind={true}
             autoplay={{
               delay: 8000,
               disableOnInteraction: false,
@@ -299,12 +237,12 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
                 slidesPerView: 3,
               },
               1280: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultantss?.length > 2,
                 spaceBetween: 30,
                 slidesPerView: 3,
               },
               1536: {
-                centeredSlides: consultants?.length > 1,
+                centeredSlides: consultantss?.length > 2,
                 spaceBetween: 40,
                 slidesPerView: 3,
               },
