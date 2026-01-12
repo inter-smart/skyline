@@ -273,10 +273,10 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
         </div>
         <div className="w-full realtive">
           <Swiper
-            key={consultantss?.length}
+            key={consultants?.length}
             modules={[Autoplay, Navigation]}
             spaceBetween={10}
-            loop={consultantss?.length > 1}
+            loop={consultants?.length > 1}
             centerInsufficientSlides={true}
             autoplay={{
               delay: 8000,
@@ -299,19 +299,19 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
                 slidesPerView: 3,
               },
               1280: {
-                centeredSlides: consultantss?.length > 1,
+                centeredSlides: consultants?.length > 1,
                 spaceBetween: 30,
                 slidesPerView: 3,
               },
               1536: {
-                centeredSlides: consultantss?.length > 1,
+                centeredSlides: consultants?.length > 1,
                 spaceBetween: 40,
                 slidesPerView: 3,
               },
             }}
             className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
           >
-            {consultantss?.map((item) => (
+            {consultants?.map((item) => (
               <SwiperSlide key={item.id}>
                 <ConsultantCard item={item} expanded={expanded} toggleExpand={toggleExpand} />
               </SwiperSlide>
@@ -319,7 +319,7 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
           </Swiper>
 
           {/* arrows */}
-          {consultantss?.length > 1 && (
+          {consultants?.length > 1 && (
             <div className="flex items-end justify-center relative z-1 max-w-[95px] m-auto mt-[30px] ">
               <div className="w-1/2 p-[10px]">
                 <button className="navbts-prevs z-20 bg-white w-[28px] lg:w-[35px] 2xl:w-[40px] h-[28px] lg:h-[35px] 2xl:h-[40px] rounded-full p-[8px] lg:p-[13px] flex items-center justify-center cursor-pointer group hover:bg-base1">

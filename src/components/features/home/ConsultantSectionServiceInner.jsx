@@ -1,6 +1,8 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import Link from "next/link";
@@ -9,69 +11,6 @@ import { useState } from "react";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { renderHtml } from "@/utils/parseHtml";
 import ConsultantCard from "./ConsultantCard";
-
-const items = [
-  {
-    id: 1,
-    name: "Dr. Jessy Jhon",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 2,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 3,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 4,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 5,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-  {
-    id: 6,
-    name: "Dr. Sara Tailor",
-    role: "Consultant Psychiatrist",
-    qualification: "MBBS, MRCGP, DRCOG",
-    image: "/images/consult1.jpg",
-    experience: "15+ years",
-    availability: "Same Day",
-    specialization: ["Adult ADHD Assessment", "Depression & Anxiety", "Medication Management"],
-  },
-];
 
 export default function ConsultantSectionServiceInner({ consultants, data }) {
   const [expanded, setExpanded] = useState({});
@@ -104,8 +43,16 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            {renderHtml(data?.content, "max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px]  font-unna leading-[1.1]")}
+            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</h1>
+            <div className="max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">{title}</div>
           </div>
+          {variant === "servicedetail" ? (
+            <>{renderHtml(description, "xl:max-w-[400px] 2xl:max-w-[490px] 3xl:max-w-[620px] [&>*]:text-white")}</>
+          ) : (
+            <Link href="/consultants" aria-label="View All Consultants" className="btn-base1 hover">
+              View All Consultants
+            </Link>
+          )}
         </div>
         <div className="w-full realtive">
           <Swiper
