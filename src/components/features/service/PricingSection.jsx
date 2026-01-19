@@ -61,7 +61,7 @@ export default function PricingSection({ data }) {
           )}
           {data?.image && (
             <div className="w-full lg:w-[35%]">
-              <div className="group w-full h-auto sm:h-[280px] lg:h-full aspect-[590/700] rounded-[5px] overflow-hidden block">
+              <div className="group w-full h-auto sm:h-[280px] lg:h-auto aspect-[590/700] rounded-[5px] lg:sticky z-1 lg:top-0 overflow-hidden block">
                 <Image
                   src={data?.image}
                   alt={data?.imageAlt}

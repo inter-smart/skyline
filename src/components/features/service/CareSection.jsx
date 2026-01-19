@@ -9,7 +9,7 @@ export default function CareSection({ data }) {
   return (
     <section className="w-full h-auto py-[5px_20px] sm:py-[10px_30px] lg:py-[10px_40px] 2xl:py-[10px_50px] 3xl:py-[10px_60px] block">
       <div className="container">
-        {data?.content && renderHtml(data?.content, "text_editor sm:w-[90%] xl:w-[50%] mb-[10px] lg:mb-[15px] 2xl:mb-[25px]")}
+        {data?.content && renderHtml(data?.content, "text_editor mb-[10px] lg:mb-[15px] 2xl:mb-[25px]")}
         {data?.list?.length > 0 && (
           <div className="xl:w-[90%]">
             <Swiper

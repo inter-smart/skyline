@@ -65,7 +65,7 @@ export default function AppointmentInner({ data, service_id }) {
             </motion.button>
             {data?.buttonText && (
               <motion.button
-                className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide hover:text-white"
+                className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
                 aria-label="appointment"
                 onClick={() => handleClick(data?.buttonText, data?.buttonUrl)}
                 variants={fadeUp}

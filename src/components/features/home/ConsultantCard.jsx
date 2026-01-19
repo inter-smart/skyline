@@ -75,7 +75,7 @@ export default function ConsultantCard({ item, expanded, toggleExpand }) {
                     {item?.qualifications}
                 </div>
 
-                <div className="w-full mt-[15px]">
+                <div className="w-full mt-[15px] inline">
                     <ul className="mb-[15px] 2xl:mb-[20px] 3xl:mb-[30px]">
                         {item?.experience && (
                             <li
