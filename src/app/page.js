@@ -79,7 +79,7 @@ export default function Home() {
           sub_title={home_cms?.section6_pre_title}
           description={home_cms?.section6_description}
         />
-        {blogs?.length > 0 && <InsightSection blogs={blogs} />}
+        {/* {blogs?.length > 0 && <InsightSection blogs={blogs} />} */}
       </>
     );
   }
