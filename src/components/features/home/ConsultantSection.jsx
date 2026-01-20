@@ -45,66 +45,66 @@ const consultantss = [
       { id: 2, name: "Glaucoma Management" },
     ],
   },
-  {
-    id: 2,
-    name: "Dr. Sneha Menon",
-    slug: "dr-sneha-menon",
-    designation: "Senior Ophthalmologist",
-    qualifications: "MBBS, DO, DNB",
-    experience: 12,
-    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
-    profile_image_alt_text_value: "Dr. Sneha Menon",
-    languages: [
-      {
-        id: 1,
-        name: "English",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "English",
-      },
-      {
-        id: 3,
-        name: "Malayalam",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "Malayalam",
-      },
-    ],
-    special_interests: [
-      { id: 3, name: "Lens Replacement Surgery" },
-      { id: 4, name: "Refractive Surgery" },
-    ],
-  },
-  {
-    id: 3,
-    name: "Dr. Rahul Verma",
-    slug: "dr-rahul-verma",
-    designation: "Consultant Eye Surgeon",
-    qualifications: "MBBS, MS, FICO",
-    experience: 22,
-    profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
-    profile_image_alt_text_value: "Dr. Rahul Verma",
-    languages: [
-      {
-        id: 1,
-        name: "English",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "English",
-      },
-      {
-        id: 2,
-        name: "Hindi",
-        image_value:
-          "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
-        image_alt_text_value: "Hindi",
-      },
-    ],
-    special_interests: [
-      { id: 5, name: "Pediatric Ophthalmology" },
-      { id: 6, name: "Corneal Transplant" },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   name: "Dr. Sneha Menon",
+  //   slug: "dr-sneha-menon",
+  //   designation: "Senior Ophthalmologist",
+  //   qualifications: "MBBS, DO, DNB",
+  //   experience: 12,
+  //   profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+  //   profile_image_alt_text_value: "Dr. Sneha Menon",
+  //   languages: [
+  //     {
+  //       id: 1,
+  //       name: "English",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "English",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Malayalam",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "Malayalam",
+  //     },
+  //   ],
+  //   special_interests: [
+  //     { id: 3, name: "Lens Replacement Surgery" },
+  //     { id: 4, name: "Refractive Surgery" },
+  //   ],
+  // },
+  // {
+  //   id: 3,
+  //   name: "Dr. Rahul Verma",
+  //   slug: "dr-rahul-verma",
+  //   designation: "Consultant Eye Surgeon",
+  //   qualifications: "MBBS, MS, FICO",
+  //   experience: 22,
+  //   profile_image_value: "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1773/Untitled-2-converted.webp",
+  //   profile_image_alt_text_value: "Dr. Rahul Verma",
+  //   languages: [
+  //     {
+  //       id: 1,
+  //       name: "English",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "English",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Hindi",
+  //       image_value:
+  //         "https://www.skyline-hospitals.dev5.intersmarthosting.in/storage/1513/conversions/WhatsApp-Image-2025-11-26-at-11.13.13-converted.webp",
+  //       image_alt_text_value: "Hindi",
+  //     },
+  //   ],
+  //   special_interests: [
+  //     { id: 5, name: "Pediatric Ophthalmology" },
+  //     { id: 6, name: "Corneal Transplant" },
+  //   ],
+  // },
   // {
   //   id: 4,
   //   name: "Dr. AAAA",
@@ -231,21 +231,21 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
             breakpoints={{
               578: {
                 spaceBetween: 10,
-                slidesPerView: 2,
+                slidesPerView: Math.min(2, consultantss?.length),
               },
               768: {
                 spaceBetween: 10,
-                slidesPerView: 3,
+                slidesPerView: Math.min(3, consultantss?.length),
               },
               1280: {
                 centeredSlides: consultantss?.length > 2,
                 spaceBetween: 30,
-                slidesPerView: 3,
+                slidesPerView: Math.min(3, consultantss?.length),
               },
               1536: {
                 centeredSlides: consultantss?.length > 2,
                 spaceBetween: 40,
-                slidesPerView: 3,
+                slidesPerView: Math.min(3, consultantss?.length),
               },
             }}
             className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
