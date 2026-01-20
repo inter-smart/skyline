@@ -434,6 +434,61 @@ section {
   }
 }
 
+/* Handle consultant slider when there are only 2 slides */
+@media only screen and (min-width: 1279px) {
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide {
+    width: 540px !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx {
+    width: 210px !important;
+    height: 100% !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx .imgBx {
+    height: 100% !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .rtBx {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .info {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 1530px) {
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide {
+    width: 640px !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx {
+    width: 250px !important;
+    height: 100% !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx .imgBx {
+    height: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide {
+    width: 830px !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx {
+    width: 315px !important;
+    height: 100% !important;
+  }
+
+  .consultantSlider:has(.swiper-slide:nth-child(2)):not(:has(.swiper-slide:nth-child(3))) .swiper-slide .cmnBx .imgBx {
+    height: 100% !important;
+  }
+}
+
 .sidemenu .ring-offset-background {
   box-shadow: none !important;
   filter: invert(1);
