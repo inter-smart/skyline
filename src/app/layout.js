@@ -42,8 +42,23 @@ const unna = UnnaFont({
 });
 
 export default async function RootLayout({ children }) {
-  const { data } = await fetchFromAPI("site-settings");
-  const { data: services } = await fetchDropdownDataAPI("get-services");
+  let data = { site_settings: null, social_links: [], policies: [] };
+  let services = [];
+
+  try {
+    const siteSettingsResponse = await fetchFromAPI("site-settings");
+    data = siteSettingsResponse.data || data;
+  } catch (error) {
+    console.error("Failed to fetch site settings:", error.message);
+  }
+
+  try {
+    const servicesResponse = await fetchDropdownDataAPI("get-services");
+    services = servicesResponse.data || [];
+  } catch (error) {
+    console.error("Failed to fetch services:", error.message);
+  }
+
   const { site_settings, social_links, policies } = data;
 
   return (
