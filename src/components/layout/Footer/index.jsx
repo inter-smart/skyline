@@ -65,7 +65,7 @@ export default function index({ site_settings, social_links, policies, services 
                 {site_settings?.footer_tagline || "Excellence in Healthcare"}
               </div>
 
-              <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
+              {/* <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
                 <div
                   className={`text-[11px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] font-semibold text-[#671448] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}
                 >
@@ -88,7 +88,7 @@ export default function index({ site_settings, social_links, policies, services 
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
