@@ -16,9 +16,12 @@ export default function HeaderClient({ site_settings, social_links, services, re
   const [isScrolled, setIsScrolled] = useState(false);
   const currentPath = usePathname();
 
-  const [open, setOpen] = useState(false);
+  const [contactSheetOpen, setContactSheetOpen] = useState(false);
+  const [menuSheetOpen, setMenuSheetOpen] = useState(false);
+
   useEffect(() => {
-    setOpen(false);
+    setContactSheetOpen(false);
+    setMenuSheetOpen(false);
     const handleScroll = () => {
       setIsScrolled(window?.scrollY > 0);
     };
@@ -103,8 +106,8 @@ export default function HeaderClient({ site_settings, social_links, services, re
                           <a
                             href={item.link}
                             className={`${menuLinks} ${active
-                                ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
-                                : "text-[#010101]"
+                              ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
+                              : "text-[#010101]"
                               }`}
                             aria-label="menulinks"
                           >
@@ -243,23 +246,23 @@ export default function HeaderClient({ site_settings, social_links, services, re
                             {/* social Links */}
                             <div className="w-full">
                               <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
-                            <ul className="flex items-center ">
-                              {social_links?.map((social, index) => (
-                                <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                                  <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
-                                    <div className="w-[7px] h-[13px] flex items-center justify-center">
-                                      <Image
-                                        src={social?.icon_value} // <-- replace with correct image path
-                                        alt={social?.name}
-                                        width={7}
-                                        height={13}
-                                        className="fill-base2"
-                                      />
-                                    </div>
-                                  </a>
-                                </li>
-                              ))}
-                            </ul> 
+                              <ul className="flex items-center ">
+                                {social_links?.map((social, index) => (
+                                  <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
+                                    <a href={social?.url} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-white">
+                                      <div className="w-[7px] h-[13px] flex items-center justify-center">
+                                        <Image
+                                          src={social?.icon_value} // <-- replace with correct image path
+                                          alt={social?.name}
+                                          width={7}
+                                          height={13}
+                                          className="fill-base2"
+                                        />
+                                      </div>
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
 
                               {/* logo section */}
                               <Link
@@ -287,8 +290,11 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </div>
         </div>
       </div>
+
+      {/* mobile menus */}
+
       <div className="container min-lg:hidden relative pr-[40px]">
-        <Sheet open={open} onOpenChange={setOpen}>
+        <Sheet open={contactSheetOpen} onOpenChange={setContactSheetOpen}>
           <SheetTrigger
             className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
            flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer "
@@ -301,7 +307,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
               <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
             </svg>
           </SheetTrigger>
-
+          {/* contact info  */}
           <SheetContent
             side="right"
             className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
@@ -396,7 +402,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </SheetContent>
         </Sheet>
 
-        <Sheet open={open} onOpenChange={setOpen}>
+        {/* menu links  */}
+
+        <Sheet open={menuSheetOpen} onOpenChange={setMenuSheetOpen}>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
@@ -430,6 +438,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </div>
           <SheetContent side="right" className="h-[100vh] overflow-auto">
             <SheetHeader>
+              <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
                 <Link href="/" className="block max-w-[115px]  w-full h-full">
                   <Image
@@ -483,9 +492,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
                       <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      <div className="flex items-center">
-                        <span>Consultants</span>
-                      </div>
+                        <div className="flex items-center">
+                          <span>Consultants</span>
+                        </div>
                       </Link>
                     </div>
                   </AccordionItem>
@@ -493,9 +502,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
                       <Link href="/insights" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <div className="flex items-center">
-                        <span>News & Insights </span>
-                      </div>
+                        <div className="flex items-center">
+                          <span>News & Insights </span>
+                        </div>
                       </Link>
                     </div>
                   </AccordionItem>
