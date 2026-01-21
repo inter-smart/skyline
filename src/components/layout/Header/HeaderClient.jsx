@@ -16,9 +16,12 @@ export default function HeaderClient({ site_settings, social_links, services, re
   const [isScrolled, setIsScrolled] = useState(false);
   const currentPath = usePathname();
 
-  const [open, setOpen] = useState(false);
+  const [contactSheetOpen, setContactSheetOpen] = useState(false);
+  const [menuSheetOpen, setMenuSheetOpen] = useState(false);
+
   useEffect(() => {
-    setOpen(false);
+    setContactSheetOpen(false);
+    setMenuSheetOpen(false);
     const handleScroll = () => {
       setIsScrolled(window?.scrollY > 0);
     };
@@ -290,8 +293,11 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </div>
         </div>
       </div>
+
+      {/* mobile menus */}
+
       <div className="container min-lg:hidden relative pr-[40px]">
-        <Sheet open={open} onOpenChange={setOpen}>
+        <Sheet open={contactSheetOpen} onOpenChange={setContactSheetOpen}>
           <SheetTrigger
             className="w-[25px] xl:w-[32px] 2xl:w-[40px] 3xl:w-[50px] h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] absolute top-0 bottom-0 right-0 m-auto
            flex items-center bg-transparent !p-0 rounded-full overflow-hidden group cursor-pointer "
@@ -304,7 +310,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
               <rect x="13" y="26.4667" width="7.33333" height="7.33333" rx="3.66667" fill="white" />
             </svg>
           </SheetTrigger>
-
+          {/* contact info  */}
           <SheetContent
             side="right"
             className="bg-base2 p-[40px_25px] md:p-[45px_35px] 2xl:p-[50px_40px] 3xl:p-[80px_50px_70px] h-screen overflow-auto border-none sidemenu
@@ -399,7 +405,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </SheetContent>
         </Sheet>
 
-        <Sheet open={open} onOpenChange={setOpen}>
+        {/* menu links  */}
+
+        <Sheet open={menuSheetOpen} onOpenChange={setMenuSheetOpen}>
           <div className="flex items-center justify-between ">
             <div className="flex items-center justify-between w-full">
               <Link href="/" className="w-[130px] xs:w-[140px] sm:w-[170px] p-[10px_0]">
@@ -433,6 +441,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
           </div>
           <SheetContent side="right" className="h-[100vh] overflow-auto">
             <SheetHeader>
+              <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
                 <Link href="/" className="block max-w-[115px]  w-full h-full">
                   <Image
