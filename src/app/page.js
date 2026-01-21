@@ -78,6 +78,7 @@ export default function Home() {
           title={home_cms?.section6_title}
           sub_title={home_cms?.section6_pre_title}
           description={home_cms?.section6_description}
+          isHome={true}
         />
         {/* {blogs?.length > 0 && <InsightSection blogs={blogs} />} */}
       </>
