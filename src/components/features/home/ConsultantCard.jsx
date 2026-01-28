@@ -131,23 +131,44 @@ before:bg-[url('/images/expertIcon.svg')] before:bg-no-repeat before:bg-contain 
                         )}
                     </ul>
 
-                    <div
-                        onClick={() => handleClick(`${item?.id}`)}
-                        className="text-[12px] 2xl:text-[14px] 3xl:text-[15px] text-[#671448] font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px]"
-                    >
-                        Book Appointment
-                        <div className="w-[13px] h-[13px] flex ml-[10px]">
-                            <svg
-                                width="13"
-                                height="9"
-                                viewBox="0 0 13 9"
-                                className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1"
-                                fill="none"
-                            >
-                                <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
-                            </svg>
+                    <div className="flex items-center gap-2   w-100 border-t border-black-10 pt-4">
+                        <div
+                            onClick={() => handleClick(`${item?.id}`)}
+                            className="text-[12px] 2xl:text-[14px] 3xl:text-[15px] text-[#671448] p-[10px] border border-black-10 font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px] cursor-pointer"
+                        >
+                            View Details
+                            <div className="w-[13px] h-[13px] flex ml-[10px]">
+                                <svg
+                                    width="13"
+                                    height="9"
+                                    viewBox="0 0 13 9"
+                                    className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1"
+                                    fill="none"
+                                >
+                                    <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            onClick={() => handleClick(`${item?.id}`)}
+                            className="text-[12px] 2xl:text-[14px] 3xl:text-[15px] text-[#671448] p-[10px] border border-black-10  font-medium uppercase flex items-center transition-all group duration-200 hover:text-base2 hover:tracking-[1px]  cursor-pointer"
+                        >
+                            Book Appointment
+                            <div className="w-[13px] h-[13px] flex ml-[10px]">
+                                <svg
+                                    width="13"
+                                    height="9"
+                                    viewBox="0 0 13 9"
+                                    className="transition-all duration-100 fill-base1 group-hover:fill-base2 group-hover:translate-x-1"
+                                    fill="none"
+                                >
+                                    <path d="M8.28555 0.119972C8.12709 0.280054 8.12669 0.540068 8.28555 0.70015L11.6143 4.06224L0.406284 4.06224C0.182 4.06224 -2.05418e-07 4.2459 -1.95508e-07 4.47261C-1.85598e-07 4.69933 0.182034 4.88298 0.406284 4.88298L11.6143 4.88298L8.28596 8.24507C8.12709 8.40515 8.12709 8.66517 8.28596 8.82525C8.44483 8.98533 8.702 8.98533 8.86046 8.82525L12.8824 4.76272C13.0392 4.60426 13.0392 4.34059 12.8824 4.18213L8.86046 0.1196C8.7016 -0.0405157 8.44442 -0.0405151 8.28555 0.119972C8.44442 -0.0405151 8.12709 0.280054 8.28555 0.119972Z" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
