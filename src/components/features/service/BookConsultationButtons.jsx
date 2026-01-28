@@ -23,7 +23,7 @@ const BookConsultationButtons = ({ data, service_id }) => {
             style={{ "--bg-color": data?.buttonColor, "--custom-text-color": data?.buttonTextColor }}
             className="text-[10px] sm:text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-medium text-[var(--custom-text-color)] bg-[var(--bg-color)] w-fit h-auto p-[10px] 2xl:p-[15px]  border-1 border-white rounded-[3px] hover:bg-white hover:text-base1 transition-all duration-300"
           >
-            {"BOOK AN APPOINTEMENT"}
+            {"BOOK AN APPOINTMENT"}
           </div>
         </div>
         {data?.buttonText && (

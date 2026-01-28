@@ -12,7 +12,7 @@ export default function AppointmentSection({ sub_title, title, description, path
 
   const handleClick = (text, link) => {
     if (text) {
-      router.push(link || "/");
+      router.push(link || "/contact#connect-us");
     } else {
       openDialog();
     }
@@ -85,7 +85,7 @@ export default function AppointmentSection({ sub_title, title, description, path
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {"MAKE AN ENQUIRY"}
+                {button_text || "MAKE AN ENQUIRY"}
               </motion.button>
             )}
           </div>
