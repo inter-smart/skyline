@@ -85,7 +85,8 @@ export default function ConsultantSectionServiceInner({ consultants, data }) {
                 slidesPerView: Math.min(3, consultants?.length),
               },
             }}
-            className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
+            className="relative consultantSlider h-auto !w-full"
+            // className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
           >
             {consultants?.map((item) => (
               <SwiperSlide key={item.id}>

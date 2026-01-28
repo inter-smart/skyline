@@ -20,7 +20,7 @@ export default function ConsultantCard({ item, expanded, toggleExpand }) {
                      border overflow-hidden bg-white flex flex-wrap"
         >
             {/* Left Section */}
-            <div className="w-full cmnBx flex-grow  xl:w-[210px] 2xl:w-[250px] 3xl:w-[315px] lg:h-full">
+            <div className="w-full cmnBx flex-grow  xl:w-[190px] 2xl:w-[250px] 3xl:w-[315px] lg:h-full">
                 <div className="w-full lg:h-full rounded-[6px] overflow-hidden aspect-[375/270] mb-[15px] bg-[#D6E2ED] relative imgBx">
                     {/* logo image */}
                     <Image
@@ -59,7 +59,7 @@ export default function ConsultantCard({ item, expanded, toggleExpand }) {
 
             {/* Right Section */}
             <div
-                className={` flex-grow rtBx w-full   xl:w-[calc(100%-210px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-315px)]  xl:pl-[20px] 3xl:pl-[30px] transition-all duration-300`}
+                className={` flex-grow rtBx w-full   xl:w-[calc(100%-190px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-315px)]  xl:pl-[20px] 3xl:pl-[30px] pr-[20px] transition-all duration-300`}
             >
                 <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#00335B] font-medium mb-[10px] 2xl:mb-[15px]">
                     {item?.name}

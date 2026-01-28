@@ -183,9 +183,8 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
 
   return (
     <section
-      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${
-        variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
-      }`}
+      className={`bg-[#00335B] py-[40px] 3xl:py-[70px] overflow-hidden relative z-0 ${variant === "servicedetail" && "mt-[40px] sm:mt-[60px] lg:mt-[90px] 2xl:mt-[110px] 3xl:mt-[140px]"
+        }`}
     >
       <Image
         src="/images/logoBack.png"
@@ -247,10 +246,10 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
                 slidesPerView: Math.min(3, consultants?.length),
               },
             }}
-            className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"
+            className="relative consultantSlider !h-auto !w-full"
           >
             {consultants?.map((item) => (
-              <SwiperSlide key={item.id}>
+              <SwiperSlide key={item.id} className="!h-auto">
                 <ConsultantCard item={item} expanded={expanded} toggleExpand={toggleExpand} />
               </SwiperSlide>
             ))}
