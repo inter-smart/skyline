@@ -31,7 +31,7 @@ const quickLinks = [
   {
     title: "Career",
     link: "/career",
-    clickable: true,
+    clickable: false,
   },
 ];
 
@@ -65,8 +65,7 @@ export default function index({ site_settings, social_links, policies, services 
                 {site_settings?.footer_tagline || "Excellence in Healthcare"}
               </div>
 
-        
-               <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
+              {/* <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
                 <div
                   className={`text-[11px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] font-semibold text-[#671448] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}
                 >
@@ -75,10 +74,7 @@ export default function index({ site_settings, social_links, policies, services 
                 <ul className="flex items-center max-sm:w-full  ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                      <a
-                        href={social.link}
-                        className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2"
-                      >
+                      <a href={social.link} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
                         <div className="w-[7px] h-[13px] flex items-center justify-center">
                           <Image
                             src={social?.icon_value} // <-- replace with correct image path
@@ -91,8 +87,8 @@ export default function index({ site_settings, social_links, policies, services 
                       </a>
                     </li>
                   ))}
-                </ul> 
-               </div> 
+                </ul>
+              </div> */}
             </div>
           </div>
         </div>
@@ -155,10 +151,11 @@ export default function index({ site_settings, social_links, policies, services 
                     <ul>
                       {policies?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                          <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
-                          {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
+                          {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
+                          <div className={`${menuLink}`} aria-label="menuLink">
+                            {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
                             {item?.title}
-                          </Link>
+                          </div>
                           {/* <span className={menuLink}>{item?.title}</span> */}
                         </li>
                       ))}
@@ -173,10 +170,11 @@ export default function index({ site_settings, social_links, policies, services 
                 <ul>
                   {policies?.map((item, index) => (
                     <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                      <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
-                      {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
+                      {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
+                      <div className={`${menuLink}`} aria-label="menuLink">
+                        {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
                         {item?.title}
-                      </Link>
+                      </div>
                       {/* <span className={menuLink}>{item?.title}</span> */}
                     </li>
                   ))}
@@ -248,7 +246,7 @@ export default function index({ site_settings, social_links, policies, services 
                       </div>
                       {renderHtml(
                         site_settings?.address || "Skyline Hospitals Coventry",
-                        "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]"
+                        "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]",
                       )}
                     </div>
                     <div className="w-full mb-[20px]">
@@ -302,7 +300,7 @@ export default function index({ site_settings, social_links, policies, services 
                   </div>
                   {renderHtml(
                     site_settings?.address || "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom",
-                    "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]"
+                    "text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white font-light relative block [&>p]:text-white [&>p]:text-[10px] [&>p]:xl:text-[12px] [&>p]:2xl:text-[14px] [&>p]:3xl:text-[18px]",
                   )}
                 </div>
                 <div className="w-full mb-[20px]">

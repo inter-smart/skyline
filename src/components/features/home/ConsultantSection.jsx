@@ -230,21 +230,21 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
             breakpoints={{
               578: {
                 spaceBetween: 10,
-                slidesPerView: Math.min(2, consultantss?.length),
+                slidesPerView: Math.min(2, consultants?.length),
               },
               768: {
                 spaceBetween: 10,
-                slidesPerView: Math.min(3, consultantss?.length),
+                slidesPerView: Math.min(3, consultants?.length),
               },
               1280: {
                 centeredSlides: consultants?.length > 2,
                 spaceBetween: 30,
-                slidesPerView: Math.min(3, consultantss?.length),
+                slidesPerView: Math.min(3, consultants?.length),
               },
               1536: {
                 centeredSlides: consultants?.length > 2,
                 spaceBetween: 40,
-                slidesPerView: Math.min(3, consultantss?.length),
+                slidesPerView: Math.min(3, consultants?.length),
               },
             }}
             className="relative consultantSlider xl:h-[280px] 2xl:h-[330px] 3xl:h-[420px] !w-full"

@@ -58,7 +58,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
       clickable: true,
     },
     { id: 4, name: "Consultants", link: "/consultants", clickable: true },
-    { id: 5, name: "News & Insights", link: "/insights", clickable: true },
+    { id: 5, name: "News & Insights", link: "/insights", clickable: false },
     { id: 6, name: "Contact", link: "/contact", clickable: true },
   ];
 
@@ -97,18 +97,20 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     return (
                       <div
                         key={item.id}
-                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${item.submenu
-                          ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
-                          : ""
-                          }`}
+                        className={`relative group px-[10px] xl:px-[14px] 2xl:px-[15px] 3xl:px-[20px] ${
+                          item.submenu
+                            ? "after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:right-[0] !no-underline cursor-pointer after:bg-[url('/images/linkarrow.svg')] after:bg-no-repeat after:bg-contain after:w-[9px] after:h-[6px] after:transition-transform after:duration-300 hover:after:rotate-180"
+                            : ""
+                        }`}
                       >
                         {item.clickable ? (
                           <a
                             href={item.link}
-                            className={`${menuLinks} ${active
-                              ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
-                              : "text-[#010101]"
-                              }`}
+                            className={`${menuLinks} ${
+                              active
+                                ? "text-[#00335b]  relative after:absolute after:bottom-[10px] after:left-0 after:right-0 after:h-[2.5px] after:w-full after:bg-base1 decoration-[#00335b] underline-offset-4 after:rounded"
+                                : "text-[#010101]"
+                            }`}
                             aria-label="menulinks"
                           >
                             {item.name}
@@ -126,10 +128,11 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <a
                                   key={subId}
                                   href={sub.link}
-                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${subActive
-                                    ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
-                                    : "text-[#010101]"
-                                    }`}
+                                  className={`block text-[11px] xl:text-[12px] 2xl:text-[14px] px-4 py-2 hover relative hover:text-white ${
+                                    subActive
+                                      ? "text-base1 before:content-[''] pl-[25px] before:absolute before:left-[10px] before:top-[15px] before:w-2 before:h-2 before:bg-base1 before:rounded-full before:z-10 hover:before:bg-white font-medium"
+                                      : "text-[#010101]"
+                                  }`}
                                 >
                                   {sub.name}
                                 </a>
@@ -201,9 +204,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                 <div className={`${cmnMenuClass}`}>Location</div>
                                 {site_settings?.address
                                   ? renderHtml(
-                                    site_settings.address,
-                                    "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                                  )
+                                      site_settings.address,
+                                      "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal",
+                                    )
                                   : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
                               </li>
                               <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
@@ -245,7 +248,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
                             {/* social Links */}
                             <div className="w-full">
-                              <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                              {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                               <ul className="flex items-center ">
                                 {social_links?.map((social, index) => (
                                   <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -262,7 +265,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                                     </a>
                                   </li>
                                 ))}
-                              </ul>
+                              </ul> */}
 
                               {/* logo section */}
                               <Link
@@ -322,9 +325,9 @@ export default function HeaderClient({ site_settings, social_links, services, re
                   <div className={`${cmnMenuClass}`}>Location</div>
                   {site_settings?.address
                     ? renderHtml(
-                      site_settings.address,
-                      "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal"
-                    )
+                        site_settings.address,
+                        "text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] [&>p]:text-white font-medium mb-[12px] font-normal",
+                      )
                     : "Skyline Hospitals Coventry, 123 Medical Way Coventry, CV1 2AB, United Kingdom"}
                 </li>
                 <li className="mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] last-of-type:mb-0">
@@ -366,7 +369,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
 
               {/* social Links */}
               <div className="w-full">
-                <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
+                {/* <div className={`${cmnMenuClass} text-[18px] font-medium text-white mb-[20px]`}>Follow us on</div>
                 <ul className="flex items-center ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
@@ -384,7 +387,7 @@ export default function HeaderClient({ site_settings, social_links, services, re
                       </a>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
 
                 {/* logo section */}
 
@@ -490,22 +493,22 @@ export default function HeaderClient({ site_settings, social_links, services, re
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-4" className="border-b border-[#f4f4f4]">
-                    <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                      <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
-                        <div className="flex items-center">
-                          <span>Consultants</span>
-                        </div>
-                      </Link>
-                    </div>
+                    {/* <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  "> */}
+                    <Link href="/consultants" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center  ">
+                      <div className="flex items-center">
+                        <span>Consultants</span>
+                      </div>
+                    </Link>
+                    {/* </div> */}
                   </AccordionItem>
 
                   <AccordionItem value="item-5" className="border-b border-[#f4f4f4]">
                     <div className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                      <Link href="/insights" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink">
-                        <div className="flex items-center">
-                          <span>News & Insights </span>
-                        </div>
-                      </Link>
+                      {/* <Link href="/" className="text-[12px] font-normal text-black py-[8px] w-full flex items-center" aria-label="menuLink"> */}
+                      <div className="flex items-center">
+                        <span>News & Insights </span>
+                      </div>
+                      {/* </Link> */}
                     </div>
                   </AccordionItem>
                   <AccordionItem value="item-6" className="border-b border-[#f4f4f4]">
