@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import "./globals.css";
+// import { GoogleTagManager } from "@next/third-parties/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Unna as UnnaFont } from "next/font/google";
@@ -63,6 +64,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      {/* <GoogleTagManager gtmId="GTM-XYZ" /> */}
       <body className={`${graphik.variable} ${unna.variable}`}>
         <RecaptchaProvider>
           <BookingFormContextProvider>
