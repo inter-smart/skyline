@@ -13,13 +13,14 @@ import TableSection from "@/components/features/service/TableSection";
 import UnderstandingADHD from "@/components/features/service/UnderstandingADHD";
 import VideoSection from "@/components/features/service/VideoSection";
 import { fetchFromAPI, getMetaDataForInnerPages } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { innerslug, slug } = resolvedParams;
   const { title, description, keywords, twitter, openGraph, alternates } = await getMetaDataForInnerPages(
     `meta-inner?type=sub-service&slug=${innerslug}`,
-    `service/${slug}/${innerslug}`
+    `service/${slug}/${innerslug}`,
   );
   return {
     title,
@@ -38,11 +39,7 @@ export default async function Page({ params }) {
   const { data, error } = await fetchFromAPI(`sub-service-details?serviceSlug=${slug}&slug=${innerslug}`);
 
   if (error || !data) {
-    return (
-      <div className="text-center py-20">
-        <Page />
-      </div>
-    );
+    notFound();
   }
 
   const {

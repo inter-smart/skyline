@@ -14,6 +14,7 @@ import { fetchFromAPI } from "@/lib/api";
 import Page from "@/app/404/page";
 import ConsultantSection from "@/components/features/home/ConsultantSection";
 import { DefaultOgImage } from "@/data/defaultMeta";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -198,11 +199,7 @@ export default async function Service({ params }) {
   const { data, error } = await fetchFromAPI(`service-details?slug=${params.slug}`);
 
   if (error || !data) {
-    return (
-      <div className="text-center py-20">
-        <Page />
-      </div>
-    );
+    notFound();
   }
 
   const {
