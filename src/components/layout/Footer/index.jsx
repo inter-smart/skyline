@@ -151,12 +151,9 @@ export default function index({ site_settings, social_links, policies, services 
                     <ul>
                       {policies?.map((item, index) => (
                         <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                          {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
-                          <div className={`${menuLink}`} aria-label="menuLink">
-                            {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
+                          <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                             {item?.title}
-                          </div>
-                          {/* <span className={menuLink}>{item?.title}</span> */}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -170,12 +167,9 @@ export default function index({ site_settings, social_links, policies, services 
                 <ul>
                   {policies?.map((item, index) => (
                     <li key={index} className="mb-[10px] 2xl:mb-[15px] last-of-type:mb-0">
-                      {/* <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink"> */}
-                      <div className={`${menuLink}`} aria-label="menuLink">
-                        {/* <div className={`${menuLink}`} aria-label="menuLink"> */}
+                      <Link href={`/policies/${item?.slug}`} className={`${menuLink}`} aria-label="menuLink">
                         {item?.title}
-                      </div>
-                      {/* <span className={menuLink}>{item?.title}</span> */}
+                      </Link>
                     </li>
                   ))}
                 </ul>
