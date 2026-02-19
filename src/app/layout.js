@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic";
 
 import "./globals.css";
-// import { GoogleTagManager } from "@next/third-parties/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Unna as UnnaFont } from "next/font/google";
@@ -64,8 +63,16 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      {/* <GoogleTagManager gtmId="GTM-XYZ" /> */}
       <body className={`${graphik.variable} ${unna.variable}`}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-17804375105" strategy="afterInteractive" />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17804375105');
+      `}
+        </Script>
         <RecaptchaProvider>
           <BookingFormContextProvider>
             <Header site_settings={site_settings} social_links={social_links} services={services} />
