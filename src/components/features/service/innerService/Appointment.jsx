@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { renderHtml } from "@/utils/parseHtml";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
@@ -49,13 +49,13 @@ export default function AppointmentInner({ data, service_id }) {
       )}
 
       <div className="container w-full h-full flex items-center relative z-20">
-        <motion.div className=" relative " initial="hidden" whileInView="visible " viewport={{ once: true, amount: 0.3 }}>
+        <div className=" relative " initial="hidden" whileInView="visible " viewport={{ once: true, amount: 0.3 }}>
         <div className="relative [&_h1]:mb-[30px] [&_p]:mb-[12px] xl:max-w-[65%] ">
             {data?.content && renderHtml(data?.content , "text_editor ")}
         </div>
 
           <div className="flex flex-wrap gap-[15px]">
-            <motion.button
+            <button
               className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
               aria-label="appointment"
               onClick={() => handleClick(null, data?.buttonUrl)}
@@ -64,9 +64,9 @@ export default function AppointmentInner({ data, service_id }) {
               whileTap={{ scale: 0.95 }}
             >
               {"Book an Appointment"}
-            </motion.button>
+            </button>
             {data?.buttonText && (
-              <motion.button
+              <button
                 className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] tracking-wide"
                 aria-label="appointment"
                 onClick={() => handleClick(data?.buttonText, data?.buttonUrl)}
@@ -75,10 +75,10 @@ export default function AppointmentInner({ data, service_id }) {
                 whileTap={{ scale: 0.95 }}
               >
                 {data?.buttonText || "MAKE AN ENQUIRY"}
-              </motion.button>
+              </button>
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
