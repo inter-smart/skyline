@@ -15,7 +15,9 @@ export default async function Header({ site_settings, social_links, services }) 
         services={services}
         reasons={reasonsData.data}
         insurance={insuranceData.data}
+        
       />
+      
     </>
   );
 }

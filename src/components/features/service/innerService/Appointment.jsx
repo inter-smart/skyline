@@ -49,8 +49,10 @@ export default function AppointmentInner({ data, service_id }) {
       )}
 
       <div className="container w-full h-full flex items-center relative z-20">
-        <motion.div className=" relative" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-          {data?.content && renderHtml(data?.content)}
+        <motion.div className=" relative " initial="hidden" whileInView="visible " viewport={{ once: true, amount: 0.3 }}>
+        <div className="relative [&_h1]:mb-[30px] [&_p]:mb-[12px] xl:max-w-[65%] ">
+            {data?.content && renderHtml(data?.content , "text_editor ")}
+        </div>
 
           <div className="flex flex-wrap gap-[15px]">
             <motion.button
