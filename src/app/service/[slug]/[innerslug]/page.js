@@ -224,7 +224,7 @@ export default async function Page({ params }) {
       />
       <ManagingADHD data={section1Data} />
       {section2Data.video && <VideoSection data={section2Data} />}
-      <BookConsultationSection data={section3Data} service_id={service_id} />
+      {section3Data.content && section3Data.image && <BookConsultationSection data={section3Data} service_id={service_id} />}
       <CareSection data={section4Data} />
       <UnderstandingADHD data={section5Data} />
       <RecognizingSection data={section6Data} />
