@@ -65,7 +65,7 @@ export default function index({ site_settings, social_links, policies, services 
                 {site_settings?.footer_tagline || "Excellence in Healthcare"}
               </div>
 
-              {/* <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
+              <div className="lg:max-w-[250px] 3xl:max-w-[300px] max-sm:m-auto max-sm:text-center">
                 <div
                   className={`text-[11px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[20px] font-semibold text-[#671448] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}
                 >
@@ -74,21 +74,19 @@ export default function index({ site_settings, social_links, policies, services 
                 <ul className="flex items-center max-sm:w-full  ">
                   {social_links?.map((social, index) => (
                     <li className="mr-[15px] 2xl:mr-[20px] 3xl:mr-[25px] last-of-type:mr-0">
-                      <a href={social.link} className="w-[28px] h-[28px] rounded-full flex items-center justify-center bg-base2">
-                        <div className="w-[7px] h-[13px] flex items-center justify-center">
-                          <Image
-                            src={social?.icon_value} // <-- replace with correct image path
-                            alt={social?.name}
-                            width={7}
-                            height={13}
-                            className="!w-[7px] !h-[13px]"
-                          />
-                        </div>
+                      <a href={social.url} target="_blank" className="w-[28px] h-[28px] rounded-full block">
+                        <Image
+                          src={social?.icon_value} // <-- replace with correct image path
+                          alt={social?.name}
+                          width={28}
+                          height={28}
+                          className="w-full h-full object-contains"
+                        />
                       </a>
                     </li>
                   ))}
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
