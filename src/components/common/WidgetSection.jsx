@@ -58,7 +58,7 @@ export default function WidgetSection({ site_settings }) {
           </li>
 
           <li className="mb-[6px]">
-            <div
+            <a
               href={`http://wa.me/${site_settings?.whatsapp_number}`}
               className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px] flex items-center justify-center bg-[#0BC349] group"
               aria-label="social_icons"
@@ -76,7 +76,7 @@ export default function WidgetSection({ site_settings }) {
                   />
                 </svg>
               </div>
-            </div>
+            </a>
           </li>
           {/* <li className="mb-[6px]">
             <a
