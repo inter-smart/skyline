@@ -3,7 +3,7 @@ export default function WidgetSection({ site_settings }) {
     <section>
       <div
         className="w-[35px] lg:w-[37px] 2xl:w-[45px] 3xl:w-[50px] h-fit fixed right-[2px] sm:right-[10px]
-       2xl:right-[12px] 3xl:right-[15px] sm:bottom-0 sm:top-0  xs:bottom-[40px]  m-auto z-10"
+       2xl:right-[12px] 3xl:right-[15px] top-0 bottom-0 m-auto z-10"
       >
         {/* Top social icons */}
 
