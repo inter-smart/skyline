@@ -3,7 +3,7 @@ export default function WidgetSection({ site_settings }) {
     <section>
       <div
         className="w-[35px] lg:w-[37px] 2xl:w-[45px] 3xl:w-[50px] h-fit fixed right-[2px] sm:right-[10px]
-       2xl:right-[12px] 3xl:right-[15px] top-0 bottom-0 m-auto z-10"
+       2xl:right-[12px] 3xl:right-[15px] top-0 bottom-0 m-auto z-2"
       >
         {/* Top social icons */}
 
@@ -11,7 +11,7 @@ export default function WidgetSection({ site_settings }) {
           <li className="mb-[6px]">
             <a
               href={`tel:${site_settings?.main_phone_number}`}
-              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px] flex items-center justify-center bg-[#00335B] group"
+              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px] flex items-center justify-center border border-white/10 bg-[#00335B] group"
               aria-label="social_icons"
             >
               <div className="w-[15px] 2xl:w-[20px] 3xl:w-[24px] h-[15px] 2xl:h-[20px] 3xl:h-[24px] transition-all duration-300 group-hover:scale-75">
@@ -36,7 +36,7 @@ export default function WidgetSection({ site_settings }) {
           <li className="mb-[6px]">
             <a
               href={`mailto:${site_settings?.email}`}
-              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px]  flex items-center justify-center bg-[#671448] group"
+              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px]  flex items-center justify-center  border border-white/10 bg-[#671448] group"
               aria-label="social_icons"
               target="_blank"
             >
@@ -60,7 +60,7 @@ export default function WidgetSection({ site_settings }) {
           <li className="mb-[6px]">
             <a
               href={`http://wa.me/${site_settings?.whatsapp_number}`}
-              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px] flex items-center justify-center bg-[#0BC349] group"
+              className="w-[30px] 2xl:w-[35px] 3xl:w-[45px] h-[30px] 2xl:h-[35px] 3xl:h-[45px] rounded-[2px] flex items-center justify-center  border border-white/10 bg-[#0BC349] group"
               aria-label="social_icons"
               target="_blank"
             >

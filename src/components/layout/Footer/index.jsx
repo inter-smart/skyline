@@ -37,7 +37,7 @@ const quickLinks = [
 
 export default function index({ site_settings, social_links, policies, services }) {
   return (
-    <footer className="w-full bg-base2 pt-[80px] relative z-0">
+    <footer className="w-full bg-base2 pt-[80px] relative -z-10">
       <Image src="/images/footerBg.png" width="1920" height="850" className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt="footerBg" />
       <div className="container realtive z-10 mb-[50px]">
         <div
