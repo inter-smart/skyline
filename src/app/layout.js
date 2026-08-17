@@ -11,6 +11,8 @@ import { BookingFormContextProvider } from "@/context/BookingFormContext";
 import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
 import Script from "next/script";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
+import JsonLd from "@/components/common/JsonLd";
+import { organizationSchema } from "@/lib/schema";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -73,6 +75,8 @@ export default async function RootLayout({ children }) {
         gtag('config', 'AW-17804375105');
       `}
         </Script>
+        {/* Global JSON-LD schemas — edit schemas in src/lib/schema.js */}
+        <JsonLd schema={organizationSchema} />
         <RecaptchaProvider>
           <BookingFormContextProvider>
             <Header site_settings={site_settings} social_links={social_links} services={services} />

@@ -1,6 +1,8 @@
 import { fetchFromAPI, getMetaData } from "@/lib/api";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import JsonLd from "@/components/common/JsonLd";
+import { homePageSchema } from "@/lib/schema";
 import AboutSection from "@/components/features/home/AboutSection";
 import BannerSection from "@/components/features/home/BannerSection";
 import SpecialistSection from "@/components/features/home/SpecialistSection";
@@ -35,6 +37,9 @@ async function getHomeContent() {
 export default function Home() {
   return (
     <>
+      {/* Home-page JSON-LD schema — edit in src/lib/schema.js */}
+      <JsonLd schema={homePageSchema} />
+
       <Suspense fallback={<div className="h-[500px] bg-gray-100 animate-pulse" />}>
         <BannerWrapper />
       </Suspense>
