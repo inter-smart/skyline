@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const baseUrl = "https://beta-skyline-web.netlify.app";
+const baseUrl = "https://skylinehospitals.co.uk";
 
 // Automatically discover static routes from app directory
 function getStaticRoutes(dir, baseRoute = "") {
