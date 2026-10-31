@@ -77,7 +77,7 @@ export default function AboutSection({ home_cms = {}, announcements = [] }) {
             >
               {section1_pre_title || "About Skyline"}
             </SubTitle>
-            <Heading size="heading1" as="div">
+            <Heading size="heading1" as="h2">
               {section1_title || "Welcome to Skyline Hospitals"}
             </Heading>
             {renderHtml(section1_description)}
