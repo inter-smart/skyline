@@ -67,7 +67,9 @@ export default function HeroSlider({ sliders = slides }) {
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="w-full h-full"
       >
-        {sliders?.map((slide, index) => (
+        {sliders?.map((slide, index) => {
+          const HeadingTag = index === 0 ? motion.h1 : motion.h2;
+          return (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full after:absolute after:top-0 after:left-0 after:w-full after:h-full after:content-[''] 
               after:bg-gradient-to-r after:from-[rgba(0,0,0,0.5)] after:to-[rgba(0,0,0,0.07)]  md:after:from-[rgba(255,255,255,0.35)] md:after:to-[rgba(255,255,255,0.0)] after:z-[0]">
@@ -99,13 +101,13 @@ export default function HeroSlider({ sliders = slides }) {
                     {slide?.pre_title}
                   </motion.p>
 
-                  <motion.h1
+                  <HeadingTag
                     variants={textAnimation}
                     transition={{ delay: 0.5 }}
                     className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] max-md:text-white  font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
                   >
                     {slide?.title}
-                  </motion.h1>
+                  </HeadingTag>
 
                   <motion.p
                     variants={textAnimation}
@@ -140,7 +142,8 @@ export default function HeroSlider({ sliders = slides }) {
               </div>
             </div>
           </SwiperSlide>
-        ))}
+          );
+        })}
       </Swiper>
 
       {/* Slide Counter */}
