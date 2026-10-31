@@ -11,6 +11,8 @@ import { BookingFormContextProvider } from "@/context/BookingFormContext";
 import { fetchDropdownDataAPI, fetchFromAPI } from "@/lib/api";
 import Script from "next/script";
 import RecaptchaProvider from "@/components/RecaptchaProvider";
+import JsonLd from "@/components/common/JsonLd";
+import { organizationSchema } from "@/lib/schema";
 
 export const metadata = {
   title: "Skyline Hospitals",
@@ -42,13 +44,39 @@ const unna = UnnaFont({
 });
 
 export default async function RootLayout({ children }) {
-  const { data } = await fetchFromAPI("site-settings");
-  const { data: services } = await fetchDropdownDataAPI("get-services");
+  let data = { site_settings: null, social_links: [], policies: [] };
+  let services = [];
+
+  try {
+    const siteSettingsResponse = await fetchFromAPI("site-settings");
+    data = siteSettingsResponse.data || data;
+  } catch (error) {
+    console.error("Failed to fetch site settings:", error.message);
+  }
+
+  try {
+    const servicesResponse = await fetchDropdownDataAPI("get-services");
+    services = servicesResponse.data || [];
+  } catch (error) {
+    console.error("Failed to fetch services:", error.message);
+  }
+
   const { site_settings, social_links, policies } = data;
 
   return (
     <html lang="en">
       <body className={`${graphik.variable} ${unna.variable}`}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-17804375105" strategy="afterInteractive" />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17804375105');
+      `}
+        </Script>
+        {/* Global JSON-LD schemas — edit schemas in src/lib/schema.js */}
+        <JsonLd schema={organizationSchema} />
         <RecaptchaProvider>
           <BookingFormContextProvider>
             <Header site_settings={site_settings} social_links={social_links} services={services} />

@@ -153,6 +153,7 @@ export async function getMetaData(pageKey, pagename = "") {
           description: meta?.og_description || meta?.meta_description || metaDescription,
           images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [{ url: DefaultOgImage, width: 1200, height: 630 }],
           type: "website",
+          siteName: "Skyline Hospitals",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
         },
         twitter: {
@@ -177,6 +178,7 @@ export async function getMetaData(pageKey, pagename = "") {
         title: metaTitle,
         description: metaDescription,
         type: "website",
+        siteName: "Skyline Hospitals",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
       },
       twitter: {
@@ -199,6 +201,7 @@ export async function getMetaData(pageKey, pagename = "") {
         title: metaTitle,
         description: metaDescription,
         type: "website",
+        siteName: "Skyline Hospitals",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
       },
       twitter: {
@@ -249,6 +252,7 @@ export async function getMetaDataForInnerPages(endpoint, pagename = "") {
             ? [{ url: meta.section1_image_value, width: 1200, height: 630 }]
             : [{ url: DefaultOgImage, width: 1200, height: 630 }],
           type: "website",
+          siteName: "Skyline Hospitals",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
         },
         twitter: {
@@ -273,6 +277,7 @@ export async function getMetaDataForInnerPages(endpoint, pagename = "") {
         title: metaTitle,
         description: metaDescription,
         type: "website",
+        siteName: "Skyline Hospitals",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
       },
       twitter: {
@@ -295,6 +300,7 @@ export async function getMetaDataForInnerPages(endpoint, pagename = "") {
         title: metaTitle,
         description: metaDescription,
         type: "website",
+        siteName: "Skyline Hospitals",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${pagename}`,
       },
       twitter: {

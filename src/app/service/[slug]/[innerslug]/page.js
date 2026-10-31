@@ -13,6 +13,7 @@ import TableSection from "@/components/features/service/TableSection";
 import UnderstandingADHD from "@/components/features/service/UnderstandingADHD";
 import VideoSection from "@/components/features/service/VideoSection";
 import { fetchFromAPI, getMetaDataForInnerPages } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -41,11 +42,7 @@ export default async function Page({ params }) {
   );
 
   if (error || !data) {
-    return (
-      <div className="text-center py-20">
-        <Page />
-      </div>
-    );
+    notFound();
   }
 
   const {
@@ -258,7 +255,9 @@ export default async function Page({ params }) {
       />
       <ManagingADHD data={section1Data} />
       {section2Data.video && <VideoSection data={section2Data} />}
-      <BookConsultationSection data={section3Data} service_id={service_id} />
+      {section3Data.content && section3Data.image && (
+        <BookConsultationSection data={section3Data} service_id={service_id} />
+      )}
       <CareSection data={section4Data} />
       <UnderstandingADHD data={section5Data} />
       <RecognizingSection data={section6Data} />

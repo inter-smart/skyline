@@ -6,13 +6,13 @@ import { renderHtml } from "@/utils/parseHtml";
 import { useBookingFormContext } from "@/context/BookingFormContext";
 import { useRouter } from "next/navigation";
 
-export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link, variant }) {
+export default function AppointmentSection({ sub_title, title, description, path, alt, button_text, button_link, variant, isHome = false }) {
   const { openDialog } = useBookingFormContext();
   const router = useRouter();
 
   const handleClick = (text, link) => {
     if (text) {
-      router.push(link || "/");
+      router.push(link || "/contact#connect-us");
     } else {
       openDialog();
     }
@@ -76,16 +76,18 @@ export default function AppointmentSection({ sub_title, title, description, path
             >
               {"Book an Appointment"}
             </motion.button>
-            <motion.button
-              className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide hover:text-white"
-              aria-label="appointment"
-              onClick={() => handleClick(null, button_link)}
-              variants={fadeUp}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {"MAKE AN ENQUIRY"}
-            </motion.button>
+            {!isHome && (
+              <motion.button
+                className="btn-base1 hover min-w-[135px] xl:min-w-[170px] 2xl:min-w-[200px] 3xl:min-w-[250px] bg-transparent border-1 border-[#671448] text-[#671448] tracking-wide hover:text-white"
+                aria-label="appointment"
+                onClick={() => handleClick("make", button_link)}
+                variants={fadeUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {button_text || "MAKE AN ENQUIRY"}
+              </motion.button>
+            )}
           </div>
         </motion.div>
       </div>
