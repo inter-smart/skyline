@@ -25,7 +25,7 @@ export default function BookConsultationSection({ data, service_id }) {
                 )}
               </div>
             )}
-          </div>
+          </div>  
           <BookConsultationButtons data={data} service_id={service_id} />
         </div>
       </div>
