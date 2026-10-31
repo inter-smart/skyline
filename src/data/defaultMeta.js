@@ -50,4 +50,4 @@ export const defaultMeta = {
   },
 };
 
-export const DefaultOgImage = "/images/whiteLogo.png";
+export const DefaultOgImage = "https://skylinehospitals.co.uk/images/whiteLogo.png";
