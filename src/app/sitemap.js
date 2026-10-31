@@ -38,7 +38,7 @@ function getStaticRoutes(dir, baseRoute = "") {
 }
 
 export default async function sitemap() {
-  const appDir = path.join(process.cwd(), "src");
+  const appDir = path.join(process.cwd(), "src", "app");
 
   // Get all static routes automatically
   const staticPaths = getStaticRoutes(appDir);
