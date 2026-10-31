@@ -18,10 +18,11 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { innerslug, slug } = resolvedParams;
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaDataForInnerPages(
-    `meta-inner?type=sub-service&slug=${innerslug}`,
-    `service/${slug}/${innerslug}`,
-  );
+  const { title, description, keywords, twitter, openGraph, alternates } =
+    await getMetaDataForInnerPages(
+      `meta-inner?type=sub-service&slug=${innerslug}`,
+      `service/${slug}/${innerslug}`,
+    );
   return {
     title,
     description,
@@ -36,7 +37,9 @@ export default async function Page({ params }) {
   const resolvedParams = await params;
   const { slug, innerslug } = resolvedParams;
 
-  const { data, error } = await fetchFromAPI(`sub-service-details?serviceSlug=${slug}&slug=${innerslug}`);
+  const { data, error } = await fetchFromAPI(
+    `sub-service-details?serviceSlug=${slug}&slug=${innerslug}`,
+  );
 
   if (error || !data) {
     notFound();
@@ -114,13 +117,19 @@ export default async function Page({ params }) {
   const section1Data = {
     content: section1_content ? section1_content : null,
     sideNote: section1_side_note ? section1_side_note : null,
-    sideNoteBg: section1_side_note_background_color ? section1_side_note_background_color : null,
+    sideNoteBg: section1_side_note_background_color
+      ? section1_side_note_background_color
+      : null,
     image: section1_image_value ? section1_image_value : null,
-    imageAlt: section1_image_alt_text_value ? section1_image_alt_text_value : null,
+    imageAlt: section1_image_alt_text_value
+      ? section1_image_alt_text_value
+      : null,
   };
 
   const section2Data = {
-    videoThumbnail: section2_video_thumbnail_image_value ? section2_video_thumbnail_image_value : null,
+    videoThumbnail: section2_video_thumbnail_image_value
+      ? section2_video_thumbnail_image_value
+      : null,
     video: section2_video_value ? section2_video_value : null,
   };
 
@@ -128,11 +137,17 @@ export default async function Page({ params }) {
     content: section3_content ? section3_content : null,
     buttonText: section3_button_text ? section3_button_text : null,
     buttonUrl: section3_button_url ? section3_button_url : null,
-    buttonTextColor: section3_button_text_color ? section3_button_text_color : null,
+    buttonTextColor: section3_button_text_color
+      ? section3_button_text_color
+      : null,
     buttonColor: section3_button_color ? section3_button_color : null,
-    backgroundColor: section3_background_color ? section3_background_color : null,
+    backgroundColor: section3_background_color
+      ? section3_background_color
+      : null,
     image: section3_image_value ? section3_image_value : null,
-    imageAlt: section3_image_alt_text_value ? section3_image_alt_text_value : null,
+    imageAlt: section3_image_alt_text_value
+      ? section3_image_alt_text_value
+      : null,
   };
 
   const section4Data = {
@@ -143,14 +158,20 @@ export default async function Page({ params }) {
   const section5Data = {
     content: section5_content ? section5_content : null,
     boxContent: section5_box_content ? section5_box_content : null,
-    boxBackground: section5_box_background_color ? section5_box_background_color : null,
+    boxBackground: section5_box_background_color
+      ? section5_box_background_color
+      : null,
     image: section5_image_value ? section5_image_value : null,
-    imageAlt: section5_image_alt_text_value ? section5_image_alt_text_value : null,
+    imageAlt: section5_image_alt_text_value
+      ? section5_image_alt_text_value
+      : null,
   };
 
   const section6Data = {
     content: section6_content ? section6_content : null,
-    backgroundColor: section6_background_color ? section6_background_color : null,
+    backgroundColor: section6_background_color
+      ? section6_background_color
+      : null,
     list: sub_service_signals ? sub_service_signals : [],
   };
 
@@ -172,25 +193,33 @@ export default async function Page({ params }) {
 
   const section9Data = {
     content: section9_content ? section9_content : null,
-    treatments: sub_service_treatment_components ? sub_service_treatment_components : null,
+    treatments: sub_service_treatment_components
+      ? sub_service_treatment_components
+      : null,
     steps: sub_service_treatment_steps ? sub_service_treatment_steps : [],
   };
 
   const section10Data = {
-    videoThumbnail: section10_video_thumbnail_image_value ? section10_video_thumbnail_image_value : null,
+    videoThumbnail: section10_video_thumbnail_image_value
+      ? section10_video_thumbnail_image_value
+      : null,
     video: section10_video_value ? section10_video_value : null,
   };
 
   const section11Data = {
     content: section11_content ? section11_content : null,
-    backgroundColor: section11_background_color ? section11_background_color : null,
+    backgroundColor: section11_background_color
+      ? section11_background_color
+      : null,
   };
 
   const section12Data = {
     content: section12_content ? section12_content : null,
     table: section12_table ? section12_table : null,
     image: section12_image_value ? section12_image_value : null,
-    imageAlt: section12_image_alt_text_value ? section12_image_alt_text_value : null,
+    imageAlt: section12_image_alt_text_value
+      ? section12_image_alt_text_value
+      : null,
   };
 
   const section13Data = {
@@ -203,7 +232,9 @@ export default async function Page({ params }) {
     buttonText: section14_button_text ? section14_button_text : null,
     buttonUrl: section14_button_url ? section14_button_url : null,
     image: section14_image_value ? section14_image_value : null,
-    imageAlt: section14_image_alt_text_value ? section14_image_alt_text_value : null,
+    imageAlt: section14_image_alt_text_value
+      ? section14_image_alt_text_value
+      : null,
   };
 
   const section15Data = {
@@ -224,7 +255,9 @@ export default async function Page({ params }) {
       />
       <ManagingADHD data={section1Data} />
       {section2Data.video && <VideoSection data={section2Data} />}
-      {section3Data.content && section3Data.image && <BookConsultationSection data={section3Data} service_id={service_id} />}
+      {section3Data.content && section3Data.image && (
+        <BookConsultationSection data={section3Data} service_id={service_id} />
+      )}
       <CareSection data={section4Data} />
       <UnderstandingADHD data={section5Data} />
       <RecognizingSection data={section6Data} />
@@ -232,11 +265,20 @@ export default async function Page({ params }) {
       <TableSection data={section8Data} />
       <IntegatedSection data={section9Data} />
       {section10Data.video && <VideoSection data={section10Data} />}
-      {consultants?.length > 0 && <ConsultantSectionServiceInner consultants={consultants} data={section11Data} />}
+      {consultants?.length > 0 && (
+        <ConsultantSectionServiceInner
+          consultants={consultants}
+          data={section11Data}
+        />
+      )}
       <PricingSection data={section12Data} />
-      {section13Data?.faqs?.length > 0 && <ServiceFaqSection data={section13Data} />}
+      {section13Data?.faqs?.length > 0 && (
+        <ServiceFaqSection data={section13Data} />
+      )}
       <AppointmentInner data={section14Data} service_id={service_id} />
-      {section15Data?.highlights?.length > 0 && <HospitalSection data={section15Data} />}
+      {section15Data?.highlights?.length > 0 && (
+        <HospitalSection data={section15Data} />
+      )}
     </>
   );
 }

@@ -14,8 +14,20 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import PhoneInput from "@/components/ui/phone-input";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { SelectIcon } from "@radix-ui/react-select";
 import { useEffect, useState } from "react";
 import { fetchDropdownDataAPI, postToAPI } from "@/lib/api";
@@ -27,7 +39,8 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const SECURITY_PATTERNS = {
   xssPattern: /<[^>]*>?|javascript:|on\w+\s*=/gi,
-  sqlInjectionPattern: /('|`|;|--|"|\b(DROP|DELETE|INSERT|UPDATE|SELECT|UNION|CREATE|ALTER|EXEC|EXECUTE)\b)/gi,
+  sqlInjectionPattern:
+    /('|`|;|--|"|\b(DROP|DELETE|INSERT|UPDATE|SELECT|UNION|CREATE|ALTER|EXEC|EXECUTE)\b)/gi,
   scriptPattern: /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
   templateInjectionPattern: /\{\{.*?\}\}/g,
 };
@@ -94,18 +107,27 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
         .refine((val) => val.length >= 2, "Name must be at least 2 characters")
         .refine((val) => val.length <= 255, "Name is too long")
         .refine(validateSecurity, "Invalid characters detected")
-        .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+        .refine(
+          validateNotOnlySpecialChars,
+          "Name cannot contain only special characters",
+        )
         .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
         .refine(
-          (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
-          "Name can only contain letters, spaces, hyphens, and apostrophes"
+          (val) =>
+            /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(
+              val,
+            ),
+          "Name can only contain letters, spaces, hyphens, and apostrophes",
         ),
 
       phone_number: z
         .string()
         .transform((val) => val?.trim() || "")
         .refine(validateNotEmpty, "Phone number is required")
-        .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
+        .refine(
+          validateNotOnlyWhitespace,
+          "Phone number cannot be only whitespace",
+        )
         .refine(validateSecurity, "Invalid characters detected")
         .refine((val) => {
           const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
@@ -115,7 +137,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
           const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
           return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
         }, "Phone number must contain valid digits and cannot be all zeros")
-        .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+        .refine(
+          (val) => /^[\d\s\(\)\-\+]+$/.test(val),
+          "Phone number contains invalid characters",
+        ),
 
       email: z
         .string()
@@ -134,18 +159,35 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       country: z.string().optional(),
       service_id: z.string().optional(), // Always optional in base schema
       reason_for_consultation_id: z.string().min(1, "Please select a reason"),
-      insurance_provider_id: z.string().min(1, "Please select an insurance provider"),
+      insurance_provider_id: z
+        .string()
+        .min(1, "Please select an insurance provider"),
       additionalNotes: z
         .string()
         .optional()
         .transform((val) => val?.trim() || "")
         // Only run validations if value is not empty
         .refine((val) => !val || validateNotEmpty(val), "Message is required")
-        .refine((val) => !val || validateNotOnlyWhitespace(val), "Message cannot be only whitespace")
-        .refine((val) => !val || validateSingleCharacter(val), "Message must be at least 2 characters")
-        .refine((val) => !val || validateMessageLength(val), "Message is too long (maximum 5000 characters)")
-        .refine((val) => !val || validateSecurity(val), "Invalid characters or potential security risk detected")
-        .refine((val) => !val || validateNotOnlySpecialChars(val), "Message cannot contain only special characters"),
+        .refine(
+          (val) => !val || validateNotOnlyWhitespace(val),
+          "Message cannot be only whitespace",
+        )
+        .refine(
+          (val) => !val || validateSingleCharacter(val),
+          "Message must be at least 2 characters",
+        )
+        .refine(
+          (val) => !val || validateMessageLength(val),
+          "Message is too long (maximum 5000 characters)",
+        )
+        .refine(
+          (val) => !val || validateSecurity(val),
+          "Invalid characters or potential security risk detected",
+        )
+        .refine(
+          (val) => !val || validateNotOnlySpecialChars(val),
+          "Message cannot contain only special characters",
+        ),
     })
     .refine(
       (data) => {
@@ -160,7 +202,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
       {
         message: "Please select a service",
         path: ["service_id"], // Points to the field
-      }
+      },
     );
 
   const form = useForm({
@@ -227,7 +269,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
   return (
     <>
-      <AlertDialog open={isOpen} onOpenChange={(open) => (open ? openDialog() : closeDialog())}>
+      <AlertDialog
+        open={isOpen}
+        onOpenChange={(open) => (open ? openDialog() : closeDialog())}
+      >
         <AlertDialogTrigger
           className="text-[8px] sm:text-[10px] 2xl:text-[11px] 3xl:text-[15px] text-white uppercase font-medium relative cursor-pointer
                      h-[25px] xl:h-[32px] 2xl:h-[40px] 3xl:h-[50px] rounded-[3px] 3xl:rounded-[5px] 
@@ -237,7 +282,7 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
         >
           Book An Appointment
         </AlertDialogTrigger>
-        <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
+        <AlertDialogTitle asChild><div className="sr-only">menu</div></AlertDialogTitle>
         <AlertDialogContent
           className="max-w-[95%] md:max-w-[650px] xl:!max-w-[750px] 2xl:!max-w-[940px] 3xl:!max-w-[1200px] bg-[#00335B] p-[30px_20px] lg:p-[35px_25px]  
                 xl:p-[45px_30px] 2xl:p-[55px_35px] 3xl:p-[50px_45px] rounded-[15px] border-none max-h-[90vh] lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 
@@ -260,7 +305,9 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                 Book An Appointment
               </div>
               <p className="text-white mb-0">
-                Your health and well-being are our top priorities. Experience world-class healthcare with a personal touch in the heart of Coventry.{" "}
+                Your health and well-being are our top priorities. Experience
+                world-class healthcare with a personal touch in the heart of
+                Coventry.{" "}
               </p>
             </div>
           </AlertDialogHeader>
@@ -286,7 +333,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
           </AlertDialogCancel>
           <AlertDialogDescription asChild>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
                   {/* Name Field */}
                   <div className="w-full sm:w-1/2 p-[5px] 2xl:p-[10px]">
@@ -297,7 +347,12 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                         <FormItem>
                           <div className={`${formBox}`}>
                             <div className="w-[15px] h-[15px] flex items-center">
-                              <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+                              <svg
+                                width="12"
+                                height="14"
+                                viewBox="0 0 12 14"
+                                fill="none"
+                              >
                                 <path
                                   d="M6.00044 7.3876C3.96403 7.3876 2.30664 5.73021 2.30664 3.6938C2.30664 1.65739 3.96403 0 6.00044 0C8.03685 0 9.69424 1.65739 9.69424 3.6938C9.69424 5.73021 8.03685 7.3876 6.00044 7.3876ZM6.00044 0.963601C4.49723 0.963601 3.27024 2.19059 3.27024 3.6938C3.27024 5.19702 4.49723 6.424 6.00044 6.424C7.50366 6.424 8.73064 5.19702 8.73064 3.6938C8.73064 2.19059 7.50366 0.963601 6.00044 0.963601Z"
                                   fill="white"
@@ -309,7 +364,12 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                               </svg>
                             </div>
                             <FormControl>
-                              <input type="text" placeholder="Name*" {...field} className={`${formControl}`} />
+                              <input
+                                type="text"
+                                placeholder="Name*"
+                                {...field}
+                                className={`${formControl}`}
+                              />
                             </FormControl>
                           </div>
                           <FormMessage className="text-[10px] text-red-300 mt-1 ml-2" />
@@ -356,7 +416,12 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                         <FormItem>
                           <div className={`${formBox}`}>
                             <div className="w-[15px] h-[15px] flex items-center">
-                              <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+                              <svg
+                                width="17"
+                                height="12"
+                                viewBox="0 0 17 12"
+                                fill="none"
+                              >
                                 <path
                                   d="M14.5729 11.2003H1.59143C1.16948 11.1998 0.76495 11.032 0.466599 10.7336C0.168248 10.4352 0.000442739 10.0307 0 9.60875V1.59152C0.000442739 1.16957 0.168248 0.765025 0.466599 0.466646C0.76495 0.168266 1.16948 0.000422022 1.59143 -6.10352e-05H14.5729C14.9948 0.000422022 15.3994 0.168266 15.6977 0.466646C15.9961 0.765025 16.1639 1.16957 16.1643 1.59152V9.60875C16.1639 10.0307 15.9961 10.4352 15.6977 10.7336C15.3994 11.032 14.9948 11.1998 14.5729 11.2003ZM1.59143 0.608226C1.33075 0.608508 1.08082 0.7122 0.896501 0.896547C0.712182 1.08089 0.608529 1.33084 0.608287 1.59152V9.60875C0.608529 9.86943 0.712182 10.1194 0.896501 10.3037C1.08082 10.4881 1.33075 10.5918 1.59143 10.592H14.5729C14.8336 10.5918 15.0835 10.4881 15.2678 10.3037C15.4521 10.1194 15.5558 9.86943 15.556 9.60875V1.59152C15.5558 1.33084 15.4521 1.08089 15.2678 0.896547C15.0835 0.7122 14.8336 0.608508 14.5729 0.608226H1.59143Z"
                                   fill="white"
@@ -365,12 +430,23 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                                   d="M8.08198 7.39011C8.00785 7.39016 7.93624 7.36312 7.88064 7.31408L0.550781 0.843728L0.953315 0.387512L8.08198 6.68085L15.211 0.388273L15.6135 0.844488L8.28363 7.31484C8.22788 7.36374 8.15614 7.39052 8.08198 7.39011Z"
                                   fill="white"
                                 />
-                                <path d="M0.384766 10.2452L5.30889 4.63466L5.76632 5.03613L0.842197 10.6466L0.384766 10.2452Z" fill="white" />
-                                <path d="M10.4121 5.03058L10.8695 4.62911L15.7938 10.2397L15.3363 10.6412L10.4121 5.03058Z" fill="white" />
+                                <path
+                                  d="M0.384766 10.2452L5.30889 4.63466L5.76632 5.03613L0.842197 10.6466L0.384766 10.2452Z"
+                                  fill="white"
+                                />
+                                <path
+                                  d="M10.4121 5.03058L10.8695 4.62911L15.7938 10.2397L15.3363 10.6412L10.4121 5.03058Z"
+                                  fill="white"
+                                />
                               </svg>
                             </div>
                             <FormControl>
-                              <input type="email" placeholder="Email*" {...field} className={`${formControl}`} />
+                              <input
+                                type="email"
+                                placeholder="Email*"
+                                {...field}
+                                className={`${formControl}`}
+                              />
                             </FormControl>
                           </div>
                           <FormMessage className="text-[10px] text-red-300 mt-1 ml-2" />
@@ -390,14 +466,21 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                         render={({ field }) => (
                           <FormItem>
                             <div className={`${selectBox}`}>
-                              <Select onValueChange={field.onChange} value={field.value ? String(field.value) : ""}>
+                              <Select
+                                onValueChange={field.onChange}
+                                value={field.value ? String(field.value) : ""}
+                              >
                                 <FormControl>
                                   <SelectTrigger
                                     className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
                                   >
                                     <SelectValue placeholder="Select Service*" />
                                     <div>
-                                      <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
+                                      <svg
+                                        viewBox="0 0 10 8"
+                                        style={{ width: "8px" }}
+                                        className=" text-white ml-auto shrink-0"
+                                      >
                                         <path
                                           d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
                                           fill="currentColor"
@@ -409,7 +492,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
 
                                 <SelectContent className="bg-white max-h-48 overflow-y-auto">
                                   {services?.map((option) => (
-                                    <SelectItem key={option.id} value={String(option.id)}>
+                                    <SelectItem
+                                      key={option.id}
+                                      value={String(option.id)}
+                                    >
                                       {option.name}
                                     </SelectItem>
                                   ))}
@@ -431,14 +517,24 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                       render={({ field }) => (
                         <FormItem>
                           <div className={`${selectBox}`}>
-                            <Select onValueChange={field.onChange} value={field.value ? String(field.value) : ""}>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value ? String(field.value) : ""}
+                            >
                               <FormControl>
                                 <SelectTrigger
                                   className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
                                 >
-                                  <SelectValue placeholder="Reason for Consultation*" className="text-white placeholder:text-white" />
+                                  <SelectValue
+                                    placeholder="Reason for Consultation*"
+                                    className="text-white placeholder:text-white"
+                                  />
                                   <div>
-                                    <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
+                                    <svg
+                                      viewBox="0 0 10 8"
+                                      style={{ width: "8px" }}
+                                      className=" text-white ml-auto shrink-0"
+                                    >
                                       <path
                                         d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
                                         fill="currentColor"
@@ -449,7 +545,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                               </FormControl>
                               <SelectContent className="bg-white max-h-48 overflow-y-auto">
                                 {reasons?.map((option) => (
-                                  <SelectItem key={option.id} value={String(option.id)}>
+                                  <SelectItem
+                                    key={option.id}
+                                    value={String(option.id)}
+                                  >
                                     {option.title}
                                   </SelectItem>
                                 ))}
@@ -470,14 +569,24 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                       render={({ field }) => (
                         <FormItem>
                           <div className={`${selectBox}`}>
-                            <Select onValueChange={field.onChange} value={field.value ? String(field.value) : ""}>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value ? String(field.value) : ""}
+                            >
                               <FormControl>
                                 <SelectTrigger
                                   className={`border-none focus:ring-0 focus:ring-offset-0 ${formControl} !w-full !m-0 data-[placeholder]:text-white [&>svg]:hidden`}
                                 >
-                                  <SelectValue placeholder="Insurance Provider*" className="text-white placeholder:text-white" />
+                                  <SelectValue
+                                    placeholder="Insurance Provider*"
+                                    className="text-white placeholder:text-white"
+                                  />
                                   <div>
-                                    <svg viewBox="0 0 10 8" style={{ width: "8px" }} className=" text-white ml-auto shrink-0">
+                                    <svg
+                                      viewBox="0 0 10 8"
+                                      style={{ width: "8px" }}
+                                      className=" text-white ml-auto shrink-0"
+                                    >
                                       <path
                                         d="M0.196331 1.31367L4.88879 6.7222C4.96443 6.80933 5.05825 6.87927 5.16383 6.92722C5.26941 6.97517 5.38424 7 5.50044 7C5.61665 7 5.73148 6.97517 5.83705 6.92722C5.94263 6.87927 6.03646 6.80933 6.11209 6.7222L10.8046 1.31367C11.2524 0.797419 10.8811 0 10.1929 0H0.80664C0.118448 0 -0.252839 0.797419 0.196331 1.31367Z"
                                         fill="currentColor"
@@ -488,7 +597,10 @@ export default function BookAnAppointment({ services, reasons, insurance }) {
                               </FormControl>
                               <SelectContent className="bg-white max-h-48 overflow-y-auto">
                                 {insurance?.map((option) => (
-                                  <SelectItem key={option.id} value={String(option.id)}>
+                                  <SelectItem
+                                    key={option.id}
+                                    value={String(option.id)}
+                                  >
                                     {option.title}
                                   </SelectItem>
                                 ))}
