@@ -1,7 +1,11 @@
 import { fetchDropdownDataAPI } from "@/lib/api";
 import HeaderClient from "./HeaderClient";
 
-export default async function Header({ site_settings, social_links, services }) {
+export default async function Header({
+  site_settings,
+  social_links,
+  services,
+}) {
   const [reasonsData, insuranceData] = await Promise.all([
     fetchDropdownDataAPI("get-reason-for-consultations"),
     fetchDropdownDataAPI("get-insurance-providers"),
@@ -15,9 +19,7 @@ export default async function Header({ site_settings, social_links, services }) 
         services={services}
         reasons={reasonsData.data}
         insurance={insuranceData.data}
-        
       />
-      
     </>
   );
 }
