@@ -196,7 +196,7 @@ export default function ConsultantSection({ variant, consultants, title, pre_tit
       <div className="container">
         <div className="flex items-end justify-between mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px] flex-wrap gap-[20px]">
           <div className="max-w-[650px]">
-            <h1 className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</h1>
+            <div className="text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-white uppercase tracking-wide mb-[10px]r mb-[20px]">{pre_title}</div>
             <div className="max-w-[468px] text-[32px] xl:text-[40px] 2xl:text-[47px] 3xl:text-[60px] text-white font-unna leading-[1.1]">{title}</div>
           </div>
           {variant === "servicedetail" ? (

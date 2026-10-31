@@ -6,7 +6,7 @@ import { useBookingFormContext } from "@/context/BookingFormContext";
 export default function SuccesModal({ open, setOpen }) {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTitle className="sr-only">success</AlertDialogTitle>
+      <AlertDialogTitle asChild><div className="sr-only">success</div></AlertDialogTitle>
       <AlertDialogContent className="max-w-[95%] sm:!max-w-[360px] 2xl:!max-w-[430px] 3xl:!max-w-[540px] bg-white rounded-[4px]">
         <AlertDialogCancel className="bg-transparent border-none cursor-pointer absolute top-[25px] right-[25px] w-[20px] h-[20px] flex items-center group hover:bg-transparent">
           <svg

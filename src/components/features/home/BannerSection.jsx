@@ -99,13 +99,13 @@ export default function HeroSlider({ sliders = slides }) {
                     {slide?.pre_title}
                   </motion.p>
 
-                  <motion.h2
+                  <motion.h1
                     variants={textAnimation}
                     transition={{ delay: 0.5 }}
                     className="text-[30px] lg:text-[35px] xl:text-[44px] 2xl:text-[53px] 3xl:text-[66px] text-[#212121] max-md:text-white  font-normal font-unna capitalize leading-[30px] lg:leading-[35px] xl:leading-[44px] 2xl:leading-[53px] 3xl:leading-[66px] tracking-wider mb-[20px] xl:mb-[25px]"
                   >
                     {slide?.title}
-                  </motion.h2>
+                  </motion.h1>
 
                   <motion.p
                     variants={textAnimation}

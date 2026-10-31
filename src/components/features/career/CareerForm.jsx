@@ -241,7 +241,7 @@ export default function CareerForm({ careerId }) {
         >
           APPLY NOW
         </AlertDialogTrigger>
-        <AlertDialogTitle className="sr-only">menu</AlertDialogTitle>
+        <AlertDialogTitle asChild><div className="sr-only">menu</div></AlertDialogTitle>
         <AlertDialogContent
           className="!max-w-[95%] sm:!max-w-[630px] 2xl:!max-w-[1000px] 3xl:!max-w-[1270px] bg-white h-[95%]
                  lg:max-h-[450px] xl:max-h-[560px] 2xl:max-h-[670px] 

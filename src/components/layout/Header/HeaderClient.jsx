@@ -248,8 +248,8 @@ export default function HeaderClient({
                           />
                         </svg>
                       </SheetTrigger>
-                      <SheetTitle as="div" className="sr-only">
-                        menu
+                      <SheetTitle asChild>
+                        <div className="sr-only">menu</div>
                       </SheetTitle>
 
                       <SheetContent
@@ -608,7 +608,9 @@ export default function HeaderClient({
           </div>
           <SheetContent side="right" className="h-[100vh] overflow-auto">
             <SheetHeader>
-              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <SheetTitle asChild>
+                <div className="sr-only">Menu</div>
+              </SheetTitle>
               <div className="flex items-center w-full border-b border-[#f4f4f4] pb-[10px] mb-[10px]">
                 <Link href="/" className="block max-w-[115px]  w-full h-full">
                   <Image
